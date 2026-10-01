@@ -19,6 +19,12 @@ test('Cloudflare API Workers Scripts Write name is accepted with the same isolat
   const data=fixture();data['/tokens/'+deploy].policies[0].permission_groups[0]={id:'e086da7e2179491d91ee5f35b3ca210a',name:'Workers Scripts Write'};
   assert.equal((await cloudPreflight(params,fake(data))).status,'PREFLIGHT_PASS');
 });
+test('Workers Scripts Read alongside deployment permission remains isolated',async()=>{
+  const data=fixture();data['/tokens/'+deploy].policies[0].permission_groups.push({name:'Workers Scripts Read'});
+  assert.equal((await cloudPreflight(params,fake(data))).status,'PREFLIGHT_PASS');
+  data['/tokens/'+deploy].policies[0].resources={'com.cloudflare.api.account.*':'*'};
+  await assert.rejects(cloudPreflight(params,fake(data)),/TOKEN_SCOPE_TOO_BROAD/);
+});
 test('permission denial identifies credential and permission without leaking token values',async()=>{
   for(const [key,credential,name] of [['/tokens/'+deploy,'deploy','Account API Tokens Write'],['/tokens/'+read,'runtime_r2_read','Workers R2 Storage Bucket Item Write']]){
     const data=fixture();data[key].policies[0].permission_groups.push({name});

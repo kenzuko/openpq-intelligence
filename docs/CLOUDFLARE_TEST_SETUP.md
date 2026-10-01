@@ -33,7 +33,7 @@ Tạo **account-owned token**, không dùng Global API Key hoặc token có quy�
 | Workers R2 Storage Read | Inventory bucket trước khi deploy |
 | Account Settings Read | Đọc cấu hình account/subdomain nếu API yêu cầu |
 
-Runner chấp nhận `Workers Scripts Edit` trong dashboard và tên tương đương `Workers Scripts Write` do API trả về. Nếu UI chỉ hiện tên khác hoặc preflight báo thiếu quyền, gửi tên permission/error; kiểm tra lại contract trước khi thay đổi. Không cấp All Accounts, DNS/Zone, Account API Tokens Write hoặc R2 write cho token deploy. Ghi token vào GitHub secret bên dưới.
+Runner chấp nhận `Workers Scripts Edit` trong dashboard và tên tương đương `Workers Scripts Write` do API trả về; `Workers Scripts Read` đi kèm cũng được phép trên đúng account thử nghiệm. Nếu UI chỉ hiện tên khác hoặc preflight báo thiếu quyền, gửi tên permission/error; kiểm tra lại contract trước khi thay đổi. Không cấp All Accounts, DNS/Zone, Account API Tokens Write hoặc R2 write cho token deploy. Ghi token vào GitHub secret bên dưới.
 
 **Credential Runtime**: R2 → Manage R2 API Tokens → Create **Account API Token**, chọn **Object Read only**, chỉ bucket vừa tạo. Lưu Access Key ID và Secret Access Key vào hai GitHub secrets. Secret chỉ hiển thị lúc tạo. Không chọn Object Read & Write hay Admin Read & Write.
 
