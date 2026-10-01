@@ -56,3 +56,9 @@ test('unknown/truncated inventory is blocked; allowed prior test namespace is re
   let d=fixture();d['/r2/buckets'].cursor='more';await assert.rejects(cloudPreflight(params,fake(d)),/BUCKET_INVENTORY_INCOMPLETE/);
   d=fixture();d['/workers/durable_objects/namespaces']=[{id:'fixture-namespace',script:WORKERS[0],class:'DatasetCoordinator'}];const e=await cloudPreflight(params,fake(d));assert.equal(e.namespaces.length,1);
 });
+test('explicit staging Worker is permitted only within the already isolated inventory',async()=>{
+  const d=fixture();d['/workers/scripts']=[{id:'openpq-intelligence-staging-isolated-test'}];
+  assert.equal((await cloudPreflight(params,fake(d))).status,'PREFLIGHT_PASS');
+  d['/workers/scripts'].push({id:'openpq-intelligence-staging-production'});
+  await assert.rejects(cloudPreflight(params,fake(d)),/TEST_ACCOUNT_HAS_OTHER_WORKERS/);
+});

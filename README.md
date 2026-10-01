@@ -23,4 +23,4 @@ Modules:
 - `src/platform/s3-reader.js`: AWS SigV4 object GET adapter for a separately provisioned read-only R2 credential. Its permission boundary has actual isolated cloud PUT/DELETE denial and pinned disposable read-credential revocation evidence.
 - `src/workers/operator.js`: separate console/API, forwards each operator's own capability. JoTrip Ops is not a command surface.
 
-All Workers reject production environments in this milestone. No production routes, automatic deployment, scheduler or legacy modification is included. P0 snapshot records parallel branches/worktrees; future changes must re-check exact latest main before their first write.
+All Workers reject production environments in this milestone. No production routes, scheduler or legacy modification is included. The separate manual Cano staging workflow deploys only by manual dispatch or its explicit cloud/manual-cano-staging test branch trigger. See [actual data intake](docs/MANUAL_CANO_DATA_INTAKE.md). P0 snapshot records parallel branches/worktrees; future changes must re-check exact latest main before their first write.

@@ -1,5 +1,10 @@
 # Implementation evidence, 2026-10-01
 
+## Latest: real manual data staging transport
+
+79 local tests and five offline Worker bundles pass. A separate append-only staging Worker/adapter handles pinned owned Cano An Thới manual records. 01/10 normalizes to SHADOW; 30/09 and 27/09 quarantine missing explicit authors. Current source time is 06:23 +07:00, preserved as 23:23Z on the prior UTC date; validity ends at the next Vietnam midnight. Full G1/G2 remain closed and actual cloud staging is NOT_RUN until a successful exact-SHA workflow artifact is pinned. See MANUAL_CANO_DATA_INTAKE.md.
+
+
 Result: isolated authority/publication milestone implemented; full Intelligence execution is **not complete**. No production deployment or legacy source/consumer transfer occurred.
 
 ## Current status after semantic/free-thread handoff

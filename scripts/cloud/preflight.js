@@ -3,7 +3,7 @@ import {pathToFileURL} from 'node:url';
 import {ContractError,requireThat} from '../../src/platform/contracts.js';
 
 export const BUCKET='openpq-intelligence-canonical-isolated-test';
-export const WORKERS=['openpq-intelligence-core-isolated-test','openpq-intelligence-runtime-isolated-test','openpq-intelligence-operator-isolated-test'];
+export const WORKERS=['openpq-intelligence-core-isolated-test','openpq-intelligence-runtime-isolated-test','openpq-intelligence-operator-isolated-test','openpq-intelligence-staging-isolated-test'];
 const id=v=>typeof v==='string'&&/^[a-f0-9]{32}$/.test(v);
 
 function policies(token,resource,permissions,credential){

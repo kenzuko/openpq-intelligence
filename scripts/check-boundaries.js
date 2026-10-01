@@ -14,3 +14,7 @@ for(const path of [...await walk('src'),...await walk('tests'),...await walk('sc
   const r=spawnSync(process.execPath,['--check',path],{encoding:'utf8'});assert.equal(r.status,0,r.stderr);
 }
 console.log('PASS: Runtime capability boundaries and JavaScript syntax');
+
+const staging=await readFile('src/workers/staging.js','utf8');
+assert.doesNotMatch(staging,/env\.(CORE_COMMAND|DATASETS|CANONICAL|RECEIPT_SIGNING_JSON|TRUST_JSON)\b|\.(delete|list)\s*\(/);
+console.log('PASS: staging has no authority bindings, delete or listing API');
