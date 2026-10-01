@@ -1,0 +1,39 @@
+{
+  "recorded_at_utc": "2026-10-01T12:34:11.320246+00:00",
+  "read_only": true,
+  "source_repository": "kenzuko/Jotrip-Lab",
+  "source_branch": "data-marine-ops",
+  "source_commit_sha": "e19d30df1fe068d44f66f89278b749deb7b3c3cb",
+  "source_main_sha": "6126d7e7e2ba2ca6a3a70d2c92829c22a226c5ce",
+  "home_main_sha": "ec609ee8ee965a043ea93b53b8bffe09427614cd",
+  "implementation_parent_sha": "6183e93b8cf40881ea7b6d8e74c189089cd0f1c3",
+  "legacy_write_performed": false,
+  "legacy_deployed_state": "NOT_AUDITED",
+  "lab_parallel_open_prs": [
+    35,
+    32,
+    6,
+    4,
+    2
+  ],
+  "files": [
+    {
+      "path": "fixtures/manual-cano-source/2026-10-01-cano-an-thoi.json",
+      "bytes": 955,
+      "git_blob_sha": "2fd5f7c50a0a9647da11931f38e430a9ae6f1a3a",
+      "sha256": "b09d447587c13fa103201c91d84275d4a7cffa332d3181c20ba2a1b20b148a18"
+    },
+    {
+      "path": "fixtures/manual-cano-source/2026-09-30-cano-an-thoi.json",
+      "bytes": 918,
+      "git_blob_sha": "0d20a189af981c4775d543af00de3b93107d0bc1",
+      "sha256": "8ea75c6f21bbee42689e991e8bf7909a4461b850558e414af9771207a5678147"
+    },
+    {
+      "path": "fixtures/manual-cano-source/2026-09-27-cano-an-thoi.json",
+      "bytes": 1251,
+      "git_blob_sha": "e297de38268becbf28d758e7902ddf84564fc4d6",
+      "sha256": "269a889a3b526f26ad34f421f368389802117c6868cfb495dbb54e2b815e8aa4"
+    }
+  ]
+}

@@ -7,3 +7,5 @@ test-results/
 *.log
 config/*.isolated.json
 .cloud-proof/
+
+.manual-stage/

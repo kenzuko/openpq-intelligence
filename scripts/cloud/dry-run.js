@@ -11,3 +11,6 @@ const check=kind=>{
   console.log('PASS: offline '+kind+' Worker bundle');
 };
 check('core');const core=JSON.parse(await readFile('.cloud-proof/core.json','utf8'));core.main='../src/workers/core.js';await writeFile('.cloud-proof/core.json',JSON.stringify(core));check('core-final');check('runtime');check('operator');
+
+const {stagingConfig}=await import('../../src/ingress/staging-config.js');
+await writeFile('.cloud-proof/staging.json',JSON.stringify(stagingConfig('a'.repeat(32),'b'.repeat(40),'2026-10-01T17:00:00Z')));check('staging');

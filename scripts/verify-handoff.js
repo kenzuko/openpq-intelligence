@@ -50,3 +50,15 @@ for(const runId of [36847033329,36848850809]){
   assert.equal(report.cases.length,snapshot.case_count);assert.ok(report.cases.every(item=>item.status==='PASS'));
   console.log('PASS: pinned synthetic semantic corpus/replay snapshot; live gates remain closed');
 }
+
+{
+  const source=JSON.parse(await readFile('docs/evidence/manual-cano-intake-20261001/SOURCE_SNAPSHOT.json','utf8'));
+  assert.equal(source.read_only,true);assert.equal(source.legacy_write_performed,false);
+  for(const entry of source.files){
+    assert.match(entry.path,/^fixtures\/manual-cano-source\/2026-(?:10-01|09-30|09-27)-cano-an-thoi\.json$/);
+    const bytes=await readFile(entry.path);assert.equal(bytes.length,entry.bytes);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256);
+    assert.equal(createHash('sha1').update(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes])).digest('hex'),entry.git_blob_sha);
+  }
+  console.log('PASS: pinned owned manual source bytes match original Git blobs; no legacy writes');
+}

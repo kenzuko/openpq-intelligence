@@ -1,0 +1,77 @@
+name: Isolated manual Cano data staging
+on:
+  workflow_dispatch:
+    inputs:
+      service_day:
+        description: 'Source operational day YYYY-MM-DD; expiry is preserved'
+        required: true
+        default: '2026-10-01'
+      source_commit_sha:
+        description: 'Exact Jotrip-Lab data-marine-ops commit; never a moving branch'
+        required: true
+        default: 'e19d30df1fe068d44f66f89278b749deb7b3c3cb'
+  push:
+    branches: ['cloud/manual-cano-staging']
+permissions:
+  contents: read
+concurrency:
+  group: intelligence-isolated-cloud-proof
+  cancel-in-progress: false
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: intelligence-test
+    env:
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      CF_TEST_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
+      SERVICE_DAY: ${{ inputs.service_day || '2026-10-01' }}
+      SOURCE_COMMIT_SHA: ${{ inputs.source_commit_sha || 'e19d30df1fe068d44f66f89278b749deb7b3c3cb' }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm run verify:handoff && npm test
+      - name: Actual read-only capability and resource preflight
+        run: node scripts/cloud/preflight.js
+      - name: Pin source bytes and prepare staging-only capability
+        run: node scripts/cloud/manual-stage.js prepare
+      - name: Deploy separate staging Worker, no authority bindings
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          npx --no-install wrangler deploy --config .manual-stage/config.json
+          npx --no-install wrangler secret bulk .manual-stage/secrets.private.json --config .manual-stage/config.json
+          npx --no-install wrangler deploy --config .manual-stage/config.json
+      - name: Stage real pinned manual record and prove exact readback
+        run: node scripts/cloud/manual-stage.js proof
+      - name: Close temporary staging capability
+        if: always()
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          if [ -f .manual-stage/plan.private.json ]; then
+            npx --no-install wrangler secret delete STAGING_TOKEN_HASH --config .manual-stage/config.json
+            npx --no-install wrangler deploy --config .manual-stage/config.json
+            node scripts/cloud/manual-stage.js verify-closed
+          fi
+      - name: Upload only redacted public evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manual-cano-staging-${{ github.run_id }}
+          path: |
+            .cloud-proof/preflight.json
+            .manual-stage/source.public.json
+            .manual-stage/staging-evidence.public.json
+            .manual-stage/closed-evidence.public.json
+          if-no-files-found: ignore
+          retention-days: 7
