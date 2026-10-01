@@ -36,7 +36,8 @@ test('publication validity, correction lineage, SQLite eviction and export failu
     const current=await state();assert.equal(current.active.previous_revision,1);assert.equal(current.active.operation,'CORRECTION');
   });
   await t.test('active reference and command deduplication survive DO eviction',async()=>{
-    const before=await state();await s.mf.unsafeEvictDurableObject('core','DatasetCoordinator',{id:s.trust.native_id});
+    const observedBefore=await s.call('read',undefined,'test-only-read');const before=await state();await s.mf.unsafeEvictDurableObject('core','DatasetCoordinator',{id:s.trust.native_id});
+    const observedAfter=await s.call('read',undefined,'test-only-read');assert.notEqual(observedAfter.body.instance_observation.incarnation_id,observedBefore.body.instance_observation.incarnation_id);
     const after=await state();assert.deepEqual(after,before);
     const retry=await s.commit({digest:after.active.digest},after.active.command_id,'test-only-operator');assert.equal(retry.body.receipt.revision,2);assert.equal((await state()).revision,2);
   });

@@ -4,27 +4,31 @@ import {randomUUID} from 'node:crypto';
 import {ContractError,hash,requireThat} from '../../src/platform/contracts.js';
 import {S3ReadonlyReader} from '../../src/platform/s3-reader.js';
 import {denyProbe} from './s3-deny-probe.js';
+import {loseCommittedResponse,observeRestart} from './response-loss.js';
 import {waitForCapabilityStatus} from './capability-readiness.js';
 import {PRINCIPAL_SECRET_NAMES} from '../../src/platform/auth.js';
 
 const report={status:'RUNNING',g1:'NOT_PASSED',cases:[],remaining:['cloud crash/timeout injection','revoked R2 credential propagation evidence','retention/GC pins','disaster restore/RPO/RTO','quota/cost profiling and unattended resilience']};
 const iso=ms=>new Date(ms).toISOString();
-let proof,coreSecrets,runtimeSecrets;
+let proof,coreSecrets,runtimeSecrets,lossCommand,lossReceipt;
 const save=()=>writeFile('.cloud-proof/cloud-evidence.json',JSON.stringify(report,null,2)+'\n');
 const check=async(name,fn)=>{const start=Date.now();try{await fn();report.cases.push({name,status:'PASS',elapsed_ms:Date.now()-start,observed_at_utc:iso(Date.now())});}catch(e){report.cases.push({name,status:'FAIL',error:e instanceof ContractError?e.code:'PROOF_ASSERTION_FAILED',elapsed_ms:Date.now()-start});throw e;}finally{await save();}};
-const core=async(path,body,token)=>{const r=await fetch(proof.origins.core+'/datasets/'+proof.trust.dataset_id+'/'+path,{method:body===undefined?'GET':'POST',headers:{authorization:'Bearer '+token,'content-type':'application/json'},redirect:'error',signal:AbortSignal.timeout(15000),...(body===undefined?{}:{body:JSON.stringify(body)})});return {status:r.status,body:await r.json()};};
+const core=async(path,body,token)=>{report.runner_counts??={core_requests:0,runtime_requests:0,core_redeploys:0};report.runner_counts.core_requests++;const r=await fetch(proof.origins.core+'/datasets/'+proof.trust.dataset_id+'/'+path,{method:body===undefined?'GET':'POST',headers:{authorization:'Bearer '+token,'content-type':'application/json'},redirect:'error',signal:AbortSignal.timeout(15000),...(body===undefined?{}:{body:JSON.stringify(body)})});return {status:r.status,body:await r.json()};};
 const state=async()=>{const r=await core('read',undefined,proof.tokens.operator);requireThat(r.status===200,'CORE_STATE_UNAVAILABLE');return r.body.state;};
 const candidate=async()=>{const s=await state(),now=Date.now();return {schema_version:'openpq-candidate-v1',...proof.trust,candidate_id:randomUUID(),expected_revision:s.revision,expected_control_revision:s.control_revision,logical_slot:s.revision+10,evaluation_time:iso(now),valid_from:iso(now-1000),valid_to:iso(now+3600000),inputs:[{source_id:'synthetic-cloud-fixture',source_type:'MANUAL',source_time:iso(now-1000),valid_to:iso(now+3600000),max_age_ms:3600000}],quality:{completeness:'COMPLETE',resolution:'RESOLVED'},artifacts:proof.trust.artifacts,payload:{fixture_only:true,not_a_real_operational_status:true},operation:'NORMAL',decision:{type:'cano.operation.fixture',kind:'FACT',effect:'POSITIVE',action_until:iso(now+3600000),minimum_evidence_met:true,reason_codes:['SYNTHETIC_CLOUD_PROOF']}};};
 const prepare=async(c,token=proof.tokens.live)=>{const p=await core('prepare',c,token);requireThat(p.status===200,'PREPARE_FAILED');return p.body;};
 const commit=(p,token=proof.tokens.live,id=randomUUID())=>core('commit',{...proof.trust,command_id:id,digest:p.digest,expires_at:iso(Date.now()+60000)},token);
 const control=async(body)=>core('control',{command_id:randomUUID(),expected_control_revision:(await state()).control_revision,expires_at:iso(Date.now()+60000),reason:'synthetic cloud protocol proof',...body},proof.tokens.operator);
-const runtime=async()=>{const r=await fetch(proof.origins.runtime+'/datasets/'+proof.trust.dataset_id,{redirect:'error',signal:AbortSignal.timeout(15000)});return {status:r.status,body:await r.json()};};
+const runtime=async()=>{report.runner_counts.runtime_requests++;const r=await fetch(proof.origins.runtime+'/datasets/'+proof.trust.dataset_id,{redirect:'error',signal:AbortSignal.timeout(15000)});return {status:r.status,body:await r.json()};};
 const putSecrets=file=>{
   const result=spawnSync('node_modules/.bin/wrangler',['secret','bulk',file,'--config','.cloud-proof/core.json'],{stdio:'pipe',encoding:'utf8',env:{...process.env,CLOUDFLARE_API_TOKEN:process.env.CF_TEST_API_TOKEN,CLOUDFLARE_ACCOUNT_ID:proof.trust.account_id,WRANGLER_SEND_METRICS:'false'}});
   requireThat(result.status===0,'TEST_CORE_SECRET_UPDATE_FAILED',503);
-  // Re-deploy the pinned Core bundle so DO instances activate updated bindings.
+  redeployCore();
+};
+const redeployCore=()=>{
   const deployed=spawnSync('node_modules/.bin/wrangler',['deploy','--config','.cloud-proof/core.json'],{stdio:'pipe',encoding:'utf8',env:{...process.env,CLOUDFLARE_API_TOKEN:process.env.CF_TEST_API_TOKEN,CLOUDFLARE_ACCOUNT_ID:proof.trust.account_id,WRANGLER_SEND_METRICS:'false'}});
   requireThat(deployed.status===0,'TEST_CORE_SECRET_DEPLOY_FAILED',503);
+  report.runner_counts.core_redeploys++;
 };
 const waitForReadStatus=async(status,phase)=>{
   const observation={phase,expected_status:status};
@@ -55,5 +59,41 @@ try{
     try{putSecrets('.cloud-proof/outage-secrets.json');await waitForReadStatus(401,'REVOKE');const r=await runtime();requireThat(r.status===200&&r.body.receipt.revision===3&&r.body.serving.fallback===true&&r.body.serving.decision_eligibility==='UNVERIFIED','OUTAGE_FALLBACK_UNSAFE');}
     finally{putSecrets('.cloud-proof/core-secrets.json');await waitForReadStatus(200,'RESTORE');}
   });
+  await check('client loses commit response over runner socket; identical retry advances only once',async()=>{
+    const before=await state(),p=await prepare(await candidate(),proof.tokens.next);
+    lossCommand={...proof.trust,command_id:randomUUID(),digest:p.digest,expires_at:iso(Date.now()+60000)};
+    report.response_loss=await loseCommittedResponse(()=>fetch(proof.origins.core+'/datasets/'+proof.trust.dataset_id+'/commit',{method:'POST',headers:{authorization:'Bearer '+proof.tokens.next,'content-type':'application/json'},body:JSON.stringify(lossCommand),redirect:'error',signal:AbortSignal.timeout(15000)}));
+    const committed=await state();requireThat(committed.revision===before.revision+1&&committed.active.command_id===lossCommand.command_id,'LOST_RESPONSE_COMMIT_STATE_INVALID');
+    const retry=await core('commit',lossCommand,proof.tokens.next);
+    requireThat(retry.status===200&&await hash(retry.body.receipt)===await hash(committed.active)&&(await state()).revision===committed.revision,'LOST_RESPONSE_RETRY_DUPLICATED');
+    lossReceipt=retry.body.receipt;
+  });
+  await check('signer outage preserves authority and pending outbox; restoration exports exactly once',async()=>{
+    const before=await state();
+    await writeFile('.cloud-proof/signer-outage-secrets.json',JSON.stringify({RECEIPT_SIGNING_JSON:'{}'}),{mode:0o600});
+    try{
+      const old=await core('read',undefined,proof.tokens.read);
+      putSecrets('.cloud-proof/signer-outage-secrets.json');
+      await observeRestart(()=>core('read',undefined,proof.tokens.read),old.body.instance_observation.incarnation_id);
+      const failed=await core('export',{},proof.tokens.operator);
+      requireThat(failed.status===503&&failed.body.error==='SIGNER_UNAVAILABLE','SIGNER_OUTAGE_NOT_OBSERVED');
+      requireThat(await hash(await state())===await hash(before),'EXPORT_FAILURE_MUTATED_AUTHORITY');
+    }finally{putSecrets('.cloud-proof/core-secrets.json');await waitForReadStatus(200,'SIGNER_RESTORE');}
+    const exported=await core('export',{},proof.tokens.operator);
+    requireThat(exported.status===200&&exported.body.exported.length===1&&exported.body.exported[0]===lossReceipt.revision,'OUTBOX_RECOVERY_FAILED');
+    requireThat((await core('export',{},proof.tokens.operator)).body.exported.length===0,'OUTBOX_RECOVERY_DUPLICATED');
+  });
+  await check('observed Coordinator restart preserves active state and command receipt',async()=>{
+    const before=await core('read',undefined,proof.tokens.read),old=before.body.instance_observation.incarnation_id;
+    requireThat(typeof old==='string','INCARNATION_OBSERVATION_REQUIRED');
+    redeployCore();
+    const restarted=await observeRestart(()=>core('read',undefined,proof.tokens.read),old);
+    requireThat(await hash(await state())===await hash(before.body.state),'RESTART_LOST_AUTHORITY_STATE');
+    const retry=await core('commit',lossCommand,proof.tokens.next);
+    requireThat(retry.status===200&&await hash(retry.body.receipt)===await hash(lossReceipt),'RESTART_LOST_COMMAND_DEDUP');
+    const r=await runtime();requireThat(r.status===200&&r.body.receipt.revision===lossReceipt.revision&&r.body.serving.authority==='VERIFIED','RESTART_RUNTIME_INVALID');
+    report.restart_observation={before_incarnation_id:old,...restarted};
+  });
+  report.measurement_limits='Runner counts and case durations only; not billed DO/R2 operations, memory, multi-region latency or cost evidence.';
   report.status='CLOUD_PROTOCOL_SUBSET_PASS';await save();console.log('Cloud protocol subset passed; G1 remains incomplete. Read cloud-evidence.json.');
 }catch(e){report.status='BLOCKED_OR_FAILED';report.error=e instanceof ContractError?e.code:'CLOUD_PROOF_FAILED';await save();console.error(report.error);process.exitCode=1;}

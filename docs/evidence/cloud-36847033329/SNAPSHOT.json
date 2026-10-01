@@ -1,0 +1,13 @@
+{
+  "run_id": 36847033329,
+  "code_sha": "a2a9eb32db7b2798b47a6a780734c756a69462bf",
+  "artifact_id": 11154495167,
+  "archive_sha256": "fa0acf21190218276769f2736524991b619e40c906dd24bfa0ce12a04da60b97",
+  "files_sha256": {
+    "preflight.json": "5626cc646a2cfc81957f6a9c9652e9035173186c6246b863d9c1b4d7ad50cb0a",
+    "locator.public.json": "2739fd2fae39d2085ef1e548ae5427c589819a9b46aa314bce878dc072d227a8",
+    "cloud-evidence.json": "0ee5b88ab6bf7e904ae9acd7c135adb2107cff5c631c5d5e8d141d65dfffe187"
+  },
+  "status": "CLOUD_PROTOCOL_SUBSET_PASS",
+  "g1": "NOT_PASSED"
+}
