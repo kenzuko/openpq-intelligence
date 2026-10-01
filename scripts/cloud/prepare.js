@@ -3,6 +3,20 @@ import {pathToFileURL} from 'node:url';
 import {randomBytes} from 'node:crypto';
 import {hash,requireThat} from '../../src/platform/contracts.js';
 import {BUCKET,WORKERS} from './preflight.js';
+import {PRINCIPAL_SECRET_NAMES} from '../../src/platform/auth.js';
+
+export function principalSecrets(principals){
+  const shards=[[]];
+  for(const actor of principals){
+    const last=shards.at(-1);
+    if(Buffer.byteLength(JSON.stringify([...last,actor]),'utf8')>5000)shards.push([]);
+    shards.at(-1).push(actor);
+    requireThat(Buffer.byteLength(JSON.stringify(shards.at(-1)),'utf8')<=5000,'CAPABILITY_SECRET_TOO_LARGE');
+  }
+  requireThat(shards.length<=PRINCIPAL_SECRET_NAMES.length,'CAPABILITY_SHARDS_EXHAUSTED');
+  // Write unused slots as [] so a rerun cannot retain a previous capability shard.
+  return Object.fromEntries(PRINCIPAL_SECRET_NAMES.map((name,i)=>[name,JSON.stringify(shards[i]||[])]));
+}
 
 export async function prepareCloud(evidence,runId){
   requireThat(evidence.status==='PREFLIGHT_PASS'&&/^[a-z0-9-]{1,64}$/.test(runId),'PREFLIGHT_REQUIRED');
@@ -29,10 +43,14 @@ export async function makeAuthority(plan,namespaceId,nativeId,readConfig){
   trust.locator_artifact_hash=await hash(trust);
   const tokens=Object.fromEntries(['live','read','operator','shadow','backfill','next','wrong'].map(n=>[n,randomBytes(32).toString('hex')]));
   for(const token of [...Object.values(tokens),priv.d,readConfig.secret])if(process.env.GITHUB_ACTIONS==='true')console.log('::add-mask::'+token);
-  const principal=(name,permissions,extra={})=>({...trust,id:'proof-'+name,token:tokens[name],mode:'LIVE',owner:'proof-owner',epoch:1,permissions,...extra});
+  const actorLocator=Object.fromEntries(['account_id','environment_id','dataset_id','object_name','namespace_id','native_id','authority_instance_id','authority_locator_version','recovery_generation','locator_artifact_hash'].map(name=>[name,trust[name]]));
+  const principal=(name,permissions,extra={})=>({...actorLocator,id:'proof-'+name,token:tokens[name],mode:'LIVE',owner:'proof-owner',epoch:1,permissions,...extra});
   const principals=[principal('live',['promote']),principal('read',['read']),principal('operator',['read','control','bootstrap','promote','correct','export']),principal('shadow',['promote'],{mode:'SHADOW'}),principal('backfill',['promote'],{mode:'BACKFILL'}),principal('next',['promote'],{owner:'next-proof-owner',epoch:2}),principal('wrong',['promote'],{authority_instance_id:'wrong-authority'})];
   const map=JSON.stringify({[trust.dataset_id]:trust});
-  return {trust,tokens,coreSecrets:{TRUST_JSON:map,PRINCIPALS_JSON:JSON.stringify(principals),RECEIPT_SIGNING_JSON:JSON.stringify({key_id:'proof-key',private_jwk:priv})},runtimeSecrets:{TRUST_JSON:map,CONTROL_READ_TOKEN:tokens.read,S3_READONLY_CONFIG:JSON.stringify(readConfig)}};
+  const coreSecrets={TRUST_JSON:map,...principalSecrets(principals),RECEIPT_SIGNING_JSON:JSON.stringify({key_id:'proof-key',private_jwk:priv})};
+  const runtimeSecrets={TRUST_JSON:map,CONTROL_READ_TOKEN:tokens.read,S3_READONLY_CONFIG:JSON.stringify(readConfig)};
+  requireThat(Object.values({...coreSecrets,...runtimeSecrets}).every(value=>Buffer.byteLength(value,'utf8')<=5000),'CLOUD_SECRET_TOO_LARGE');
+  return {trust,tokens,coreSecrets,runtimeSecrets};
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){

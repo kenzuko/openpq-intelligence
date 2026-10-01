@@ -4,6 +4,7 @@ import {randomUUID} from 'node:crypto';
 import {ContractError,hash,requireThat} from '../../src/platform/contracts.js';
 import {S3ReadonlyReader} from '../../src/platform/s3-reader.js';
 import {denyProbe} from './s3-deny-probe.js';
+import {PRINCIPAL_SECRET_NAMES} from '../../src/platform/auth.js';
 
 const report={status:'RUNNING',g1:'NOT_PASSED',cases:[],remaining:['cloud crash/timeout injection','revoked R2 credential propagation evidence','retention/GC pins','disaster restore/RPO/RTO','quota/cost profiling and unattended resilience']};
 const iso=ms=>new Date(ms).toISOString();
@@ -40,8 +41,8 @@ try{
   await check('actual Runtime R2 key denies PUT and DELETE',async()=>{const config=JSON.parse(runtimeSecrets.S3_READONLY_CONFIG),key='proof-deny/'+proof.trust.dataset_id+'.json';await denyProbe(config,proof.trust.account_id,'PUT',key);await denyProbe(config,proof.trust.account_id,'DELETE',key);});
   await check('Runtime HTTP is GET-only and read capability cannot issue controls',async()=>{const r=await fetch(proof.origins.runtime+'/datasets/'+proof.trust.dataset_id,{method:'POST',redirect:'error',signal:AbortSignal.timeout(15000)});requireThat(r.status===405,'RUNTIME_WRITE_ALLOWED');requireThat((await core('control',{},proof.tokens.read)).status===403,'READ_CONTROL_ALLOWED');});
   await check('Core read outage gives cold signed checkpoint with no GO eligibility',async()=>{
-    const principals=JSON.parse(coreSecrets.PRINCIPALS_JSON).filter(p=>p.token!==proof.tokens.read);
-    await writeFile('.cloud-proof/outage-secrets.json',JSON.stringify({PRINCIPALS_JSON:JSON.stringify(principals)}),{mode:0o600});
+    const outage=Object.fromEntries(PRINCIPAL_SECRET_NAMES.map(name=>[name,JSON.stringify(JSON.parse(coreSecrets[name]||'[]').filter(p=>p.token!==proof.tokens.read))]));
+    await writeFile('.cloud-proof/outage-secrets.json',JSON.stringify(outage),{mode:0o600});
     try{putSecrets('.cloud-proof/outage-secrets.json');await waitForReadStatus(401);const r=await runtime();requireThat(r.status===200&&r.body.receipt.revision===3&&r.body.serving.fallback===true&&r.body.serving.decision_eligibility==='UNVERIFIED','OUTAGE_FALLBACK_UNSAFE');}
     finally{putSecrets('.cloud-proof/core-secrets.json');await waitForReadStatus(200);}
   });
