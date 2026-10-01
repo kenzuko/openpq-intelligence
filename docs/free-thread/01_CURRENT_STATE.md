@@ -38,3 +38,7 @@ P05-P18 của policy register vẫn chặn đúng scope: source ages, biển/gi�
 ## M4 - technical preparation
 
 108 local tests/six bundles and integrated deterministic rehearsal pass. New preparation mechanisms, bounded durable retry, native local checkpoint alarm, monitoring/parity/backup-recovery plans and JWT guards are available. See implementation/TECHNICAL_PREPARATION.md in ZIP or docs/TECHNICAL_PREPARATION.md in repo. G1/G2, cloud scheduler, provider SSO and live candidate admission remain closed. M3 real manual cloud proof remains unchanged.
+
+## M5 - local semantic authority integration
+
+117 local tests/six bundles. Binding-backed trusted semantic admission now connects to local Coordinator, export-only native alarm and signed Runtime fallback. Real-domain and cloud semantic activation remain closed. See SEMANTIC_ADMISSION_INTEGRATION.md and ADR-IMPLEMENTATION-006.md; cloud legacy-protocol regression will be pinned separately.

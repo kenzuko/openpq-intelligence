@@ -1,0 +1,21 @@
+{
+  "status": "LOCAL_SEMANTIC_AUTHORITY_INTEGRATION_PASS",
+  "baseline_main_sha": "f475b4fe7ff23ded35d68aaa22823406a20d1221",
+  "local_test_count": 117,
+  "offline_bundle_count": 6,
+  "case_count": 9,
+  "source_files_sha256": {
+    "src/platform/semantic-admission.js": "3a3f9ac0ba4069a54087b2699ceb8323a3b7bbc10798216fd53aa0cabae5d61e",
+    "src/workers/coordinator.js": "b21a5bee7f2e7ebc5a9874f43b3000cd8cfb8bf6d5e0227239215a4d7fed6ba2",
+    "src/platform/serving.js": "c331e024441be3233780159e51fdf21f882330f4b6ed707eeb3677d11c0697f5",
+    "src/preparation/pipeline.js": "8e6bb4e4a6709a46bdc8e363564a7159c09e77c9c6cc8a6519a37e9204f6ea3b",
+    "src/preparation/backup-authenticity.js": "c6a498a7a5b407346b02541b354dd1c6ff04dd97c786c76508c03f175fb180e7",
+    "tests/semantic-admission.test.js": "a03dea94166b2779b6bdb23f7f9ad8b5cc16dda408167db1e6e9d9764d462166"
+  },
+  "files_sha256": {
+    "report.json": "1f8affd9dbbfe870acaf405b5c6787ac3a23193d8a95b8013b2024700cdc2cab",
+    "native-tests.txt": "ef9ee03559eb6586146c99e34b5d77e9bd88f0d66baab2a4e66e7fac4df166b9"
+  },
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED"
+}

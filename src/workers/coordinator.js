@@ -1,6 +1,7 @@
 import { DurableObject } from 'cloudflare:workers';
 import { ContractError, candidate, hash, instant, locator, requireThat, revision, sameLocator, stable } from '../platform/contracts.js';
 import { authorize, principal } from '../platform/auth.js';
+import {validateSemanticAdmission} from '../platform/semantic-admission.js';
 import { attest, exportCheckpoint } from '../platform/receipts.js';
 
 function json(value,status=200) {return Response.json(value,{status,headers:{'cache-control':'no-store'}});}
@@ -19,7 +20,7 @@ export class DatasetCoordinator extends DurableObject {
     const e=locator(entries[0]);
     requireThat(e.environment_id===this.env.ENVIRONMENT_ID,'ENVIRONMENT_MISMATCH',409);
     const s=this.state();
-    if (s) requireThat(sameLocator(s,e),'CONTROL_LOCATOR_MISMATCH',409);
+    if (s) {requireThat(sameLocator(s,e),'CONTROL_LOCATOR_MISMATCH',409);requireThat((s.semantic_profile_hash||null)===(e.semantic_profile_hash||null),'CONTROL_SEMANTIC_PROFILE_MISMATCH',409);}
     return e;
   }
   async fetch(request) {
@@ -48,6 +49,7 @@ export class DatasetCoordinator extends DurableObject {
       if (path==='/prepare') {
         requireThat(actor.mode==='LIVE','MODE_PROMOTION_DENIED',403);
         const c=candidate(body,now);requireThat(sameLocator(c,trust),'CANDIDATE_LOCATOR_MISMATCH',409);
+        await validateSemanticAdmission(this.env,trust,c,new Date(now).toISOString());
         requireThat(actor.owner===this.state().owner && actor.epoch===this.state().epoch,'OWNER_EPOCH_DENIED',409);
         const digest=await hash(c), key=`generations/${trust.authority_instance_id}/${trust.recovery_generation}/${digest}.json`;
         const data=stable(c);const written=await this.env.CANONICAL.put(key,data,{onlyIf:{etagDoesNotMatch:'*'}});
@@ -69,12 +71,15 @@ export class DatasetCoordinator extends DurableObject {
         requireThat(/^[a-f0-9]{64}$/.test(body.digest),'DIGEST_INVALID');
         requireThat(sameLocator(body,trust),'COMMIT_LOCATOR_MISMATCH',409);
         const deadline=instant(body.expires_at,'COMMAND_EXPIRES');
+        // Validate a configured semantic generation before the transaction. Idempotent completed commands still return their exact prior receipt.
+        const known=this.ctx.storage.sql.exec('SELECT digest,result FROM commands WHERE id=?',body.command_id).toArray()[0];
+        if(!known&&trust.semantic_profile_hash){const prepared=this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',body.digest).toArray()[0];requireThat(prepared,'NOT_PREPARED',409);await validateSemanticAdmission(this.env,trust,JSON.parse(prepared.body),new Date().toISOString());requireThat(sameLocator(this.trust(),trust),'TRUST_CHANGED',409);}
         const receipt=this.ctx.storage.transactionSync(()=>{
           const now=Date.now();
           const s=this.state();requireThat(sameLocator(s,trust),'LOCATOR_CHANGED',409);
           requireThat(s.owner===actor.owner && s.epoch===actor.epoch,'OWNER_EPOCH_DENIED',409);
           const previous=this.ctx.storage.sql.exec('SELECT digest,result FROM commands WHERE id=?',body.command_id).toArray()[0];
-          if (previous) {requireThat(previous.digest===body.digest,'COMMAND_DIGEST_CONFLICT',409);return JSON.parse(previous.result);}
+          if (previous) {requireThat(previous.digest===body.digest,'COMMAND_DIGEST_CONFLICT',409);const result=JSON.parse(previous.result);requireThat(result.command_id===body.command_id&&Number.isSafeInteger(result.revision),'COMMAND_KIND_CONFLICT',409);return result;}
           requireThat(deadline>now,'COMMAND_EXPIRED',409);
           const row=this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',body.digest).toArray()[0];
           requireThat(row,'NOT_PREPARED',409);const p=JSON.parse(row.body);
@@ -85,6 +90,7 @@ export class DatasetCoordinator extends DurableObject {
           requireThat(p.operation!=='NORMAL'||!s.active||p.logical_slot>=s.active.logical_slot,'OBSOLETE_SLOT',409);
           if(p.operation!=='NORMAL') {requireThat(actor.permissions.includes('correct'),'CORRECTION_DENIED',403);requireThat(p.supersedes_revision===s.revision,'SUPERSEDES_MISMATCH',409);}
           candidate(p,now);
+          if(trust.semantic_profile_hash){requireThat(p.semantic_admission?.profile_hash===trust.semantic_profile_hash&&now<instant(p.semantic_admission.valid_until,'SEMANTIC_VALID_UNTIL'),'SEMANTIC_ADMISSION_EXPIRED',409);requireThat(p.decision?.effect==='ABSTAIN','SEMANTIC_ACTION_FORBIDDEN',409);}
           if(p.decision?.effect==='POSITIVE') {
             requireThat(trust.approved_positive_decision_types?.includes(p.decision.type),'POSITIVE_POLICY_NOT_ACTIVATED',409);
             requireThat(p.decision.minimum_evidence_met && p.quality.completeness==='COMPLETE' && p.quality.resolution==='RESOLVED','POSITIVE_EVIDENCE_INSUFFICIENT',409);
@@ -93,7 +99,7 @@ export class DatasetCoordinator extends DurableObject {
             requireThat(p.inputs.every(i=>now>=instant(i.source_time,'SOURCE_TIME')-5000 && now-instant(i.source_time,'SOURCE_TIME')<=i.max_age_ms && now<instant(i.valid_to,'INPUT_VALID_TO')),'POSITIVE_SOURCE_STALE',409);
           }
           const next=revision(s.revision+1,'NEW_REVISION');
-          const r={...trust,revision:next,control_revision:s.control_revision,owner:s.owner,epoch:s.epoch,key:p.key,digest:p.digest,logical_slot:p.logical_slot,operation:p.operation,previous_revision:s.revision,committed_at:new Date(now).toISOString(),command_id:body.command_id};
+          const r={...trust,...(p.semantic_admission?{semantic_admission:p.semantic_admission}:{}),revision:next,control_revision:s.control_revision,owner:s.owner,epoch:s.epoch,key:p.key,digest:p.digest,logical_slot:p.logical_slot,operation:p.operation,previous_revision:s.revision,committed_at:new Date(now).toISOString(),command_id:body.command_id};
           s.revision=next;s.active=r;this.save(s);
           this.ctx.storage.sql.exec('INSERT INTO commands(id,digest,result) VALUES(?,?,?)',body.command_id,body.digest,stable(r));
           this.ctx.storage.sql.exec('INSERT INTO audit(body) VALUES(?)',stable({actor:actor.id,action:'COMMIT',receipt:r}));

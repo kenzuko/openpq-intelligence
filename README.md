@@ -28,3 +28,5 @@ Modules:
 All Workers reject production environments in this milestone. No production routes, scheduler or legacy modification is included. The separate manual Cano staging workflow deploys only by manual dispatch or its explicit cloud/manual-cano-staging test branch trigger. See [actual data intake](docs/MANUAL_CANO_DATA_INTAKE.md). P0 snapshot records parallel branches/worktrees; future changes must re-check exact latest main before their first write.
 
 M4 technical preparation: [executable mechanisms, evidence and activation dependencies](docs/TECHNICAL_PREPARATION.md). 108 local tests/six bundles; deterministic rehearsal and native local DO alarm proof. Cloud progress activation and live semantic admission remain closed.
+
+M5: [trusted local semantic authority integration](docs/SEMANTIC_ADMISSION_INTEGRATION.md). 117 tests/six bundles; synthetic ABSTAIN facts only, with native alarm/signed fallback and independent-trust backup signature checks. Explicit isolated regression branch cloud/protocol-regression-m5 does not enable cloud semantic or production admission.

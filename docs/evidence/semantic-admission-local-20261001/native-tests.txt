@@ -1,0 +1,17 @@
+✔ trusted semantic facts traverse actual Coordinator, immutable blob, receipt and Runtime without action eligibility (585.193216ms)
+✔ configured semantic dataset cannot bypass admission using a generic candidate or producer-supplied forged payload (509.140521ms)
+✔ semantic profile packaging respects UTF-8 binding limits and pins exact content; unactivated/isolated paths fail closed (407.125349ms)
+✔ commit rejects actual source expiry after prepare, while refetch cannot renew source age (1938.29292ms)
+✔ semantic profile and content-bound idempotency survive actual Coordinator eviction (486.603256ms)
+✔ semantic profile change is an activation migration, not a normal binding edit; Runtime rejects old-profile serving (562.684912ms)
+✔ semantic publication connects to actual export-only alarm and signed Runtime fallback across the complete local stack (768.143946ms)
+✔ future assertion issue time, nested credentials and incomplete source linkage cannot enter semantic storage (377.866035ms)
+✔ a control command ID and digest cannot be replayed as a publication receipt (357.86542ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6313.591232

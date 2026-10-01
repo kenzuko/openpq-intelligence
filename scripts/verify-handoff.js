@@ -101,3 +101,10 @@ for(const runId of [36847033329,36848850809]){
  assert.equal(actual.publication_admitted,false);assert.equal(actual.queue.handler_calls,2);assert.equal(actual.queue.after_restart.jobs[0].state,'DONE');assert.equal(actual.stale_monitoring.healthy,false);assert.equal(actual.recovery.resume_writer,false);assert.equal(actual.retention.delete_enabled,false);assert.equal(actual.cutover.cutover_allowed,false);assert.equal(actual.unresolved_policies.blocked.length,18);
  console.log('PASS: immutable local technical rehearsal matches actual replay; all live gates remain closed');
 }
+
+{
+ const dir='docs/evidence/semantic-admission-local-20261001';const snapshot=JSON.parse(await readFile(dir+'/SNAPSHOT.json','utf8'));
+ assert.deepEqual(Object.keys(snapshot.files_sha256).sort(),['native-tests.txt','report.json']);for(const [path,digest] of Object.entries(snapshot.files_sha256))assert.equal(createHash('sha256').update(await readFile(dir+'/'+path)).digest('hex'),digest,path);
+ const report=JSON.parse(await readFile(dir+'/report.json','utf8'));assert.equal(report.status,'LOCAL_SEMANTIC_AUTHORITY_INTEGRATION_PASS');assert.equal(report.case_count,9);assert.equal(report.cases.length,9);assert.ok(report.cases.every(c=>c.status==='PASS'));assert.equal(report.publication_kind,'ABSTAIN_FACT_ONLY');assert.equal(report.cloud_semantic_admission,false);assert.equal(report.real_domain_admission,false);assert.equal(report.resume_writer,false);
+ console.log('PASS: pinned nine-case native semantic authority integration; real/cloud action gates remain closed');
+}
