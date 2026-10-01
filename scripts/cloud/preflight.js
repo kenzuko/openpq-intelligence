@@ -6,7 +6,7 @@ export const BUCKET='openpq-intelligence-canonical-isolated-test';
 export const WORKERS=['openpq-intelligence-core-isolated-test','openpq-intelligence-runtime-isolated-test','openpq-intelligence-operator-isolated-test'];
 const id=v=>typeof v==='string'&&/^[a-f0-9]{32}$/.test(v);
 
-function policies(token,resource,permissions){
+function policies(token,resource,permissions,credential){
   requireThat(token?.status==='active','TOKEN_NOT_ACTIVE',403);
   requireThat(Array.isArray(token.policies)&&token.policies.length>0,'TOKEN_SCOPE_UNKNOWN',403);
   let allowed=false;
@@ -15,7 +15,13 @@ function policies(token,resource,permissions){
     requireThat(p.effect==='allow' && p.resources && Object.keys(p.resources).length>0,'TOKEN_SCOPE_UNKNOWN',403);
     requireThat(Object.entries(p.resources).every(([key,value])=>key===resource&&value==='*'),'TOKEN_SCOPE_TOO_BROAD',403);
     requireThat(Array.isArray(p.permission_groups)&&p.permission_groups.length>0,'TOKEN_PERMISSION_UNKNOWN',403);
-    for(const g of p.permission_groups)requireThat(permissions.includes(g.name),'TOKEN_PERMISSION_TOO_BROAD',403);
+    for(const g of p.permission_groups){
+      if(!permissions.includes(g.name)){
+        const error=new ContractError('TOKEN_PERMISSION_TOO_BROAD',403);
+        error.safeDiagnostic={credential,permission:typeof g.name==='string'&&/^[A-Za-z0-9 :&()/-]{1,100}$/.test(g.name)?g.name:'UNRECOGNIZED'};
+        throw error;
+      }
+    }
     allowed=true;
   }
   requireThat(allowed,'TOKEN_NO_ALLOWED_SCOPE',403);
@@ -37,9 +43,9 @@ export async function cloudPreflight({accountId,productionAccountIds,apiToken,re
   const verified=(await get(`/accounts/${accountId}/tokens/verify`)).result;
   requireThat(verified?.status==='active'&&id(verified.id),'TEST_TOKEN_NOT_VERIFIED',403);
   const deployToken=(await get(`/accounts/${accountId}/tokens/${verified.id}`)).result;
-  const deployPolicies=policies(deployToken,`com.cloudflare.api.account.${accountId}`,['Workers Admin','Workers Scripts Edit','Account API Tokens Read','Workers R2 Storage Read','Account Settings Read']);
+  const deployPolicies=policies(deployToken,`com.cloudflare.api.account.${accountId}`,['Workers Admin','Workers Scripts Edit','Workers Scripts Write','Account API Tokens Read','Workers R2 Storage Read','Account Settings Read'],'deploy');
   const readToken=(await get(`/accounts/${accountId}/tokens/${readAccessKey}`)).result;
-  const readPolicies=policies(readToken,`com.cloudflare.edge.r2.bucket.${accountId}_default_${BUCKET}`,['Workers R2 Storage Bucket Item Read']);
+  const readPolicies=policies(readToken,`com.cloudflare.edge.r2.bucket.${accountId}_default_${BUCKET}`,['Workers R2 Storage Bucket Item Read'],'runtime_r2_read');
   const scripts=await get(`/accounts/${accountId}/workers/scripts`);
   requireThat(Array.isArray(scripts.result),'WORKER_INVENTORY_UNKNOWN');
   requireThat(!scripts.result_info?.total_count||scripts.result_info.total_count<=scripts.result.length,'WORKER_INVENTORY_INCOMPLETE');
@@ -60,5 +66,5 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
     const evidence=await cloudPreflight({accountId:process.env.CF_TEST_ACCOUNT_ID,productionAccountIds:JSON.parse(process.env.CF_PRODUCTION_ACCOUNT_IDS||'null'),apiToken:process.env.CF_TEST_API_TOKEN,readAccessKey:process.env.R2_TEST_READ_ACCESS_KEY_ID});
     await mkdir('.cloud-proof',{recursive:true});await writeFile('.cloud-proof/preflight.json',JSON.stringify(evidence,null,2)+'\n');
     console.log('PASS: read-only account/token/resource preflight. G1 cloud proof still pending.');
-  }catch(e){console.error(e instanceof ContractError?e.code:'PREFLIGHT_FAILED');process.exitCode=1;}
+  }catch(e){console.error(e instanceof ContractError?e.code:'PREFLIGHT_FAILED');if(e instanceof ContractError&&e.safeDiagnostic)console.error(JSON.stringify(e.safeDiagnostic));process.exitCode=1;}
 }

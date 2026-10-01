@@ -4,7 +4,7 @@ Result: isolated authority/publication milestone implemented; full Intelligence 
 
 ## Verification
 
-Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **41 Node test cases pass, including three parent integration tests**. This is not 41 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
+Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **43 Node test cases pass, including three parent integration tests**. This is not 43 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
 
 Proven local behaviors: epoch fencing, concurrent revision race, content-bound idempotency, control-revision invalidation, obsolete-slot rejection, explicit permissioned correction/retraction lineage, native instance/namespace/locator denial, artifact mismatch/expiry rejection, positive evidence fail-closed, source-age advancement, bounded control stamps, signed checkpoint verification, cold Core-outage `UNVERIFIED` serving, blob hash mismatch rejection, SQLite state/dedup after DO eviction, export failure preserving authority/outbox, GET-only Runtime and production configuration denial.
 
@@ -50,3 +50,9 @@ No V2.1 system test is labelled globally PASS based on this local subset. The re
 5. Complete scheduled progress/outbox retry, budget/backpressure, retention pins, recovery/PITR fencing, monitoring and operator security. Production gates remain closed until this evidence exists.
 
 Missing cloud capability is a concrete execution dependency, not a request for blanket permission. Repository work and local proofs are already complete for this milestone.
+
+## Live preflight finding, 2026-10-01
+
+Run 36836092480 attempt 3 stopped before deployment with TOKEN_PERMISSION_TOO_BROAD after the production inventory format was corrected. The old log did not identify the credential/permission, so it cannot establish which permission triggered rejection. The API documents Workers Scripts Write as the equivalent API name for the intended deployment permission; preflight now accepts that name with unchanged account/resource restrictions. Any other unexpected permission still fails closed and logs only its sanitized name and credential role. Two regression tests bring the local total to 43. Actual cloud proof is still pending.
+
+Official naming reference: https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/subresources/permission_groups/methods/get/

@@ -15,6 +15,18 @@ const fake=(data,calls=[])=>async(url,opts)=>{calls.push({url,method:opts.method
 test('cloud preflight checks actual token policies/resources with GET only',async()=>{
   const calls=[],e=await cloudPreflight(params,fake(fixture(),calls));assert.equal(e.status,'PREFLIGHT_PASS');assert.equal(e.cloud_gate,'NOT_PASSED');assert.ok(calls.every(c=>c.method==='GET'&&c.url.includes('/accounts/'+account+'/')));assert.ok(!JSON.stringify(e).includes(params.apiToken));
 });
+test('Cloudflare API Workers Scripts Write name is accepted with the same isolated scope',async()=>{
+  const data=fixture();data['/tokens/'+deploy].policies[0].permission_groups[0]={id:'e086da7e2179491d91ee5f35b3ca210a',name:'Workers Scripts Write'};
+  assert.equal((await cloudPreflight(params,fake(data))).status,'PREFLIGHT_PASS');
+});
+test('permission denial identifies credential and permission without leaking token values',async()=>{
+  for(const [key,credential,name] of [['/tokens/'+deploy,'deploy','Account API Tokens Write'],['/tokens/'+read,'runtime_r2_read','Workers R2 Storage Bucket Item Write']]){
+    const data=fixture();data[key].policies[0].permission_groups.push({name});
+    await assert.rejects(cloudPreflight(params,fake(data)),error=>{
+      assert.equal(error.code,'TOKEN_PERMISSION_TOO_BROAD');assert.deepEqual(error.safeDiagnostic,{credential,permission:name});assert.ok(!JSON.stringify(error.safeDiagnostic).includes(params.apiToken));return true;
+    });
+  }
+});
 test('missing production inventory and production test-account ID block before API access',async()=>{
   const forbidden=async()=>{throw new Error('must not fetch');};
   await assert.rejects(cloudPreflight({...params,productionAccountIds:[]},forbidden),/PRODUCTION_ACCOUNT_INVENTORY_REQUIRED/);
