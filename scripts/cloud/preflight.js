@@ -43,7 +43,7 @@ export async function cloudPreflight({accountId,productionAccountIds,apiToken,re
   const verified=(await get(`/accounts/${accountId}/tokens/verify`)).result;
   requireThat(verified?.status==='active'&&id(verified.id),'TEST_TOKEN_NOT_VERIFIED',403);
   const deployToken=(await get(`/accounts/${accountId}/tokens/${verified.id}`)).result;
-  const deployPolicies=policies(deployToken,`com.cloudflare.api.account.${accountId}`,['Workers Admin','Workers Scripts Edit','Workers Scripts Write','Account API Tokens Read','Workers R2 Storage Read','Account Settings Read'],'deploy');
+  const deployPolicies=policies(deployToken,`com.cloudflare.api.account.${accountId}`,['Workers Admin','Workers Scripts Edit','Workers Scripts Write','Workers Scripts Read','Account API Tokens Read','Workers R2 Storage Read','Account Settings Read'],'deploy');
   const readToken=(await get(`/accounts/${accountId}/tokens/${readAccessKey}`)).result;
   const readPolicies=policies(readToken,`com.cloudflare.edge.r2.bucket.${accountId}_default_${BUCKET}`,['Workers R2 Storage Bucket Item Read'],'runtime_r2_read');
   const scripts=await get(`/accounts/${accountId}/workers/scripts`);
