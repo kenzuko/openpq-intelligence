@@ -1,0 +1,759 @@
+{
+  "corpus_version": "synthetic-semantic-v1",
+  "fixture_only": true,
+  "license": "Original synthetic test data; no external source payloads",
+  "cases": [
+    {
+      "case_id": "S01-manual-in-scope",
+      "input": {
+        "evidences": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e1",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "MANUAL",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": "2026-10-01T00:00:00Z",
+            "source_time_basis": "SOURCE_OBSERVATION",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": []
+          }
+        ],
+        "assertions": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a1",
+            "evidence_ref": "e1",
+            "source_type": "MANUAL",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "fixture-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.confirmed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": "2026-10-01T00:00:00Z",
+            "mapping_state": "RESOLVED",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          }
+        ],
+        "target_scope": {
+          "domain": "synthetic",
+          "subject_id": "fixture-service",
+          "entity_version": "1",
+          "location_id": "fixture-point",
+          "location_version": "1"
+        },
+        "policy": {
+          "environment_id": "fixture-only",
+          "policy_id": "synthetic.operation.fixture",
+          "max_age_ms": 86400000,
+          "clock_skew_ms": 0
+        },
+        "evaluation_time": "2026-10-01T12:00:00Z",
+        "record_kind": "REPLAY",
+        "prior_history_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": {
+        "effect": "POSITIVE",
+        "reason_codes": [
+          "SCOPED_MANUAL_CONFIRMATION"
+        ],
+        "action_until": "2026-10-01T17:00:00.000Z"
+      }
+    },
+    {
+      "case_id": "S02-expiry-at-day-boundary",
+      "input": {
+        "evidences": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e1",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "MANUAL",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": "2026-10-01T00:00:00Z",
+            "source_time_basis": "SOURCE_OBSERVATION",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": []
+          }
+        ],
+        "assertions": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a1",
+            "evidence_ref": "e1",
+            "source_type": "MANUAL",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "fixture-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.confirmed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": "2026-10-01T00:00:00Z",
+            "mapping_state": "RESOLVED",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          }
+        ],
+        "target_scope": {
+          "domain": "synthetic",
+          "subject_id": "fixture-service",
+          "entity_version": "1",
+          "location_id": "fixture-point",
+          "location_version": "1"
+        },
+        "policy": {
+          "environment_id": "fixture-only",
+          "policy_id": "synthetic.operation.fixture",
+          "max_age_ms": 86400000,
+          "clock_skew_ms": 0
+        },
+        "evaluation_time": "2026-10-01T17:00:00Z",
+        "record_kind": "REPLAY",
+        "prior_history_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": {
+        "effect": "ABSTAIN",
+        "reason_codes": [
+          "MINIMUM_EVIDENCE_MISSING"
+        ],
+        "action_until": "2026-10-01T17:00:00.000Z"
+      }
+    },
+    {
+      "case_id": "S03-unknown-time",
+      "input": {
+        "evidences": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e1",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "MANUAL",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": null,
+            "source_time_basis": "UNKNOWN",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": [],
+            "source_time_missing_reason": "SOURCE_OMITTED"
+          }
+        ],
+        "assertions": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a1",
+            "evidence_ref": "e1",
+            "source_type": "MANUAL",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "fixture-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.confirmed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": null,
+            "mapping_state": "RESOLVED",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          }
+        ],
+        "target_scope": {
+          "domain": "synthetic",
+          "subject_id": "fixture-service",
+          "entity_version": "1",
+          "location_id": "fixture-point",
+          "location_version": "1"
+        },
+        "policy": {
+          "environment_id": "fixture-only",
+          "policy_id": "synthetic.operation.fixture",
+          "max_age_ms": 86400000,
+          "clock_skew_ms": 0
+        },
+        "evaluation_time": "2026-10-01T12:00:00Z",
+        "record_kind": "REPLAY",
+        "prior_history_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": {
+        "effect": "ABSTAIN",
+        "reason_codes": [
+          "UNKNOWN_SOURCE_TIME"
+        ],
+        "action_until": "2026-10-01T12:00:00.000Z"
+      }
+    },
+    {
+      "case_id": "S04-future-source",
+      "input": {
+        "evidences": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e1",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "MANUAL",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": "2026-10-01T13:00:00Z",
+            "source_time_basis": "SOURCE_OBSERVATION",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": []
+          }
+        ],
+        "assertions": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a1",
+            "evidence_ref": "e1",
+            "source_type": "MANUAL",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "fixture-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.confirmed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": "2026-10-01T13:00:00Z",
+            "mapping_state": "RESOLVED",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          }
+        ],
+        "target_scope": {
+          "domain": "synthetic",
+          "subject_id": "fixture-service",
+          "entity_version": "1",
+          "location_id": "fixture-point",
+          "location_version": "1"
+        },
+        "policy": {
+          "environment_id": "fixture-only",
+          "policy_id": "synthetic.operation.fixture",
+          "max_age_ms": 86400000,
+          "clock_skew_ms": 0
+        },
+        "evaluation_time": "2026-10-01T12:00:00Z",
+        "record_kind": "REPLAY",
+        "prior_history_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": {
+        "effect": "ABSTAIN",
+        "reason_codes": [
+          "MINIMUM_EVIDENCE_MISSING"
+        ],
+        "action_until": "2026-10-01T12:00:00.000Z"
+      }
+    },
+    {
+      "case_id": "S05-ambiguous-map",
+      "input": {
+        "evidences": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e1",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "MANUAL",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": "2026-10-01T00:00:00Z",
+            "source_time_basis": "SOURCE_OBSERVATION",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": []
+          }
+        ],
+        "assertions": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a1",
+            "evidence_ref": "e1",
+            "source_type": "MANUAL",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "fixture-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.confirmed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": "2026-10-01T00:00:00Z",
+            "mapping_state": "AMBIGUOUS",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          }
+        ],
+        "target_scope": {
+          "domain": "synthetic",
+          "subject_id": "fixture-service",
+          "entity_version": "1",
+          "location_id": "fixture-point",
+          "location_version": "1"
+        },
+        "policy": {
+          "environment_id": "fixture-only",
+          "policy_id": "synthetic.operation.fixture",
+          "max_age_ms": 86400000,
+          "clock_skew_ms": 0
+        },
+        "evaluation_time": "2026-10-01T12:00:00Z",
+        "record_kind": "REPLAY",
+        "prior_history_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": {
+        "effect": "ABSTAIN",
+        "reason_codes": [
+          "MINIMUM_EVIDENCE_MISSING"
+        ],
+        "action_until": "2026-10-01T12:00:00.000Z"
+      }
+    },
+    {
+      "case_id": "S06-scope-mismatch",
+      "input": {
+        "evidences": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e1",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "MANUAL",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": "2026-10-01T00:00:00Z",
+            "source_time_basis": "SOURCE_OBSERVATION",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": []
+          }
+        ],
+        "assertions": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a1",
+            "evidence_ref": "e1",
+            "source_type": "MANUAL",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "other-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.confirmed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": "2026-10-01T00:00:00Z",
+            "mapping_state": "RESOLVED",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          }
+        ],
+        "target_scope": {
+          "domain": "synthetic",
+          "subject_id": "fixture-service",
+          "entity_version": "1",
+          "location_id": "fixture-point",
+          "location_version": "1"
+        },
+        "policy": {
+          "environment_id": "fixture-only",
+          "policy_id": "synthetic.operation.fixture",
+          "max_age_ms": 86400000,
+          "clock_skew_ms": 0
+        },
+        "evaluation_time": "2026-10-01T12:00:00Z",
+        "record_kind": "REPLAY",
+        "prior_history_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": {
+        "effect": "ABSTAIN",
+        "reason_codes": [
+          "MINIMUM_EVIDENCE_MISSING"
+        ],
+        "action_until": "2026-10-01T12:00:00.000Z"
+      }
+    },
+    {
+      "case_id": "S07-official-closure",
+      "input": {
+        "evidences": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e1",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "MANUAL",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": "2026-10-01T00:00:00Z",
+            "source_time_basis": "SOURCE_OBSERVATION",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": []
+          },
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e2",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "OFFICIAL_REPORT",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": "2026-10-01T00:00:00Z",
+            "source_time_basis": "SOURCE_OBSERVATION",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": []
+          }
+        ],
+        "assertions": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a1",
+            "evidence_ref": "e1",
+            "source_type": "MANUAL",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "fixture-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.confirmed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": "2026-10-01T00:00:00Z",
+            "mapping_state": "RESOLVED",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          },
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a2",
+            "evidence_ref": "e2",
+            "source_type": "OFFICIAL_REPORT",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "fixture-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.closed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": "2026-10-01T00:00:00Z",
+            "mapping_state": "RESOLVED",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          }
+        ],
+        "target_scope": {
+          "domain": "synthetic",
+          "subject_id": "fixture-service",
+          "entity_version": "1",
+          "location_id": "fixture-point",
+          "location_version": "1"
+        },
+        "policy": {
+          "environment_id": "fixture-only",
+          "policy_id": "synthetic.operation.fixture",
+          "max_age_ms": 86400000,
+          "clock_skew_ms": 0
+        },
+        "evaluation_time": "2026-10-01T12:00:00Z",
+        "record_kind": "REPLAY",
+        "prior_history_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": {
+        "effect": "RESTRICTIVE",
+        "reason_codes": [
+          "SCOPED_OFFICIAL_CLOSURE"
+        ],
+        "action_until": "2026-10-01T17:00:00.000Z"
+      }
+    },
+    {
+      "case_id": "S08-stale-source",
+      "input": {
+        "evidences": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "evidence_id": "e1",
+            "source_id": "synthetic-manual",
+            "source_namespace": "fixture",
+            "source_entity_id": "fixture-service",
+            "source_type": "MANUAL",
+            "request_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "raw_storage_denied": "SYNTHETIC_NO_RAW",
+            "source_time": "2026-10-01T00:00:00Z",
+            "source_time_basis": "SOURCE_OBSERVATION",
+            "collected_at": "2026-10-01T00:00:01Z",
+            "received_at": "2026-10-01T00:00:02Z",
+            "source_registry_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "adapter_ref": {
+              "artifact_id": "synthetic",
+              "version": "1",
+              "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "retention_class": "SYNTHETIC",
+            "access_scope": "fixture-only",
+            "provenance_refs": []
+          }
+        ],
+        "assertions": [
+          {
+            "contract_version": "openpq-semantic-fixture-v1",
+            "assertion_id": "a1",
+            "evidence_ref": "e1",
+            "source_type": "MANUAL",
+            "scope": {
+              "domain": "synthetic",
+              "subject_id": "fixture-service",
+              "entity_version": "1",
+              "location_id": "fixture-point",
+              "location_version": "1"
+            },
+            "predicate": "synthetic.operational.confirmed",
+            "value": true,
+            "unit": "boolean",
+            "valid_from": "2026-09-30T17:00:00Z",
+            "valid_to": "2026-10-01T17:00:00Z",
+            "issued_at": "2026-10-01T00:00:00Z",
+            "source_time": "2026-10-01T00:00:00Z",
+            "mapping_state": "RESOLVED",
+            "author_ref": "synthetic-operator",
+            "quality": {
+              "completeness": "COMPLETE",
+              "resolution": "RESOLVED",
+              "pipeline_at_generation": "HEALTHY"
+            }
+          }
+        ],
+        "target_scope": {
+          "domain": "synthetic",
+          "subject_id": "fixture-service",
+          "entity_version": "1",
+          "location_id": "fixture-point",
+          "location_version": "1"
+        },
+        "policy": {
+          "environment_id": "fixture-only",
+          "policy_id": "synthetic.operation.fixture",
+          "max_age_ms": 1000,
+          "clock_skew_ms": 0
+        },
+        "evaluation_time": "2026-10-01T12:00:00Z",
+        "record_kind": "REPLAY",
+        "prior_history_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": {
+        "effect": "ABSTAIN",
+        "reason_codes": [
+          "MINIMUM_EVIDENCE_MISSING"
+        ],
+        "action_until": "2026-10-01T12:00:00.000Z"
+      }
+    }
+  ]
+}
