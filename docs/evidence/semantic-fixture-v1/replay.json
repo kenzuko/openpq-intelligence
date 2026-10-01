@@ -1,0 +1,73 @@
+{
+  "status": "SYNTHETIC_SEMANTIC_SUBSET_PASS",
+  "corpus_version": "synthetic-semantic-v1",
+  "corpus_hash": "ec18e831bce1e304514eda97c875c71e735ba547f09f927b20b5e31c24ed9620",
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED",
+  "cases": [
+    {
+      "case_id": "S01-manual-in-scope",
+      "status": "PASS",
+      "decision_id": "822730c13451f7f5f60f0ef5324dc77a99df8a3cbc0c1d3f01c5140a97aa30a4",
+      "input_hash": "dbe5e78534ef290a30ed2a3cfe22c9e5aeb40cc586082526b8ef165d0750a8f5",
+      "effect": "POSITIVE",
+      "action_until": "2026-10-01T17:00:00.000Z"
+    },
+    {
+      "case_id": "S02-expiry-at-day-boundary",
+      "status": "PASS",
+      "decision_id": "c02c89c3bbbb518801c811559439bb3cc893ee47b18bf858995a468936ae2d90",
+      "input_hash": "dbe5e78534ef290a30ed2a3cfe22c9e5aeb40cc586082526b8ef165d0750a8f5",
+      "effect": "ABSTAIN",
+      "action_until": "2026-10-01T17:00:00.000Z"
+    },
+    {
+      "case_id": "S03-unknown-time",
+      "status": "PASS",
+      "decision_id": "576ad31107712b10da5826b69c2e3a205984db8395d9327315321f1fe29b30f6",
+      "input_hash": "1a5bccfa8063db2b4d0c2f8da13417091447af34598ba477d3983bc92fd07d87",
+      "effect": "ABSTAIN",
+      "action_until": "2026-10-01T12:00:00.000Z"
+    },
+    {
+      "case_id": "S04-future-source",
+      "status": "PASS",
+      "decision_id": "d0594d4452e53d633bacaba07ca7a1deb126a4a4cfe3db71a9bd07d90fa8046a",
+      "input_hash": "1a527902a855eb0d54c276719039fcb8a9d194a609338ed983f1d34ece4f270c",
+      "effect": "ABSTAIN",
+      "action_until": "2026-10-01T12:00:00.000Z"
+    },
+    {
+      "case_id": "S05-ambiguous-map",
+      "status": "PASS",
+      "decision_id": "65f6aaf4f41fe76908714d557047cf93c9223839ead139f5cf27f39f31ad71e3",
+      "input_hash": "8a699b28780c3e8ee31b22ed562226d58421a02f7c91dec4e8a39c0b89ab6233",
+      "effect": "ABSTAIN",
+      "action_until": "2026-10-01T12:00:00.000Z"
+    },
+    {
+      "case_id": "S06-scope-mismatch",
+      "status": "PASS",
+      "decision_id": "712bca873607d35ca78ca930d38d44da829dd01f0214ca7f092cd009985b9662",
+      "input_hash": "1550313f0267b426a4cb2ab6b7feeabc603988763bd77b1990f5613cbacdd2de",
+      "effect": "ABSTAIN",
+      "action_until": "2026-10-01T12:00:00.000Z"
+    },
+    {
+      "case_id": "S07-official-closure",
+      "status": "PASS",
+      "decision_id": "843a9148a9a5a5147feb148ac56a609627ac1a785b6c15327be9a177bc7b8aca",
+      "input_hash": "8defbca1f235eda56d2cde5083938296b026750882b7f3b8d4db52b307651939",
+      "effect": "RESTRICTIVE",
+      "action_until": "2026-10-01T17:00:00.000Z"
+    },
+    {
+      "case_id": "S08-stale-source",
+      "status": "PASS",
+      "decision_id": "b17a2392f35cf879d2903cc139ab7e3f1c4d555586fde0a38bb0af102f33292c",
+      "input_hash": "09daf1bc831cbffb55a51e293cbda65cf9aa0c88a48e73452c03830572da22a4",
+      "effect": "ABSTAIN",
+      "action_until": "2026-10-01T12:00:00.000Z"
+    }
+  ]
+}

@@ -35,3 +35,18 @@ for(const runId of [36847033329,36848850809]){
   assert.equal(denial.g1,'NOT_PASSED');
   console.log('PASS: pinned R2 read-credential revocation subset, actual HTTP 401 with independent HTTP 200 witness');
 }
+
+{
+  const evidenceDir='docs/evidence/semantic-fixture-v1';
+  const snapshot=JSON.parse(await readFile(evidenceDir+'/SNAPSHOT.json','utf8'));
+  for(const [path,digest] of Object.entries(snapshot.files_sha256)){
+    assert.ok(['corpus.json','replay.json'].includes(path));
+    assert.equal(createHash('sha256').update(await readFile(evidenceDir+'/'+path)).digest('hex'),digest,path);
+  }
+  const report=JSON.parse(await readFile(evidenceDir+'/replay.json','utf8'));
+  const corpus=JSON.parse(await readFile(evidenceDir+'/corpus.json','utf8'));
+  assert.equal(corpus.fixture_only,true);assert.equal(report.status,'SYNTHETIC_SEMANTIC_SUBSET_PASS');
+  assert.equal(report.g1,'NOT_PASSED');assert.equal(report.g2,'NOT_PASSED');
+  assert.equal(report.cases.length,snapshot.case_count);assert.ok(report.cases.every(item=>item.status==='PASS'));
+  console.log('PASS: pinned synthetic semantic corpus/replay snapshot; live gates remain closed');
+}

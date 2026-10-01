@@ -1,0 +1,11 @@
+{
+  "status": "SYNTHETIC_SEMANTIC_SUBSET_PASS",
+  "case_count": 8,
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED",
+  "parent_base_sha": "2567df4b4df56e9e2072306fabb6939b2c8f5883",
+  "files_sha256": {
+    "corpus.json": "5abe1faff1e4fa52daa30e09cd6036a44c66bba39203d1f40dc602672d729761",
+    "replay.json": "799c14c2b104b75745b72fb4e605ada9bd76b71853e4a265311972f8d985d1ca"
+  }
+}

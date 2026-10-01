@@ -1,0 +1,8 @@
+import {SEMANTIC_VERSION} from '../contracts/semantic.js';
+export const FIXTURE_SCOPE={domain:'synthetic',subject_id:'fixture-service',entity_version:'1',location_id:'fixture-point',location_version:'1'};
+const H='a'.repeat(64),R={artifact_id:'synthetic',version:'1',hash:H};
+export function semanticFixture(){
+  const evidence={contract_version:SEMANTIC_VERSION,evidence_id:'e1',source_id:'synthetic-manual',source_namespace:'fixture',source_entity_id:'fixture-service',source_type:'MANUAL',request_fingerprint:H,payload_hash:H,raw_storage_denied:'SYNTHETIC_NO_RAW',source_time:'2026-10-01T00:00:00Z',source_time_basis:'SOURCE_OBSERVATION',collected_at:'2026-10-01T00:00:01Z',received_at:'2026-10-01T00:00:02Z',source_registry_ref:R,adapter_ref:R,retention_class:'SYNTHETIC',access_scope:'fixture-only',provenance_refs:[]};
+  const assertion={contract_version:SEMANTIC_VERSION,assertion_id:'a1',evidence_ref:'e1',source_type:'MANUAL',scope:FIXTURE_SCOPE,predicate:'synthetic.operational.confirmed',value:true,unit:'boolean',valid_from:'2026-09-30T17:00:00Z',valid_to:'2026-10-01T17:00:00Z',issued_at:evidence.source_time,source_time:evidence.source_time,mapping_state:'RESOLVED',author_ref:'synthetic-operator',quality:{completeness:'COMPLETE',resolution:'RESOLVED',pipeline_at_generation:'HEALTHY'}};
+  return JSON.parse(JSON.stringify({evidences:[evidence],assertions:[assertion],target_scope:FIXTURE_SCOPE,policy:{environment_id:'fixture-only',policy_id:'synthetic.operation.fixture',max_age_ms:86400000,clock_skew_ms:0},evaluation_time:'2026-10-01T12:00:00Z',record_kind:'REPLAY',prior_history_hash:H}));
+}

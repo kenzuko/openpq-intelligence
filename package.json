@@ -10,7 +10,8 @@
     "test": "node --test tests/*.test.js",
     "check": "node scripts/check-boundaries.js",
     "verify:handoff": "node scripts/verify-handoff.js",
-    "check:cloud-bundles": "node scripts/cloud/dry-run.js"
+    "check:cloud-bundles": "node scripts/cloud/dry-run.js",
+    "replay:semantic": "node scripts/replay-semantic.js"
   },
   "devDependencies": {
     "miniflare": "4.20260730.0",

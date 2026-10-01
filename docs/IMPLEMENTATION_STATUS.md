@@ -2,7 +2,11 @@
 
 Result: isolated authority/publication milestone implemented; full Intelligence execution is **not complete**. No production deployment or legacy source/consumer transfer occurred.
 
-## Verification
+## Current status after semantic/free-thread handoff
+
+72 local Node tests pass, eight synthetic semantic replay cases pass, four offline bundles pass. Exact prior cloud evidence: 15 protocol/resilience cases and actual R2 read-credential revocation 401 with positive Runtime 200 witness. Full G1/G2 remain NOT_PASSED. The offline semantic layer is not integrated into the live candidate wire contract. Start `docs/free-thread/00_START_HERE.md` for scoped participation. Sections below preserve milestone chronology; earlier NOT_RUN/test counts describe their own date/commit, not current results.
+
+## Verification (earlier milestone)
 
 Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **60 Node test cases pass, including three parent integration tests**. This is not 44 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
 
@@ -36,7 +40,7 @@ No V2.1 system test is labelled globally PASS based on this local subset. The re
 | P1 | Partial semantic contracts and protocol/serving harness; full domain schema/kernels pending. |
 | P2 | Local Coordinator, immutable storage, atomic audit/outbox implemented. Cloud proof, crash corpus, retention pins pending. |
 | P3 | Local Runtime and pinned hash/locator activation checks implemented. Full registry/version compatibility and source-policy validation pending. |
-| G1 | BLOCKED in full: 12/12 actual cloud protocol subset PASS is pinned. 15/15 protocol/resilience cloud subset cases PASS; R2 revocation, retention/GC, disaster restore and cost evidence remain pending. |
+| G1 | BLOCKED in full: 12/12 actual cloud protocol subset PASS is pinned. 15/15 protocol/resilience cloud subset cases PASS; R2 read-credential revocation subset is now pinned; retention/GC, remaining crash/recovery, unattended retry and cost evidence remain pending. |
 | G2 | BLOCKED: approved domain pilot, licensing/budget/mapping/time policies and golden masters. |
 | G3-G5 / P4-P8 | NOT_RUN: no live mirror, shadow parity, source producer independence, backup/PITR restoration or cutover. |
 | P6 console subset | Separate console/API scaffold implemented and API unit test passes; browser/security/session/SSO/audit display remain pending. |
