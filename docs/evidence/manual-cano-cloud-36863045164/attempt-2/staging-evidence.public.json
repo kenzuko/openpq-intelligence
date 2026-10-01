@@ -1,0 +1,70 @@
+{
+  "status": "ISOLATED_MANUAL_STAGING_SUBSET_PASS",
+  "code_sha": "9ab3211747afcef425fc547e227ce1ee31bbd35a",
+  "run_id": "36863045164",
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "worker": "openpq-intelligence-staging-isolated-test",
+  "source_commit_sha": "e19d30df1fe068d44f66f89278b749deb7b3c3cb",
+  "record_digest": "2ed226ab0039692543f00b3768e5fb7d4895aa8eaf73629f75117b5c231410c0",
+  "mode": "SHADOW",
+  "publication_admitted": false,
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED",
+  "cases": [
+    {
+      "name": "unauthenticated staging write is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "real pinned owner manual source is staged without publication",
+      "status": "PASS"
+    },
+    {
+      "name": "repeat staging is content-idempotent and does not refresh source age",
+      "status": "PASS"
+    },
+    {
+      "name": "exact staged object reads back with the same integrity hash",
+      "status": "PASS"
+    },
+    {
+      "name": "staging capability cannot publish, control or delete",
+      "status": "PASS"
+    },
+    {
+      "name": "historical owner records without explicit authors remain quarantined on cloud",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong source pin is rejected before any staging write",
+      "status": "PASS"
+    }
+  ],
+  "staged_key": "staging/manual-cano/e19d30df1fe068d44f66f89278b749deb7b3c3cb/2ed226ab0039692543f00b3768e5fb7d4895aa8eaf73629f75117b5c231410c0.json",
+  "source_time": "2026-09-30T23:23:00.000Z",
+  "valid_to": "2026-10-01T17:00:00.000Z",
+  "observed_freshness": "WITHIN_EXPLICIT_VALIDITY",
+  "stored_sha256": "58e8171724a2301b00228c011804156db43c12316af8b3b2f739083767be3d43",
+  "history": [
+    {
+      "source_day": "2026-09-30",
+      "record_digest": "bdcaa3127ce8212220b864313412a9df7208bd99746b9e450856097a064531ab",
+      "source_time": "2026-09-29T23:09:00.000Z",
+      "status": "QUARANTINED",
+      "reason_codes": [
+        "MANUAL_AUTHOR_NOT_EXPLICIT"
+      ],
+      "stored_sha256": "594f568117810dcc5a5ff6eda6fe688a1d2e6981d359f4102f7575856f856287"
+    },
+    {
+      "source_day": "2026-09-27",
+      "record_digest": "8be9f41e187525dfeecd692a8f6cd3fe8994790efbb83785eb9468b856860ae8",
+      "source_time": "2026-09-26T23:26:27.000Z",
+      "status": "QUARANTINED",
+      "reason_codes": [
+        "MANUAL_AUTHOR_NOT_EXPLICIT"
+      ],
+      "stored_sha256": "6c64d84e6d8fecdff330c097a1505fc16c8b78ee2ed3af76bed8bc5b5963b86d"
+    }
+  ]
+}

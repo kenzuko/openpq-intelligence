@@ -1,0 +1,15 @@
+{
+  "status": "BLOCKED_OR_FAILED",
+  "code_sha": "9ab3211747afcef425fc547e227ce1ee31bbd35a",
+  "run_id": "36863045164",
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "worker": "openpq-intelligence-staging-isolated-test",
+  "source_commit_sha": "e19d30df1fe068d44f66f89278b749deb7b3c3cb",
+  "record_digest": "2ed226ab0039692543f00b3768e5fb7d4895aa8eaf73629f75117b5c231410c0",
+  "mode": "SHADOW",
+  "publication_admitted": false,
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED",
+  "cases": [],
+  "error": "STAGING_UNAUTHENTICATED_WRITE_ALLOWED"
+}

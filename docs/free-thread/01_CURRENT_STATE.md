@@ -29,3 +29,8 @@ HTTP 401 ở một runner không chứng minh mọi khu vực đã revoke, khôn
 ## Các quyết định cần dữ liệu thật
 
 P05-P18 của policy register vẫn chặn đúng scope: source ages, biển/gió/mưa thresholds, time/interval semantics, license/retention, budgets, GC/pin grace, RPO/RTO, backup/offsite, monitoring, roles giảm protection, identity/parity và artifact/key compatibility. Không tự điền số cho nhanh qua gate.
+
+
+## Update sau bản M2: data transport đã đạt
+
+80 local tests và 5 offline bundles; real-data cloud staging run 36863045164 attempt 2 đã pass 7 case. Ba record cano đã ghi/đọc đúng hash tại prefix staging riêng. 01/10 giữ NORMALIZED_SHADOW, 30/09 và 27/09 giữ QUARANTINED vì thiếu author explicit. Temporary capability đã gỡ và deny 401 quan sát thật. Source SHA e19d30df1fe068d44f66f89278b749deb7b3c3cb; code cloud SHA 9ab3211747afcef425fc547e227ce1ee31bbd35a. Đọc docs/MANUAL_CANO_DATA_INTAKE.md và snapshot cloud mới. G1/G2 và canonical/public admission vẫn đóng. ZIP M2 cũ vẫn bất biến, không sửa ngược lịch sử.

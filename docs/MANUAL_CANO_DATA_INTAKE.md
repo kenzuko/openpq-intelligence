@@ -24,7 +24,7 @@ Workflow: `.github/workflows/manual-cano-stage.yml`, **Isolated manual Cano data
 
 Steps: local gates -> actual resource/token preflight -> bounded pinned source fetch (one primary and two specified historical records) -> prepare validated binding config -> separate Worker deploy + capability activation -> actual write/idempotency/readback/denial/history quarantine proof -> capability removal and observed closure -> upload only selected public evidence files. Private plan/request/capability files never enter artifacts or Git.
 
-Cloud proof must pass on the exact implementation SHA and its public artifact must be pinned before claiming actual R2 intake. Prior local tests and successful Worker deployment alone do not establish data write/readback. The record's reported source state is not current authoritative operating status merely because a source pin is within its stated validity interval.
+Actual run 36863045164 attempt 2 at 9ab3211747afcef425fc547e227ce1ee31bbd35a passed seven data transport cases and observed capability removal HTTP 401; three real records were stored/read back. Raw public reports and hashes are pinned in docs/evidence/manual-cano-cloud-36863045164. Attempt 1 remains preserved as an inconclusive failed denial observation. Prior local tests and successful Worker deployment alone do not establish data write/readback. The record's reported source state is not current authoritative operating status merely because a source pin is within its stated validity interval.
 
 ## Admission still closed
 

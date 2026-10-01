@@ -60,3 +60,9 @@ test('staging deployment config rejects production accounts, routes, inheritance
     const c=structuredClone(config);alter(c);assert.throws(()=>assertStagingConfig(c,account,[prod]));
   }
 });
+test('cloud staging denial diagnostics retain actual HTTP status without echoing unknown response text',async()=>{
+  const {safeStagingObservation}=await import('../scripts/cloud/manual-stage.js');
+  assert.deepEqual(safeStagingObservation({status:401,body:{error:'STAGING_AUTH_DENIED'}}),{http_status:401,error_code:'STAGING_AUTH_DENIED'});
+  assert.deepEqual(safeStagingObservation({status:503,body:{error:'secret-like-response'}}),{http_status:503,error_code:null});
+  assert.deepEqual(safeStagingObservation({status:null,body:{error:'SECRET_TOKEN'}}),{http_status:null,error_code:null});
+});
