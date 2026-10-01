@@ -2,159 +2,159 @@ TAP version 13
 # Subtest: UTC and deterministic artifact contracts reject malformed input
 ok 1 - UTC and deterministic artifact contracts reject malformed input
   ---
-  duration_ms: 6.525486
+  duration_ms: 4.672788
   type: 'test'
   ...
 # Subtest: source age advances with serve time; expired restrictive state never becomes OPEN
 ok 2 - source age advances with serve time; expired restrictive state never becomes OPEN
   ---
-  duration_ms: 1.051763
+  duration_ms: 0.660996
   type: 'test'
   ...
 # Subtest: signed checkpoint binds authority and content; forged and rotated receipts are rejected
 ok 3 - signed checkpoint binds authority and content; forged and rotated receipts are rejected
   ---
-  duration_ms: 8.883968
+  duration_ms: 5.415065
   type: 'test'
   ...
 # Subtest: projection exhausted CAS is reported as retryable rather than successful
 ok 4 - projection exhausted CAS is reported as retryable rather than successful
   ---
-  duration_ms: 1.04339
+  duration_ms: 0.812339
   type: 'test'
   ...
 # Subtest: SQLite DO publication and Runtime adversarial integration
     # Subtest: shadow, backfill, reader and alternate locator cannot promote
     ok 1 - shadow, backfill, reader and alternate locator cannot promote
       ---
-      duration_ms: 26.41952
+      duration_ms: 19.193293
       type: 'test'
       ...
     # Subtest: unregistered native DO instance cannot bootstrap
     ok 2 - unregistered native DO instance cannot bootstrap
       ---
-      duration_ms: 32.037645
+      duration_ms: 28.854792
       type: 'test'
       ...
     # Subtest: two writers race at one revision: exactly one wins
     ok 3 - two writers race at one revision: exactly one wins
       ---
-      duration_ms: 45.770623
+      duration_ms: 43.222334
       type: 'test'
       ...
     # Subtest: Runtime independently reads the committed immutable blob
     ok 4 - Runtime independently reads the committed immutable blob
       ---
-      duration_ms: 10.776853
+      duration_ms: 12.997636
       type: 'test'
       ...
     # Subtest: control mutation invalidates in-flight prepared publication and validation
     ok 5 - control mutation invalidates in-flight prepared publication and validation
       ---
-      duration_ms: 26.967224
+      duration_ms: 32.72799
       type: 'test'
       ...
     # Subtest: owner transfer fences old writers even with unchanged data revision
     ok 6 - owner transfer fences old writers even with unchanged data revision
       ---
-      duration_ms: 34.676367
+      duration_ms: 28.05765
       type: 'test'
       ...
     # Subtest: expired commands and stale positive sources do not advance authority
     ok 7 - expired commands and stale positive sources do not advance authority
       ---
-      duration_ms: 21.04173
+      duration_ms: 19.897513
       type: 'test'
       ...
     # Subtest: signed outbox export is retryable and cold Runtime fails closed for GO
     ok 8 - signed outbox export is retryable and cold Runtime fails closed for GO
       ---
-      duration_ms: 171.376462
+      duration_ms: 187.241875
       type: 'test'
       ...
     1..8
 ok 5 - SQLite DO publication and Runtime adversarial integration
   ---
-  duration_ms: 884.474542
+  duration_ms: 865.344544
   type: 'test'
   ...
 # Subtest: separate console forwards individual capability and rejects unsupported paths or production
 ok 6 - separate console forwards individual capability and rejects unsupported paths or production
   ---
-  duration_ms: 7.344455
+  duration_ms: 7.361159
   type: 'test'
   ...
 # Subtest: S3 adapter only signs GET, preserves key separators and rejects redirects/path traversal
 ok 7 - S3 adapter only signs GET, preserves key separators and rejects redirects/path traversal
   ---
-  duration_ms: 16.65397
+  duration_ms: 13.766585
   type: 'test'
   ...
 # Subtest: denied and unavailable S3 reads do not become fabricated data
 ok 8 - denied and unavailable S3 reads do not become fabricated data
   ---
-  duration_ms: 9.509757
+  duration_ms: 4.184798
   type: 'test'
   ...
 # Subtest: streamed oversized canonical object is cancelled without unbounded buffering
 ok 9 - streamed oversized canonical object is cancelled without unbounded buffering
   ---
-  duration_ms: 2.899121
+  duration_ms: 2.383089
   type: 'test'
   ...
 # Subtest: production configuration is denied before accessing bindings
 ok 10 - production configuration is denied before accessing bindings
   ---
-  duration_ms: 642.368018
+  duration_ms: 662.560026
   type: 'test'
   ...
 # Subtest: publication validity, correction lineage, SQLite eviction and export failure
     # Subtest: partial or conflicting evidence cannot authorize a positive decision
     ok 1 - partial or conflicting evidence cannot authorize a positive decision
       ---
-      duration_ms: 31.364712
+      duration_ms: 32.275854
       type: 'test'
       ...
     # Subtest: unsupported artifact and expired generation cannot advance active reference
     ok 2 - unsupported artifact and expired generation cannot advance active reference
       ---
-      duration_ms: 13.341339
+      duration_ms: 14.35937
       type: 'test'
       ...
     # Subtest: missing positive policy activation denies an otherwise valid candidate
     ok 3 - missing positive policy activation denies an otherwise valid candidate
       ---
-      duration_ms: 216.745467
+      duration_ms: 212.725876
       type: 'test'
       ...
     # Subtest: normal obsolete slot rejected; explicit correction requires permission and lineage
     ok 4 - normal obsolete slot rejected; explicit correction requires permission and lineage
       ---
-      duration_ms: 46.195345
+      duration_ms: 46.88354
       type: 'test'
       ...
     # Subtest: active reference and command deduplication survive DO eviction
     ok 5 - active reference and command deduplication survive DO eviction
       ---
-      duration_ms: 20.044031
+      duration_ms: 20.554447
       type: 'test'
       ...
     # Subtest: failed signing/export does not roll back committed publication
     ok 6 - failed signing/export does not roll back committed publication
       ---
-      duration_ms: 225.840416
+      duration_ms: 242.832672
       type: 'test'
       ...
     # Subtest: frozen publication can retract but cannot issue a new positive decision
     ok 7 - frozen publication can retract but cannot issue a new positive decision
       ---
-      duration_ms: 31.774216
+      duration_ms: 37.463853
       type: 'test'
       ...
     1..7
 ok 11 - publication validity, correction lineage, SQLite eviction and export failure
   ---
-  duration_ms: 972.806843
+  duration_ms: 1009.300862
   type: 'test'
   ...
 1..11
@@ -165,4 +165,4 @@ ok 11 - publication validity, correction lineage, SQLite eviction and export fai
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 2016.32268
+# duration_ms 2029.810653

@@ -72,12 +72,12 @@ export function candidate(value, now) {
 }
 export function locator(value) {
   object(value,'LOCATOR');
-  for (const k of ['environment_id','dataset_id','authority_instance_id','authority_locator_version','locator_artifact_hash','namespace_id','native_id','object_name','recovery_generation']) text(value[k], k);
+  for (const k of ['account_id','environment_id','dataset_id','authority_instance_id','authority_locator_version','locator_artifact_hash','namespace_id','native_id','object_name','recovery_generation']) text(value[k], k);
   requireThat(/^[a-f0-9]{64}$/.test(value.native_id), 'NATIVE_ID_INVALID');
   object(value.artifacts,'LOCATOR_ARTIFACTS');
   for (const k of ['rule','config','policy','schema']) requireThat(/^[a-f0-9]{64}$/.test(value.artifacts[k]),'LOCATOR_ARTIFACT_HASH_INVALID');
   return value;
 }
 export function sameLocator(value, trust) {
-  return Boolean(value && trust && ['environment_id','dataset_id','authority_instance_id','authority_locator_version','locator_artifact_hash','namespace_id','native_id','object_name','recovery_generation'].every(k=>typeof trust[k]==='string' && trust[k].length>0 && value[k] === trust[k]));
+  return Boolean(value && trust && ['account_id','environment_id','dataset_id','authority_instance_id','authority_locator_version','locator_artifact_hash','namespace_id','native_id','object_name','recovery_generation'].every(k=>typeof trust[k]==='string' && trust[k].length>0 && value[k] === trust[k]));
 }

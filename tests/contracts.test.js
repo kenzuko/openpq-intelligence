@@ -10,7 +10,7 @@ test('UTC and deterministic artifact contracts reject malformed input',async()=>
 });
 test('source age advances with serve time; expired restrictive state never becomes OPEN',()=>{
   const now=Date.parse('2026-10-01T00:00:00Z');
-  const trust={environment_id:'test',dataset_id:'cano',authority_instance_id:'one',authority_locator_version:'1',locator_artifact_hash:'a',namespace_id:'test-namespace',native_id:'a'.repeat(64),object_name:'test/cano',recovery_generation:'one'};
+  const trust={account_id:'synthetic-test-account',environment_id:'test',dataset_id:'cano',authority_instance_id:'one',authority_locator_version:'1',locator_artifact_hash:'a',namespace_id:'test-namespace',native_id:'a'.repeat(64),object_name:'test/cano',recovery_generation:'one'};
   const generation={...trust,valid_from:new Date(now-1000).toISOString(),valid_to:new Date(now+3600000).toISOString(),inputs:[{source_id:'manual',source_time:new Date(now-5000).toISOString(),valid_to:new Date(now+3600000).toISOString(),max_age_ms:10000}],quality:{completeness:'COMPLETE',resolution:'RESOLVED'},decision:{effect:'RESTRICTIVE',action_until:new Date(now+20000).toISOString(),minimum_evidence_met:true}};
   const receipt={...trust,revision:1,control_revision:0,operation:'NORMAL'};
   const validation={...trust,revision:1,control_revision:0,validated_at:new Date(now).toISOString(),expires_at:new Date(now+15000).toISOString(),positive_allowed:true};
@@ -22,13 +22,14 @@ test('source age advances with serve time; expired restrictive state never becom
 test('signed checkpoint binds authority and content; forged and rotated receipts are rejected',async()=>{
   const pair=await crypto.subtle.generateKey({name:'ECDSA',namedCurve:'P-256'},true,['sign','verify']);
   const priv=await crypto.subtle.exportKey('jwk',pair.privateKey),pub=await crypto.subtle.exportKey('jwk',pair.publicKey);
-  const trust={environment_id:'test',dataset_id:'cano',authority_instance_id:'one',authority_locator_version:'1',locator_artifact_hash:'a',namespace_id:'test-namespace',native_id:'a'.repeat(64),object_name:'test/cano',recovery_generation:'one',receipt_keys:{key:pub}};
+  const trust={account_id:'synthetic-test-account',environment_id:'test',dataset_id:'cano',authority_instance_id:'one',authority_locator_version:'1',locator_artifact_hash:'a',namespace_id:'test-namespace',native_id:'a'.repeat(64),object_name:'test/cano',recovery_generation:'one',receipt_keys:{key:pub}};
   const r={...trust,revision:1,digest:'b'};const envelope=await attest(r,'key',priv);assert.deepEqual(await verifyAttestation(envelope,trust),r);
   await assert.rejects(verifyAttestation({...envelope,receipt:{...r,revision:2}},trust));
   await assert.rejects(verifyAttestation(envelope,{...trust,recovery_generation:'two'}));
   await assert.rejects(verifyAttestation({...envelope,key_id:'untrusted'},trust));
   await assert.rejects(verifyAttestation(envelope,{...trust,native_id:'b'.repeat(64)}));
   await assert.rejects(verifyAttestation(envelope,{...trust,namespace_id:'alternate-namespace'}));
+  await assert.rejects(verifyAttestation(envelope,{...trust,account_id:'alternate-account'}));
 });
 test('projection exhausted CAS is reported as retryable rather than successful',async()=>{
   const envelope={receipt:{authority_instance_id:'one',recovery_generation:'one',revision:1}};

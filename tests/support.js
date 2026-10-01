@@ -9,6 +9,7 @@ export async function setup() {
   const pair=await crypto.subtle.generateKey({name:'ECDSA',namedCurve:'P-256'},true,['sign','verify']);
   const publicKey=await crypto.subtle.exportKey('jwk',pair.publicKey), privateKey=await crypto.subtle.exportKey('jwk',pair.privateKey);
   const trust={environment_id:'local-test',dataset_id:'cano.operation',authority_instance_id:'local-cano-authority',authority_locator_version:'1',locator_artifact_hash:H,namespace_id:'local-sqlite-namespace',object_name:'local-test/cano.operation',native_id:'0'.repeat(64),recovery_generation:'local-generation-1',artifacts:{rule:H,config:H,policy:H,schema:H},receipt_keys:{'local-key':publicKey}};
+  trust.account_id='synthetic-local-account';
   trust.approved_positive_decision_types=['cano.operation.fixture'];
   const actor=(id,token,permissions,extra={})=>({...trust,id,token,permissions,mode:'LIVE',owner:'pilot',epoch:1,...extra});
   let principals;
