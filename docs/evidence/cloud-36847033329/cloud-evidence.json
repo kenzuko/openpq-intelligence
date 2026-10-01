@@ -1,0 +1,150 @@
+{
+  "status": "CLOUD_PROTOCOL_SUBSET_PASS",
+  "g1": "NOT_PASSED",
+  "cases": [
+    {
+      "name": "temporary native-ID probe is absent from final Core",
+      "status": "PASS",
+      "elapsed_ms": 85,
+      "observed_at_utc": "2026-10-01T10:07:16.678Z"
+    },
+    {
+      "name": "bootstrap is single-use and native locator-pinned",
+      "status": "PASS",
+      "elapsed_ms": 317,
+      "observed_at_utc": "2026-10-01T10:07:16.995Z"
+    },
+    {
+      "name": "read/shadow/backfill/alternate authority cannot prepare",
+      "status": "PASS",
+      "elapsed_ms": 201,
+      "observed_at_utc": "2026-10-01T10:07:17.196Z"
+    },
+    {
+      "name": "two same-revision publications race, exactly one advances",
+      "status": "PASS",
+      "elapsed_ms": 2892,
+      "observed_at_utc": "2026-10-01T10:07:20.089Z"
+    },
+    {
+      "name": "idempotent command retry does not create another revision",
+      "status": "PASS",
+      "elapsed_ms": 84,
+      "observed_at_utc": "2026-10-01T10:07:20.174Z"
+    },
+    {
+      "name": "Runtime verifies committed blob via real read-only S3 adapter",
+      "status": "PASS",
+      "elapsed_ms": 622,
+      "observed_at_utc": "2026-10-01T10:07:20.796Z"
+    },
+    {
+      "name": "control update invalidates prepared candidate and previous validation",
+      "status": "PASS",
+      "elapsed_ms": 3146,
+      "observed_at_utc": "2026-10-01T10:07:23.942Z"
+    },
+    {
+      "name": "owner epoch fences old writer after transfer",
+      "status": "PASS",
+      "elapsed_ms": 2652,
+      "observed_at_utc": "2026-10-01T10:07:26.594Z"
+    },
+    {
+      "name": "committed outbox exports signed checkpoint and retry is empty",
+      "status": "PASS",
+      "elapsed_ms": 4846,
+      "observed_at_utc": "2026-10-01T10:07:31.441Z"
+    },
+    {
+      "name": "actual Runtime R2 key denies PUT and DELETE",
+      "status": "PASS",
+      "elapsed_ms": 121,
+      "observed_at_utc": "2026-10-01T10:07:31.563Z"
+    },
+    {
+      "name": "Runtime HTTP is GET-only and read capability cannot issue controls",
+      "status": "PASS",
+      "elapsed_ms": 82,
+      "observed_at_utc": "2026-10-01T10:07:31.647Z"
+    },
+    {
+      "name": "Core read outage gives cold signed checkpoint with no GO eligibility",
+      "status": "PASS",
+      "elapsed_ms": 10283,
+      "observed_at_utc": "2026-10-01T10:07:41.930Z"
+    }
+  ],
+  "remaining": [
+    "cloud crash/timeout injection",
+    "revoked R2 credential propagation evidence",
+    "retention/GC pins",
+    "disaster restore/RPO/RTO",
+    "quota/cost profiling and unattended resilience"
+  ],
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "dataset_id": "fixture.cano.operation.36847033329-1",
+  "locator": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "environment_id": "isolated-test",
+    "dataset_id": "fixture.cano.operation.36847033329-1",
+    "object_name": "isolated-test/fixture.cano.operation.36847033329-1",
+    "namespace_id": "97783b80477f4613a445b4e219b8158c",
+    "native_id": "4939e97ba74ffd6a82165d960a33fec56fd51aeef26f64600ffd96d665f9a603",
+    "authority_instance_id": "proof-fixture.cano.operation.36847033329-1",
+    "authority_locator_version": "1",
+    "recovery_generation": "fixture-generation-fixture.cano.operation.36847033329-1",
+    "artifacts": {
+      "rule": "7a5f9e8c1b3ca5dc7b271924c31d712e9b28c84655b3c4632380795c8b826e20",
+      "config": "5f684c15f591b17525c9e29434866749ab0684f06292e00a4407ab84c3a7b616",
+      "policy": "0e16ca3931f4a494063f434327b5e7210e846fc2aabe41ac0fd57837f351ee87",
+      "schema": "61220618fc421e6e3d4fa1dc6a3d104c1a02932f7367b55cb8a573c9b07f1549"
+    },
+    "receipt_keys": {
+      "proof-key": {
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true,
+        "kty": "EC",
+        "x": "CYXh_5T0G35wvTm0SCHizmmhYtlqZVUEuKVhA5pPU5o",
+        "y": "HTNQDQPKkOmDPDiXWw6VwyM8EZdToR28urr9cobu8zo",
+        "crv": "P-256"
+      }
+    },
+    "approved_positive_decision_types": [
+      "cano.operation.fixture"
+    ],
+    "locator_artifact_hash": "c227375be91c5f7876e9f23c1957533d5425d2e4eccafbbb8da3911af8d754b1"
+  },
+  "code_sha": "a2a9eb32db7b2798b47a6a780734c756a69462bf",
+  "observation": {
+    "runner_region": "GitHub-hosted runner, region unspecified",
+    "run_id": "36847033329",
+    "run_attempt": "1",
+    "node": "v24.21.0",
+    "wrangler": "4.145.0",
+    "started_at_utc": "2026-10-01T10:07:16.591Z"
+  },
+  "config_hashes": {
+    "core": "aadaba2b4ca5d40015a2850164a070242ae7d2bf5c9397dd51604923f189ab8b",
+    "runtime": "a291b28d62048e340ebb6dafd3ba0504e483c4b7742374df1be224a27a1df270",
+    "operator": "73c5b8ebd880a9184820f25a963ce81c2f35011aa6ddbbc2ccedf8622feb2100"
+  },
+  "capability_observations": [
+    {
+      "phase": "REVOKE",
+      "expected_status": 401,
+      "attempts": 1,
+      "last_status": 401,
+      "elapsed_ms": 78
+    },
+    {
+      "phase": "RESTORE",
+      "expected_status": 200,
+      "attempts": 1,
+      "last_status": 200,
+      "elapsed_ms": 80
+    }
+  ]
+}

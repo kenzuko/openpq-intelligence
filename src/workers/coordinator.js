@@ -6,7 +6,7 @@ import { attest, exportCheckpoint } from '../platform/receipts.js';
 function json(value,status=200) {return Response.json(value,{status,headers:{'cache-control':'no-store'}});}
 export class DatasetCoordinator extends DurableObject {
   constructor(ctx,env) {
-    super(ctx,env); this.ctx=ctx; this.env=env;
+    super(ctx,env); this.ctx=ctx; this.env=env; this.incarnation_id=crypto.randomUUID();
     ctx.storage.sql.exec('CREATE TABLE IF NOT EXISTS control (id INTEGER PRIMARY KEY CHECK(id=1), body TEXT NOT NULL); CREATE TABLE IF NOT EXISTS prepared (id TEXT PRIMARY KEY, body TEXT NOT NULL); CREATE TABLE IF NOT EXISTS commands (id TEXT PRIMARY KEY, digest TEXT NOT NULL, result TEXT NOT NULL); CREATE TABLE IF NOT EXISTS audit (id INTEGER PRIMARY KEY AUTOINCREMENT, body TEXT NOT NULL); CREATE TABLE IF NOT EXISTS outbox (revision INTEGER PRIMARY KEY, body TEXT NOT NULL, exported INTEGER NOT NULL DEFAULT 0);');
   }
   state() { const row=this.ctx.storage.sql.exec('SELECT body FROM control WHERE id=1').toArray()[0];return row?JSON.parse(row.body):null; }
@@ -27,7 +27,7 @@ export class DatasetCoordinator extends DurableObject {
       const trust=this.trust(), actor=await principal(request,this.env), path=new URL(request.url).pathname;
       const permission=path==='/read'||path==='/validate'?'read':path==='/prepare'||path==='/commit'?'promote':path==='/export'?'export':'control';
       authorize(actor,permission,trust);
-      if (path==='/read' && request.method==='GET') return json({state:this.state()});
+      if (path==='/read' && request.method==='GET') return json({state:this.state(),instance_observation:{incarnation_id:this.incarnation_id}});
       requireThat(request.method==='POST','METHOD_DENIED',405);
       const size=Number(request.headers.get('content-length') || 0);requireThat(size<=262144,'REQUEST_TOO_LARGE',413);
       const bodyText=await request.text();requireThat(new TextEncoder().encode(bodyText).byteLength<=262144,'REQUEST_TOO_LARGE',413);
