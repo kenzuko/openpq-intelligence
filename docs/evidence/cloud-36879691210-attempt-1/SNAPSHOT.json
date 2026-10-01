@@ -1,0 +1,16 @@
+{
+  "run_id": 36879691210,
+  "run_attempt": 1,
+  "code_sha": "22ac4fca059838b41e638d3c4c18b9a275f7852d",
+  "artifact_id": 11171660613,
+  "archive_sha256": "638341a31d92b79931fcf79d264d22d60bcce2963a7acfc18722dbd08b35752b",
+  "files_sha256": {
+    "preflight.json": "706b16d192c96792ed60486cd46b288991b8b251d60f81aeabb681b158e152d0",
+    "locator.public.json": "29e4831decddf52ea905adb1e9332005f0551e7f518b962330a3d990f26287ef",
+    "cloud-evidence.json": "2072e8d9339104b29b3ee5e2a312a8f1e3bb1478ba2dce9de415143ae20fed64"
+  },
+  "status": "BLOCKED_OR_FAILED",
+  "cleanup": "SUCCESS",
+  "cause": "UNKNOWN",
+  "g1": "NOT_PASSED"
+}

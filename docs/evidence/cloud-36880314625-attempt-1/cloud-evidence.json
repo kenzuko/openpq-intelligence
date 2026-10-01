@@ -1,0 +1,186 @@
+{
+  "status": "BLOCKED_OR_FAILED",
+  "g1": "NOT_PASSED",
+  "cases": [
+    {
+      "name": "temporary native-ID probe is absent from final Core",
+      "status": "PASS",
+      "elapsed_ms": 79,
+      "observed_at_utc": "2026-10-01T14:57:21.329Z"
+    },
+    {
+      "name": "bootstrap is single-use and native locator-pinned",
+      "status": "PASS",
+      "elapsed_ms": 404,
+      "observed_at_utc": "2026-10-01T14:57:21.733Z"
+    },
+    {
+      "name": "read/shadow/backfill/alternate authority cannot prepare",
+      "status": "PASS",
+      "elapsed_ms": 252,
+      "observed_at_utc": "2026-10-01T14:57:21.986Z"
+    },
+    {
+      "name": "two same-revision publications race, exactly one advances",
+      "status": "PASS",
+      "elapsed_ms": 2107,
+      "observed_at_utc": "2026-10-01T14:57:24.094Z"
+    },
+    {
+      "name": "idempotent command retry does not create another revision",
+      "status": "PASS",
+      "elapsed_ms": 105,
+      "observed_at_utc": "2026-10-01T14:57:24.199Z"
+    },
+    {
+      "name": "Runtime verifies committed blob via real read-only S3 adapter",
+      "status": "PASS",
+      "elapsed_ms": 683,
+      "observed_at_utc": "2026-10-01T14:57:24.882Z"
+    },
+    {
+      "name": "control update invalidates prepared candidate and previous validation",
+      "status": "PASS",
+      "elapsed_ms": 2324,
+      "observed_at_utc": "2026-10-01T14:57:27.206Z"
+    },
+    {
+      "name": "owner epoch fences old writer after transfer",
+      "status": "PASS",
+      "elapsed_ms": 2346,
+      "observed_at_utc": "2026-10-01T14:57:29.553Z"
+    },
+    {
+      "name": "committed outbox exports signed checkpoint and retry is empty",
+      "status": "PASS",
+      "elapsed_ms": 4300,
+      "observed_at_utc": "2026-10-01T14:57:33.854Z"
+    },
+    {
+      "name": "actual Runtime R2 key denies PUT and DELETE",
+      "status": "PASS",
+      "elapsed_ms": 124,
+      "observed_at_utc": "2026-10-01T14:57:33.979Z"
+    },
+    {
+      "name": "Runtime HTTP is GET-only and read capability cannot issue controls",
+      "status": "PASS",
+      "elapsed_ms": 94,
+      "observed_at_utc": "2026-10-01T14:57:34.074Z"
+    },
+    {
+      "name": "Core read outage gives cold signed checkpoint with no GO eligibility",
+      "status": "PASS",
+      "elapsed_ms": 47714,
+      "observed_at_utc": "2026-10-01T14:58:21.789Z"
+    },
+    {
+      "name": "client loses commit response over runner socket; identical retry advances only once",
+      "status": "PASS",
+      "elapsed_ms": 1250,
+      "observed_at_utc": "2026-10-01T14:58:23.039Z"
+    },
+    {
+      "name": "signer outage preserves authority and pending outbox; restoration exports exactly once",
+      "status": "FAIL",
+      "error": "COORDINATOR_RESTART_NOT_OBSERVED",
+      "elapsed_ms": 72054
+    }
+  ],
+  "remaining": [
+    "cloud crash/timeout injection",
+    "revoked R2 credential propagation evidence",
+    "retention/GC pins",
+    "disaster restore/RPO/RTO",
+    "quota/cost profiling and unattended resilience"
+  ],
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "dataset_id": "fixture.cano.operation.36880314625-1",
+  "locator": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "environment_id": "isolated-test",
+    "dataset_id": "fixture.cano.operation.36880314625-1",
+    "object_name": "isolated-test/fixture.cano.operation.36880314625-1",
+    "namespace_id": "97783b80477f4613a445b4e219b8158c",
+    "native_id": "f3a7b94024e5c8860995605dc8c391fcd3ff229dc3951c788be7e21e627a7ec6",
+    "authority_instance_id": "proof-fixture.cano.operation.36880314625-1",
+    "authority_locator_version": "1",
+    "recovery_generation": "fixture-generation-fixture.cano.operation.36880314625-1",
+    "artifacts": {
+      "rule": "7a5f9e8c1b3ca5dc7b271924c31d712e9b28c84655b3c4632380795c8b826e20",
+      "config": "5f684c15f591b17525c9e29434866749ab0684f06292e00a4407ab84c3a7b616",
+      "policy": "0e16ca3931f4a494063f434327b5e7210e846fc2aabe41ac0fd57837f351ee87",
+      "schema": "61220618fc421e6e3d4fa1dc6a3d104c1a02932f7367b55cb8a573c9b07f1549"
+    },
+    "receipt_keys": {
+      "proof-key": {
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true,
+        "kty": "EC",
+        "x": "9UMmVaJJdM8wRAwFFiYXIuuqYYUrkQ2a8G0_5-4znek",
+        "y": "KhhpJ0IfUG2J1ELhKLZhcsIiYjRoJm0ULk9E64BbNRk",
+        "crv": "P-256"
+      }
+    },
+    "approved_positive_decision_types": [
+      "cano.operation.fixture"
+    ],
+    "locator_artifact_hash": "702b8f6e8b913f1e82df2ce35adbe1b5b74b3a81f105b98a36d70cd1cdc4559d"
+  },
+  "code_sha": "a09b0fcdce747ac5f82afeb9c5317ed69cf2491d",
+  "observation": {
+    "runner_region": "GitHub-hosted runner, region unspecified",
+    "run_id": "36880314625",
+    "run_attempt": "1",
+    "node": "v24.21.0",
+    "wrangler": "4.145.0",
+    "started_at_utc": "2026-10-01T14:57:21.249Z"
+  },
+  "config_hashes": {
+    "core": "aadaba2b4ca5d40015a2850164a070242ae7d2bf5c9397dd51604923f189ab8b",
+    "runtime": "a291b28d62048e340ebb6dafd3ba0504e483c4b7742374df1be224a27a1df270",
+    "operator": "73c5b8ebd880a9184820f25a963ce81c2f35011aa6ddbbc2ccedf8622feb2100"
+  },
+  "provision_route_observation": {
+    "expected_status": 404,
+    "attempts": 1,
+    "last_status": 404,
+    "elapsed_ms": 78
+  },
+  "runner_counts": {
+    "core_requests": 101,
+    "runtime_requests": 3,
+    "core_redeploys": 4
+  },
+  "capability_observations": [
+    {
+      "phase": "REVOKE",
+      "expected_status": 401,
+      "attempts": 10,
+      "last_status": 401,
+      "elapsed_ms": 13961
+    },
+    {
+      "phase": "RESTORE",
+      "expected_status": 200,
+      "attempts": 15,
+      "last_status": 200,
+      "elapsed_ms": 21680
+    },
+    {
+      "phase": "SIGNER_RESTORE",
+      "expected_status": 200,
+      "attempts": 1,
+      "last_status": 200,
+      "elapsed_ms": 56
+    }
+  ],
+  "response_loss": {
+    "upstream_status": 200,
+    "client_response_lost": true,
+    "fault_boundary": "runner loopback socket after upstream commit response"
+  },
+  "error": "COORDINATOR_RESTART_NOT_OBSERVED"
+}

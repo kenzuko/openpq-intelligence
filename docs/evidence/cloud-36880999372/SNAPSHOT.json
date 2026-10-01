@@ -1,0 +1,17 @@
+{
+  "run_id": 36880999372,
+  "run_attempt": 1,
+  "code_sha": "7a5425f244ca8c39d2ba27bfefd1fc28c4393889",
+  "case_count": 15,
+  "artifact_id": 11171023990,
+  "archive_sha256": "e349953c8e31f921cb357ed4e47265188b70b3214419cb7b86277fd368c43fe1",
+  "files_sha256": {
+    "locator.public.json": "cc21a0ffb52adaca31043973d62e096050ff2d66025d6015c55d151bf049e2af",
+    "preflight.json": "4826ca28a230fee9ebe62dcd17fabbc78552f2fbfae2ae0ab8e81ace68f4cd89",
+    "cloud-evidence.json": "efd9170bae4ab54d518820fb02c7f8aacf3debea6dba879365f77f8c76d5a9a3"
+  },
+  "status": "CLOUD_PROTOCOL_SUBSET_PASS",
+  "cleanup": "SUCCESS",
+  "g1": "NOT_PASSED",
+  "cloud_semantic_admission": false
+}

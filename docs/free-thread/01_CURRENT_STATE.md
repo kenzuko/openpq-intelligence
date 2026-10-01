@@ -42,3 +42,7 @@ P05-P18 của policy register vẫn chặn đúng scope: source ages, biển/gi�
 ## M5 - local semantic authority integration
 
 117 local tests/six bundles. Binding-backed trusted semantic admission now connects to local Coordinator, export-only native alarm and signed Runtime fallback. Real-domain and cloud semantic activation remain closed. See SEMANTIC_ADMISSION_INTEGRATION.md and ADR-IMPLEMENTATION-006.md; cloud legacy-protocol regression will be pinned separately.
+
+## M5 final snapshot
+
+121 tests/six bundles; actual cloud regression 36880999372 passed 15/15 at 7a5425f244ca8c39d2ba27bfefd1fc28c4393889, cleanup SUCCESS. Both restart phases observed constructor change. Three failed counterexamples pinned with UNKNOWN causes. Local semantic native integration: nine cases. Entry F08 read-only review; real/cloud semantic, cloud scheduler, SSO/offsite/PITR and G1/G2 remain closed.
