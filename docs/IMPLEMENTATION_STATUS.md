@@ -1,5 +1,10 @@
 # Implementation evidence, 2026-10-01
 
+## Latest: M5 local semantic authority integration
+
+117 local tests and six bundles pass. Trusted binding-backed semantic profiles now gate actual local Coordinator prepare/commit and profile-aware Runtime serving. Nine native cases include alarm-driven signed export and cold fallback, source expiry after prepare, zero-generation-write rejection, exact replay after eviction, command-kind collision and independent-trust backup signature/tamper validation. Synthetic ABSTAIN facts only; isolated cloud semantic and real-domain admission remain closed. See SEMANTIC_ADMISSION_INTEGRATION.md, ADR-IMPLEMENTATION-006.md and evidence/semantic-admission-local-20261001. The explicit isolated 15-case cloud regression is pending this milestone; it will not be labelled cloud semantic proof. G1/G2 remain NOT_PASSED. Earlier sections preserve milestone chronology.
+
+
 ## Latest: M4 technical preparation
 
 108 local tests and six offline Worker bundles pass. Registry/graph policy pins, deterministic SHADOW preparation, bounded adapter rehearsal, persistent SQLite retry/backpressure/leases, native workerd export-only DO alarms, monitoring/parity, portable integrity/fenced recovery plans and operator JWT/guards are implemented and tested. A full deterministic local rehearsal passes and is pinned under `docs/evidence/technical-preparation-local-20261001`. See TECHNICAL_PREPARATION.md and ADR-IMPLEMENTATION-005.md. The new scheduler rejects cloud activation; no new resources/credentials were created. Live candidate admission, real source/domain kernels, provider SSO/session wiring, offsite backup/actual restore and cloud acceptance remain gated. Full G1/G2 stay NOT_PASSED. Earlier counts below are milestone chronology.

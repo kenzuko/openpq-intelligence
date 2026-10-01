@@ -1,0 +1,55 @@
+{
+  "status": "LOCAL_SEMANTIC_AUTHORITY_INTEGRATION_PASS",
+  "environment_id": "local-test",
+  "input_kind": "SYNTHETIC_ONLY",
+  "case_count": 9,
+  "cases": [
+    {
+      "name": "trusted semantic facts traverse actual Coordinator, immutable blob, receipt and Runtime without action eligibility",
+      "status": "PASS"
+    },
+    {
+      "name": "configured semantic dataset cannot bypass admission using a generic candidate or producer-supplied forged payload",
+      "status": "PASS"
+    },
+    {
+      "name": "semantic profile packaging respects UTF-8 binding limits and pins exact content; unactivated/isolated paths fail closed",
+      "status": "PASS"
+    },
+    {
+      "name": "commit rejects actual source expiry after prepare, while refetch cannot renew source age",
+      "status": "PASS"
+    },
+    {
+      "name": "semantic profile and content-bound idempotency survive actual Coordinator eviction",
+      "status": "PASS"
+    },
+    {
+      "name": "semantic profile change is an activation migration, not a normal binding edit; Runtime rejects old-profile serving",
+      "status": "PASS"
+    },
+    {
+      "name": "semantic publication connects to actual export-only alarm and signed Runtime fallback across the complete local stack",
+      "status": "PASS"
+    },
+    {
+      "name": "future assertion issue time, nested credentials and incomplete source linkage cannot enter semantic storage",
+      "status": "PASS"
+    },
+    {
+      "name": "a control command ID and digest cannot be replayed as a publication receipt",
+      "status": "PASS"
+    }
+  ],
+  "publication_kind": "ABSTAIN_FACT_ONLY",
+  "real_domain_admission": false,
+  "cloud_semantic_admission": false,
+  "export_only_native_alarm": "OBSERVED",
+  "runtime_signed_fallback": "OBSERVED_UNVERIFIED_ABSTAIN",
+  "backup_publication_signatures": "VERIFIED_WITH_INDEPENDENT_TRUST",
+  "backup_control_audit_authenticity": false,
+  "offsite_restore": false,
+  "resume_writer": false,
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED"
+}

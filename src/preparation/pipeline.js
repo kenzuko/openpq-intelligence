@@ -33,7 +33,7 @@ export async function prepareShadow({environment_id,registry,policies,artifact_r
  }
  const eligible=[];
  for(const a of as.values()){
-  assertion(a);const e=es.get(a.evidence_ref);requireThat(e&&e.source_type===a.source_type&&e.source_time===a.source_time,'ASSERTION_EVIDENCE_MISMATCH');
+  assertion(a);if(instant(a.issued_at,'ISSUED_AT')>now+freshness.clock_skew_ms)reject(a.assertion_id,'ASSERTION_ISSUED_IN_FUTURE');const e=es.get(a.evidence_ref);requireThat(e&&e.source_type===a.source_type&&e.source_time===a.source_time,'ASSERTION_EVIDENCE_MISMATCH');
   const rule=nodes.SCHEMA.payload.predicates?.[a.predicate];requireThat(rule,'PREDICATE_NOT_IN_SCHEMA');requireThat(a.unit===rule.unit,'ASSERTION_UNIT_MISMATCH');
   if(Object.hasOwn(a,'value'))valueValid(a.value,rule);else reject(a.assertion_id,'VALUE_MISSING');
   if(stable(a.scope)!==stable(target_scope)||a.mapping_state!=='RESOLVED')reject(a.assertion_id,'ASSERTION_SCOPE_OR_MAPPING_UNRESOLVED');

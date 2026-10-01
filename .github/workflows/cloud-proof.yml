@@ -1,6 +1,8 @@
 name: Isolated Cloudflare protocol proof
 on:
   workflow_dispatch:
+  push:
+    branches: [cloud/protocol-regression-m5]
 permissions:
   contents: read
 concurrency:
@@ -66,7 +68,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: intelligence-isolated-evidence-${{ github.run_id }}
+          name: intelligence-isolated-evidence-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             .cloud-proof/preflight.json
             .cloud-proof/locator.public.json
