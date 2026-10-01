@@ -1,0 +1,77 @@
+{
+  "recorded_at_utc": "2026-10-01T06:17:32.864885+00:00",
+  "worktrees": [
+    {
+      "path": "/workspace/scratch/9250168c98c4/jotrip-home",
+      "commit_sha": "dca8ed9f2266603145f36430478ed512f694ca0f",
+      "branch": "fix/i18n-release-readiness-20260930",
+      "status_porcelain": [],
+      "action": "READ_ONLY; do not modify this worktree"
+    },
+    {
+      "path": "/workspace/scratch/63cf421687f6/jotrip-home",
+      "commit_sha": "ddafed8576e879cfa2c7f0077ebf0d960d0fce47",
+      "branch": "feat/openpq-superapp-v3",
+      "status_porcelain": [
+        "M weather/index.html",
+        " M weather/weather-v2.js"
+      ],
+      "action": "READ_ONLY; do not modify this worktree"
+    },
+    {
+      "path": "/workspace/scratch/63cf421687f6/jotrip-home-qa",
+      "commit_sha": "5bd110285350fffdb3037c920d6b01111c7f6725",
+      "branch": "codex-v3-qa",
+      "status_porcelain": [
+        "M data/entities/places.json",
+        " M data/views/today-rules.json"
+      ],
+      "action": "READ_ONLY; do not modify this worktree"
+    },
+    {
+      "path": "/workspace/scratch/299bea7d8397/priority-fix",
+      "commit_sha": "f42cfd533ce01dbcb7d56e9f04a7033a41523849",
+      "branch": "",
+      "status_porcelain": [
+        "M scripts/i18n-pipeline.mjs"
+      ],
+      "action": "READ_ONLY; do not modify this worktree"
+    },
+    {
+      "path": "/workspace/scratch/299bea7d8397/repo",
+      "commit_sha": "f8a166459a6113dc0f4a9d1d933baee489024ccb",
+      "branch": "translation/en-machine-draft",
+      "status_porcelain": [
+        "M data/i18n/en/food.json",
+        " M data/i18n/en/knowledge.json",
+        " M data/i18n/en/stories.json",
+        " M scripts/test-i18n-translations.mjs",
+        "?? .github/workflows/translate-priority-locales-machine-draft.yml",
+        "?? .wrangler/"
+      ],
+      "action": "READ_ONLY; do not modify this worktree"
+    },
+    {
+      "path": "/workspace/scratch/343d06455e86/jotrip-home",
+      "commit_sha": "e21abf6952356d6e30c7025e707f26f90e07622c",
+      "branch": "feat/cms-language-foundation",
+      "status_porcelain": [],
+      "action": "READ_ONLY; do not modify this worktree"
+    },
+    {
+      "path": "/workspace/scratch/1b223e0bed3d/app",
+      "commit_sha": "91345e65dc7fe011dc196c6559a2afc8c459a0cf",
+      "branch": "main",
+      "status_porcelain": [
+        "M data/views/location-index.json",
+        " M data/views/map-coverage.json",
+        " M data/views/search-index.json",
+        "?? data/views/knowledge-home.json",
+        "?? data/views/knowledge-public.json",
+        "?? data/views/story-locations.json",
+        "?? node_modules/"
+      ],
+      "action": "READ_ONLY; do not modify this worktree"
+    }
+  ]
+}

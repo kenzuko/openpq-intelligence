@@ -1,0 +1,13 @@
+{
+  "name": "openpq-intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check-boundaries.js",
+    "verify:handoff": "node scripts/verify-handoff.js"
+  },
+  "devDependencies": { "miniflare": "4.20260730.0" }
+}

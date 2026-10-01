@@ -1,0 +1,203 @@
+{
+  "package": "OPENPQ_INTELLIGENCE_FINAL_HANDOFF_V2_1_20261001",
+  "version": "2.1",
+  "date": "2026-10-01",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "verdict": "ARCHITECTURE LOCKED - READY TO START P0",
+  "production_ready": false,
+  "system_tests_status": "NOT_RUN",
+  "system_test_cases": 63,
+  "main_documents": 19,
+  "accepted_amendments": [
+    "A001"
+  ],
+  "parent_snapshot": {
+    "path": "reference/OPENPQ_INTELLIGENCE_FINAL_HANDOFF_V2_20261001.zip",
+    "sha256": "2a8a863458f564bedd76c32d1255e234abf8ca7f82b0a9fba68f06f8e64c6f9e",
+    "bytes_unchanged": true
+  },
+  "precedence": "current owner instructions > accepted newer amendment/release > V2.1 effective contracts > activated approved policies > immutable parent reference",
+  "manifest_note": "Hashes cover all packaged files except this manifest. Snapshot immutable once released.",
+  "files": [
+    {
+      "path": "00_START_HERE.md",
+      "bytes": 4092,
+      "sha256": "6044d0a77ec79c5969fec422bfffec13604a9f1c92cb21e48849953d0fe68536"
+    },
+    {
+      "path": "01_FINAL_REBUTTAL_AND_DECISION_LOG.md",
+      "bytes": 9217,
+      "sha256": "37463a6ecd95c344a7ebf6e0c1b46eb18187ae12035e86557b1c408321bd711b"
+    },
+    {
+      "path": "02_ARCHITECTURE_MASTER_V2.md",
+      "bytes": 6259,
+      "sha256": "1445201b7b486002e356e4d3caab804874da3c296702f23974fbba3198b4ba1c"
+    },
+    {
+      "path": "03_INVARIANTS_V2.md",
+      "bytes": 5481,
+      "sha256": "e61add7fc1cd16e556a64ce307a8fa4690c3f511ff890dc7c9d025537b711623"
+    },
+    {
+      "path": "04_DATA_CONTRACTS.md",
+      "bytes": 9034,
+      "sha256": "950e4a042dcd6c95a3a696cbbd5a9305d9a7e3cf24c1e4f5e320568aeb8ab507"
+    },
+    {
+      "path": "05_AUTHORITY_PUBLICATION_PROTOCOL.md",
+      "bytes": 10157,
+      "sha256": "217fb3d2750d4ad31b035cd5ff988e55b5a5ca4def1e483ac680c6c41f167510"
+    },
+    {
+      "path": "06_TRUTH_DECISION_COMPOSITION.md",
+      "bytes": 5872,
+      "sha256": "6c56e1e0a6bb545cd3b6c08efbdaf38b0416baba1e765705019419d517538e92"
+    },
+    {
+      "path": "07_RUNTIME_FRESHNESS_CACHE.md",
+      "bytes": 6758,
+      "sha256": "47a8935c8076096975426212148b807c58d2a1d3786605ec671bf3acc865e21b"
+    },
+    {
+      "path": "08_EXECUTION_SCHEDULING.md",
+      "bytes": 6076,
+      "sha256": "93a7932eb81dd42e7c1736e35a94cf299abcf7d56cf294340d6dd81b928ed2f3"
+    },
+    {
+      "path": "09_OPERATOR_SECURITY.md",
+      "bytes": 5817,
+      "sha256": "4f2a1b34206d1cfc8c172a4bdb1c723c6ef62d712fb87ba547974a63a479c815"
+    },
+    {
+      "path": "10_RECOVERY_RUNBOOK.md",
+      "bytes": 6894,
+      "sha256": "a26c515967fd7f7fcc6d37cf3c203661b825c6e183f220057b95666b0052d7df"
+    },
+    {
+      "path": "11_MIGRATION_CUTOVER.md",
+      "bytes": 6566,
+      "sha256": "c99b78ef02e4a1ff9ca8250ac421b7ec76157bd097d4e4455d59005a8340dcd4"
+    },
+    {
+      "path": "12_TEST_MATRIX_AND_GATES.md",
+      "bytes": 10332,
+      "sha256": "b7b4de8759cdcc56411540497d1d05293bbabf4e476e4c66a8d19b742c41c942"
+    },
+    {
+      "path": "13_IMPLEMENTATION_BLUEPRINT.md",
+      "bytes": 5891,
+      "sha256": "fa5c415cfbfefe073e0c1ff569b4d3282ba8724e187dfbb34ca4c01e64a90065"
+    },
+    {
+      "path": "14_POLICY_REGISTER_AND_OPEN_ITEMS.md",
+      "bytes": 4967,
+      "sha256": "eb2f692ab22e9df325d4ab729c3faea9bfd0d52b00da3d4cd57fe715de24a116"
+    },
+    {
+      "path": "15_TECHNOLOGY_ADRS_AND_SOURCES.md",
+      "bytes": 6112,
+      "sha256": "c0d1b97dfba4ff7244661511a1c80138669c5590d8f4057b8de2e59dc56adb97"
+    },
+    {
+      "path": "16_NEXT_THREAD_EXECUTION_PROMPT.md",
+      "bytes": 5996,
+      "sha256": "c88ef67fbb870e5fdd24b311ef37f9a0c7fe2752ce8c67a8b76429b174273fc0"
+    },
+    {
+      "path": "17_HANDOFF_READINESS_AND_LIMITS.md",
+      "bytes": 3284,
+      "sha256": "8452a34b86ae3bc513d16f16f62eb3fe7b6b12dc7f23748b17d72ec99d0be350"
+    },
+    {
+      "path": "18_AMENDMENT_A001_HARDENING.md",
+      "bytes": 11235,
+      "sha256": "2d803f92804a3cc9a19c5d0cbb748f257e622947fa36959650a857d37cc64e6a"
+    },
+    {
+      "path": "OPENPQ_INTELLIGENCE_FINAL_DESIGN_V2_1_COMPLETE.md",
+      "bytes": 131135,
+      "sha256": "803e5b91d60d59d62bdbc78c21542a41744047c837cc2d92a6df795c0d3072b0"
+    },
+    {
+      "path": "V2_PARENT_SNAPSHOT.json",
+      "bytes": 286,
+      "sha256": "16996428ebf8842a0db41ca3e0b995617addc94196848b2036cce9f8fdcfd883"
+    },
+    {
+      "path": "reference/OPENPQ_INTELLIGENCE_FINAL_HANDOFF_V2_20261001.zip",
+      "bytes": 140841,
+      "sha256": "2a8a863458f564bedd76c32d1255e234abf8ca7f82b0a9fba68f06f8e64c6f9e"
+    },
+    {
+      "path": "reference/OPENPQ_INTELLIGENCE_FINAL_REVIEW_20261001.md",
+      "bytes": 25333,
+      "sha256": "d3b5ea377e637b49fb29a8527e91dc70344870f8474e8a4e9cfb1dd8583e07b9"
+    },
+    {
+      "path": "reference/v1/00_README_HANDOFF.md",
+      "bytes": 1844,
+      "sha256": "e7fbb4e1320b6498c49528133c2f2e4175d8f06d08c53dc867baeb439a250e25"
+    },
+    {
+      "path": "reference/v1/01_ARCHITECTURE_LOCK_MASTER.md",
+      "bytes": 5140,
+      "sha256": "fe1366001fefa746abd8efd793f23d1ac6ce84e817adf331920b01a01373f8ca"
+    },
+    {
+      "path": "reference/v1/02_NON_NEGOTIABLE_INVARIANTS.md",
+      "bytes": 2935,
+      "sha256": "7c56e0ea84ce0e8283f42062450d82819e4197858268d90e390f17cc5abc8d93"
+    },
+    {
+      "path": "reference/v1/03_DATA_TRUTH_DECISION_MODEL.md",
+      "bytes": 4525,
+      "sha256": "df0a0a386cf132c665f56a3040c30783cd79b74929f6a85911a4123621a0982a"
+    },
+    {
+      "path": "reference/v1/04_EXECUTION_CONTROL_FAILOVER.md",
+      "bytes": 3784,
+      "sha256": "d4238c066ded36edce71bacba2b8f6e94c82100ac7e22517a832490b92fefaab"
+    },
+    {
+      "path": "reference/v1/05_MIGRATION_AND_CUTOVER_LOCK.md",
+      "bytes": 3913,
+      "sha256": "e08322a990c4f7312a9fd2bd0614f47a170a4e328dd62ccaadad8f7fdc91f3d8"
+    },
+    {
+      "path": "reference/v1/06_IMPLEMENTATION_BOUNDARIES_OPEN_QUESTIONS.md",
+      "bytes": 2284,
+      "sha256": "4a6943ec580a6682c28d84b244485c8fe35ca6d67ea033846e563b48a8735cc7"
+    },
+    {
+      "path": "reference/v1/07_WORK_REVIEW_PROMPT.md",
+      "bytes": 3018,
+      "sha256": "1fe44e615618cac572ddd76a580a3a07b5df040caa5b58e09c5634b3805175ec"
+    },
+    {
+      "path": "reference/v1/08_SUPERSEDED_IDEAS.md",
+      "bytes": 1423,
+      "sha256": "61540214060dc176f3abc6c2b96b86d1f82986416da5671432db415db073d333"
+    },
+    {
+      "path": "reference/v1/09_REVIEW_CHECKLIST.md",
+      "bytes": 2396,
+      "sha256": "c02162c1084e302b9b92de805468741636196230284cf242306a0d1165eb5205"
+    },
+    {
+      "path": "reference/v1/10_IMPLEMENTATION_ENTRY_CRITERIA.md",
+      "bytes": 1642,
+      "sha256": "d5e9d6308cb1893b5295534142c8d8247775690e95aae2b5d333e7339d878192"
+    },
+    {
+      "path": "reference/v1/MANIFEST.json",
+      "bytes": 621,
+      "sha256": "c68c76920ea9a3efc036869a8b96bdaa608067796d76288895ec195367d7edbb"
+    },
+    {
+      "path": "reference/v1/OPENPQ_INTELLIGENCE_COMPLETE_ARCHITECTURE_LOCK.md",
+      "bytes": 33486,
+      "sha256": "3484e15fa34cec051b49d64964dd2bcd2819530bdc80f8d7e343869a5410466d"
+    }
+  ]
+}

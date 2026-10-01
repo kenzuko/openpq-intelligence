@@ -1,0 +1,6 @@
+{
+  "parent_snapshot": "OPENPQ_INTELLIGENCE_FINAL_HANDOFF_V2_20261001.zip",
+  "sha256": "2a8a863458f564bedd76c32d1255e234abf8ca7f82b0a9fba68f06f8e64c6f9e",
+  "immutable": true,
+  "note": "Original V2 archive included byte-for-byte. V2.1 is a derived release applying amendment A001."
+}

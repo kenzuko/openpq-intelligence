@@ -1,0 +1,11 @@
+{
+  "name": "openpq-intelligence-core-isolated-test",
+  "main": "../src/workers/core.js",
+  "compatibility_date": "2026-07-30",
+  "workers_dev": true,
+  "routes": [],
+  "vars": {"ENVIRONMENT_ID": "isolated-test"},
+  "durable_objects": {"bindings": [{"name": "DATASETS", "class_name": "DatasetCoordinator"}]},
+  "migrations": [{"tag": "isolated-v1", "new_sqlite_classes": ["DatasetCoordinator"]}],
+  "r2_buckets": [{"binding": "CANONICAL", "bucket_name": "REPLACE_WITH_NEW_ISOLATED_TEST_BUCKET"}]
+}
