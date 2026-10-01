@@ -16,7 +16,7 @@ export async function signedObservation(config,key,fetcher=fetch){
   let status=null,code=null;
   const reader=new S3ReadonlyReader(config,async(url,options)=>{
     const response=await fetcher(url,{...options,signal:AbortSignal.timeout(15000)});status=response.status;
-    if(status===403){
+    if(status===403||status===401){
       try{const xml=await boundedText(response.clone(),8192);const match=xml.match(/<Code>([A-Za-z0-9]+)<\/Code>/);if(['AccessDenied','InvalidAccessKeyId'].includes(match?.[1]))code=match[1];}catch{}
     }
     return response;
@@ -24,15 +24,15 @@ export async function signedObservation(config,key,fetcher=fetch){
   try{const raw=await reader.get(key);return {status,raw,code};}
   catch{return {status,code};}
 }
-export async function observeR2Denial({probe,witness,key,digest,read=signedObservation,observe=()=>{},clock=Date.now,pause=ms=>new Promise(r=>setTimeout(r,ms)),timeout=120000}){
+export async function observeR2Denial({probe,witness,key,digest,read=signedObservation,observe=()=>{},clock=Date.now,pause=ms=>new Promise(r=>setTimeout(r,ms)),timeout=120000,revocationConfirmed=false}){
   const start=clock();let attempts=0;
   while(clock()-start<=timeout){
     const result=await read(probe,key);attempts++;
     observe({attempts,last_status:result.status,last_error_code:result.code,elapsed_ms:clock()-start});
-    if(result.status===403&&['AccessDenied','InvalidAccessKeyId'].includes(result.code)){
+    if((result.status===401&&revocationConfirmed)||(result.status===403&&['AccessDenied','InvalidAccessKeyId'].includes(result.code))){
       const control=await read(witness,key);
       requireThat(control.status===200&&typeof control.raw==='string'&&await hash(control.raw)===digest,'RUNTIME_WITNESS_UNAVAILABLE');
-      return {status:'R2_DENIAL_OBSERVED',http_status:403,error_code:result.code,attempts,first_deny_after_probe_start_ms:clock()-start,witness_status:200};
+      return {status:'R2_DENIAL_OBSERVED',http_status:result.status,error_code:result.code,attempts,first_deny_after_probe_start_ms:clock()-start,witness_status:200};
     }
     requireThat(result.status===200&&typeof result.raw==='string'&&await hash(result.raw)===digest,'R2_DENIAL_NOT_ESTABLISHED');
     if(clock()-start>=timeout)break;
@@ -75,7 +75,7 @@ export async function executeRevocation(phase){
     const removed=metadata.status===404||(metadata.ok&&['disabled','expired','revoked'].includes((await metadata.json()).result?.status));
     requireThat(removed,'DISPOSABLE_TOKEN_REVOCATION_NOT_CONFIRMED');
     const report={...provenance,status:'RUNNING',baseline_run_id:baseline.run_id,key:baseline.key,digest:baseline.digest,control_plane_revocation_confirmed:true};
-    try{Object.assign(report,await observeR2Denial({probe,witness,key:baseline.key,digest:baseline.digest,observe:value=>report.observation=value}));}
+    try{Object.assign(report,await observeR2Denial({probe,witness,key:baseline.key,digest:baseline.digest,revocationConfirmed:removed,observe:value=>report.observation=value}));}
     catch(error){report.status='BLOCKED_OR_FAILED';report.error=/^[A-Z0-9_]+$/.test(error.code||'')?error.code:'REVOCATION_PROBE_FAILED';throw error;}
     finally{await writeFile('.r2-revocation/r2-denial.json',JSON.stringify(report,null,2)+'\n');}
     console.log('R2_DENIAL_OBSERVED with independent positive Runtime witness. Full G1 remains incomplete.');
