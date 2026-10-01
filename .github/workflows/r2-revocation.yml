@@ -1,0 +1,66 @@
+name: Isolated R2 credential revocation proof
+on:
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: Baseline first; deny only after revoking the disposable credential
+        type: choice
+        options: [baseline, deny]
+        default: baseline
+        required: true
+      baseline_run_id:
+        description: Successful baseline workflow run ID, required for deny
+        type: string
+        required: false
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: intelligence-isolated-cloud-proof
+  cancel-in-progress: false
+jobs:
+  read-only-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: intelligence-test
+    env:
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      CF_TEST_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+      CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      R2_TEST_READ_SECRET_ACCESS_KEY: ${{ secrets.R2_TEST_READ_SECRET_ACCESS_KEY }}
+      R2_REVOKE_PROBE_ACCESS_KEY_ID: ${{ secrets.R2_REVOKE_PROBE_ACCESS_KEY_ID }}
+      R2_REVOKE_PROBE_SECRET_ACCESS_KEY: ${{ secrets.R2_REVOKE_PROBE_SECRET_ACCESS_KEY }}
+      REVOCATION_PHASE: ${{ inputs.phase }}
+      BASELINE_RUN_ID: ${{ inputs.baseline_run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm run verify:handoff && npm test
+      - name: Validate deny baseline run ID
+        if: inputs.phase == 'deny'
+        run: node -e 'if (!/^[0-9]+$/.test(process.env.BASELINE_RUN_ID || "")) process.exit(1)'
+      - name: Download baseline from this repository
+        if: inputs.phase == 'deny'
+        uses: actions/download-artifact@v4
+        with:
+          name: r2-revocation-baseline-${{ inputs.baseline_run_id }}
+          run-id: ${{ inputs.baseline_run_id }}
+          github-token: ${{ github.token }}
+          path: .r2-revocation/download
+      - name: Actual signed GET proof, no deployments or token mutations
+        run: node scripts/cloud/r2-revocation.js
+      - name: Upload only public evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2-revocation-${{ inputs.phase }}-${{ github.run_id }}
+          path: |
+            .r2-revocation/r2-baseline.json
+            .r2-revocation/r2-denial.json
+          if-no-files-found: ignore
+          retention-days: 7

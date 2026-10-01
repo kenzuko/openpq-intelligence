@@ -1,0 +1,191 @@
+{
+  "status": "CLOUD_PROTOCOL_SUBSET_PASS",
+  "g1": "NOT_PASSED",
+  "cases": [
+    {
+      "name": "temporary native-ID probe is absent from final Core",
+      "status": "PASS",
+      "elapsed_ms": 52,
+      "observed_at_utc": "2026-10-01T10:24:25.106Z"
+    },
+    {
+      "name": "bootstrap is single-use and native locator-pinned",
+      "status": "PASS",
+      "elapsed_ms": 305,
+      "observed_at_utc": "2026-10-01T10:24:25.412Z"
+    },
+    {
+      "name": "read/shadow/backfill/alternate authority cannot prepare",
+      "status": "PASS",
+      "elapsed_ms": 128,
+      "observed_at_utc": "2026-10-01T10:24:25.541Z"
+    },
+    {
+      "name": "two same-revision publications race, exactly one advances",
+      "status": "PASS",
+      "elapsed_ms": 1670,
+      "observed_at_utc": "2026-10-01T10:24:27.211Z"
+    },
+    {
+      "name": "idempotent command retry does not create another revision",
+      "status": "PASS",
+      "elapsed_ms": 49,
+      "observed_at_utc": "2026-10-01T10:24:27.260Z"
+    },
+    {
+      "name": "Runtime verifies committed blob via real read-only S3 adapter",
+      "status": "PASS",
+      "elapsed_ms": 428,
+      "observed_at_utc": "2026-10-01T10:24:27.689Z"
+    },
+    {
+      "name": "control update invalidates prepared candidate and previous validation",
+      "status": "PASS",
+      "elapsed_ms": 2146,
+      "observed_at_utc": "2026-10-01T10:24:29.836Z"
+    },
+    {
+      "name": "owner epoch fences old writer after transfer",
+      "status": "PASS",
+      "elapsed_ms": 2041,
+      "observed_at_utc": "2026-10-01T10:24:31.878Z"
+    },
+    {
+      "name": "committed outbox exports signed checkpoint and retry is empty",
+      "status": "PASS",
+      "elapsed_ms": 3934,
+      "observed_at_utc": "2026-10-01T10:24:35.813Z"
+    },
+    {
+      "name": "actual Runtime R2 key denies PUT and DELETE",
+      "status": "PASS",
+      "elapsed_ms": 69,
+      "observed_at_utc": "2026-10-01T10:24:35.883Z"
+    },
+    {
+      "name": "Runtime HTTP is GET-only and read capability cannot issue controls",
+      "status": "PASS",
+      "elapsed_ms": 38,
+      "observed_at_utc": "2026-10-01T10:24:35.923Z"
+    },
+    {
+      "name": "Core read outage gives cold signed checkpoint with no GO eligibility",
+      "status": "PASS",
+      "elapsed_ms": 89171,
+      "observed_at_utc": "2026-10-01T10:26:05.095Z"
+    },
+    {
+      "name": "client loses commit response over runner socket; identical retry advances only once",
+      "status": "PASS",
+      "elapsed_ms": 902,
+      "observed_at_utc": "2026-10-01T10:26:05.998Z"
+    },
+    {
+      "name": "signer outage preserves authority and pending outbox; restoration exports exactly once",
+      "status": "PASS",
+      "elapsed_ms": 11016,
+      "observed_at_utc": "2026-10-01T10:26:17.015Z"
+    },
+    {
+      "name": "observed Coordinator restart preserves active state and command receipt",
+      "status": "PASS",
+      "elapsed_ms": 4320,
+      "observed_at_utc": "2026-10-01T10:26:21.336Z"
+    }
+  ],
+  "remaining": [
+    "cloud crash/timeout injection",
+    "revoked R2 credential propagation evidence",
+    "retention/GC pins",
+    "disaster restore/RPO/RTO",
+    "quota/cost profiling and unattended resilience"
+  ],
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "dataset_id": "fixture.cano.operation.36848850809-1",
+  "locator": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "environment_id": "isolated-test",
+    "dataset_id": "fixture.cano.operation.36848850809-1",
+    "object_name": "isolated-test/fixture.cano.operation.36848850809-1",
+    "namespace_id": "97783b80477f4613a445b4e219b8158c",
+    "native_id": "4aca3d1f6122c0d2dc1ee4ac61adfc97facbba5c001f29978a6da7d4170c4d40",
+    "authority_instance_id": "proof-fixture.cano.operation.36848850809-1",
+    "authority_locator_version": "1",
+    "recovery_generation": "fixture-generation-fixture.cano.operation.36848850809-1",
+    "artifacts": {
+      "rule": "7a5f9e8c1b3ca5dc7b271924c31d712e9b28c84655b3c4632380795c8b826e20",
+      "config": "5f684c15f591b17525c9e29434866749ab0684f06292e00a4407ab84c3a7b616",
+      "policy": "0e16ca3931f4a494063f434327b5e7210e846fc2aabe41ac0fd57837f351ee87",
+      "schema": "61220618fc421e6e3d4fa1dc6a3d104c1a02932f7367b55cb8a573c9b07f1549"
+    },
+    "receipt_keys": {
+      "proof-key": {
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true,
+        "kty": "EC",
+        "x": "uhB_H7pDV33N6S6Fhfqk2vjvTmOyw0zqW5bOOLMtdyE",
+        "y": "Of8L-tGq-nkKmKnBLJBM6yCafN7K7lO5UocUSHT6enk",
+        "crv": "P-256"
+      }
+    },
+    "approved_positive_decision_types": [
+      "cano.operation.fixture"
+    ],
+    "locator_artifact_hash": "182734a124508eaa50940f462105e9c37a3118eb0f194e1caddc2a233687a5d7"
+  },
+  "code_sha": "17ad9edcec99b8ce0e0196653323cacc55a944fa",
+  "observation": {
+    "runner_region": "GitHub-hosted runner, region unspecified",
+    "run_id": "36848850809",
+    "run_attempt": "1",
+    "node": "v24.21.0",
+    "wrangler": "4.145.0",
+    "started_at_utc": "2026-10-01T10:24:25.052Z"
+  },
+  "config_hashes": {
+    "core": "aadaba2b4ca5d40015a2850164a070242ae7d2bf5c9397dd51604923f189ab8b",
+    "runtime": "a291b28d62048e340ebb6dafd3ba0504e483c4b7742374df1be224a27a1df270",
+    "operator": "73c5b8ebd880a9184820f25a963ce81c2f35011aa6ddbbc2ccedf8622feb2100"
+  },
+  "runner_counts": {
+    "core_requests": 109,
+    "runtime_requests": 4,
+    "core_redeploys": 5
+  },
+  "capability_observations": [
+    {
+      "phase": "REVOKE",
+      "expected_status": 401,
+      "attempts": 1,
+      "last_status": 401,
+      "elapsed_ms": 65
+    },
+    {
+      "phase": "RESTORE",
+      "expected_status": 200,
+      "attempts": 53,
+      "last_status": 200,
+      "elapsed_ms": 79002
+    },
+    {
+      "phase": "SIGNER_RESTORE",
+      "expected_status": 200,
+      "attempts": 1,
+      "last_status": 200,
+      "elapsed_ms": 63
+    }
+  ],
+  "response_loss": {
+    "upstream_status": 200,
+    "client_response_lost": true,
+    "fault_boundary": "runner loopback socket after upstream commit response"
+  },
+  "restart_observation": {
+    "before_incarnation_id": "54286218-f2a7-4a2b-b055-4f53e4972979",
+    "incarnation_id": "4a4a27d6-c108-4152-b44f-b03f5df06e60",
+    "attempts": 1
+  },
+  "measurement_limits": "Runner counts and case durations only; not billed DO/R2 operations, memory, multi-region latency or cost evidence."
+}

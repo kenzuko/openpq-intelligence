@@ -1,0 +1,14 @@
+{
+  "run_id": 36848850809,
+  "code_sha": "17ad9edcec99b8ce0e0196653323cacc55a944fa",
+  "case_count": 15,
+  "artifact_id": 11154523854,
+  "archive_sha256": "0bf88ec03541e0c0933cf6100dc47b74deb43d33e8426b3dff4544ac4461e80d",
+  "files_sha256": {
+    "preflight.json": "b7bcc78b889049be9cd8dfb1c295439ff2bfcd8c8d8e665a507b48d5cc7ca5c4",
+    "locator.public.json": "bb3a1844ed7e9ce99564b5256c3aa396e73613b8e0f696a9940d2a716cdbecea",
+    "cloud-evidence.json": "348db5ab3eee3de825047922d6bb1ca204033b910a7090f142e2c2a704ab6e8b"
+  },
+  "status": "CLOUD_PROTOCOL_SUBSET_PASS",
+  "g1": "NOT_PASSED"
+}
