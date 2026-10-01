@@ -1,0 +1,35 @@
+{
+  "run_id": "36863045164",
+  "successful_attempt": 2,
+  "code_sha": "9ab3211747afcef425fc547e227ce1ee31bbd35a",
+  "source_commit_sha": "e19d30df1fe068d44f66f89278b749deb7b3c3cb",
+  "case_count": 7,
+  "record_count": 3,
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED",
+  "attempts": [
+    {
+      "attempt": 1,
+      "artifact_id": "11162512062",
+      "archive_sha256": "ff490b68eb945b9348262b5d08487143650bf081bd123e77b89ba8b367d080bc",
+      "files_sha256": {
+        "preflight.json": "32ae910fc14ae9f4b0c66d294b1ab43d266186ab521f90ed6a6c8dbbf28af8a2",
+        "staging-evidence.public.json": "3e30f70951b7131ed411ab3030a3532b62f13676fa69a5c7760b0aaab941a047",
+        "source.public.json": "d508579677fcae3871f0c76bc914a9e52589fd7260696a3e96427d60b442c5bd",
+        "closed-evidence.public.json": "37dab06482ebd5baf7ca728c79703ef268050094f4d3d33e6564c5ab3c64c653"
+      }
+    },
+    {
+      "attempt": 2,
+      "artifact_id": "11162407362",
+      "archive_sha256": "bea66f35f41569601e0d84a5c117d42bb41a4070c8d7473b5d404ba67752cd52",
+      "files_sha256": {
+        "preflight.json": "9a4dea1c2ea7d3b3bb32d51216aede1cf81e4e9c3366538eb49c37da08f49849",
+        "source.public.json": "9240b07f511cab05d86c7d562a9e79b3c54878330b55b11019e0ecdc902fca9d",
+        "staging-evidence.public.json": "d102240cd7e442f2a1ed7fb8755dc2ee79a508fc91c314b72eaf424418585492",
+        "closed-evidence.public.json": "50c480ff5bcc636627170a98d274383b1584f47033bf3d50e7cad119fccd4135"
+      }
+    }
+  ],
+  "first_attempt_note": "Failed denial observation; exact HTTP status was not recorded. Error name does not establish unauthorized write or its cause. Same-code retry attempt 2 passed."
+}

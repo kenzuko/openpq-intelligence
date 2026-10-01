@@ -5,6 +5,10 @@ import {boundedText} from '../../src/platform/bounded-text.js';
 import {normalizeManualCano,MANUAL_REPO} from '../../src/ingress/manual-cano.js';
 import {stagingConfig,assertStagingConfig,STAGING_WORKER} from '../../src/ingress/staging-config.js';
 const dir='.manual-stage';
+export function safeStagingObservation(result){
+  const allowed=['STAGING_AUTH_DENIED','STAGING_PRODUCTION_FORBIDDEN','STAGING_REQUEST_INVALID_OR_TOO_LARGE','STAGING_NOT_FOUND','STAGING_SOURCE_COMMIT_MISMATCH','STAGING_INVALID','METHOD_DENIED','NOT_FOUND'];
+  return {http_status:Number.isInteger(result.status)&&result.status>=100&&result.status<=599?result.status:null,error_code:allowed.includes(result.body?.error)?result.body.error:null};
+}
 export function sourcePath(day){instant(day+'T00:00:00Z','SOURCE_DAY');requireThat(/^\d{4}-\d\d-\d\d$/.test(day),'SOURCE_DAY_INVALID');return 'data/marine_ops/manual-confirmations/'+day+'-cano-an-thoi.json';}
 async function prepare(){
   const preflight=JSON.parse(await readFile('.cloud-proof/preflight.json','utf8'));
@@ -46,13 +50,13 @@ async function call(plan,path,body,token=plan.token,method=body?'POST':'GET'){
 }
 async function proof(){
   const plan=JSON.parse(await readFile(dir+'/plan.private.json','utf8')),request=JSON.parse(await readFile(dir+'/request.private.json','utf8'));
-  const report={status:'RUNNING',code_sha:process.env.GITHUB_SHA,run_id:process.env.GITHUB_RUN_ID,account_id:plan.account_id,worker:STAGING_WORKER,source_commit_sha:request.provenance.commit_sha,record_digest:plan.expected.record_digest,mode:'SHADOW',publication_admitted:false,g1:'NOT_PASSED',g2:'NOT_PASSED',cases:[]};
+  const report={status:'RUNNING',code_sha:process.env.GITHUB_SHA,run_id:process.env.GITHUB_RUN_ID,run_attempt:process.env.GITHUB_RUN_ATTEMPT,account_id:plan.account_id,worker:STAGING_WORKER,source_commit_sha:request.provenance.commit_sha,record_digest:plan.expected.record_digest,mode:'SHADOW',publication_admitted:false,g1:'NOT_PASSED',g2:'NOT_PASSED',cases:[]};
   const check=async(name,fn)=>{await fn();report.cases.push({name,status:'PASS'});};
   try{
     const start=Date.now();let ready;
     do{ready=await call(plan,'/read?digest='+'0'.repeat(64));if(ready.status===404&&ready.body?.error==='STAGING_NOT_FOUND')break;if(Date.now()-start>=90000)break;await new Promise(resolve=>setTimeout(resolve,2000));}while(true);
     requireThat(ready.status===404&&ready.body?.error==='STAGING_NOT_FOUND','STAGING_CAPABILITY_NOT_READY',503);
-    await check('unauthenticated staging write is denied',async()=>requireThat((await call(plan,'/stage',request,'wrong')).status===401,'STAGING_UNAUTHENTICATED_WRITE_ALLOWED'));
+    await check('unauthenticated staging write is denied',async()=>{const denial=await call(plan,'/stage',request,'wrong');report.denial_observation=safeStagingObservation(denial);requireThat(denial.status===401,'STAGING_AUTH_DENIAL_NOT_OBSERVED');});
     let first;
     await check('real pinned owner manual source is staged without publication',async()=>{first=await call(plan,'/stage',request);requireThat(first.status===200&&first.body.record_digest===plan.expected.record_digest&&first.body.record.publication_admitted===false&&first.body.view.action_eligible===false,'STAGING_WRITE_FAILED');report.staged_key=first.body.key;report.source_time=first.body.record.source_time;report.valid_to=first.body.record.valid_to;report.observed_freshness=first.body.view.freshness;report.stored_sha256=first.body.stored_sha256;});
     await check('repeat staging is content-idempotent and does not refresh source age',async()=>{const repeat=await call(plan,'/stage',request);requireThat(repeat.status===200&&repeat.body.created===false&&repeat.body.record_digest===first.body.record_digest&&repeat.body.record.source_time===first.body.record.source_time,'STAGING_RETRY_NOT_IDEMPOTENT');});
@@ -74,7 +78,7 @@ async function proof(){
 async function verifyClosed(){
   const plan=JSON.parse(await readFile(dir+'/plan.private.json','utf8'));const start=Date.now();let response;
   do{response=await call(plan,'/read?digest='+plan.expected.record_digest);if(response.status===401)break;if(Date.now()-start>=90000)break;await new Promise(resolve=>setTimeout(resolve,2000));}while(true);
-  const report={status:response.status===401?'STAGING_CAPABILITY_DENIAL_OBSERVED':'BLOCKED_OR_FAILED',http_status:response.status,code_sha:process.env.GITHUB_SHA,run_id:process.env.GITHUB_RUN_ID,elapsed_ms:Date.now()-start};
+  const report={status:response.status===401?'STAGING_CAPABILITY_DENIAL_OBSERVED':'BLOCKED_OR_FAILED',http_status:response.status,code_sha:process.env.GITHUB_SHA,run_id:process.env.GITHUB_RUN_ID,run_attempt:process.env.GITHUB_RUN_ATTEMPT,elapsed_ms:Date.now()-start};
   await writeFile(dir+'/closed-evidence.public.json',JSON.stringify(report,null,2)+'\n');requireThat(response.status===401,'STAGING_CAPABILITY_CLOSE_NOT_OBSERVED');
 }
 if(process.argv[1]?.endsWith('/manual-stage.js')){

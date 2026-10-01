@@ -67,7 +67,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: manual-cano-staging-${{ github.run_id }}
+          name: manual-cano-staging-${{ github.run_id }}-attempt-${{ github.run_attempt }}
           path: |
             .cloud-proof/preflight.json
             .manual-stage/source.public.json

@@ -19,3 +19,8 @@ Fixture policy chỉ dùng số synthetic được ghi rõ, không lấy số đ
 ## Chủ trách nhiệm cho phần chưa giao free
 
 Authority migration/recovery, scheduler ledger/retry/backpressure, retention/pins/GC, security/roles/SSO và cloud failure proof cần changeset chuyên biệt với test gate. Luồng free có thể review/đề xuất fixtures; chưa được tự deploy/activate. Usage/cost/RPO/RTO cần owner dữ liệu/chấp nhận thật; không sinh thêm quyền billing/admin cho tiện.
+
+
+## F06 - review data intake đã đạt
+
+Có thể làm ngay: đọc docs/MANUAL_CANO_DATA_INTAKE.md, src/ingress/manual-cano.js và evidence/manual-cano-cloud-36863045164. Đối chiếu 3 source Git blob/source timestamps với cloud record digests. Đề xuất adversarial fixtures scope/day/author/expiry và full semantic admission graph. Ghi docs/free-results/F06_DATA_INTAKE_REVIEW.md; không tự đổi quarantine thành positive hoặc mở publication gate. Không sửa Worker trong task review này.

@@ -1,6 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
+import {stable} from '../src/platform/contracts.js';
 const dir='docs/reference/v2.1';const manifest=JSON.parse(await readFile(dir+'/MANIFEST.json','utf8'));
 for(const entry of manifest.files){const bytes=await readFile(dir+'/'+entry.path);assert.equal(bytes.length,entry.bytes,entry.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256,entry.path);}
 console.log('PASS: '+manifest.files.length+' immutable handoff files, including original V2 ZIP');
@@ -61,4 +62,30 @@ for(const runId of [36847033329,36848850809]){
     assert.equal(createHash('sha1').update(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes])).digest('hex'),entry.git_blob_sha);
   }
   console.log('PASS: pinned owned manual source bytes match original Git blobs; no legacy writes');
+}
+
+{
+  const dir='docs/evidence/manual-cano-cloud-36863045164';
+  const snapshot=JSON.parse(await readFile(dir+'/SNAPSHOT.json','utf8'));
+  for(const attempt of snapshot.attempts){
+    assert.ok([1,2].includes(attempt.attempt));
+    for(const [path,digest] of Object.entries(attempt.files_sha256)){
+      assert.ok(['preflight.json','source.public.json','staging-evidence.public.json','closed-evidence.public.json'].includes(path));
+      assert.equal(createHash('sha256').update(await readFile(dir+'/attempt-'+attempt.attempt+'/'+path)).digest('hex'),digest,path);
+    }
+  }
+  const report=JSON.parse(await readFile(dir+'/attempt-2/staging-evidence.public.json','utf8'));
+  const closed=JSON.parse(await readFile(dir+'/attempt-2/closed-evidence.public.json','utf8'));
+  assert.equal(report.status,'ISOLATED_MANUAL_STAGING_SUBSET_PASS');assert.equal(report.code_sha,snapshot.code_sha);
+  assert.equal(report.mode,'SHADOW');assert.equal(report.publication_admitted,false);assert.equal(report.g1,'NOT_PASSED');assert.equal(report.g2,'NOT_PASSED');
+  assert.equal(report.cases.length,7);assert.ok(report.cases.every(item=>item.status==='PASS'));
+  assert.equal(report.history.length,2);assert.ok(report.history.every(item=>item.status==='QUARANTINED'&&item.reason_codes.includes('MANUAL_AUTHOR_NOT_EXPLICIT')));
+  const local=JSON.parse(await readFile('docs/evidence/manual-cano-intake-20261001/local-normalization.json','utf8'));
+  for(const item of local.records){
+    const cloud=item.record.scope.operational_day==='2026-10-01'?report:report.history.find(entry=>entry.source_day===item.record.scope.operational_day);
+    assert.equal(cloud.record_digest,item.record.record_digest);assert.equal(cloud.source_time,item.record.source_time);
+    assert.equal(cloud.stored_sha256,createHash('sha256').update(stable(item.record)).digest('hex'));
+  }
+  assert.equal(closed.status,'STAGING_CAPABILITY_DENIAL_OBSERVED');assert.equal(closed.http_status,401);
+  console.log('PASS: actual three-record manual data transport and observed temporary capability closure; admission closed');
 }

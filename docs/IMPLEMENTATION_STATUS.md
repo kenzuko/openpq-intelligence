@@ -2,7 +2,7 @@
 
 ## Latest: real manual data staging transport
 
-79 local tests and five offline Worker bundles pass. A separate append-only staging Worker/adapter handles pinned owned Cano An Thới manual records. 01/10 normalizes to SHADOW; 30/09 and 27/09 quarantine missing explicit authors. Current source time is 06:23 +07:00, preserved as 23:23Z on the prior UTC date; validity ends at the next Vietnam midnight. Full G1/G2 remain closed and actual cloud staging is NOT_RUN until a successful exact-SHA workflow artifact is pinned. See MANUAL_CANO_DATA_INTAKE.md.
+80 local tests and five offline Worker bundles pass, including safe diagnostic regression. A separate append-only staging Worker/adapter handles pinned owned Cano An Thới manual records. 01/10 normalizes to SHADOW; 30/09 and 27/09 quarantine missing explicit authors. Current source time is 06:23 +07:00, preserved as 23:23Z on the prior UTC date; validity ends at the next Vietnam midnight. Full G1/G2 remain closed and actual cloud staging now passes 7/7 cases in run 36863045164 attempt 2 at code 9ab3211747afcef425fc547e227ce1ee31bbd35a. Three real records are stored/read back; temporary capability removal is observed as HTTP 401. Artifacts are pinned separately from the first failed observation. See MANUAL_CANO_DATA_INTAKE.md.
 
 
 Result: isolated authority/publication milestone implemented; full Intelligence execution is **not complete**. No production deployment or legacy source/consumer transfer occurred.
@@ -114,3 +114,10 @@ Four new tests exercise distinct credential/account guards, signed HTTP result c
 Baseline 36853905022: disposable and Runtime credentials both read the same immutable object with HTTP 200 and the expected digest. Failed deny 36854890531 is preserved as a counterexample: actual HTTP 401 was rejected by the original probe. PR #10 fixed that assumption. Deny 36856013892 on d25c3b12467d89c216386f183934d15161e51fa6: account API confirmed removal; unchanged disposable credential returned HTTP 401; independent Runtime GET returned HTTP 200 with unchanged digest. Raw reports and archive/file checksums are pinned in `docs/evidence/r2-revocation-36856013892/`.
 
 This proves the read-credential revocation subset at the observed runner. It does not prove revoked write/command credentials, global propagation time, authority migration, or complete G1. Local tests: 61 pass. Production gates remain closed. The two disposable `R2_REVOKE_PROBE_*` environment secrets can now be removed; retain original Runtime and deploy secrets.
+
+
+## Actual real-data staging milestone
+
+Run 36863045164 attempt 2 passed seven isolated data transport cases and observed temporary token denial after removal. Exact public reports, original archive/file hashes and both attempt identities are preserved under docs/evidence/manual-cano-cloud-36863045164. Primary owner-confirmed 01/10 data is NORMALIZED_SHADOW; 30/09 and 27/09 remain QUARANTINED for missing explicit authors. Source times and day expiry survived unchanged. Full G1/G2 and canonical/publication admission remain closed.
+
+Attempt 1 failed a denial probe but did not capture HTTP status. The old error name STAGING_UNAUTHENTICATED_WRITE_ALLOWED does not prove a successful unauthorized write or its cause. A same-code retry passed. Future runners now record safe HTTP/code observations, use a neutral fail-closed error label, record run_attempt and distinguish artifact names by attempt. No Worker or admission logic is weakened by this diagnostics change.

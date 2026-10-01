@@ -1,0 +1,15 @@
+{
+  "repository": "kenzuko/Jotrip-Lab",
+  "source_commit_sha": "e19d30df1fe068d44f66f89278b749deb7b3c3cb",
+  "path": "data/marine_ops/manual-confirmations/2026-10-01-cano-an-thoi.json",
+  "payload_sha256": "b09d447587c13fa103201c91d84275d4a7cffa332d3181c20ba2a1b20b148a18",
+  "record_digest": "2ed226ab0039692543f00b3768e5fb7d4895aa8eaf73629f75117b5c231410c0",
+  "source_time": "2026-09-30T23:23:00.000Z",
+  "valid_from": "2026-09-30T23:23:00.000Z",
+  "valid_to": "2026-10-01T17:00:00.000Z",
+  "normalization_status": "NORMALIZED_SHADOW",
+  "source_retrieved_at": "2026-10-01T12:41:26.679Z",
+  "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+  "mode": "SHADOW",
+  "publication_admitted": false
+}
