@@ -83,7 +83,10 @@ try{
       requireThat(failed.status===503&&failed.body.error==='SIGNER_UNAVAILABLE','SIGNER_OUTAGE_NOT_OBSERVED');
       requireThat(await hash(await state())===await hash(before),'EXPORT_FAILURE_MUTATED_AUTHORITY');
     }finally{putSecrets('.cloud-proof/core-secrets.json');await waitForReadStatus(200,'SIGNER_RESTORE');}
-    const exported=await core('export',{},proof.tokens.operator);
+    let exported;
+    report.signer_export_restore_observation={expected_status:200};
+    try{await waitForCapabilityStatus(async()=>{exported=await core('export',{},proof.tokens.operator);return exported;},200,{failureCode:'SIGNER_EXPORT_RESTORE_NOT_OBSERVED',observe:value=>Object.assign(report.signer_export_restore_observation,value)});}
+    finally{await save();}
     requireThat(exported.status===200&&exported.body.exported.length===1&&exported.body.exported[0]===lossReceipt.revision,'OUTBOX_RECOVERY_FAILED');
     requireThat((await core('export',{},proof.tokens.operator)).body.exported.length===0,'OUTBOX_RECOVERY_DUPLICATED');
   });

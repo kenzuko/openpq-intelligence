@@ -28,3 +28,9 @@ test('still-present probe and network errors cannot pass route removal',async()=
     await assert.rejects(waitForCapabilityStatus(read,404,{attempts:2,pause:async()=>{},failureCode:'PROVISION_ROUTE_REMOVAL_NOT_OBSERVED'}),/PROVISION_ROUTE_REMOVAL_NOT_OBSERVED/);
   }
 });
+
+test('export recovery observation retains the first successful response for exact outbox assertions',async()=>{
+  const responses=[{status:503,body:{error:'SIGNER_UNAVAILABLE'}},{status:200,body:{exported:[4]}}];let exported,calls=0;
+  await waitForCapabilityStatus(async()=>{calls++;exported=responses.shift();return exported;},200,{pause:async()=>{},failureCode:'SIGNER_EXPORT_RESTORE_NOT_OBSERVED'});
+  assert.equal(calls,2);assert.deepEqual(exported.body.exported,[4]);assert.equal(responses.length,0);
+});
