@@ -1,0 +1,9 @@
+{
+  "name": "openpq-intelligence-runtime-isolated-test",
+  "main": "../src/workers/runtime.js",
+  "compatibility_date": "2026-07-30",
+  "workers_dev": true,
+  "routes": [],
+  "vars": {"ENVIRONMENT_ID": "isolated-test"},
+  "services": [{"binding": "CORE_READ", "service": "openpq-intelligence-core-isolated-test"}]
+}

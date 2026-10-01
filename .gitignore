@@ -1,0 +1,9 @@
+node_modules/
+.wrangler/
+.dev.vars*
+.env*
+coverage/
+test-results/
+*.log
+config/*.isolated.json
+.cloud-proof/
