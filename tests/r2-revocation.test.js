@@ -29,3 +29,14 @@ test('404, network errors, signature mismatch and still-readable keys cannot pas
   for(const result of [{status:404},{status:null},{status:403,code:null}])await assert.rejects(observeR2Denial({probe,witness,key:'fixture',digest,read:async()=>result}),/R2_DENIAL_NOT_ESTABLISHED/);
   await assert.rejects(observeR2Denial({probe,witness,key:'fixture',digest,read:async()=>({status:200,raw:'fixture'}),timeout:0}),/R2_REVOCATION_DENIAL_TIMEOUT/);
 });
+
+test('observed R2 401 requires confirmed token revocation and a positive unchanged-object witness',async()=>{
+  const digest=await hash('fixture');
+  const unauthorized=await signedObservation(probe,'fixture',async()=>new Response('',{status:401}));
+  assert.equal(unauthorized.status,401);
+  const read=async config=>config===witness?{status:200,raw:'fixture'}:unauthorized;
+  await assert.rejects(observeR2Denial({probe,witness,key:'fixture',digest,read}),/R2_DENIAL_NOT_ESTABLISHED/);
+  const result=await observeR2Denial({probe,witness,key:'fixture',digest,read,revocationConfirmed:true});
+  assert.equal(result.http_status,401);assert.equal(result.witness_status,200);
+  for(const control of [{status:404},{status:200,raw:'changed'}])await assert.rejects(observeR2Denial({probe,witness,key:'fixture',digest,revocationConfirmed:true,read:async config=>config===witness?control:unauthorized}),/RUNTIME_WITNESS_UNAVAILABLE/);
+});
