@@ -46,3 +46,7 @@ P05-P18 của policy register vẫn chặn đúng scope: source ages, biển/gi�
 ## M5 final snapshot
 
 121 tests/six bundles; actual cloud regression 36880999372 passed 15/15 at 7a5425f244ca8c39d2ba27bfefd1fc28c4393889, cleanup SUCCESS. Both restart phases observed constructor change. Three failed counterexamples pinned with UNKNOWN causes. Local semantic native integration: nine cases. Entry F08 read-only review; real/cloud semantic, cloud scheduler, SSO/offsite/PITR and G1/G2 remain closed.
+
+## M6 technical-only preparation in progress
+
+Owner has not finalized legacy systems. Do not fetch/research final legacy README/contracts/data until owner announces completion. Existing intermediate exploratory reads are not an integration baseline. M6 prepares export-only isolated scheduler, portable publication backup/readback and release drift checks using synthetic fixtures only. Actual cloud evidence will be pinned separately. G1/G2 and production remain closed.

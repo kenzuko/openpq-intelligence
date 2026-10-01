@@ -62,3 +62,8 @@ test('explicit staging Worker is permitted only within the already isolated inve
   d['/workers/scripts'].push({id:'openpq-intelligence-staging-production'});
   await assert.rejects(cloudPreflight(params,fake(d)),/TEST_ACCOUNT_HAS_OTHER_WORKERS/);
 });
+
+test('isolated scheduler namespace is allowed only for the exact Worker/class pair',async()=>{
+ const d=fixture();d['/workers/scripts']=[{id:WORKERS[4]}];d['/workers/durable_objects/namespaces']=[{id:'progress-ns',script:WORKERS[4],class:'ProgressScheduler'}];assert.equal((await cloudPreflight(params,fake(d))).status,'PREFLIGHT_PASS');
+ d['/workers/durable_objects/namespaces'][0].class='DatasetCoordinator';await assert.rejects(cloudPreflight(params,fake(d)),/TEST_ACCOUNT_HAS_OTHER_NAMESPACES/);
+});

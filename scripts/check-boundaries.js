@@ -28,4 +28,4 @@ console.log('PASS: preparation has no network, publication, storage deletion or 
 const progress=await readFile('src/workers/progress.js','utf8');
 assert.doesNotMatch(progress,/env\.(CANONICAL|DATASETS|CORE_COMMAND|RECEIPT_SIGNING_JSON)|\/(prepare|commit|control|bootstrap)\b|\bdeleteAll\b/);
 assert.match(progress,/PROGRESS_CLOUD_ACTIVATION_CLOSED/);
-console.log('PASS: progress has export-only routing and closed cloud activation');
+console.log('PASS: progress has export-only routing and explicit fixture-only isolated activation; production closed');

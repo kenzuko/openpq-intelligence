@@ -28,11 +28,12 @@ test('long cloud dataset packs every capability below the secret limit without c
   const a=await makeAuthority({account_id:account,dataset_id:dataset,object_name:'isolated-test/'+dataset},namespace,native,config);
   assert.ok(Object.values({...a.coreSecrets,...a.runtimeSecrets}).every(v=>Buffer.byteLength(v)<=5000));
   const entries=PRINCIPAL_SECRET_NAMES.flatMap(name=>JSON.parse(a.coreSecrets[name]));
-  assert.equal(entries.length,7);assert.ok(JSON.parse(a.coreSecrets.PRINCIPALS_JSON_2).length>0);
+  assert.equal(entries.length,8);assert.ok(JSON.parse(a.coreSecrets.PRINCIPALS_JSON_2).length>0);
   for(const [name,token] of Object.entries(a.tokens)){
     const actor=await principal(new Request('https://test/',{headers:{authorization:'Bearer '+token}}),a.coreSecrets);
     assert.equal(actor.id,'proof-'+name);
     if(name==='wrong')assert.throws(()=>authorize(actor,'promote',a.trust),/CAPABILITY_LOCATOR_DENIED/);
+    else if(name==='exporter'){authorize(actor,'export',a.trust);assert.deepEqual(actor.permissions,['export']);for(const permission of ['read','promote','control','bootstrap'])assert.throws(()=>authorize(actor,permission,a.trust),/CAPABILITY_DENIED/);}
     else authorize(actor,name==='read'?'read':'promote',a.trust);
   }
   assert.equal(a.coreSecrets.PRINCIPALS_JSON_3,'[]');

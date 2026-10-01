@@ -1,0 +1,96 @@
+name: Isolated export scheduler and portable backup proof
+on:
+  workflow_dispatch:
+  push:
+    branches: [cloud/technical-progress-m6]
+permissions:
+  contents: read
+concurrency:
+  group: intelligence-isolated-cloud-proof
+  cancel-in-progress: false
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: intelligence-test
+    env:
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      CF_TEST_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      R2_TEST_READ_SECRET_ACCESS_KEY: ${{ secrets.R2_TEST_READ_SECRET_ACCESS_KEY }}
+      CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm run verify:handoff && npm test
+      - name: Read-only token/resource isolation preflight
+        run: node scripts/cloud/preflight.js
+      - name: Prepare unique fixture dataset and isolated configs
+        run: node scripts/cloud/prepare.js
+      - name: Verify isolated binding config
+        run: node scripts/check-isolation.js .cloud-proof/core.json .cloud-proof/runtime.json .cloud-proof/operator.json
+      - name: Deploy temporary authenticated native-ID probe
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          npx --no-install wrangler deploy --config .cloud-proof/core.json
+          npx --no-install wrangler secret bulk .cloud-proof/provisioning-secrets.json --config .cloud-proof/core.json
+      - name: Resolve and pin actual namespace/native ID
+        run: node scripts/cloud/finish-identity.js
+      - name: Deploy final Core, Runtime and separate Console
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          npx --no-install wrangler secret bulk .cloud-proof/core-secrets.json --config .cloud-proof/core.json
+          npx --no-install wrangler deploy --config .cloud-proof/core.json
+          npx --no-install wrangler deploy --config .cloud-proof/runtime.json
+          npx --no-install wrangler secret bulk .cloud-proof/runtime-secrets.json --config .cloud-proof/runtime.json
+          npx --no-install wrangler deploy --config .cloud-proof/operator.json
+      - name: Prepare synthetic export-only scheduler
+        run: node scripts/cloud/progress-proof.js prepare
+      - name: Deploy isolated export-only scheduler
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          npx --no-install wrangler deploy --config .cloud-proof/progress.json
+          npx --no-install wrangler secret bulk .cloud-proof/progress-secrets.json --config .cloud-proof/progress.json
+          npx --no-install wrangler deploy --config .cloud-proof/progress.json
+      - name: Actual native alarm and portable publication backup proof
+        run: node scripts/cloud/progress-proof.js prove
+      - name: Close temporary scheduler and export-only capability
+        if: always()
+        run: |
+          if [ -f .cloud-proof/progress.private.json ]; then
+            node scripts/cloud/progress-proof.js cleanup
+          fi
+      - name: Remove temporary provisioning capability
+        if: always()
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          if [ -f .cloud-proof/provisioning-secrets.json ]; then
+            npx --no-install wrangler secret delete PROVISIONING_TOKEN --config .cloud-proof/core.json
+          fi
+      - name: Upload only public/redacted evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: intelligence-progress-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .cloud-proof/preflight.json
+            .cloud-proof/locator.public.json
+            .cloud-proof/identity-diagnostic.public.json
+            .cloud-proof/cloud-evidence.json
+            .cloud-proof/progress-evidence.json
+            .cloud-proof/portable-publication-backup
+          if-no-files-found: ignore
+          retention-days: 7

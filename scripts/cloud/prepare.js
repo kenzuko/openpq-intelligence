@@ -41,11 +41,11 @@ export async function makeAuthority(plan,namespaceId,nativeId,readConfig){
   for(const kind of ['rule','config','policy','schema'])artifacts[kind]=await hash({kind,version:'cloud-fixture-1',fixture_only:true,production_approved:false});
   const trust={account_id:plan.account_id,environment_id:'isolated-test',dataset_id:plan.dataset_id,object_name:plan.object_name,namespace_id:namespaceId,native_id:nativeId,authority_instance_id:'proof-'+plan.dataset_id,authority_locator_version:'1',recovery_generation:'fixture-generation-'+plan.dataset_id,artifacts,receipt_keys:{'proof-key':pub},approved_positive_decision_types:['cano.operation.fixture']};
   trust.locator_artifact_hash=await hash(trust);
-  const tokens=Object.fromEntries(['live','read','operator','shadow','backfill','next','wrong'].map(n=>[n,randomBytes(32).toString('hex')]));
+  const tokens=Object.fromEntries(['live','read','operator','shadow','backfill','next','wrong','exporter'].map(n=>[n,randomBytes(32).toString('hex')]));
   for(const token of [...Object.values(tokens),priv.d,readConfig.secret])if(process.env.GITHUB_ACTIONS==='true')console.log('::add-mask::'+token);
   const actorLocator=Object.fromEntries(['account_id','environment_id','dataset_id','object_name','namespace_id','native_id','authority_instance_id','authority_locator_version','recovery_generation','locator_artifact_hash'].map(name=>[name,trust[name]]));
   const principal=(name,permissions,extra={})=>({...actorLocator,id:'proof-'+name,token:tokens[name],mode:'LIVE',owner:'proof-owner',epoch:1,permissions,...extra});
-  const principals=[principal('live',['promote']),principal('read',['read']),principal('operator',['read','control','bootstrap','promote','correct','export']),principal('shadow',['promote'],{mode:'SHADOW'}),principal('backfill',['promote'],{mode:'BACKFILL'}),principal('next',['promote'],{owner:'next-proof-owner',epoch:2}),principal('wrong',['promote'],{authority_instance_id:'wrong-authority'})];
+  const principals=[principal('live',['promote']),principal('read',['read']),principal('operator',['read','control','bootstrap','promote','correct','export']),principal('shadow',['promote'],{mode:'SHADOW'}),principal('backfill',['promote'],{mode:'BACKFILL'}),principal('next',['promote'],{owner:'next-proof-owner',epoch:2}),principal('wrong',['promote'],{authority_instance_id:'wrong-authority'}),principal('exporter',['export'])];
   const map=JSON.stringify({[trust.dataset_id]:trust});
   const coreSecrets={TRUST_JSON:map,...principalSecrets(principals),RECEIPT_SIGNING_JSON:JSON.stringify({key_id:'proof-key',private_jwk:priv})};
   const runtimeSecrets={TRUST_JSON:map,CONTROL_READ_TOKEN:tokens.read,S3_READONLY_CONFIG:JSON.stringify(readConfig)};
