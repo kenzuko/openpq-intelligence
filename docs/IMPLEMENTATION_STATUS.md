@@ -4,20 +4,20 @@ Result: isolated authority/publication milestone implemented; full Intelligence 
 
 ## Verification
 
-Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **26 Node test cases pass, including two parent integration tests**. This is not 26 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
+Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **41 Node test cases pass, including three parent integration tests**. This is not 41 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
 
 Proven local behaviors: epoch fencing, concurrent revision race, content-bound idempotency, control-revision invalidation, obsolete-slot rejection, explicit permissioned correction/retraction lineage, native instance/namespace/locator denial, artifact mismatch/expiry rejection, positive evidence fail-closed, source-age advancement, bounded control stamps, signed checkpoint verification, cold Core-outage `UNVERIFIED` serving, blob hash mismatch rejection, SQLite state/dedup after DO eviction, export failure preserving authority/outbox, GET-only Runtime and production configuration denial.
 
-Node test assertions cover errors and unchanged revisions as well as successful reads. Outbox CAS retry exhaustion, signature tamper/old generation/alternate native ID, SigV4 GET/path/denial behavior and bounded streaming reads are pure tests. DO eviction preserves attached storage and does not prove PITR/disaster restore. Real HTTP response timeout injection, cloud R2 IAM denial and cloud multi-region consistency are not tested here.
+Node test assertions cover errors and unchanged revisions as well as successful reads. Outbox CAS retry exhaustion, signature tamper/old generation/alternate native ID, SigV4 GET/path/denial behavior and bounded streaming reads are pure tests. DO eviction preserves attached storage and does not prove PITR/disaster restore. A test-only HTTP wrapper drops the response after the real SQL commit; retry returns the same receipt. This is not a process crash or cloud network timeout. Cloud R2 IAM denial and cloud multi-region consistency are not tested here. Four Wrangler 4.145.0 offline bundle builds pass. The manual cloud runner and read-only token/resource preflight are implemented; their API policy tests use mocks until actual isolated credentials are available.
 
 ## Architecture case evidence mapping
 
 | V2.1 cases | Local coverage | Remaining evidence |
 |---|---|---|
 | T01, T02, T08, T10 | local scenario covered | Cloud repetition/current primitive gate |
-| T03 | control changes after prepare reject commit | Inject control/rule/override change during actual external await |
-| T06 | identical command returns same receipt after success and DO eviction | Inject response timeout/crash at commit boundary |
-| T07 | CAS exhaustion stays retryable; export retry/idempotency covered | Concurrent/reordered exports and cloud CAS proof |
+| T03 | control mutation during actual externally gated R2 await rejects prepare; control changes after prepare reject commit | Cloud repetition; rule/override corpus |
+| T06 | identical command returns same receipt after success, dropped post-commit HTTP response and DO eviction | Process crash/timeout at remaining commit boundaries on cloud |
+| T07 | CAS exhaustion stays retryable; reordered concurrent local R2 exports cannot regress signed latest checkpoint | Cloud CAS/consistency and crash-boundary proof |
 | T09, T12 | explicit correction and retraction revision/lineage | Full immutable emitted domain history |
 | T15, T16, T19, T20, T39, T42 | source age, current validation, cold signed fallback, corrupt blob rejection | Source-specific offline windows, lag/missing checkpoint corpus, cloud faults |
 | T29, T36, T54, T56, T59 | capability/mode/owner fences, old-generation/native ID rejection, closed positive policy gate | Actual cloud role/scope/day, rollback/config migration and full registry policies |
@@ -43,8 +43,8 @@ No V2.1 system test is labelled globally PASS based on this local subset. The re
 
 ## Next execution
 
-1. Run CI on the exact PR commit and repeat local checks after any code change.
-2. Obtain only the isolated Cloudflare inputs listed in `CLOUD_PROOF.md`; run G1 with actual credentials/resources. Never copy production secrets from another repo/workflow.
+1. Run CI on the exact PR commit. The new cloud workflow is manual only and must be present on main before its dispatch UI is available.
+2. Prepare the exact account/resources and GitHub environment in `CLOUDFLARE_TEST_SETUP.md`; run G1 with actual credentials/resources. Never copy production secrets from another repo/workflow.
 3. Finish Evidence/Assertion/Canonical contracts, registry contents and source-policy validation, then resolve a small approved pilot's licensing/time/budget policies and build golden-master fixtures from pinned existing outputs.
 4. Port the approved domain kernel and run differential mirror/shadow acceptance. Compose decisions only after named dependency/policy contracts are proven.
 5. Complete scheduled progress/outbox retry, budget/backpressure, retention pins, recovery/PITR fencing, monitoring and operator security. Production gates remain closed until this evidence exists.

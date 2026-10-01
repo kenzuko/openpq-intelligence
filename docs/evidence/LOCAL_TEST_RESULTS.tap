@@ -1,168 +1,56 @@
-TAP version 13
-# Subtest: UTC and deterministic artifact contracts reject malformed input
-ok 1 - UTC and deterministic artifact contracts reject malformed input
-  ---
-  duration_ms: 4.672788
-  type: 'test'
-  ...
-# Subtest: source age advances with serve time; expired restrictive state never becomes OPEN
-ok 2 - source age advances with serve time; expired restrictive state never becomes OPEN
-  ---
-  duration_ms: 0.660996
-  type: 'test'
-  ...
-# Subtest: signed checkpoint binds authority and content; forged and rotated receipts are rejected
-ok 3 - signed checkpoint binds authority and content; forged and rotated receipts are rejected
-  ---
-  duration_ms: 5.415065
-  type: 'test'
-  ...
-# Subtest: projection exhausted CAS is reported as retryable rather than successful
-ok 4 - projection exhausted CAS is reported as retryable rather than successful
-  ---
-  duration_ms: 0.812339
-  type: 'test'
-  ...
-# Subtest: SQLite DO publication and Runtime adversarial integration
-    # Subtest: shadow, backfill, reader and alternate locator cannot promote
-    ok 1 - shadow, backfill, reader and alternate locator cannot promote
-      ---
-      duration_ms: 19.193293
-      type: 'test'
-      ...
-    # Subtest: unregistered native DO instance cannot bootstrap
-    ok 2 - unregistered native DO instance cannot bootstrap
-      ---
-      duration_ms: 28.854792
-      type: 'test'
-      ...
-    # Subtest: two writers race at one revision: exactly one wins
-    ok 3 - two writers race at one revision: exactly one wins
-      ---
-      duration_ms: 43.222334
-      type: 'test'
-      ...
-    # Subtest: Runtime independently reads the committed immutable blob
-    ok 4 - Runtime independently reads the committed immutable blob
-      ---
-      duration_ms: 12.997636
-      type: 'test'
-      ...
-    # Subtest: control mutation invalidates in-flight prepared publication and validation
-    ok 5 - control mutation invalidates in-flight prepared publication and validation
-      ---
-      duration_ms: 32.72799
-      type: 'test'
-      ...
-    # Subtest: owner transfer fences old writers even with unchanged data revision
-    ok 6 - owner transfer fences old writers even with unchanged data revision
-      ---
-      duration_ms: 28.05765
-      type: 'test'
-      ...
-    # Subtest: expired commands and stale positive sources do not advance authority
-    ok 7 - expired commands and stale positive sources do not advance authority
-      ---
-      duration_ms: 19.897513
-      type: 'test'
-      ...
-    # Subtest: signed outbox export is retryable and cold Runtime fails closed for GO
-    ok 8 - signed outbox export is retryable and cold Runtime fails closed for GO
-      ---
-      duration_ms: 187.241875
-      type: 'test'
-      ...
-    1..8
-ok 5 - SQLite DO publication and Runtime adversarial integration
-  ---
-  duration_ms: 865.344544
-  type: 'test'
-  ...
-# Subtest: separate console forwards individual capability and rejects unsupported paths or production
-ok 6 - separate console forwards individual capability and rejects unsupported paths or production
-  ---
-  duration_ms: 7.361159
-  type: 'test'
-  ...
-# Subtest: S3 adapter only signs GET, preserves key separators and rejects redirects/path traversal
-ok 7 - S3 adapter only signs GET, preserves key separators and rejects redirects/path traversal
-  ---
-  duration_ms: 13.766585
-  type: 'test'
-  ...
-# Subtest: denied and unavailable S3 reads do not become fabricated data
-ok 8 - denied and unavailable S3 reads do not become fabricated data
-  ---
-  duration_ms: 4.184798
-  type: 'test'
-  ...
-# Subtest: streamed oversized canonical object is cancelled without unbounded buffering
-ok 9 - streamed oversized canonical object is cancelled without unbounded buffering
-  ---
-  duration_ms: 2.383089
-  type: 'test'
-  ...
-# Subtest: production configuration is denied before accessing bindings
-ok 10 - production configuration is denied before accessing bindings
-  ---
-  duration_ms: 662.560026
-  type: 'test'
-  ...
-# Subtest: publication validity, correction lineage, SQLite eviction and export failure
-    # Subtest: partial or conflicting evidence cannot authorize a positive decision
-    ok 1 - partial or conflicting evidence cannot authorize a positive decision
-      ---
-      duration_ms: 32.275854
-      type: 'test'
-      ...
-    # Subtest: unsupported artifact and expired generation cannot advance active reference
-    ok 2 - unsupported artifact and expired generation cannot advance active reference
-      ---
-      duration_ms: 14.35937
-      type: 'test'
-      ...
-    # Subtest: missing positive policy activation denies an otherwise valid candidate
-    ok 3 - missing positive policy activation denies an otherwise valid candidate
-      ---
-      duration_ms: 212.725876
-      type: 'test'
-      ...
-    # Subtest: normal obsolete slot rejected; explicit correction requires permission and lineage
-    ok 4 - normal obsolete slot rejected; explicit correction requires permission and lineage
-      ---
-      duration_ms: 46.88354
-      type: 'test'
-      ...
-    # Subtest: active reference and command deduplication survive DO eviction
-    ok 5 - active reference and command deduplication survive DO eviction
-      ---
-      duration_ms: 20.554447
-      type: 'test'
-      ...
-    # Subtest: failed signing/export does not roll back committed publication
-    ok 6 - failed signing/export does not roll back committed publication
-      ---
-      duration_ms: 242.832672
-      type: 'test'
-      ...
-    # Subtest: frozen publication can retract but cannot issue a new positive decision
-    ok 7 - frozen publication can retract but cannot issue a new positive decision
-      ---
-      duration_ms: 37.463853
-      type: 'test'
-      ...
-    1..7
-ok 11 - publication validity, correction lineage, SQLite eviction and export failure
-  ---
-  duration_ms: 1009.300862
-  type: 'test'
-  ...
-1..11
-# tests 26
-# suites 0
-# pass 26
-# fail 0
-# cancelled 0
-# skipped 0
-# todo 0
-# duration_ms 2029.810653
+
+> openpq-intelligence@0.1.0 test
+> node --test tests/*.test.js
+
+✔ cloud preflight checks actual token policies/resources with GET only (6.879348ms)
+✔ missing production inventory and production test-account ID block before API access (0.81289ms)
+✔ global account permission or unexpected token capability blocks before inventory (1.871013ms)
+✔ runtime R2 credential with write/admin/wrong bucket scope is rejected (2.130706ms)
+✔ account with unexpected Worker or bucket is rejected (8.84429ms)
+✔ unknown/truncated inventory is blocked; allowed prior test namespace is recorded (1.678449ms)
+✔ cloud fixture authority binds actual IDs and publishes only public receipt keys (10.113914ms)
+✔ write-denial probe is restricted to isolated bucket, scope and disposable proof key (8.388086ms)
+✔ UTC and deterministic artifact contracts reject malformed input (7.579643ms)
+✔ source age advances with serve time; expired restrictive state never becomes OPEN (0.951855ms)
+✔ signed checkpoint binds authority and content; forged and rotated receipts are rejected (6.934204ms)
+✔ projection exhausted CAS is reported as retryable rather than successful (1.689344ms)
+▶ SQLite DO publication and Runtime adversarial integration
+  ✔ shadow, backfill, reader and alternate locator cannot promote (25.99093ms)
+  ✔ unregistered native DO instance cannot bootstrap (26.175577ms)
+  ✔ two writers race at one revision: exactly one wins (47.304412ms)
+  ✔ Runtime independently reads the committed immutable blob (12.180521ms)
+  ✔ control mutation invalidates in-flight prepared publication and validation (38.089966ms)
+  ✔ owner transfer fences old writers even with unchanged data revision (39.803266ms)
+  ✔ expired commands and stale positive sources do not advance authority (20.243458ms)
+  ✔ signed outbox export is retryable and cold Runtime fails closed for GO (192.533226ms)
+✔ SQLite DO publication and Runtime adversarial integration (974.622443ms)
+▶ actual external-await and lost-response failure injection
+  ✔ R2 upload failure, read failure and corrupt read cannot prepare active state (96.679141ms)
+  ✔ control changes while prepare waits on R2: final transaction rejects (52.986592ms)
+  ✔ owner changes while upload waits: stale writer cannot complete prepare (42.573082ms)
+  ✔ commit response is lost after SQL transaction; retry returns same receipt (33.302817ms)
+✔ actual external-await and lost-response failure injection (820.751778ms)
+✔ cloud-like checkpoint CAS race on actual local R2 remains monotonic (531.182731ms)
+✔ future restrictive control clamps validation deadline before an outage (422.261107ms)
+✔ separate console forwards individual capability and rejects unsupported paths or production (7.890582ms)
+✔ S3 adapter only signs GET, preserves key separators and rejects redirects/path traversal (18.473279ms)
+✔ denied and unavailable S3 reads do not become fabricated data (6.680755ms)
+✔ streamed oversized canonical object is cancelled without unbounded buffering (2.427745ms)
+✔ production configuration is denied before accessing bindings (735.350034ms)
+▶ publication validity, correction lineage, SQLite eviction and export failure
+  ✔ partial or conflicting evidence cannot authorize a positive decision (39.485666ms)
+  ✔ unsupported artifact and expired generation cannot advance active reference (16.758039ms)
+  ✔ missing positive policy activation denies an otherwise valid candidate (259.672032ms)
+  ✔ normal obsolete slot rejected; explicit correction requires permission and lineage (60.203658ms)
+  ✔ active reference and command deduplication survive DO eviction (21.818504ms)
+  ✔ failed signing/export does not roll back committed publication (247.798563ms)
+  ✔ frozen publication can retract but cannot issue a new positive decision (34.689734ms)
+✔ publication validity, correction lineage, SQLite eviction and export failure (1065.964986ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2280.792965
