@@ -1,0 +1,69 @@
+{
+  "status": "BLOCKED_OR_FAILED",
+  "g1": "NOT_PASSED",
+  "cases": [
+    {
+      "name": "temporary native-ID probe is absent from final Core",
+      "status": "FAIL",
+      "error": "PROVISION_ROUTE_STILL_PRESENT",
+      "elapsed_ms": 69
+    }
+  ],
+  "remaining": [
+    "cloud crash/timeout injection",
+    "revoked R2 credential propagation evidence",
+    "retention/GC pins",
+    "disaster restore/RPO/RTO",
+    "quota/cost profiling and unattended resilience"
+  ],
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "dataset_id": "fixture.cano.operation.36878858323-1",
+  "locator": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "environment_id": "isolated-test",
+    "dataset_id": "fixture.cano.operation.36878858323-1",
+    "object_name": "isolated-test/fixture.cano.operation.36878858323-1",
+    "namespace_id": "97783b80477f4613a445b4e219b8158c",
+    "native_id": "f199ee29645ae43b49edf2560e609d6e859c14b48fc25acabf4c3603029a1aec",
+    "authority_instance_id": "proof-fixture.cano.operation.36878858323-1",
+    "authority_locator_version": "1",
+    "recovery_generation": "fixture-generation-fixture.cano.operation.36878858323-1",
+    "artifacts": {
+      "rule": "7a5f9e8c1b3ca5dc7b271924c31d712e9b28c84655b3c4632380795c8b826e20",
+      "config": "5f684c15f591b17525c9e29434866749ab0684f06292e00a4407ab84c3a7b616",
+      "policy": "0e16ca3931f4a494063f434327b5e7210e846fc2aabe41ac0fd57837f351ee87",
+      "schema": "61220618fc421e6e3d4fa1dc6a3d104c1a02932f7367b55cb8a573c9b07f1549"
+    },
+    "receipt_keys": {
+      "proof-key": {
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true,
+        "kty": "EC",
+        "x": "ejBr2GXdwp2IDl0MLzjN31Lf7_GFE9cZTsM6sVAfvFw",
+        "y": "avklHJEEzwiDAspgqf6qvV4bNiM4VZ2eZj0E6bO-9VI",
+        "crv": "P-256"
+      }
+    },
+    "approved_positive_decision_types": [
+      "cano.operation.fixture"
+    ],
+    "locator_artifact_hash": "1fbf4468f3048e15a80388e5320062f77c0f93a1a2b32c292f6f7cb47f70d4d4"
+  },
+  "code_sha": "c63ae401562753175b8217bea4cd40e6f86de837",
+  "observation": {
+    "runner_region": "GitHub-hosted runner, region unspecified",
+    "run_id": "36878858323",
+    "run_attempt": "1",
+    "node": "v24.21.0",
+    "wrangler": "4.145.0",
+    "started_at_utc": "2026-10-01T14:46:50.834Z"
+  },
+  "config_hashes": {
+    "core": "aadaba2b4ca5d40015a2850164a070242ae7d2bf5c9397dd51604923f189ab8b",
+    "runtime": "a291b28d62048e340ebb6dafd3ba0504e483c4b7742374df1be224a27a1df270",
+    "operator": "73c5b8ebd880a9184820f25a963ce81c2f35011aa6ddbbc2ccedf8622feb2100"
+  },
+  "error": "PROVISION_ROUTE_STILL_PRESENT"
+}

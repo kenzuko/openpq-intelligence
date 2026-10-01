@@ -29,4 +29,6 @@ All Workers reject production environments in this milestone. No production rout
 
 M4 technical preparation: [executable mechanisms, evidence and activation dependencies](docs/TECHNICAL_PREPARATION.md). 108 local tests/six bundles; deterministic rehearsal and native local DO alarm proof. Cloud progress activation and live semantic admission remain closed.
 
-M5: [trusted local semantic authority integration](docs/SEMANTIC_ADMISSION_INTEGRATION.md). 117 tests/six bundles; synthetic ABSTAIN facts only, with native alarm/signed fallback and independent-trust backup signature checks. Explicit isolated regression branch cloud/protocol-regression-m5 does not enable cloud semantic or production admission.
+M5: [trusted local semantic authority integration](docs/SEMANTIC_ADMISSION_INTEGRATION.md). 121 tests/six bundles; synthetic ABSTAIN facts only, with native alarm/signed fallback and independent-trust backup signature checks. Explicit isolated regression branch cloud/protocol-regression-m5 does not enable cloud semantic or production admission.
+
+Actual M5 protocol regression: run 36880999372, 15/15 subset PASS, cleanup SUCCESS; G1 remains NOT_PASSED. Raw evidence and three failed counterexamples are pinned separately.
