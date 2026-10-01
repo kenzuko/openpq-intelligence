@@ -17,3 +17,14 @@ test('persistent capability state fails closed at deadline with phase-specific e
   assert.equal(calls,3);assert.equal(observation.last_status,200);
   await assert.rejects(waitForCapabilityStatus(async()=>({status:401}),200,{attempts:1}),/READ_CAPABILITY_RESTORE_NOT_OBSERVED/);
 });
+
+test('probe route removal requires actual 404 and records transient old deployment status',async()=>{
+  const statuses=[401,503,404];let observation;
+  await waitForCapabilityStatus(async()=>({status:statuses.shift()}),404,{pause:async()=>{},failureCode:'PROVISION_ROUTE_REMOVAL_NOT_OBSERVED',observe:x=>observation=x});
+  assert.equal(observation.last_status,404);assert.equal(observation.attempts,3);
+});
+test('still-present probe and network errors cannot pass route removal',async()=>{
+  for(const read of [async()=>({status:401}),async()=>{throw Error('private');}]){
+    await assert.rejects(waitForCapabilityStatus(read,404,{attempts:2,pause:async()=>{},failureCode:'PROVISION_ROUTE_REMOVAL_NOT_OBSERVED'}),/PROVISION_ROUTE_REMOVAL_NOT_OBSERVED/);
+  }
+});
