@@ -9,3 +9,5 @@ config/*.isolated.json
 .cloud-proof/
 
 .manual-stage/
+
+.preparation/

@@ -24,3 +24,7 @@ Authority migration/recovery, scheduler ledger/retry/backpressure, retention/pin
 ## F06 - review data intake đã đạt
 
 Có thể làm ngay: đọc docs/MANUAL_CANO_DATA_INTAKE.md, src/ingress/manual-cano.js và evidence/manual-cano-cloud-36863045164. Đối chiếu 3 source Git blob/source timestamps với cloud record digests. Đề xuất adversarial fixtures scope/day/author/expiry và full semantic admission graph. Ghi docs/free-results/F06_DATA_INTAKE_REVIEW.md; không tự đổi quarantine thành positive hoặc mở publication gate. Không sửa Worker trong task review này.
+
+## F07 - review technical preparation
+
+Read-only review `src/preparation`, `src/workers/progress.js`, `scripts/preparation`, `tests/preparation.test.js`, `tests/progress-worker.test.js`. Check bounded retries/request windows/lease fencing, policy expiry/pins, source age vs refetch, backup integrity vs authority authenticity, ES256 session token scope, and absence of publication/deletion/notification capabilities. Produce minimal independent counterexamples; do not activate cloud, edit authority Workers, introduce policies, overwrite evidence or change provider resources. Test results without terminal are NOT_RUN.

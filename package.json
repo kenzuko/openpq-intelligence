@@ -11,7 +11,9 @@
     "check": "node scripts/check-boundaries.js",
     "verify:handoff": "node scripts/verify-handoff.js",
     "check:cloud-bundles": "node scripts/cloud/dry-run.js",
-    "replay:semantic": "node scripts/replay-semantic.js"
+    "replay:semantic": "node scripts/replay-semantic.js",
+    "rehearse:technical": "node scripts/preparation/rehearse.js",
+    "readiness:technical": "node scripts/preparation/readiness.js fixtures/preparation/unresolved-domain.json"
   },
   "devDependencies": {
     "miniflare": "4.20260730.0",

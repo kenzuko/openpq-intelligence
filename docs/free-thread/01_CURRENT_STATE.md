@@ -34,3 +34,7 @@ P05-P18 của policy register vẫn chặn đúng scope: source ages, biển/gi�
 ## Update sau bản M2: data transport đã đạt
 
 80 local tests và 5 offline bundles; real-data cloud staging run 36863045164 attempt 2 đã pass 7 case. Ba record cano đã ghi/đọc đúng hash tại prefix staging riêng. 01/10 giữ NORMALIZED_SHADOW, 30/09 và 27/09 giữ QUARANTINED vì thiếu author explicit. Temporary capability đã gỡ và deny 401 quan sát thật. Source SHA e19d30df1fe068d44f66f89278b749deb7b3c3cb; code cloud SHA 9ab3211747afcef425fc547e227ce1ee31bbd35a. Đọc docs/MANUAL_CANO_DATA_INTAKE.md và snapshot cloud mới. G1/G2 và canonical/public admission vẫn đóng. ZIP M2 cũ vẫn bất biến, không sửa ngược lịch sử.
+
+## M4 - technical preparation
+
+108 local tests/six bundles and integrated deterministic rehearsal pass. New preparation mechanisms, bounded durable retry, native local checkpoint alarm, monitoring/parity/backup-recovery plans and JWT guards are available. See implementation/TECHNICAL_PREPARATION.md in ZIP or docs/TECHNICAL_PREPARATION.md in repo. G1/G2, cloud scheduler, provider SSO and live candidate admission remain closed. M3 real manual cloud proof remains unchanged.

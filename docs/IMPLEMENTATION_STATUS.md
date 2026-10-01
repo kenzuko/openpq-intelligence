@@ -1,5 +1,10 @@
 # Implementation evidence, 2026-10-01
 
+## Latest: M4 technical preparation
+
+108 local tests and six offline Worker bundles pass. Registry/graph policy pins, deterministic SHADOW preparation, bounded adapter rehearsal, persistent SQLite retry/backpressure/leases, native workerd export-only DO alarms, monitoring/parity, portable integrity/fenced recovery plans and operator JWT/guards are implemented and tested. A full deterministic local rehearsal passes and is pinned under `docs/evidence/technical-preparation-local-20261001`. See TECHNICAL_PREPARATION.md and ADR-IMPLEMENTATION-005.md. The new scheduler rejects cloud activation; no new resources/credentials were created. Live candidate admission, real source/domain kernels, provider SSO/session wiring, offsite backup/actual restore and cloud acceptance remain gated. Full G1/G2 stay NOT_PASSED. Earlier counts below are milestone chronology.
+
+
 ## Latest: real manual data staging transport
 
 80 local tests and five offline Worker bundles pass, including safe diagnostic regression. A separate append-only staging Worker/adapter handles pinned owned Cano An Thới manual records. 01/10 normalizes to SHADOW; 30/09 and 27/09 quarantine missing explicit authors. Current source time is 06:23 +07:00, preserved as 23:23Z on the prior UTC date; validity ends at the next Vietnam midnight. Full G1/G2 remain closed and actual cloud staging now passes 7/7 cases in run 36863045164 attempt 2 at code 9ab3211747afcef425fc547e227ce1ee31bbd35a. Three real records are stored/read back; temporary capability removal is observed as HTTP 401. Artifacts are pinned separately from the first failed observation. See MANUAL_CANO_DATA_INTAKE.md.

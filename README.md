@@ -10,6 +10,8 @@ npm run check
 npm run verify:handoff
 npm test
 npm run replay:semantic
+npm run rehearse:technical
+npm run readiness:technical
 npm run check:cloud-bundles
 ```
 
@@ -24,3 +26,5 @@ Modules:
 - `src/workers/operator.js`: separate console/API, forwards each operator's own capability. JoTrip Ops is not a command surface.
 
 All Workers reject production environments in this milestone. No production routes, scheduler or legacy modification is included. The separate manual Cano staging workflow deploys only by manual dispatch or its explicit cloud/manual-cano-staging test branch trigger. See [actual data intake](docs/MANUAL_CANO_DATA_INTAKE.md). P0 snapshot records parallel branches/worktrees; future changes must re-check exact latest main before their first write.
+
+M4 technical preparation: [executable mechanisms, evidence and activation dependencies](docs/TECHNICAL_PREPARATION.md). 108 local tests/six bundles; deterministic rehearsal and native local DO alarm proof. Cloud progress activation and live semantic admission remain closed.
