@@ -4,7 +4,7 @@ Result: isolated authority/publication milestone implemented; full Intelligence 
 
 ## Verification
 
-Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **56 Node test cases pass, including three parent integration tests**. This is not 44 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
+Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **60 Node test cases pass, including three parent integration tests**. This is not 44 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
 
 Proven local behaviors: epoch fencing, concurrent revision race, content-bound idempotency, control-revision invalidation, obsolete-slot rejection, explicit permissioned correction/retraction lineage, native instance/namespace/locator denial, artifact mismatch/expiry rejection, positive evidence fail-closed, source-age advancement, bounded control stamps, signed checkpoint verification, cold Core-outage `UNVERIFIED` serving, blob hash mismatch rejection, SQLite state/dedup after DO eviction, export failure preserving authority/outbox, GET-only Runtime and production configuration denial.
 
@@ -36,7 +36,7 @@ No V2.1 system test is labelled globally PASS based on this local subset. The re
 | P1 | Partial semantic contracts and protocol/serving harness; full domain schema/kernels pending. |
 | P2 | Local Coordinator, immutable storage, atomic audit/outbox implemented. Cloud proof, crash corpus, retention pins pending. |
 | P3 | Local Runtime and pinned hash/locator activation checks implemented. Full registry/version compatibility and source-policy validation pending. |
-| G1 | BLOCKED in full: 12/12 actual cloud protocol subset PASS is pinned. Three additional resilience cloud cases, R2 revocation, retention/GC, disaster restore and cost evidence remain pending. |
+| G1 | BLOCKED in full: 12/12 actual cloud protocol subset PASS is pinned. 15/15 protocol/resilience cloud subset cases PASS; R2 revocation, retention/GC, disaster restore and cost evidence remain pending. |
 | G2 | BLOCKED: approved domain pilot, licensing/budget/mapping/time policies and golden masters. |
 | G3-G5 / P4-P8 | NOT_RUN: no live mirror, shadow parity, source producer independence, backup/PITR restoration or cutover. |
 | P6 console subset | Separate console/API scaffold implemented and API unit test passes; browser/security/session/SSO/audit display remain pending. |
@@ -90,3 +90,11 @@ Actual run 36847033329 at code a2a9eb32db7b2798b47a6a780734c756a69462bf passed a
 The next manual cloud runner adds three cases, currently NOT_RUN on cloud: (1) actual loopback client socket loss after the real upstream commit response, followed by identical receipt/revision retry; (2) temporary signer removal, observed constructor restart, unchanged authority on export failure, restore and exactly-once pending export; (3) explicit re-deploy, observed changed Coordinator constructor incarnation, unchanged SQLite state/dedup, and verified Runtime read. The loss occurs in the runner between upstream response and client, not within Cloudflare or mid-SQL transaction. The incarnation observation is process metadata only; it never enters authority receipts, locator hashes or persisted state. Local eviction coverage confirms it changes on actual DO eviction while authority state stays equal.
 
 The runner records request counts and elapsed times but does not label them billing, quota or multi-region evidence. Worker source and all 56 tests, including native workerd S3 and actual socket-loss harness checks, pass locally. G1 remains incomplete until these new cloud cases and the other named gates have actual evidence. See G1_REMAINING_EXECUTION.md for next dependencies.
+
+## Resilience cloud PASS and read-only R2 revocation workflow
+
+Actual run 36848850809 at 17ad9edcec99b8ce0e0196653323cacc55a944fa passed 15/15 cloud subset cases. The loss/retry, signer-outbox recovery and changed constructor incarnation/state-dedup recovery cases all passed. Public artifacts are preserved byte-for-byte under docs/evidence/cloud-36848850809 with hashes and provenance, alongside the earlier unchanged 12-case snapshot. Full G1 remains NOT_PASSED.
+
+The new manual R2 revocation workflow is NOT_RUN against actual disposable credentials. It performs only GET and account API reads; no token mutation, deployment or storage write. Baseline proves a separate bucket-scoped Object Read credential and current Runtime witness both read the same signed-checkpoint-pinned immutable object. Deny phase downloads that exact successful baseline, matches the original credential pair fingerprint/account/bucket/trust, confirms token removal/disablement, requires recognized S3 403 denial, and verifies the Runtime witness still returns the same digest. Changed credentials, 404/network/signature errors or a failing witness cannot pass. This requires two new disposable GitHub environment secrets and owner-controlled revocation after baseline PASS; existing Runtime/deploy credentials stay unchanged. See R2_REVOCATION_SETUP.md.
+
+Four new tests exercise distinct credential/account guards, signed HTTP result capture, recognized denial with positive witness, and fail-closed errors/timeouts. Local total: 60. Timing is runner-local observation after manual revocation, not exact propagation latency or global convergence. Remaining retention/GC, unattended retries, backup/PITR and billed cost/policy gates remain pending.
