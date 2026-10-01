@@ -14,3 +14,5 @@ check('core');const core=JSON.parse(await readFile('.cloud-proof/core.json','utf
 
 const {stagingConfig}=await import('../../src/ingress/staging-config.js');
 await writeFile('.cloud-proof/staging.json',JSON.stringify(stagingConfig('a'.repeat(32),'b'.repeat(40),'2026-10-01T17:00:00Z')));check('staging');
+
+await writeFile('.cloud-proof/progress.json',JSON.stringify({name:'openpq-intelligence-progress-local-proof',main:'../src/workers/progress.js',compatibility_date:'2026-07-30',account_id:'a'.repeat(32),workers_dev:false,vars:{ENVIRONMENT_ID:'isolated-test'},durable_objects:{bindings:[{name:'PROGRESS',class_name:'ProgressScheduler'}]},migrations:[{tag:'local-progress-v1',new_sqlite_classes:['ProgressScheduler']}]}));check('progress');

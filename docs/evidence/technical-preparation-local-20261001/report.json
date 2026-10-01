@@ -1,0 +1,485 @@
+{
+  "contract_version": "openpq-preparation-v1",
+  "environment_id": "local-test",
+  "evaluation_time": "2026-10-01T12:00:00Z",
+  "input_kind": "SYNTHETIC_ONLY",
+  "prepared": {
+    "contract_version": "openpq-preparation-v1",
+    "environment_id": "local-test",
+    "dataset_id": "synthetic.preparation",
+    "scope": {
+      "domain": "synthetic",
+      "entity_version": "1",
+      "location_id": "fixture-point",
+      "location_version": "1",
+      "subject_id": "fixture-service"
+    },
+    "evaluation_time": "2026-10-01T12:00:00Z",
+    "input_hash": "21acaf12bfdc4aab91d20ea631d6725583e723199a7218c81df8426285e6fda8",
+    "artifact_refs": {
+      "adapter": {
+        "artifact_id": "adapter.fixture",
+        "hash": "64e0a18fafc374b815ba38add630d1367b1c211a21a0237b2cc314119eeddee7",
+        "version": "1"
+      },
+      "config": {
+        "artifact_id": "config.fixture",
+        "hash": "4d07f3281443204b4226dba7bcba25ec7f6f5c1e49951771694c7563885eb33f",
+        "version": "1"
+      },
+      "mapping": {
+        "artifact_id": "mapping.fixture",
+        "hash": "62a7b04b79d5239e799c17a36fef94b40f4d271c2e3cd0c4fd73403efa611285",
+        "version": "1"
+      },
+      "policy": {
+        "artifact_id": "policy.fixture",
+        "hash": "8354e357d47fb44cfc1c276ce3a7c4f16977c758b0e4e19882318115d26e2266",
+        "version": "1"
+      },
+      "resolver": {
+        "artifact_id": "resolver.fixture",
+        "hash": "a6ebec5b7cba74b27629dafbed001594a76d5a368d421b0d159c22bc7cf906f0",
+        "version": "1"
+      },
+      "rule": {
+        "artifact_id": "rule.fixture",
+        "hash": "8d46e4dc36bf390ca1b23351f70a141f07c13776807154dec6acfa0f4d5b047a",
+        "version": "1"
+      },
+      "schema": {
+        "artifact_id": "schema.fixture",
+        "hash": "c1e1413f8b17d9f2c8939a8c70d44b92e57cc27d53cc743313fa072787e8cef7",
+        "version": "1"
+      },
+      "source": {
+        "artifact_id": "source.fixture",
+        "hash": "00a454868bb1883f3339a31bd8330ce25994d7b929dbd5dc2c3e5e314fbb1673",
+        "version": "1"
+      }
+    },
+    "registry_hash": "6ea84723a74d55a4ddc3e58e9f0b3619416263080a0003dbebc802c3e0cf6d5b",
+    "policy_hash": "172ae590194663d900d4763077eeadc804b26e77b9305e348907e79bef9879d2",
+    "quality": {
+      "completeness": "COMPLETE",
+      "resolution": "RESOLVED"
+    },
+    "eligible_assertion_refs": [
+      "a1"
+    ],
+    "quarantine": [],
+    "missing_predicates": [],
+    "conflicting_predicates": [],
+    "action_eligible": false,
+    "decision_effect": "ABSTAIN",
+    "wire_candidate_available": false,
+    "values": [
+      {
+        "assertion_id": "a1",
+        "predicate": "synthetic.operational.confirmed",
+        "value": true,
+        "source_type": "MANUAL",
+        "source_time": "2026-10-01T00:00:00Z",
+        "valid_to": "2026-10-01T17:00:00Z"
+      }
+    ],
+    "status": "SHADOW_PREPARED",
+    "publication_admitted": false,
+    "production_enabled": false,
+    "preparation_hash": "0c04a36e50e6aa0c09b4b27333f51092880edb7fdf5cbc48ebd08e479a78ad42"
+  },
+  "adapter": {
+    "contract_version": "openpq-preparation-v1",
+    "adapter_id": "synthetic",
+    "source_id": "synthetic-manual",
+    "value": {
+      "fixture": true
+    },
+    "raw_storage_allowed": false,
+    "status": "ADAPTER_REHEARSAL_PASS",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "queue": {
+    "dedup": {
+      "created": false,
+      "state": "PENDING"
+    },
+    "first": {
+      "contract_version": "openpq-preparation-v1",
+      "claimed": 1,
+      "results": [
+        {
+          "id": "synthetic-shadow-one",
+          "state": "PENDING"
+        }
+      ],
+      "status": "LOCAL_TICK_COMPLETE",
+      "publication_admitted": false,
+      "production_enabled": false
+    },
+    "second": {
+      "contract_version": "openpq-preparation-v1",
+      "claimed": 1,
+      "results": [
+        {
+          "id": "synthetic-shadow-one",
+          "state": "DONE"
+        }
+      ],
+      "status": "LOCAL_TICK_COMPLETE",
+      "publication_admitted": false,
+      "production_enabled": false
+    },
+    "after_restart": {
+      "contract_version": "openpq-preparation-v1",
+      "observed_at": "2026-10-01T12:00:00.100Z",
+      "policy": {
+        "concurrency": 2,
+        "environment_id": "local-test",
+        "lease_ms": 100,
+        "payload_bytes": 1024,
+        "queue_limit": 4,
+        "request_window_ms": 100,
+        "requests": 4,
+        "retries": 2,
+        "retry_base_ms": 10,
+        "retry_max_ms": 40,
+        "timeout_ms": 50
+      },
+      "jobs": [
+        {
+          "id": "synthetic-shadow-one",
+          "kind": "PREPARE_SHADOW",
+          "state": "DONE",
+          "attempts": 2,
+          "due": 1790856000120,
+          "deadline": 1790859600000,
+          "lease_until": null,
+          "last_error": null
+        }
+      ],
+      "status": "LOCAL_QUEUE_OBSERVATION",
+      "publication_admitted": false,
+      "production_enabled": false
+    },
+    "handler_calls": 2
+  },
+  "monitoring": {
+    "contract_version": "openpq-preparation-v1",
+    "evaluation_time": "2026-10-01T12:00:00Z",
+    "healthy": true,
+    "checks": [
+      {
+        "id": "runtime",
+        "status": "PASS",
+        "detail": "HTTP success alone does not prove data progress"
+      },
+      {
+        "id": "source:synthetic",
+        "status": "PASS",
+        "detail": {
+          "source_age_ms": 0,
+          "validity_open": true
+        }
+      },
+      {
+        "id": "progress",
+        "status": "PASS",
+        "detail": {
+          "lag_ms": 0
+        }
+      },
+      {
+        "id": "backlog",
+        "status": "PASS",
+        "detail": {
+          "pending_count": 0
+        }
+      },
+      {
+        "id": "checkpoint",
+        "status": "PASS",
+        "detail": {
+          "lag_ms": 0
+        }
+      }
+    ],
+    "notifications_sent": false,
+    "status": "LOCAL_MONITOR_PASS",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "stale_monitoring": {
+    "contract_version": "openpq-preparation-v1",
+    "evaluation_time": "2026-10-01T12:00:00Z",
+    "healthy": false,
+    "checks": [
+      {
+        "id": "runtime",
+        "status": "PASS",
+        "detail": "HTTP success alone does not prove data progress"
+      },
+      {
+        "id": "source:synthetic",
+        "status": "PASS",
+        "detail": {
+          "source_age_ms": 0,
+          "validity_open": true
+        }
+      },
+      {
+        "id": "progress",
+        "status": "FAIL",
+        "detail": {
+          "lag_ms": null
+        }
+      },
+      {
+        "id": "backlog",
+        "status": "PASS",
+        "detail": {
+          "pending_count": 0
+        }
+      },
+      {
+        "id": "checkpoint",
+        "status": "PASS",
+        "detail": {
+          "lag_ms": 0
+        }
+      }
+    ],
+    "notifications_sent": false,
+    "status": "LOCAL_MONITOR_DEGRADED",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "parity": {
+    "contract_version": "openpq-preparation-v1",
+    "differences": [],
+    "critical_difference_count": 0,
+    "cutover_allowed": false,
+    "status": "SHADOW_PARITY_PASS",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "backup_integrity": {
+    "contract_version": "openpq-preparation-v1",
+    "bundle_hash": "88f8cf01a646911633581e6c8af21668db6a5de6965ef75a4f7c534caf7d9f30",
+    "record_count": 7,
+    "created_at": "2026-10-01T12:00:00Z",
+    "watermark": {
+      "control_revision": 0,
+      "revision": 0
+    },
+    "offsite_proven": false,
+    "pitr_proven": false,
+    "receipt_authenticity_verified": false,
+    "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "recovery": {
+    "contract_version": "openpq-preparation-v1",
+    "backup_integrity": {
+      "contract_version": "openpq-preparation-v1",
+      "bundle_hash": "88f8cf01a646911633581e6c8af21668db6a5de6965ef75a4f7c534caf7d9f30",
+      "record_count": 7,
+      "created_at": "2026-10-01T12:00:00Z",
+      "watermark": {
+        "control_revision": 0,
+        "revision": 0
+      },
+      "offsite_proven": false,
+      "pitr_proven": false,
+      "receipt_authenticity_verified": false,
+      "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+      "publication_admitted": false,
+      "production_enabled": false
+    },
+    "new_authority": {
+      "account_id": "synthetic-account",
+      "artifacts": {
+        "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "authority_instance_id": "synthetic-authority",
+      "authority_locator_version": "1",
+      "dataset_id": "synthetic.preparation",
+      "environment_id": "local-test",
+      "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "namespace_id": "synthetic-namespace",
+      "native_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "object_name": "synthetic/preparation",
+      "receipt_keys": {
+        "next": {
+          "crv": "P-256",
+          "kty": "EC",
+          "x": "synthetic-new",
+          "y": "synthetic-new"
+        }
+      },
+      "recovery_generation": "generation-2"
+    },
+    "old_authority_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "fencing": [
+      {
+        "role": "OLD_COMMAND",
+        "observed": false
+      },
+      {
+        "role": "OLD_STORAGE_WRITE",
+        "observed": false
+      }
+    ],
+    "blocked": [
+      "OLD_COMMAND_DENIAL_NOT_OBSERVED",
+      "OLD_STORAGE_WRITE_DENIAL_NOT_OBSERVED"
+    ],
+    "new_epoch": 2,
+    "history_discontinuity": false,
+    "expired_overrides_not_revived": [],
+    "active_receipt_imported": false,
+    "credentials_restored": false,
+    "resume_writer": false,
+    "trust_switch_executed": false,
+    "required_followup": [
+      "Reconcile audit/outbox/checkpoint and evidence retention",
+      "Authenticated owner approval of new locator/signing trust",
+      "Actual isolated restore and Runtime/current-source tests",
+      "Measure RPO/RTO and offsite restore; do not treat local integrity as disaster proof"
+    ],
+    "status": "RESTORE_REHEARSAL_PLAN",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "retention": {
+    "contract_version": "openpq-preparation-v1",
+    "delete_enabled": false,
+    "candidates": [
+      "orphan"
+    ],
+    "note": "Complete authoritative pin inventory and cloud race proof required before any deletion",
+    "status": "RETENTION_DRY_RUN",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "operator_guard": {
+    "contract_version": "openpq-preparation-v1",
+    "actor_id": "synthetic-actor",
+    "command_id": "fixture-freeze",
+    "action": "FREEZE",
+    "dataset_id": "synthetic.preparation",
+    "authentication_assurance": "INJECTED_VERIFIED_SESSION_REQUIRED",
+    "command_forwarded": false,
+    "audit": {
+      "actor_id": "synthetic-actor",
+      "action": "FREEZE",
+      "reason": "Local protection fixture",
+      "evaluated_at": "2026-10-01T12:00:00Z"
+    },
+    "status": "LOCAL_OPERATOR_GUARD_PASS",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "unresolved_policies": {
+    "blocked": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12",
+      "P13",
+      "P14",
+      "P15",
+      "P16",
+      "P17",
+      "P18"
+    ],
+    "approval_assurance": "RECORDED_CONFIGURATION_ONLY",
+    "publication_admitted": false
+  },
+  "cutover": {
+    "contract_version": "openpq-preparation-v1",
+    "gates": [
+      {
+        "id": "primitive",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "domain_policy",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "source_license",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "golden_corpus",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "shadow_cycles",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "recovery_drill",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "operator_security",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "budget_measurement",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "consumer_compatibility",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "rollback_rehearsal",
+        "status": "BLOCKED"
+      }
+    ],
+    "missing": [
+      "primitive",
+      "domain_policy",
+      "source_license",
+      "golden_corpus",
+      "shadow_cycles",
+      "recovery_drill",
+      "operator_security",
+      "budget_measurement",
+      "consumer_compatibility",
+      "rollback_rehearsal"
+    ],
+    "evidence_assurance": "RECORDED_REFERENCES_NOT_AUTHENTICATED",
+    "cutover_allowed": false,
+    "rollback_strategy": "explicit forward correction/retraction and consumer routing; never overwrite history",
+    "status": "CUTOVER_PLAN_ONLY",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "cloud_scheduler_connected": false,
+  "live_candidate_admission_integrated": false,
+  "sso_provider_connected": false,
+  "offsite_backup_proven": false,
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED",
+  "status": "LOCAL_TECHNICAL_REHEARSAL_PASS",
+  "publication_admitted": false,
+  "production_enabled": false,
+  "report_hash": "9f404f5dbaaa0170d9cb43d4638ab5be067ee317744dfaeae3187fb4db992e74"
+}

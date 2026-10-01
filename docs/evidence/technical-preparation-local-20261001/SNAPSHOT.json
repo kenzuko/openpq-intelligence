@@ -1,0 +1,22 @@
+{
+  "status": "LOCAL_TECHNICAL_PREPARATION_PASS",
+  "environment_id": "local-test",
+  "input_kind": "SYNTHETIC_ONLY",
+  "baseline_main_sha": "ba020cb448f88c7145af35e9badda0bda3488d84",
+  "local_test_count": 108,
+  "offline_worker_bundle_count": 6,
+  "native_progress_alarm": "OBSERVED_LOCAL_WORKERD",
+  "cloud_progress_scheduler": "NOT_CONNECTED",
+  "live_candidate_admission": "NOT_INTEGRATED",
+  "provider_sso": "NOT_CONNECTED",
+  "offsite_backup": "NOT_PROVEN",
+  "g1": "NOT_PASSED",
+  "g2": "NOT_PASSED",
+  "publication_admitted": false,
+  "files_sha256": {
+    "report.json": "fdb87f6eeffdb62322981885fa7b6505a4a7627d78d68450ad82bbdfc73edbf1",
+    "backup.json": "01145bfb13e8a6af94df3af59fd4a3375c9bd1979b55f75f1bdbb8c94e8a352d",
+    "registry.json": "4091ea0fde03abae5d27393cd69d053f0b648b29b0e6425df7980977e9f82bdf",
+    "policies.json": "17bfa3d81abcd48ebbb65eac7069e6c6cfabc40959e48cc4525dfba153a46149"
+  }
+}

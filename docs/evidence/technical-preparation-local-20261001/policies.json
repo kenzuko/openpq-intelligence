@@ -1,0 +1,265 @@
+[
+  {
+    "policy_id": "P01",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  },
+  {
+    "policy_id": "P02",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  },
+  {
+    "policy_id": "P03",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  },
+  {
+    "policy_id": "P04",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  },
+  {
+    "policy_id": "P05",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "max_source_age_ms": 86400000,
+      "clock_skew_ms": 0
+    }
+  },
+  {
+    "policy_id": "P06",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  },
+  {
+    "policy_id": "P07",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  },
+  {
+    "policy_id": "P08",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "source_time_basis": "SOURCE_OBSERVATION",
+      "timezone": "Asia/Ho_Chi_Minh"
+    }
+  },
+  {
+    "policy_id": "P09",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "derived_use": true,
+      "raw_storage": false
+    }
+  },
+  {
+    "policy_id": "P10",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "requests": 4,
+      "concurrency": 2,
+      "retries": 2,
+      "payload_bytes": 1024,
+      "timeout_ms": 50,
+      "queue_limit": 4,
+      "lease_ms": 100,
+      "retry_base_ms": 10,
+      "retry_max_ms": 40,
+      "request_window_ms": 100
+    }
+  },
+  {
+    "policy_id": "P11",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "retention_ms": 100,
+      "gc_grace_ms": 10
+    }
+  },
+  {
+    "policy_id": "P12",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  },
+  {
+    "policy_id": "P13",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  },
+  {
+    "policy_id": "P14",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "max_progress_lag_ms": 1000,
+      "max_backlog": 2,
+      "max_checkpoint_lag_ms": 1000
+    }
+  },
+  {
+    "policy_id": "P15",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "max_override_ms": 60000,
+      "reducing_protection_review": true
+    }
+  },
+  {
+    "policy_id": "P16",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "mapping_hash": "62a7b04b79d5239e799c17a36fef94b40f4d271c2e3cd0c4fd73403efa611285"
+    }
+  },
+  {
+    "policy_id": "P17",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": "synthetic-owner",
+    "rationale": "Local test values only. Not business policy.",
+    "status": "APPROVED_RECORDED",
+    "effective_from": "2026-10-01T00:00:00Z",
+    "effective_to": "2026-10-02T00:00:00Z",
+    "values": {
+      "fields": [
+        {
+          "path": "value",
+          "critical": true,
+          "mode": "EXACT"
+        },
+        {
+          "path": "number",
+          "critical": false,
+          "mode": "ABSOLUTE",
+          "tolerance": 0.1
+        }
+      ],
+      "max_time_skew_ms": 1000
+    }
+  },
+  {
+    "policy_id": "P18",
+    "version": "unresolved",
+    "environment_id": "local-test",
+    "scope": "synthetic.preparation",
+    "owner": null,
+    "rationale": null,
+    "status": "BLOCKED",
+    "effective_from": null,
+    "effective_to": null,
+    "values": {}
+  }
+]

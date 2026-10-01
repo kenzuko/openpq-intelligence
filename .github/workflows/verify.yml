@@ -19,4 +19,6 @@ jobs:
       - run: npm run check
       - run: npm run verify:handoff
       - run: npm test
+      - run: npm run rehearse:technical
+      - run: npm run readiness:technical
       - run: npm run check:cloud-bundles

@@ -18,3 +18,14 @@ console.log('PASS: Runtime capability boundaries and JavaScript syntax');
 const staging=await readFile('src/workers/staging.js','utf8');
 assert.doesNotMatch(staging,/env\.(CORE_COMMAND|DATASETS|CANONICAL|RECEIPT_SIGNING_JSON|TRUST_JSON)\b|\.(delete|list)\s*\(/);
 console.log('PASS: staging has no authority bindings, delete or listing API');
+
+for(const path of await walk('src/preparation')) {
+ const content=await readFile(path,'utf8');
+ assert.doesNotMatch(content,/Date\.now|\bfetch\s*\(|cloudflare:workers|env\.(DATASETS|CANONICAL|CORE_COMMAND|RECEIPT_SIGNING_JSON)|\.(put|send)\s*\(|\b(?:storage|bucket|CANONICAL|R2)\.delete\s*\(/);
+}
+console.log('PASS: preparation has no network, publication, storage deletion or message capability');
+
+const progress=await readFile('src/workers/progress.js','utf8');
+assert.doesNotMatch(progress,/env\.(CANONICAL|DATASETS|CORE_COMMAND|RECEIPT_SIGNING_JSON)|\/(prepare|commit|control|bootstrap)\b|\bdeleteAll\b/);
+assert.match(progress,/PROGRESS_CLOUD_ACTIVATION_CLOSED/);
+console.log('PASS: progress has export-only routing and closed cloud activation');

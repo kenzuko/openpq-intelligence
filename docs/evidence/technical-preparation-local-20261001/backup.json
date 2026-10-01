@@ -1,0 +1,323 @@
+{
+  "contract_version": "openpq-preparation-v1",
+  "environment_id": "local-test",
+  "authority": {
+    "account_id": "synthetic-account",
+    "artifacts": {
+      "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "authority_instance_id": "synthetic-authority",
+    "authority_locator_version": "1",
+    "dataset_id": "synthetic.preparation",
+    "environment_id": "local-test",
+    "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "namespace_id": "synthetic-namespace",
+    "native_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "object_name": "synthetic/preparation",
+    "receipt_keys": {
+      "old": {
+        "crv": "P-256",
+        "kty": "EC",
+        "x": "synthetic-old",
+        "y": "synthetic-old"
+      }
+    },
+    "recovery_generation": "generation-1"
+  },
+  "created_at": "2026-10-01T12:00:00Z",
+  "watermark": {
+    "control_revision": 0,
+    "revision": 0
+  },
+  "required_keys": [
+    "control",
+    "registry"
+  ],
+  "entries": [
+    {
+      "key": "audit",
+      "kind": "AUDIT",
+      "content": {
+        "fixture": true
+      },
+      "sha256": "ffbc2dfc402782325da71132100e74ff511d1585dd80e4ea196ed4bcace3fef2",
+      "bytes": 16
+    },
+    {
+      "key": "control",
+      "kind": "CONTROL",
+      "content": {
+        "account_id": "synthetic-account",
+        "active": null,
+        "artifacts": {
+          "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "authority_instance_id": "synthetic-authority",
+        "authority_locator_version": "1",
+        "control_revision": 0,
+        "dataset_id": "synthetic.preparation",
+        "environment_id": "local-test",
+        "epoch": 1,
+        "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "namespace_id": "synthetic-namespace",
+        "native_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "object_name": "synthetic/preparation",
+        "overrides": [],
+        "receipt_keys": {
+          "old": {
+            "crv": "P-256",
+            "kty": "EC",
+            "x": "synthetic-old",
+            "y": "synthetic-old"
+          }
+        },
+        "recovery_generation": "generation-1",
+        "revision": 0
+      },
+      "sha256": "16f39e222720f13b08cfc31dedec573f80a6fa00dc03dd8ba122cd492f19ab8d",
+      "bytes": 940
+    },
+    {
+      "key": "deploy",
+      "kind": "DEPLOY",
+      "content": {
+        "fixture": true
+      },
+      "sha256": "ffbc2dfc402782325da71132100e74ff511d1585dd80e4ea196ed4bcace3fef2",
+      "bytes": 16
+    },
+    {
+      "key": "generation",
+      "kind": "GENERATION",
+      "content": {
+        "fixture": true
+      },
+      "sha256": "ffbc2dfc402782325da71132100e74ff511d1585dd80e4ea196ed4bcace3fef2",
+      "bytes": 16
+    },
+    {
+      "key": "receipt",
+      "kind": "RECEIPT",
+      "content": {
+        "fixture": true
+      },
+      "sha256": "ffbc2dfc402782325da71132100e74ff511d1585dd80e4ea196ed4bcace3fef2",
+      "bytes": 16
+    },
+    {
+      "key": "registry",
+      "kind": "REGISTRY",
+      "content": {
+        "artifacts": [
+          {
+            "artifact_id": "adapter.fixture",
+            "contract_version": "openpq-preparation-v1",
+            "environment_id": "local-test",
+            "hash": "64e0a18fafc374b815ba38add630d1367b1c211a21a0237b2cc314119eeddee7",
+            "kind": "ADAPTER",
+            "payload": {
+              "dependencies": [
+                {
+                  "artifact_id": "schema.fixture",
+                  "hash": "c1e1413f8b17d9f2c8939a8c70d44b92e57cc27d53cc743313fa072787e8cef7",
+                  "kind": "SCHEMA",
+                  "version": "1"
+                }
+              ],
+              "schema_ref": {
+                "artifact_id": "schema.fixture",
+                "hash": "c1e1413f8b17d9f2c8939a8c70d44b92e57cc27d53cc743313fa072787e8cef7",
+                "version": "1"
+              },
+              "source_id": "synthetic-manual",
+              "source_namespace": "fixture"
+            },
+            "version": "1"
+          },
+          {
+            "artifact_id": "config.fixture",
+            "contract_version": "openpq-preparation-v1",
+            "environment_id": "local-test",
+            "hash": "4d07f3281443204b4226dba7bcba25ec7f6f5c1e49951771694c7563885eb33f",
+            "kind": "CONFIG",
+            "payload": {
+              "dataset_id": "synthetic.preparation",
+              "required_predicates": [
+                "synthetic.operational.confirmed"
+              ],
+              "source_id": "synthetic-manual"
+            },
+            "version": "1"
+          },
+          {
+            "artifact_id": "mapping.fixture",
+            "contract_version": "openpq-preparation-v1",
+            "environment_id": "local-test",
+            "hash": "62a7b04b79d5239e799c17a36fef94b40f4d271c2e3cd0c4fd73403efa611285",
+            "kind": "MAPPING",
+            "payload": {
+              "scopes": [
+                {
+                  "domain": "synthetic",
+                  "entity_version": "1",
+                  "location_id": "fixture-point",
+                  "location_version": "1",
+                  "subject_id": "fixture-service"
+                }
+              ]
+            },
+            "version": "1"
+          },
+          {
+            "artifact_id": "policy.fixture",
+            "contract_version": "openpq-preparation-v1",
+            "environment_id": "local-test",
+            "hash": "8354e357d47fb44cfc1c276ce3a7c4f16977c758b0e4e19882318115d26e2266",
+            "kind": "POLICY",
+            "payload": {
+              "policy_set_hash": "172ae590194663d900d4763077eeadc804b26e77b9305e348907e79bef9879d2"
+            },
+            "version": "1"
+          },
+          {
+            "artifact_id": "resolver.fixture",
+            "contract_version": "openpq-preparation-v1",
+            "environment_id": "local-test",
+            "hash": "a6ebec5b7cba74b27629dafbed001594a76d5a368d421b0d159c22bc7cf906f0",
+            "kind": "RESOLVER",
+            "payload": {
+              "implementation": "report-only-no-operational-resolution"
+            },
+            "version": "1"
+          },
+          {
+            "artifact_id": "rule.fixture",
+            "contract_version": "openpq-preparation-v1",
+            "environment_id": "local-test",
+            "hash": "8d46e4dc36bf390ca1b23351f70a141f07c13776807154dec6acfa0f4d5b047a",
+            "kind": "RULE",
+            "payload": {
+              "implementation": "abstain-only-no-domain-thresholds"
+            },
+            "version": "1"
+          },
+          {
+            "artifact_id": "schema.fixture",
+            "contract_version": "openpq-preparation-v1",
+            "environment_id": "local-test",
+            "hash": "c1e1413f8b17d9f2c8939a8c70d44b92e57cc27d53cc743313fa072787e8cef7",
+            "kind": "SCHEMA",
+            "payload": {
+              "predicates": {
+                "synthetic.operational.confirmed": {
+                  "type": "boolean",
+                  "unit": "boolean"
+                }
+              }
+            },
+            "version": "1"
+          },
+          {
+            "artifact_id": "source.fixture",
+            "contract_version": "openpq-preparation-v1",
+            "environment_id": "local-test",
+            "hash": "00a454868bb1883f3339a31bd8330ce25994d7b929dbd5dc2c3e5e314fbb1673",
+            "kind": "SOURCE",
+            "payload": {
+              "budget": {
+                "concurrency": 2,
+                "payload_bytes": 1024,
+                "requests": 4,
+                "retries": 2,
+                "timeout_ms": 50
+              },
+              "credential_reference": null,
+              "domain": "synthetic",
+              "full_snapshot_completeness": false,
+              "mapping_ref": {
+                "artifact_id": "mapping.fixture",
+                "hash": "62a7b04b79d5239e799c17a36fef94b40f4d271c2e3cd0c4fd73403efa611285",
+                "version": "1"
+              },
+              "payload_mode": "DELTA",
+              "policy_refs": {
+                "freshness": {
+                  "artifact_id": "policy.fixture",
+                  "hash": "8354e357d47fb44cfc1c276ce3a7c4f16977c758b0e4e19882318115d26e2266",
+                  "version": "1"
+                },
+                "license": {
+                  "artifact_id": "policy.fixture",
+                  "hash": "8354e357d47fb44cfc1c276ce3a7c4f16977c758b0e4e19882318115d26e2266",
+                  "version": "1"
+                },
+                "retention": {
+                  "artifact_id": "policy.fixture",
+                  "hash": "8354e357d47fb44cfc1c276ce3a7c4f16977c758b0e4e19882318115d26e2266",
+                  "version": "1"
+                }
+              },
+              "provider": "synthetic",
+              "source_id": "synthetic-manual",
+              "source_namespace": "fixture",
+              "source_type": "MANUAL",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "unit_semantics": "boolean",
+              "upstream_origin": "synthetic-origin"
+            },
+            "version": "1"
+          }
+        ]
+      },
+      "sha256": "929b90a013ef30944750b274b2bf0827db566d61b9951f1889bb33c049180c32",
+      "bytes": 3633
+    },
+    {
+      "key": "scheduler",
+      "kind": "SCHEDULER",
+      "content": {
+        "contract_version": "openpq-preparation-v1",
+        "jobs": [
+          {
+            "attempts": 2,
+            "deadline": 1790859600000,
+            "due": 1790856000120,
+            "id": "synthetic-shadow-one",
+            "kind": "PREPARE_SHADOW",
+            "last_error": null,
+            "lease_until": null,
+            "state": "DONE"
+          }
+        ],
+        "observed_at": "2026-10-01T12:00:00.100Z",
+        "policy": {
+          "concurrency": 2,
+          "environment_id": "local-test",
+          "lease_ms": 100,
+          "payload_bytes": 1024,
+          "queue_limit": 4,
+          "request_window_ms": 100,
+          "requests": 4,
+          "retries": 2,
+          "retry_base_ms": 10,
+          "retry_max_ms": 40,
+          "timeout_ms": 50
+        },
+        "production_enabled": false,
+        "publication_admitted": false,
+        "status": "LOCAL_QUEUE_OBSERVATION"
+      },
+      "sha256": "19cf0c796f195a8fbd7585169c9e06716bdd7287bad5e31a2dedcaca7ab0823b",
+      "bytes": 560
+    }
+  ],
+  "snapshot_consistency": "REFERENCED_EXPORT_NOT_ATOMIC_PITR",
+  "secrets_included": false,
+  "bundle_hash": "88f8cf01a646911633581e6c8af21668db6a5de6965ef75a4f7c534caf7d9f30"
+}

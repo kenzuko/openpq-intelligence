@@ -89,3 +89,15 @@ for(const runId of [36847033329,36848850809]){
   assert.equal(closed.status,'STAGING_CAPABILITY_DENIAL_OBSERVED');assert.equal(closed.http_status,401);
   console.log('PASS: actual three-record manual data transport and observed temporary capability closure; admission closed');
 }
+
+{
+ const dir='docs/evidence/technical-preparation-local-20261001';
+ const snapshot=JSON.parse(await readFile(dir+'/SNAPSHOT.json','utf8'));
+ assert.equal(snapshot.status,'LOCAL_TECHNICAL_PREPARATION_PASS');assert.equal(snapshot.input_kind,'SYNTHETIC_ONLY');assert.equal(snapshot.publication_admitted,false);
+ assert.deepEqual(Object.keys(snapshot.files_sha256).sort(),['backup.json','policies.json','registry.json','report.json']);
+ for(const [path,digest] of Object.entries(snapshot.files_sha256))assert.equal(createHash('sha256').update(await readFile(dir+'/'+path)).digest('hex'),digest,path);
+ const actual=JSON.parse(await readFile(dir+'/report.json','utf8'));
+ const {rehearse}=await import('./preparation/rehearse.js');const fresh=await rehearse();assert.equal(stable(fresh.report),stable(actual));
+ assert.equal(actual.publication_admitted,false);assert.equal(actual.queue.handler_calls,2);assert.equal(actual.queue.after_restart.jobs[0].state,'DONE');assert.equal(actual.stale_monitoring.healthy,false);assert.equal(actual.recovery.resume_writer,false);assert.equal(actual.retention.delete_enabled,false);assert.equal(actual.cutover.cutover_allowed,false);assert.equal(actual.unresolved_policies.blocked.length,18);
+ console.log('PASS: immutable local technical rehearsal matches actual replay; all live gates remain closed');
+}
