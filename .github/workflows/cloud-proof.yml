@@ -2,7 +2,7 @@ name: Isolated Cloudflare protocol proof
 on:
   workflow_dispatch:
   push:
-    branches: [cloud/protocol-regression-m5]
+    branches: [cloud/protocol-regression-m5, cloud/protocol-regression-m5-hardening]
 permissions:
   contents: read
 concurrency:

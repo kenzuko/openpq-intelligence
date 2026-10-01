@@ -37,12 +37,23 @@ const waitForReadStatus=async(status,phase)=>{
   finally{await save();}
 };
 
+const waitForRestart=async(previous,phase)=>{
+  const observation={phase,previous_incarnation_id:previous};
+  report.restart_observations??=[];report.restart_observations.push(observation);
+  try{return await observeRestart(()=>core('read',undefined,proof.tokens.read),previous,{observe:value=>Object.assign(observation,value)});}
+  finally{await save();}
+};
+
 try{
   proof=JSON.parse(await readFile('.cloud-proof/proof.private.json','utf8'));coreSecrets=JSON.parse(await readFile('.cloud-proof/core-secrets.json','utf8'));runtimeSecrets=JSON.parse(await readFile('.cloud-proof/runtime-secrets.json','utf8'));
   report.account_id=proof.trust.account_id;report.dataset_id=proof.trust.dataset_id;report.locator=proof.trust;report.code_sha=process.env.GITHUB_SHA||'LOCAL';
   report.observation={runner_region:'GitHub-hosted runner, region unspecified',run_id:process.env.GITHUB_RUN_ID||'LOCAL',run_attempt:process.env.GITHUB_RUN_ATTEMPT||'LOCAL',node:process.version,wrangler:'4.145.0',started_at_utc:iso(Date.now())};
   report.config_hashes=Object.fromEntries(await Promise.all(['core','runtime','operator'].map(async kind=>[kind,await hash(await readFile(`.cloud-proof/${kind}.json`,'utf8'))])));
-  await check('temporary native-ID probe is absent from final Core',async()=>{const r=await fetch(proof.origins.core+'/probe',{redirect:'error',signal:AbortSignal.timeout(15000)});requireThat(r.status===404,'PROVISION_ROUTE_STILL_PRESENT');});
+  await check('temporary native-ID probe is absent from final Core',async()=>{
+    report.provision_route_observation={expected_status:404};
+    try{await waitForCapabilityStatus(()=>fetch(proof.origins.core+'/probe',{redirect:'error',signal:AbortSignal.timeout(15000)}),404,{failureCode:'PROVISION_ROUTE_REMOVAL_NOT_OBSERVED',observe:value=>Object.assign(report.provision_route_observation,value)});}
+    finally{await save();}
+  });
   await check('bootstrap is single-use and native locator-pinned',async()=>{const body={...proof.trust,owner:'proof-owner',epoch:1};requireThat((await core('bootstrap',body,proof.tokens.operator)).status===200,'BOOTSTRAP_FAILED');requireThat((await core('bootstrap',body,proof.tokens.operator)).status===409,'BOOTSTRAP_NOT_SINGLE_USE');});
   await check('read/shadow/backfill/alternate authority cannot prepare',async()=>{const c=await candidate();for(const actor of ['read','shadow','backfill','wrong'])requireThat((await core('prepare',c,proof.tokens[actor])).status===403,'UNAUTHORIZED_PROMOTION_ALLOWED');});
   await check('two same-revision publications race, exactly one advances',async()=>{const c=await candidate(),a=await prepare(c),b=await prepare({...c,candidate_id:randomUUID()});const result=await Promise.all([commit(a),commit(b)]);requireThat(result.filter(r=>r.status===200).length===1&&result.filter(r=>r.status===409).length===1,'PUBLICATION_RACE_FAILED');requireThat((await state()).revision===1,'RACE_REVISION_INVALID');});
@@ -74,12 +85,15 @@ try{
     try{
       const old=await core('read',undefined,proof.tokens.read);
       putSecrets('.cloud-proof/signer-outage-secrets.json');
-      await observeRestart(()=>core('read',undefined,proof.tokens.read),old.body.instance_observation.incarnation_id);
+      await waitForRestart(old.body.instance_observation.incarnation_id,'SIGNER_OUTAGE');
       const failed=await core('export',{},proof.tokens.operator);
       requireThat(failed.status===503&&failed.body.error==='SIGNER_UNAVAILABLE','SIGNER_OUTAGE_NOT_OBSERVED');
       requireThat(await hash(await state())===await hash(before),'EXPORT_FAILURE_MUTATED_AUTHORITY');
     }finally{putSecrets('.cloud-proof/core-secrets.json');await waitForReadStatus(200,'SIGNER_RESTORE');}
-    const exported=await core('export',{},proof.tokens.operator);
+    let exported;
+    report.signer_export_restore_observation={expected_status:200};
+    try{await waitForCapabilityStatus(async()=>{exported=await core('export',{},proof.tokens.operator);return exported;},200,{failureCode:'SIGNER_EXPORT_RESTORE_NOT_OBSERVED',observe:value=>Object.assign(report.signer_export_restore_observation,value)});}
+    finally{await save();}
     requireThat(exported.status===200&&exported.body.exported.length===1&&exported.body.exported[0]===lossReceipt.revision,'OUTBOX_RECOVERY_FAILED');
     requireThat((await core('export',{},proof.tokens.operator)).body.exported.length===0,'OUTBOX_RECOVERY_DUPLICATED');
   });
@@ -87,7 +101,7 @@ try{
     const before=await core('read',undefined,proof.tokens.read),old=before.body.instance_observation.incarnation_id;
     requireThat(typeof old==='string','INCARNATION_OBSERVATION_REQUIRED');
     redeployCore();
-    const restarted=await observeRestart(()=>core('read',undefined,proof.tokens.read),old);
+    const restarted=await waitForRestart(old,'FINAL_REDEPLOY');
     requireThat(await hash(await state())===await hash(before.body.state),'RESTART_LOST_AUTHORITY_STATE');
     const retry=await core('commit',lossCommand,proof.tokens.next);
     requireThat(retry.status===200&&await hash(retry.body.receipt)===await hash(lossReceipt),'RESTART_LOST_COMMAND_DEDUP');

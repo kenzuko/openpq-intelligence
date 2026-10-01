@@ -17,3 +17,20 @@ test('persistent capability state fails closed at deadline with phase-specific e
   assert.equal(calls,3);assert.equal(observation.last_status,200);
   await assert.rejects(waitForCapabilityStatus(async()=>({status:401}),200,{attempts:1}),/READ_CAPABILITY_RESTORE_NOT_OBSERVED/);
 });
+
+test('probe route removal requires actual 404 and records transient old deployment status',async()=>{
+  const statuses=[401,503,404];let observation;
+  await waitForCapabilityStatus(async()=>({status:statuses.shift()}),404,{pause:async()=>{},failureCode:'PROVISION_ROUTE_REMOVAL_NOT_OBSERVED',observe:x=>observation=x});
+  assert.equal(observation.last_status,404);assert.equal(observation.attempts,3);
+});
+test('still-present probe and network errors cannot pass route removal',async()=>{
+  for(const read of [async()=>({status:401}),async()=>{throw Error('private');}]){
+    await assert.rejects(waitForCapabilityStatus(read,404,{attempts:2,pause:async()=>{},failureCode:'PROVISION_ROUTE_REMOVAL_NOT_OBSERVED'}),/PROVISION_ROUTE_REMOVAL_NOT_OBSERVED/);
+  }
+});
+
+test('export recovery observation retains the first successful response for exact outbox assertions',async()=>{
+  const responses=[{status:503,body:{error:'SIGNER_UNAVAILABLE'}},{status:200,body:{exported:[4]}}];let exported,calls=0;
+  await waitForCapabilityStatus(async()=>{calls++;exported=responses.shift();return exported;},200,{pause:async()=>{},failureCode:'SIGNER_EXPORT_RESTORE_NOT_OBSERVED'});
+  assert.equal(calls,2);assert.deepEqual(exported.body.exported,[4]);assert.equal(responses.length,0);
+});

@@ -25,14 +25,17 @@ export async function loseCommittedResponse(upstream){
   }finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
 }
 
-export async function observeRestart(read,previous,{pause=ms=>new Promise(r=>setTimeout(r,ms)),attempts=30}={}){
+export async function observeRestart(read,previous,{pause=ms=>new Promise(r=>setTimeout(r,ms)),attempts=60,timeout=120000,clock=Date.now,observe=()=>{}}={}){
   requireThat(typeof previous==='string'&&previous.length>0,'INCARNATION_OBSERVATION_REQUIRED');
+  const start=clock();
   for(let attempt=1;attempt<=attempts;attempt++){
     let result;
     try{result=await read();}catch{}
     const current=result?.status===200?result.body?.instance_observation?.incarnation_id:null;
-    if(typeof current==='string'&&current!==previous)return {incarnation_id:current,attempts:attempt};
-    if(attempt<attempts)await pause(2000);
+    observe({attempts:attempt,last_status:Number.isInteger(result?.status)?result.status:null,incarnation_id:typeof current==='string'?current:null,elapsed_ms:clock()-start});
+    if(typeof current==='string'&&current!==previous)return {incarnation_id:current,attempts:attempt,elapsed_ms:clock()-start};
+    if(clock()-start>=timeout)break;
+    if(attempt<attempts)await pause(Math.min(2000,Math.max(0,timeout-(clock()-start))));
   }
   throw new ContractError('COORDINATOR_RESTART_NOT_OBSERVED',503);
 }
