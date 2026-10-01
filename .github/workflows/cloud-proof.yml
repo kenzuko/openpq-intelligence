@@ -70,6 +70,7 @@ jobs:
           path: |
             .cloud-proof/preflight.json
             .cloud-proof/locator.public.json
+            .cloud-proof/identity-diagnostic.public.json
             .cloud-proof/cloud-evidence.json
           if-no-files-found: ignore
           retention-days: 7
