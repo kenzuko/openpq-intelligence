@@ -147,3 +147,5 @@ Run 36880999372 attempt 1 at 7a5425f244ca8c39d2ba27bfefd1fc28c4393889 passed 15/
 ## M6 technical-only build, legacy final read deferred
 
 Owner clarified that old systems are unfinished and will announce when their final versions can be read. M6 uses no legacy code/data contract as a migration baseline. It adds explicit bounded synthetic isolated export scheduler configuration, native account/time/capability checks, exclusive portable publication backup/readback with independent receipt trust, and offline release-lock drift detection. Cloud proof currently NOT_RUN. No real/production semantic, source collectors, provider SSO or cutover is enabled. See TECHNICAL_PREPARATION_M6.md and ADR-IMPLEMENTATION-007.md.
+
+M6 first run 36886876385 did not reach scheduler preparation: old generic regression passed 12 cases then failed PREPARE_FAILED without HTTP/code. Cause UNKNOWN. The scoped M6 workflow now seeds its own fresh fixture and tests its actual capability/alarm/backup paths directly; it does not claim another full 15-case regression. Old reports will remain immutable.

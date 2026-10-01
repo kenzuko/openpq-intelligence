@@ -9,7 +9,7 @@ Owner clarified 2026-10-01: legacy systems are unfinished. Do not research their
 | Native export scheduler | Existing local SQL/alarm path plus explicit isolated fixture activation, account/dataset/config/policy/time pins, authenticated scoped export-only jobs | Only `fixture.*`, SYNTHETIC technical proof; production always blocked, no periodic cron, no real-domain activation |
 | Portable publication backup | Exclusive directory, individual canonical objects, fsync, completion marker last, independent receipt/signature/hash verification on readback | Partial publication backup; unsigned control/audit metadata, full-system consistency, PITR/RPO/RTO and writer resume not proven |
 | Immutable release lock | Exact repo/branch/code SHA/contract hashes; code/contract/route drift blocks, same-contract data commits may keep updating | Offline inputs only; cannot prove stopped deployments or authorize cutover |
-| Explicit cloud proof workflow | Existing isolated protocol regression, native scheduler alarm, signed checkpoint, Runtime, portable backup and observed capability closure | No legacy reads, no real data, no production route/cron/credentials |
+| Explicit cloud proof workflow | Fresh isolated native identity/bootstrap, export-only capability, native scheduler alarm, signed checkpoint, Runtime, portable backup and observed capability closure | No legacy reads, no real data, no production route/cron/credentials |
 
 The isolated Worker `openpq-intelligence-progress-isolated-test` has one native SQL DO namespace and exactly one service binding `CORE_EXPORT` to the isolated Core. No CANONICAL/R2/D1/KV, Core command, signer, rule or source collector capability is bound. Preflight permits only this exact Worker and `ProgressScheduler` pair in the existing dedicated test account; any other namespace/Worker remains rejected. Existing test token scopes are unchanged.
 
@@ -37,3 +37,5 @@ Test resources, bindings, auth boundaries, bounded retry/backpressure, immutable
 5. Switch only the approved dataset/consumer after required gates. Keep history, locator migration and credential-denial fences. No modification of old systems is authorized by the current technical-preparation phase.
 
 Actual cloud result and exact code/evidence identities are recorded separately once the workflow completes. G1/G2 remain NOT_PASSED; no technical subset is relabelled as total production readiness.
+
+Run 36886876385 on e9cf5addd8702ab74ca0c2840ced2cb6308aca00 passed 12 old regression cases then failed PREPARE_FAILED before the new scheduler was prepared/deployed. That old error retained no HTTP/code; cause UNKNOWN, scheduler proof NOT_RUN. M6 now runs its own fresh scoped fixture/bootstrap directly, without preceding unrelated fault injection. M5 15-case evidence remains unchanged and is not relabelled as a new M6 run.

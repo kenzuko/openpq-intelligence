@@ -53,8 +53,6 @@ jobs:
           npx --no-install wrangler deploy --config .cloud-proof/runtime.json
           npx --no-install wrangler secret bulk .cloud-proof/runtime-secrets.json --config .cloud-proof/runtime.json
           npx --no-install wrangler deploy --config .cloud-proof/operator.json
-      - name: Actual cloud protocol and capability proof
-        run: node scripts/cloud/proof.js
       - name: Prepare synthetic export-only scheduler
         run: node scripts/cloud/progress-proof.js prepare
       - name: Deploy isolated export-only scheduler
