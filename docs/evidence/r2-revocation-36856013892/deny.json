@@ -1,0 +1,26 @@
+{
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "bucket": "openpq-intelligence-canonical-isolated-test",
+  "credential_fingerprint": "7c55d1aac946b13697bf262dbfc842ddce8bc5643e8927ef74e2ad0d461c7e6b",
+  "code_sha": "d25c3b12467d89c216386f183934d15161e51fa6",
+  "run_id": "36856013892",
+  "observed_at_utc": "2026-10-01T11:32:51.280Z",
+  "g1": "NOT_PASSED",
+  "runner_region": "GitHub runner, unspecified; not global propagation proof",
+  "status": "R2_DENIAL_OBSERVED",
+  "baseline_run_id": "36853905022",
+  "key": "generations/proof-fixture.cano.operation.36848850809-1/fixture-generation-fixture.cano.operation.36848850809-1/968e43ee74d6eae4d8640d9a129bebce65e491e06bebe2d22a10987ccf760ec8.json",
+  "digest": "968e43ee74d6eae4d8640d9a129bebce65e491e06bebe2d22a10987ccf760ec8",
+  "control_plane_revocation_confirmed": true,
+  "observation": {
+    "attempts": 1,
+    "last_status": 401,
+    "last_error_code": null,
+    "elapsed_ms": 128
+  },
+  "http_status": 401,
+  "error_code": null,
+  "attempts": 1,
+  "first_deny_after_probe_start_ms": 961,
+  "witness_status": 200
+}

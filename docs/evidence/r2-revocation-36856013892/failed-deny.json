@@ -1,0 +1,22 @@
+{
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "bucket": "openpq-intelligence-canonical-isolated-test",
+  "credential_fingerprint": "7c55d1aac946b13697bf262dbfc842ddce8bc5643e8927ef74e2ad0d461c7e6b",
+  "code_sha": "8b176ccc59be997d737077474216323a6bc901c6",
+  "run_id": "36854890531",
+  "observed_at_utc": "2026-10-01T11:22:21.637Z",
+  "g1": "NOT_PASSED",
+  "runner_region": "GitHub runner, unspecified; not global propagation proof",
+  "status": "BLOCKED_OR_FAILED",
+  "baseline_run_id": "36853905022",
+  "key": "generations/proof-fixture.cano.operation.36848850809-1/fixture-generation-fixture.cano.operation.36848850809-1/968e43ee74d6eae4d8640d9a129bebce65e491e06bebe2d22a10987ccf760ec8.json",
+  "digest": "968e43ee74d6eae4d8640d9a129bebce65e491e06bebe2d22a10987ccf760ec8",
+  "control_plane_revocation_confirmed": true,
+  "observation": {
+    "attempts": 1,
+    "last_status": 401,
+    "last_error_code": null,
+    "elapsed_ms": 98
+  },
+  "error": "R2_DENIAL_NOT_ESTABLISHED"
+}

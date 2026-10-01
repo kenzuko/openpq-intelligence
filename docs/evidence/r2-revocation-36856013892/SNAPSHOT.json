@@ -1,0 +1,31 @@
+{
+  "status": "R2_REVOCATION_SUBSET_PASS",
+  "g1": "NOT_PASSED",
+  "files": [
+    {
+      "role": "baseline",
+      "run_id": "36853905022",
+      "artifact_id": "11157195728",
+      "archive_sha256": "36258172d656729848f5ce2e72cd3a97918c89ef29ceed0e74ca46e92346b292",
+      "file": "baseline.json",
+      "sha256": "54a8ed0574417817cb0716a0d5036743a858fda662782f00043e060fa9ad59d9"
+    },
+    {
+      "role": "failed-deny",
+      "run_id": "36854890531",
+      "artifact_id": "11158965265",
+      "archive_sha256": "daa6f3e7726b63771e19198bbb8e08a3a1d5eff6bed8df812f8a67a9e336cac3",
+      "file": "failed-deny.json",
+      "sha256": "28989cc7675c130b83af7a945968aa96dfe8acf31924e88123f8ade8ca8fd779"
+    },
+    {
+      "role": "deny",
+      "run_id": "36856013892",
+      "artifact_id": "11158952182",
+      "archive_sha256": "56b46caf0a018d9c899309aca043bea68b822491675732d00e706c51934f7e79",
+      "file": "deny.json",
+      "sha256": "c7fbab11ad7b286f26012bb239a8f6c921d93cb6f94e71b56164728950046e7d"
+    }
+  ],
+  "scope": "One GitHub runner observation; not global propagation, writer-revocation, or production recovery proof"
+}
