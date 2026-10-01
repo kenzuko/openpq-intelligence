@@ -4,11 +4,11 @@ Result: isolated authority/publication milestone implemented; full Intelligence 
 
 ## Verification
 
-Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **44 Node test cases pass, including three parent integration tests**. This is not 44 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
+Local `npm run check`, `npm run verify:handoff`, and `npm test` pass. Node 24.19.0; pinned Miniflare 4.20260730.0/workerd; actual SQLite DO and local R2 APIs. **47 Node test cases pass, including three parent integration tests**. This is not 44 fully passed architecture cases and not a substitute for the V2.1 63-case matrix. Synthetic source data only. Production dependency audit has zero production-package vulnerabilities; no production third-party dependency is shipped.
 
 Proven local behaviors: epoch fencing, concurrent revision race, content-bound idempotency, control-revision invalidation, obsolete-slot rejection, explicit permissioned correction/retraction lineage, native instance/namespace/locator denial, artifact mismatch/expiry rejection, positive evidence fail-closed, source-age advancement, bounded control stamps, signed checkpoint verification, cold Core-outage `UNVERIFIED` serving, blob hash mismatch rejection, SQLite state/dedup after DO eviction, export failure preserving authority/outbox, GET-only Runtime and production configuration denial.
 
-Node test assertions cover errors and unchanged revisions as well as successful reads. Outbox CAS retry exhaustion, signature tamper/old generation/alternate native ID, SigV4 GET/path/denial behavior and bounded streaming reads are pure tests. DO eviction preserves attached storage and does not prove PITR/disaster restore. A test-only HTTP wrapper drops the response after the real SQL commit; retry returns the same receipt. This is not a process crash or cloud network timeout. Cloud R2 IAM denial and cloud multi-region consistency are not tested here. Four Wrangler 4.145.0 offline bundle builds pass. The manual cloud runner and read-only token/resource preflight are implemented; their API policy tests use mocks until actual isolated credentials are available.
+Node test assertions cover errors and unchanged revisions as well as successful reads. Outbox CAS retry exhaustion, signature tamper/old generation/alternate native ID, SigV4 GET/path/denial behavior and bounded streaming reads are pure tests. DO eviction preserves attached storage and does not prove PITR/disaster restore. A test-only HTTP wrapper drops the response after the real SQL commit; retry returns the same receipt. This is not a process crash or cloud network timeout. Cloud R2 IAM denial and cloud multi-region consistency are not tested here. Four Wrangler 4.145.0 offline bundle builds pass. The manual cloud runner and read-only token/resource preflight are implemented; API policy tests use mocks; live run 36840396832 also passed the actual account, token and bucket preflight.
 
 ## Architecture case evidence mapping
 
@@ -36,7 +36,7 @@ No V2.1 system test is labelled globally PASS based on this local subset. The re
 | P1 | Partial semantic contracts and protocol/serving harness; full domain schema/kernels pending. |
 | P2 | Local Coordinator, immutable storage, atomic audit/outbox implemented. Cloud proof, crash corpus, retention pins pending. |
 | P3 | Local Runtime and pinned hash/locator activation checks implemented. Full registry/version compatibility and source-policy validation pending. |
-| G1 | BLOCKED: dedicated Cloudflare test capability/resources and actual cloud denial/failure/cost proof missing. |
+| G1 | BLOCKED: cloud protocol execution, denial/failure/cost evidence and remaining primitive proof pending. Dedicated test account/token/bucket preflight passed. |
 | G2 | BLOCKED: approved domain pilot, licensing/budget/mapping/time policies and golden masters. |
 | G3-G5 / P4-P8 | NOT_RUN: no live mirror, shadow parity, source producer independence, backup/PITR restoration or cutover. |
 | P6 console subset | Separate console/API scaffold implemented and API unit test passes; browser/security/session/SSO/audit display remain pending. |
@@ -57,4 +57,10 @@ Run 36836092480 attempt 3 stopped before deployment with TOKEN_PERMISSION_TOO_BR
 
 Official naming reference: https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/subresources/permission_groups/methods/get/
 
-The next live attempt (run 36838337708, attempt 3) identified deploy permission Workers Scripts Read after the All zones policy was removed. This narrower Worker read permission is now accepted alongside deployment permission, with unchanged exact test-account scope. A regression also proves wildcard scope still fails. Local total: 44 cases. No deployment has occurred.
+The next live attempt (run 36838337708, attempt 3) identified deploy permission Workers Scripts Read after the All zones policy was removed. This narrower Worker read permission is now accepted alongside deployment permission, with unchanged exact test-account scope. A regression also proves wildcard scope still fails. Local total: 44 cases. No deployment had occurred at that attempt.
+
+## Cloud secret limit counterexample, 2026-10-01
+
+Run 36840396832 passed real scoped-token/resource preflight, deployed temporary isolated Core and resolved the actual DO namespace/native instance. Final deployment stopped with Cloudflare error 10054: PRINCIPALS_JSON was 9.4 kB, exceeding the 5.1 kB text-binding limit. Runtime, Operator and cloud protocol proof did not execute. Cleanup removed the provisioning token. No production deployment or authority bootstrap occurred.
+
+Capabilities now contain only the ten locator fields needed for authorization, plus actor-specific permission/mode/owner/epoch data. Preparation packs them into at most three explicitly named secret arrays, checks every generated Core/Runtime secret against a conservative 5,000 UTF-8 byte limit before deployment, and writes unused arrays as [] to clear old capabilities. Authentication parses every array before granting a token; a malformed array fails closed. The outage probe removes the read capability across every shard and restores all original values afterward. The immutable V2.1 reference is unchanged; this addresses implementation serialization, not an authority contract amendment. Three new tests cover longest supported dataset IDs with all seven capabilities, alternate authority denial, oversize/exhaustion, malformed shards and legacy configuration. Local total: 47. Cloud proof remains pending a fresh workflow run on the corrected main commit.

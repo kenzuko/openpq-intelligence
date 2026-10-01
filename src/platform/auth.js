@@ -1,8 +1,16 @@
 import { ContractError, requireThat, sameLocator } from './contracts.js';
+export const PRINCIPAL_SECRET_NAMES=['PRINCIPALS_JSON','PRINCIPALS_JSON_2','PRINCIPALS_JSON_3'];
 
 export async function principal(request, env) {
   let entries;
-  try { entries=JSON.parse(env.PRINCIPALS_JSON || '[]'); } catch { throw new ContractError('AUTH_CONFIGURATION_INVALID',503); }
+  try {
+    entries=[];
+    for(const name of PRINCIPAL_SECRET_NAMES){
+      const shard=JSON.parse(env[name] || '[]');
+      if(!Array.isArray(shard))throw new Error('invalid capability shard');
+      entries.push(...shard);
+    }
+  } catch { throw new ContractError('AUTH_CONFIGURATION_INVALID',503); }
   const raw=request.headers.get('authorization') || '';
   const token=raw.startsWith('Bearer ') ? raw.slice(7) : '';
   const encoder=new TextEncoder();
