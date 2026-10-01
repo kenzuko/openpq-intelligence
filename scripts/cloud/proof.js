@@ -4,6 +4,7 @@ import {randomUUID} from 'node:crypto';
 import {ContractError,hash,requireThat} from '../../src/platform/contracts.js';
 import {S3ReadonlyReader} from '../../src/platform/s3-reader.js';
 import {denyProbe} from './s3-deny-probe.js';
+import {waitForCapabilityStatus} from './capability-readiness.js';
 import {PRINCIPAL_SECRET_NAMES} from '../../src/platform/auth.js';
 
 const report={status:'RUNNING',g1:'NOT_PASSED',cases:[],remaining:['cloud crash/timeout injection','revoked R2 credential propagation evidence','retention/GC pins','disaster restore/RPO/RTO','quota/cost profiling and unattended resilience']};
@@ -21,8 +22,16 @@ const runtime=async()=>{const r=await fetch(proof.origins.runtime+'/datasets/'+p
 const putSecrets=file=>{
   const result=spawnSync('node_modules/.bin/wrangler',['secret','bulk',file,'--config','.cloud-proof/core.json'],{stdio:'pipe',encoding:'utf8',env:{...process.env,CLOUDFLARE_API_TOKEN:process.env.CF_TEST_API_TOKEN,CLOUDFLARE_ACCOUNT_ID:proof.trust.account_id,WRANGLER_SEND_METRICS:'false'}});
   requireThat(result.status===0,'TEST_CORE_SECRET_UPDATE_FAILED',503);
+  // Re-deploy the pinned Core bundle so DO instances activate updated bindings.
+  const deployed=spawnSync('node_modules/.bin/wrangler',['deploy','--config','.cloud-proof/core.json'],{stdio:'pipe',encoding:'utf8',env:{...process.env,CLOUDFLARE_API_TOKEN:process.env.CF_TEST_API_TOKEN,CLOUDFLARE_ACCOUNT_ID:proof.trust.account_id,WRANGLER_SEND_METRICS:'false'}});
+  requireThat(deployed.status===0,'TEST_CORE_SECRET_DEPLOY_FAILED',503);
 };
-const waitForReadStatus=async status=>{for(let i=0;i<30;i++){if((await core('read',undefined,proof.tokens.read)).status===status)return;await new Promise(r=>setTimeout(r,1000));}requireThat(false,'READ_CAPABILITY_CHANGE_NOT_OBSERVED',503);};
+const waitForReadStatus=async(status,phase)=>{
+  const observation={phase,expected_status:status};
+  report.capability_observations??=[];report.capability_observations.push(observation);
+  try{await waitForCapabilityStatus(()=>core('read',undefined,proof.tokens.read),status,{observe:value=>Object.assign(observation,value)});}
+  finally{await save();}
+};
 
 try{
   proof=JSON.parse(await readFile('.cloud-proof/proof.private.json','utf8'));coreSecrets=JSON.parse(await readFile('.cloud-proof/core-secrets.json','utf8'));runtimeSecrets=JSON.parse(await readFile('.cloud-proof/runtime-secrets.json','utf8'));
@@ -43,8 +52,8 @@ try{
   await check('Core read outage gives cold signed checkpoint with no GO eligibility',async()=>{
     const outage=Object.fromEntries(PRINCIPAL_SECRET_NAMES.map(name=>[name,JSON.stringify(JSON.parse(coreSecrets[name]||'[]').filter(p=>p.token!==proof.tokens.read))]));
     await writeFile('.cloud-proof/outage-secrets.json',JSON.stringify(outage),{mode:0o600});
-    try{putSecrets('.cloud-proof/outage-secrets.json');await waitForReadStatus(401);const r=await runtime();requireThat(r.status===200&&r.body.receipt.revision===3&&r.body.serving.fallback===true&&r.body.serving.decision_eligibility==='UNVERIFIED','OUTAGE_FALLBACK_UNSAFE');}
-    finally{putSecrets('.cloud-proof/core-secrets.json');await waitForReadStatus(200);}
+    try{putSecrets('.cloud-proof/outage-secrets.json');await waitForReadStatus(401,'REVOKE');const r=await runtime();requireThat(r.status===200&&r.body.receipt.revision===3&&r.body.serving.fallback===true&&r.body.serving.decision_eligibility==='UNVERIFIED','OUTAGE_FALLBACK_UNSAFE');}
+    finally{putSecrets('.cloud-proof/core-secrets.json');await waitForReadStatus(200,'RESTORE');}
   });
   report.status='CLOUD_PROTOCOL_SUBSET_PASS';await save();console.log('Cloud protocol subset passed; G1 remains incomplete. Read cloud-evidence.json.');
 }catch(e){report.status='BLOCKED_OR_FAILED';report.error=e instanceof ContractError?e.code:'CLOUD_PROOF_FAILED';await save();console.error(report.error);process.exitCode=1;}
