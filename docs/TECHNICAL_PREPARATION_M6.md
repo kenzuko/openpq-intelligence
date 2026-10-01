@@ -39,3 +39,14 @@ Test resources, bindings, auth boundaries, bounded retry/backpressure, immutable
 Actual cloud result and exact code/evidence identities are recorded separately once the workflow completes. G1/G2 remain NOT_PASSED; no technical subset is relabelled as total production readiness.
 
 Run 36886876385 on e9cf5addd8702ab74ca0c2840ced2cb6308aca00 passed 12 old regression cases then failed PREPARE_FAILED before the new scheduler was prepared/deployed. That old error retained no HTTP/code; cause UNKNOWN, scheduler proof NOT_RUN. M6 now runs its own fresh scoped fixture/bootstrap directly, without preceding unrelated fault injection. M5 15-case evidence remains unchanged and is not relabelled as a new M6 run.
+
+Release lock CLI (local files only, no legacy reads):
+
+```
+node scripts/preparation/release-lock.js create reviewed-release-blueprint.json new-lock.json
+node scripts/preparation/release-lock.js check new-lock.json current-inventory.json evaluation-time-UTC
+```
+
+Create refuses overwrite; check exits 2 when blocked. `fixtures/preparation/pending-legacy-release.json` intentionally has no SHAs/contracts/time interval and cannot create a valid lock until final inputs are supplied. Even matching/offline-declared inputs always return execution_allowed=false and deployments_stopped_proven=false.
+
+Scoped run 36887678823 bootstrapped the fresh fixture and passed export-only role denial, then a scheduler transport/JSON exception stopped its negative-job case before any publication. Its former helper retained no HTTP/exception detail, so cause UNKNOWN. Cleanup observed Core export 401 and scheduler closure 503 but its Runtime witness failed because no publication had been created. The next runner records safe transport diagnostics and separately waits for authorized scheduler readiness. Cleanup uses a locator-matched authenticated Core read when no publication exists, or the unchanged Runtime publication digest when one exists. Neither witness authorizes an action.
