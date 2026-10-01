@@ -13,3 +13,9 @@ test('restart evidence requires a changed constructor incarnation, not a success
   assert.equal(r.incarnation_id,'new');assert.equal(r.attempts,3);
   await assert.rejects(observeRestart(async()=>({status:200,body:{instance_observation:{incarnation_id:'old'}}}),'old',{attempts:1}),/COORDINATOR_RESTART_NOT_OBSERVED/);
 });
+
+test('restart observation retains actual status/incarnation and fails at an injected deadline',async()=>{
+  let now=0,observation,calls=0;
+  await assert.rejects(observeRestart(async()=>{calls++;return {status:200,body:{instance_observation:{incarnation_id:'unchanged'}}};},'unchanged',{clock:()=>now,timeout:10,pause:async ms=>{now+=ms;},observe:x=>observation=x}),/COORDINATOR_RESTART_NOT_OBSERVED/);
+  assert.equal(calls,2);assert.equal(observation.last_status,200);assert.equal(observation.incarnation_id,'unchanged');assert.equal(observation.elapsed_ms,10);
+});

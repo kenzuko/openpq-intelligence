@@ -37,6 +37,13 @@ const waitForReadStatus=async(status,phase)=>{
   finally{await save();}
 };
 
+const waitForRestart=async(previous,phase)=>{
+  const observation={phase,previous_incarnation_id:previous};
+  report.restart_observations??=[];report.restart_observations.push(observation);
+  try{return await observeRestart(()=>core('read',undefined,proof.tokens.read),previous,{observe:value=>Object.assign(observation,value)});}
+  finally{await save();}
+};
+
 try{
   proof=JSON.parse(await readFile('.cloud-proof/proof.private.json','utf8'));coreSecrets=JSON.parse(await readFile('.cloud-proof/core-secrets.json','utf8'));runtimeSecrets=JSON.parse(await readFile('.cloud-proof/runtime-secrets.json','utf8'));
   report.account_id=proof.trust.account_id;report.dataset_id=proof.trust.dataset_id;report.locator=proof.trust;report.code_sha=process.env.GITHUB_SHA||'LOCAL';
@@ -78,7 +85,7 @@ try{
     try{
       const old=await core('read',undefined,proof.tokens.read);
       putSecrets('.cloud-proof/signer-outage-secrets.json');
-      await observeRestart(()=>core('read',undefined,proof.tokens.read),old.body.instance_observation.incarnation_id);
+      await waitForRestart(old.body.instance_observation.incarnation_id,'SIGNER_OUTAGE');
       const failed=await core('export',{},proof.tokens.operator);
       requireThat(failed.status===503&&failed.body.error==='SIGNER_UNAVAILABLE','SIGNER_OUTAGE_NOT_OBSERVED');
       requireThat(await hash(await state())===await hash(before),'EXPORT_FAILURE_MUTATED_AUTHORITY');
@@ -94,7 +101,7 @@ try{
     const before=await core('read',undefined,proof.tokens.read),old=before.body.instance_observation.incarnation_id;
     requireThat(typeof old==='string','INCARNATION_OBSERVATION_REQUIRED');
     redeployCore();
-    const restarted=await observeRestart(()=>core('read',undefined,proof.tokens.read),old);
+    const restarted=await waitForRestart(old,'FINAL_REDEPLOY');
     requireThat(await hash(await state())===await hash(before.body.state),'RESTART_LOST_AUTHORITY_STATE');
     const retry=await core('commit',lossCommand,proof.tokens.next);
     requireThat(retry.status===200&&await hash(retry.body.receipt)===await hash(lossReceipt),'RESTART_LOST_COMMAND_DEDUP');
