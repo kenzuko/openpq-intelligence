@@ -143,3 +143,7 @@ Run 36880314625 passed 13 cases then failed to observe constructor restart durin
 ## M5 actual isolated regression PASS
 
 Run 36880999372 attempt 1 at 7a5425f244ca8c39d2ba27bfefd1fc28c4393889 passed 15/15 existing generic synthetic cloud protocol cases. Cleanup SUCCESS. Observed probe 404, separate first successful signer export 200, both changed constructor incarnations and retained state/dedup. Public artifact archive/file hashes pinned in docs/evidence/cloud-36880999372; three failed counterexamples preserved separately with UNKNOWN causes. Full local suite: 121; six offline bundles. PR16 semantic code and PR17 readiness hardening merged. This regression does not enable/prove cloud semantic admission, cloud scheduler, real-domain positive publication, provider SSO, offsite restore/PITR or full G1/G2.
+
+## M6 technical-only build, legacy final read deferred
+
+Owner clarified that old systems are unfinished and will announce when their final versions can be read. M6 uses no legacy code/data contract as a migration baseline. It adds explicit bounded synthetic isolated export scheduler configuration, native account/time/capability checks, exclusive portable publication backup/readback with independent receipt trust, and offline release-lock drift detection. Cloud proof currently NOT_RUN. No real/production semantic, source collectors, provider SSO or cutover is enabled. See TECHNICAL_PREPARATION_M6.md and ADR-IMPLEMENTATION-007.md.

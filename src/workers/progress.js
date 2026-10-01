@@ -2,20 +2,21 @@ import {DurableObject} from 'cloudflare:workers';
 import {ContractError,hash,instant,requireThat,stable,text} from '../platform/contracts.js';
 import {policySet} from '../preparation/policies.js';
 import {queuePolicy} from '../preparation/queue-policy.js';
-// Local workerd proof only. No namespace/binding is provisioned by existing cloud workflows.
+import {validateProgressScope} from '../preparation/progress-config.js';
+// Explicit synthetic isolated export proof only; production is always closed.
 export class ProgressScheduler extends DurableObject {
  constructor(ctx,env){super(ctx,env);this.ctx=ctx;this.env=env;ctx.storage.sql.exec('CREATE TABLE IF NOT EXISTS progress_jobs(id TEXT PRIMARY KEY,digest TEXT NOT NULL,body TEXT NOT NULL,state TEXT NOT NULL,attempts INTEGER NOT NULL,due INTEGER NOT NULL,deadline INTEGER NOT NULL); CREATE TABLE IF NOT EXISTS progress_meta(key TEXT PRIMARY KEY,value TEXT NOT NULL);');}
  async config(){
-  requireThat(this.env.ENVIRONMENT_ID==='local-test','PROGRESS_CLOUD_ACTIVATION_CLOSED',503);
-  const c=JSON.parse(this.env.PROGRESS_CONFIG_JSON||'{}');requireThat(c.enabled===true&&c.environment_id==='local-test','PROGRESS_CONFIG_BLOCKED',503);text(c.dataset_id,'DATASET');
-  const policies=await policySet(c.policies,'local-test',new Date().toISOString());requireThat(await hash(c)===this.env.PROGRESS_CONFIG_HASH,'PROGRESS_CONFIG_PIN_MISMATCH');
+  requireThat(['local-test','isolated-test'].includes(this.env.ENVIRONMENT_ID),'PROGRESS_CLOUD_ACTIVATION_CLOSED',503);
+  const c=JSON.parse(this.env.PROGRESS_CONFIG_JSON||'{}');validateProgressScope(c,this.env.ENVIRONMENT_ID,this.env.TEST_ACCOUNT_ID,new Date().toISOString());
+  const policies=await policySet(c.policies,this.env.ENVIRONMENT_ID,new Date().toISOString());requireThat(await hash(c)===this.env.PROGRESS_CONFIG_HASH,'PROGRESS_CONFIG_PIN_MISMATCH');
   const policy=queuePolicy(policies,c.dataset_id);requireThat(this.env.EXPORT_ONLY_TOKEN&&this.env.SCHEDULER_TOKEN_HASH,'PROGRESS_CAPABILITY_MISSING',503);
   this.ctx.storage.transactionSync(()=>{const row=this.ctx.storage.sql.exec('SELECT value FROM progress_meta WHERE key=?','config_hash').toArray()[0];if(row)requireThat(row.value===this.env.PROGRESS_CONFIG_HASH,'PROGRESS_POLICY_MIGRATION_REQUIRED',409);else this.ctx.storage.sql.exec('INSERT INTO progress_meta VALUES(?,?)','config_hash',this.env.PROGRESS_CONFIG_HASH);});return {c,policy};
  }
  async fetch(request){try{
   const {c,policy}=await this.config();requireThat(request.headers.get('authorization')?.startsWith('Bearer '),'PROGRESS_AUTH_DENIED',401);requireThat(await hash(request.headers.get('authorization')?.replace(/^Bearer /,'')||'')===this.env.SCHEDULER_TOKEN_HASH,'PROGRESS_AUTH_DENIED',401);
   const path=new URL(request.url).pathname;
-  if(path==='/status'&&request.method==='GET')return Response.json({jobs:this.rows(),alarm_at:await this.ctx.storage.getAlarm(),production_enabled:false,cloud_activation:false});
+  if(path==='/status'&&request.method==='GET')return Response.json({jobs:this.rows(),alarm_at:await this.ctx.storage.getAlarm(),production_enabled:false,cloud_activation:this.env.ENVIRONMENT_ID==='isolated-test'});
   if(path==='/tick'&&request.method==='POST')return Response.json(await this.tick());
   requireThat(path==='/enqueue'&&request.method==='POST','NOT_FOUND',404);
   const reader=request.body?.getReader();requireThat(reader,'PROGRESS_BODY_REQUIRED');let size=0,chunks=[];try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;requireThat(size<=4096,'PROGRESS_BODY_TOO_LARGE',413);chunks.push(value);}}finally{await reader.cancel().catch(()=>{});reader.releaseLock();}
@@ -43,4 +44,4 @@ export class ProgressScheduler extends DurableObject {
   this.ctx.storage.sql.exec('INSERT INTO progress_meta(key,value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value','last_error','POLICY_OR_CONFIG_BLOCKED');
  }}
 }
-export default {async fetch(request,env){if(env.ENVIRONMENT_ID!=='local-test')return Response.json({error:'PROGRESS_CLOUD_ACTIVATION_CLOSED'},{status:503});return env.PROGRESS.get(env.PROGRESS.idFromName('local-test/progress')).fetch(request);}};
+export default {async fetch(request,env){try{requireThat(['local-test','isolated-test'].includes(env.ENVIRONMENT_ID),'PROGRESS_CLOUD_ACTIVATION_CLOSED',503);const c=JSON.parse(env.PROGRESS_CONFIG_JSON||'{}');validateProgressScope(c,env.ENVIRONMENT_ID,env.TEST_ACCOUNT_ID,new Date().toISOString());const name=env.ENVIRONMENT_ID==='local-test'?'local-test/progress':'isolated-test/progress/'+c.dataset_id;return env.PROGRESS.get(env.PROGRESS.idFromName(name)).fetch(request);}catch(e){return Response.json({error:e instanceof ContractError?e.code:'PROGRESS_CONFIG_BLOCKED'},{status:e instanceof ContractError?e.status:503});}}};
