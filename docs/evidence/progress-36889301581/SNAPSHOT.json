@@ -1,0 +1,31 @@
+{
+  "run_id": 36889301581,
+  "code_sha": "2f777b35368fb21f3a61cbec782578ce7f6b1ce1",
+  "run_attempt": 1,
+  "archive_sha256": "7afff7169d073fc8af4e9bb4c314466161c7fd9fcfe2a22df1d6b68fb03d187c",
+  "files_sha256": {
+    "locator.public.json": "f0035a91533b07eb9d36b4f69fabcfa1d1e4df9287d08a4103c09375f38c527b",
+    "portable-publication-backup/COMPLETE": "d4d05718926ee85ffc4a006af77cecb2a9a45e50354a07f8b3704957723b3982",
+    "portable-publication-backup/index.json": "ca17bf57dddbe2150aa007ce39a015c64d511c83ae07478b8066dd480cd35e00",
+    "portable-publication-backup/objects/198340873603164b4a08b941d52f1d33ab1c05c5498d555d73346275140b512d.json": "198340873603164b4a08b941d52f1d33ab1c05c5498d555d73346275140b512d",
+    "portable-publication-backup/objects/684f75cef6b37b9f5c00052bccbc7c2a7b48c645be8e71bfc65467b1ca4c2011.json": "684f75cef6b37b9f5c00052bccbc7c2a7b48c645be8e71bfc65467b1ca4c2011",
+    "portable-publication-backup/objects/78eafa294bb0d4f066e19aecb98be376c5c0aa1f5a0de0ef71e29d7272a1e937.json": "78eafa294bb0d4f066e19aecb98be376c5c0aa1f5a0de0ef71e29d7272a1e937",
+    "portable-publication-backup/objects/8145ebb4fbd108c4154c15b277dc0766ab106b3c3a12725c493df10dfad96414.json": "8145ebb4fbd108c4154c15b277dc0766ab106b3c3a12725c493df10dfad96414",
+    "portable-publication-backup/objects/944e3a70b79b31430ae5f9a52b931657c5cb89368a5a9c19651c87a83d62405d.json": "944e3a70b79b31430ae5f9a52b931657c5cb89368a5a9c19651c87a83d62405d",
+    "portable-publication-backup/objects/b9a0229273ef3297adbd4b44a4f8db49354608e8d56e55d406b52742ddb1edf1.json": "b9a0229273ef3297adbd4b44a4f8db49354608e8d56e55d406b52742ddb1edf1",
+    "preflight.json": "d975f5378e39c41e75dbf4732eed0a486307ef68cdbf4e701a5d99021a97e61e",
+    "progress-evidence.json": "80d62a884e50c35661dd723a71b81e905c6a29a8082f9ae632e8a1139d58349e",
+    "artifact-readback.json": "2defa072ffa9511790a83cfa505d63ec3ad251d6d31f364cd57b68b8965933d5"
+  },
+  "status": "CLOUD_PROGRESS_SUBSET_PASS",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "legacy_sources_read": false,
+  "full_system_backup_proven": false,
+  "real_domain_admission": false,
+  "cloud_semantic_admission": false,
+  "case_count": 7,
+  "cleanup": "SUCCESS",
+  "artifact_id": 11175563456,
+  "artifact_transport_readback_verified": true
+}

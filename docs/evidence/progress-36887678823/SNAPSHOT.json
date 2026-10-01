@@ -1,0 +1,20 @@
+{
+  "run_id": 36887678823,
+  "code_sha": "7ad6282e190d8303ca1c9c499570fca2b2871121",
+  "run_attempt": 1,
+  "archive_sha256": "6451e68b34131918fe2bc3288a6a0964d74777dd8df880ec8e5a85a9e54861e3",
+  "files_sha256": {
+    "locator.public.json": "5d695fd88e3ac581e21f402f64ba817729e61cd6b8745a8186c0a1fce06029a8",
+    "preflight.json": "d489b64ce35004b565c85324b6d5792575b07b69ad450d1c782a667fe0839279",
+    "progress-evidence.json": "f2272e6e31093dd5ee79be3484405abde6e9efca015d76c054854593576f4ab7"
+  },
+  "status": "FAILED_TRANSPORT_UNKNOWN",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "legacy_sources_read": false,
+  "full_system_backup_proven": false,
+  "real_domain_admission": false,
+  "cloud_semantic_admission": false,
+  "case_count": 4,
+  "cleanup": "NOT_PROVEN"
+}

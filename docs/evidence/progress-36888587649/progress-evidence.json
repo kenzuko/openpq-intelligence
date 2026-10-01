@@ -1,0 +1,189 @@
+{
+  "status": "CLOUD_PROGRESS_BLOCKED_OR_FAILED",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "legacy_sources_read": false,
+  "cases": [
+    {
+      "name": "actual final Core probe is absent and fresh fixture bootstrap is locator pinned",
+      "status": "PASS"
+    },
+    {
+      "name": "actual scheduler capability cannot read, control, prepare or commit publication",
+      "status": "PASS"
+    },
+    {
+      "name": "actual scheduler rejects unauthenticated, wrong dataset and non-export jobs",
+      "status": "PASS"
+    },
+    {
+      "name": "actual cloud DO alarm drains committed outbox with idempotent scoped job",
+      "status": "PASS"
+    },
+    {
+      "name": "temporary scheduler and Core export capability closure actually observed",
+      "status": "PASS"
+    }
+  ],
+  "code_sha": "6a4b1625a818f3795985b6677718039f2ba3c577",
+  "run_id": "36888587649",
+  "run_attempt": "1",
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "dataset_id": "fixture.cano.operation.36888587649-1",
+  "config": {
+    "environment_id": "isolated-test",
+    "enabled": true,
+    "dataset_id": "fixture.cano.operation.36888587649-1",
+    "fixture_only": true,
+    "cloud_activation": "ISOLATED_EXPORT_PROOF_ONLY",
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "valid_until": "2026-10-01T16:15:50.278Z",
+    "policies": [
+      {
+        "policy_id": "P10",
+        "version": "synthetic-cloud-export-v1",
+        "environment_id": "isolated-test",
+        "scope": "fixture.cano.operation.36888587649-1",
+        "owner": "synthetic-fixture",
+        "rationale": "Bounded technical export proof only; not production policy.",
+        "status": "APPROVED_RECORDED",
+        "effective_from": "2026-10-01T15:59:50.278Z",
+        "effective_to": "2026-10-01T16:15:50.278Z",
+        "values": {
+          "requests": 2,
+          "concurrency": 1,
+          "retries": 2,
+          "payload_bytes": 4096,
+          "timeout_ms": 5000,
+          "queue_limit": 4,
+          "lease_ms": 10000,
+          "retry_base_ms": 250,
+          "retry_max_ms": 1000,
+          "request_window_ms": 1000
+        }
+      }
+    ]
+  },
+  "config_hash": "1bd7af5dd879a2c36ee554e69ef53ef97875c621132a828c465b8d69e06d9353",
+  "probe_observation": {
+    "attempts": 1,
+    "last_status": 404,
+    "elapsed_ms": 136
+  },
+  "progress_transport_observations": [
+    {
+      "path": "/status",
+      "status": 503,
+      "error": "PROGRESS_CAPABILITY_MISSING"
+    },
+    {
+      "path": "/status",
+      "exception": "TypeError"
+    },
+    {
+      "path": "/status",
+      "status": 503,
+      "error": "PROGRESS_CAPABILITY_MISSING"
+    },
+    {
+      "path": "/status",
+      "status": 503,
+      "error": "PROGRESS_CAPABILITY_MISSING"
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/enqueue",
+      "status": 401,
+      "error": "PROGRESS_AUTH_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 422,
+      "error": "PROGRESS_TASK_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 422,
+      "error": "PROGRESS_TASK_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/enqueue",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 503,
+      "error": "PROGRESS_CAPABILITY_MISSING"
+    }
+  ],
+  "progress_ready_observation": {
+    "attempts": 5,
+    "last_status": 200,
+    "elapsed_ms": 7175
+  },
+  "publication_prepare_observation": {
+    "status": 200,
+    "error": null
+  },
+  "alarm_observation": {
+    "attempts": 3,
+    "last_status": 200,
+    "elapsed_ms": 3216
+  },
+  "scheduler_status": {
+    "jobs": [
+      {
+        "id": "77b99792-e5e7-497a-9616-c23ea53a681c",
+        "state": "DONE",
+        "attempts": 1,
+        "due": 1790870473285,
+        "deadline": 1790870651830
+      }
+    ],
+    "alarm_at": null,
+    "production_enabled": false,
+    "cloud_activation": true
+  },
+  "error": "PROGRESS_PROOF_FAILED",
+  "export_revoke_observation": {
+    "attempts": 1,
+    "last_status": 401,
+    "elapsed_ms": 276
+  },
+  "scheduler_closure_observation": {
+    "attempts": 1,
+    "last_status": 503,
+    "elapsed_ms": 208
+  },
+  "cleanup_witness": {
+    "kind": "CORE_READ_NO_PUBLICATION",
+    "status": 200,
+    "revision": 1
+  },
+  "cleanup": "SUCCESS"
+}

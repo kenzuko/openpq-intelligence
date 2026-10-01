@@ -1,0 +1,33 @@
+{
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "environment_id": "isolated-test",
+  "dataset_id": "fixture.cano.operation.36887678823-1",
+  "object_name": "isolated-test/fixture.cano.operation.36887678823-1",
+  "namespace_id": "97783b80477f4613a445b4e219b8158c",
+  "native_id": "0d1cdf3439ce395728fd8aade96e8cc1d78d6e657c97c2f35ad579489b90cf07",
+  "authority_instance_id": "proof-fixture.cano.operation.36887678823-1",
+  "authority_locator_version": "1",
+  "recovery_generation": "fixture-generation-fixture.cano.operation.36887678823-1",
+  "artifacts": {
+    "rule": "7a5f9e8c1b3ca5dc7b271924c31d712e9b28c84655b3c4632380795c8b826e20",
+    "config": "5f684c15f591b17525c9e29434866749ab0684f06292e00a4407ab84c3a7b616",
+    "policy": "0e16ca3931f4a494063f434327b5e7210e846fc2aabe41ac0fd57837f351ee87",
+    "schema": "61220618fc421e6e3d4fa1dc6a3d104c1a02932f7367b55cb8a573c9b07f1549"
+  },
+  "receipt_keys": {
+    "proof-key": {
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "kty": "EC",
+      "x": "mqPv3c-0RfJWhDg0aLZkYeq89i0KXPgUaYZdutnkT3E",
+      "y": "MQKEkIgkSc0a_Az-m5X44bP02g_ChS5UAOPCrSvs_Ko",
+      "crv": "P-256"
+    }
+  },
+  "approved_positive_decision_types": [
+    "cano.operation.fixture"
+  ],
+  "locator_artifact_hash": "cbc17ff7d7eb276c8f88b55dcc9a3966bb0c948b123cef397487218f43c33e67"
+}
