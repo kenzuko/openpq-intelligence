@@ -1,0 +1,18 @@
+{
+  "run_id": 36886876385,
+  "code_sha": "e9cf5addd8702ab74ca0c2840ced2cb6308aca00",
+  "run_attempt": 1,
+  "archive_sha256": "67500de16fd9dce3aed5e7c5d05911a6a26da8e9db5336507c756b1b504117cc",
+  "files_sha256": {
+    "cloud-evidence.json": "fe44dadeb3e5f5199d4be8bda2555d49561a310569ffc671b38cfff105296dd0",
+    "locator.public.json": "e7d16f9a7dc8009a9b842c7cbf664e48fc67665557ec3cdf429a58d39c9b7679",
+    "preflight.json": "5c8c089f346103fe44c6b7cb62d6d69b36dafe6f57e733f4cc56e9b6fe32ceb5"
+  },
+  "status": "FAILED_BEFORE_SCHEDULER",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "legacy_sources_read": false,
+  "full_system_backup_proven": false,
+  "real_domain_admission": false,
+  "cloud_semantic_admission": false
+}

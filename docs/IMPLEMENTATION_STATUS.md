@@ -1,5 +1,12 @@
 # Implementation evidence, 2026-10-01
 
+## M6 final technical-only preparation
+
+129 tests and six offline Worker bundles pass. PR19 implements fixture-scoped cloud export-only SQL scheduler/alarm, portable publication backup and offline release-lock CLI. Actual cloud run 36889301581 at 2f777b35368fb21f3a61cbec782578ce7f6b1ce1 passed 7/7 technical subset cases, cleanup SUCCESS. Old export token 401, scheduler closure 503 and unchanged Runtime 200 publication witness were observed. Artifact 11175563456, SHA256 7afff7169d073fc8af4e9bb4c314466161c7fd9fcfe2a22df1d6b68fb03d187c, was downloaded and its partial publication backup reopened with separately pinned trust. Raw bytes, independent readback and three failed runner snapshots are pinned under docs/evidence/progress-*. This is not full-system backup, PITR, cloud semantic or full G1/G2.
+
+Owner has not finished the old systems. Final legacy README/contracts/data reads and integration remain deferred until the owner announces completion. No intermediate exploratory legacy material is included as an M6 baseline. Production and real-domain admission stay closed. See TECHNICAL_PREPARATION_M6.md and ADR-IMPLEMENTATION-007.md. Earlier sections below preserve milestone chronology.
+
+
 ## Latest: M5 local semantic authority integration
 
 117 local tests and six bundles pass. Trusted binding-backed semantic profiles now gate actual local Coordinator prepare/commit and profile-aware Runtime serving. Nine native cases include alarm-driven signed export and cold fallback, source expiry after prepare, zero-generation-write rejection, exact replay after eviction, command-kind collision and independent-trust backup signature/tamper validation. Synthetic ABSTAIN facts only; isolated cloud semantic and real-domain admission remain closed. See SEMANTIC_ADMISSION_INTEGRATION.md, ADR-IMPLEMENTATION-006.md and evidence/semantic-admission-local-20261001. The explicit isolated 15-case cloud regression is pending this milestone; it will not be labelled cloud semantic proof. G1/G2 remain NOT_PASSED. Earlier sections preserve milestone chronology.

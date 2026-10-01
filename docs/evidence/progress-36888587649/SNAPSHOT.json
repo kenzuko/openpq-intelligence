@@ -1,0 +1,20 @@
+{
+  "run_id": 36888587649,
+  "code_sha": "6a4b1625a818f3795985b6677718039f2ba3c577",
+  "run_attempt": 1,
+  "archive_sha256": "83b541bb0565db3a72cd61fd54e67f0ed2093e5448bb1f6894a4c3ac41ac4b82",
+  "files_sha256": {
+    "locator.public.json": "7d6de4d2c78e97d3bcefd2f483e0a155a5b6c77038d2303ec6890f5b68ef3028",
+    "preflight.json": "99026085427dbbc559fe718131a693eb20594ab0bab94f876b2e15f05ba35629",
+    "progress-evidence.json": "bb2da2f115f442ecccd210c8601b53e373d14fba33d6684cdc167d6709f48e7b"
+  },
+  "status": "ALARM_PASS_BACKUP_CONFIG_RUNNER_FAILED",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "legacy_sources_read": false,
+  "full_system_backup_proven": false,
+  "real_domain_admission": false,
+  "cloud_semantic_admission": false,
+  "case_count": 5,
+  "cleanup": "SUCCESS"
+}

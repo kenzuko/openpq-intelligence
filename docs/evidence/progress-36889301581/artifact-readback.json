@@ -1,0 +1,35 @@
+{
+  "contract_version": "openpq-preparation-v1",
+  "integrity": {
+    "contract_version": "openpq-preparation-v1",
+    "bundle_hash": "3607778a9fdbdec4e5c4c17b55a8c34acc1311f18c28c1459d3397964cb8c373",
+    "record_count": 7,
+    "created_at": "2026-10-01T16:06:45.290Z",
+    "watermark": {
+      "control_revision": 0,
+      "revision": 1
+    },
+    "offsite_proven": false,
+    "pitr_proven": false,
+    "receipt_authenticity_verified": false,
+    "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+    "publication_admitted": false,
+    "production_enabled": false
+  },
+  "verified_publication_revisions": [
+    1
+  ],
+  "publication_receipt_authenticity_verified": true,
+  "control_authenticity_verified": false,
+  "audit_authenticity_verified": false,
+  "offsite_proven": false,
+  "resume_writer": false,
+  "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+  "publication_admitted": false,
+  "production_enabled": false,
+  "portable_filesystem_readback_verified": true,
+  "archive_transport_readback_verified": true,
+  "archive_sha256": "7afff7169d073fc8af4e9bb4c314466161c7fd9fcfe2a22df1d6b68fb03d187c",
+  "trust_source": "Separately pinned original locator.public.json; no trust imported from backup",
+  "full_system_backup_proven": false
+}

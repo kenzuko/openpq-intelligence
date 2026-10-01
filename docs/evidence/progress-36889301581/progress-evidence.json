@@ -1,0 +1,315 @@
+{
+  "status": "CLOUD_PROGRESS_SUBSET_PASS",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "legacy_sources_read": false,
+  "cases": [
+    {
+      "name": "actual final Core probe is absent and fresh fixture bootstrap is locator pinned",
+      "status": "PASS"
+    },
+    {
+      "name": "actual scheduler capability cannot read, control, prepare or commit publication",
+      "status": "PASS"
+    },
+    {
+      "name": "actual scheduler rejects unauthenticated, wrong dataset and non-export jobs",
+      "status": "PASS"
+    },
+    {
+      "name": "actual cloud DO alarm drains committed outbox with idempotent scoped job",
+      "status": "PASS"
+    },
+    {
+      "name": "signed cloud checkpoint and Runtime match the committed non-actionable fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "actual cloud publication exports to portable backup and reopens with independent trust",
+      "status": "PASS"
+    },
+    {
+      "name": "temporary scheduler and Core export capability closure actually observed",
+      "status": "PASS"
+    }
+  ],
+  "code_sha": "2f777b35368fb21f3a61cbec782578ce7f6b1ce1",
+  "run_id": "36889301581",
+  "run_attempt": "1",
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "dataset_id": "fixture.cano.operation.36889301581-1",
+  "config": {
+    "environment_id": "isolated-test",
+    "enabled": true,
+    "dataset_id": "fixture.cano.operation.36889301581-1",
+    "fixture_only": true,
+    "cloud_activation": "ISOLATED_EXPORT_PROOF_ONLY",
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "valid_until": "2026-10-01T16:21:19.881Z",
+    "policies": [
+      {
+        "policy_id": "P10",
+        "version": "synthetic-cloud-export-v1",
+        "environment_id": "isolated-test",
+        "scope": "fixture.cano.operation.36889301581-1",
+        "owner": "synthetic-fixture",
+        "rationale": "Bounded technical export proof only; not production policy.",
+        "status": "APPROVED_RECORDED",
+        "effective_from": "2026-10-01T16:05:19.881Z",
+        "effective_to": "2026-10-01T16:21:19.881Z",
+        "values": {
+          "requests": 2,
+          "concurrency": 1,
+          "retries": 2,
+          "payload_bytes": 4096,
+          "timeout_ms": 5000,
+          "queue_limit": 4,
+          "lease_ms": 10000,
+          "retry_base_ms": 250,
+          "retry_max_ms": 1000,
+          "request_window_ms": 1000
+        }
+      }
+    ]
+  },
+  "config_hash": "d81860688545fde8b7922f07e2377ebffe418092a53572e74e100f973689eda8",
+  "probe_observation": {
+    "attempts": 1,
+    "last_status": 404,
+    "elapsed_ms": 104
+  },
+  "progress_transport_observations": [
+    {
+      "path": "/status",
+      "status": 503,
+      "error": "PROGRESS_CAPABILITY_MISSING"
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/enqueue",
+      "status": 401,
+      "error": "PROGRESS_AUTH_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 422,
+      "error": "PROGRESS_TASK_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 422,
+      "error": "PROGRESS_TASK_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/enqueue",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 503,
+      "error": "PROGRESS_CAPABILITY_MISSING"
+    }
+  ],
+  "progress_ready_observation": {
+    "attempts": 2,
+    "last_status": 200,
+    "elapsed_ms": 2115
+  },
+  "publication_prepare_observation": {
+    "status": 200,
+    "error": null
+  },
+  "alarm_observation": {
+    "attempts": 8,
+    "last_status": 200,
+    "elapsed_ms": 11094
+  },
+  "scheduler_status": {
+    "jobs": [
+      {
+        "id": "a9c7746f-1aae-4ea8-bd80-fc2eae58c525",
+        "state": "DONE",
+        "attempts": 2,
+        "due": 1790870804506,
+        "deadline": 1790870972887
+      }
+    ],
+    "alarm_at": null,
+    "production_enabled": false,
+    "cloud_activation": true
+  },
+  "receipt": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "approved_positive_decision_types": [
+      "cano.operation.fixture"
+    ],
+    "artifacts": {
+      "config": "5f684c15f591b17525c9e29434866749ab0684f06292e00a4407ab84c3a7b616",
+      "policy": "0e16ca3931f4a494063f434327b5e7210e846fc2aabe41ac0fd57837f351ee87",
+      "rule": "7a5f9e8c1b3ca5dc7b271924c31d712e9b28c84655b3c4632380795c8b826e20",
+      "schema": "61220618fc421e6e3d4fa1dc6a3d104c1a02932f7367b55cb8a573c9b07f1549"
+    },
+    "authority_instance_id": "proof-fixture.cano.operation.36889301581-1",
+    "authority_locator_version": "1",
+    "command_id": "894956ba-2eee-40b2-b5fe-79ff690bb728",
+    "committed_at": "2026-10-01T16:06:32.792Z",
+    "control_revision": 0,
+    "dataset_id": "fixture.cano.operation.36889301581-1",
+    "digest": "b9a0229273ef3297adbd4b44a4f8db49354608e8d56e55d406b52742ddb1edf1",
+    "environment_id": "isolated-test",
+    "epoch": 1,
+    "key": "generations/proof-fixture.cano.operation.36889301581-1/fixture-generation-fixture.cano.operation.36889301581-1/b9a0229273ef3297adbd4b44a4f8db49354608e8d56e55d406b52742ddb1edf1.json",
+    "locator_artifact_hash": "5083615d78490a6a1f39a3b737d1a176159201c8c5dc25df54c4066499e23638",
+    "logical_slot": 20,
+    "namespace_id": "97783b80477f4613a445b4e219b8158c",
+    "native_id": "2b495495d4bfeb5488dbaf05f239a9d906dfc8d9345d6c092d98ad8bf3701e24",
+    "object_name": "isolated-test/fixture.cano.operation.36889301581-1",
+    "operation": "NORMAL",
+    "owner": "proof-owner",
+    "previous_revision": 0,
+    "receipt_keys": {
+      "proof-key": {
+        "crv": "P-256",
+        "ext": true,
+        "key_ops": [
+          "verify"
+        ],
+        "kty": "EC",
+        "x": "utw6e1jSLQjQ_ljtIYy0TMk8jnSy0Af4SPwZgwBKRVg",
+        "y": "n6l9WHiKmhGzGgJ9BLq_EKX6V9E_f_IzwkOr1zmIvtc"
+      }
+    },
+    "recovery_generation": "fixture-generation-fixture.cano.operation.36889301581-1",
+    "revision": 1
+  },
+  "backup": {
+    "contract_version": "openpq-preparation-v1",
+    "integrity": {
+      "contract_version": "openpq-preparation-v1",
+      "bundle_hash": "3607778a9fdbdec4e5c4c17b55a8c34acc1311f18c28c1459d3397964cb8c373",
+      "record_count": 7,
+      "created_at": "2026-10-01T16:06:45.290Z",
+      "watermark": {
+        "control_revision": 0,
+        "revision": 1
+      },
+      "offsite_proven": false,
+      "pitr_proven": false,
+      "receipt_authenticity_verified": false,
+      "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+      "publication_admitted": false,
+      "production_enabled": false
+    },
+    "verified_publication_revisions": [
+      1
+    ],
+    "publication_receipt_authenticity_verified": true,
+    "control_authenticity_verified": false,
+    "audit_authenticity_verified": false,
+    "offsite_proven": false,
+    "resume_writer": false,
+    "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+    "publication_admitted": false,
+    "production_enabled": false,
+    "portable_filesystem_exported": true,
+    "object_count": 6
+  },
+  "backup_readback": {
+    "contract_version": "openpq-preparation-v1",
+    "integrity": {
+      "contract_version": "openpq-preparation-v1",
+      "bundle_hash": "3607778a9fdbdec4e5c4c17b55a8c34acc1311f18c28c1459d3397964cb8c373",
+      "record_count": 7,
+      "created_at": "2026-10-01T16:06:45.290Z",
+      "watermark": {
+        "control_revision": 0,
+        "revision": 1
+      },
+      "offsite_proven": false,
+      "pitr_proven": false,
+      "receipt_authenticity_verified": false,
+      "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+      "publication_admitted": false,
+      "production_enabled": false
+    },
+    "verified_publication_revisions": [
+      1
+    ],
+    "publication_receipt_authenticity_verified": true,
+    "control_authenticity_verified": false,
+    "audit_authenticity_verified": false,
+    "offsite_proven": false,
+    "resume_writer": false,
+    "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+    "publication_admitted": false,
+    "production_enabled": false,
+    "portable_filesystem_readback_verified": true
+  },
+  "full_system_backup_proven": false,
+  "export_revoke_observation": {
+    "attempts": 1,
+    "last_status": 401,
+    "elapsed_ms": 116
+  },
+  "scheduler_closure_observation": {
+    "attempts": 1,
+    "last_status": 503,
+    "elapsed_ms": 121
+  },
+  "cleanup_witness": {
+    "kind": "RUNTIME_PUBLICATION_READ",
+    "status": 200,
+    "digest": "b9a0229273ef3297adbd4b44a4f8db49354608e8d56e55d406b52742ddb1edf1"
+  },
+  "cleanup": "SUCCESS"
+}

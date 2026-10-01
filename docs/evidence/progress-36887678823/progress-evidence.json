@@ -1,0 +1,82 @@
+{
+  "status": "CLOUD_PROGRESS_BLOCKED_OR_FAILED",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "legacy_sources_read": false,
+  "cases": [
+    {
+      "name": "actual final Core probe is absent and fresh fixture bootstrap is locator pinned",
+      "status": "PASS"
+    },
+    {
+      "name": "actual scheduler capability cannot read, control, prepare or commit publication",
+      "status": "PASS"
+    },
+    {
+      "name": "actual scheduler rejects unauthenticated, wrong dataset and non-export jobs",
+      "status": "FAIL",
+      "error": "PROGRESS_PROOF_FAILED"
+    },
+    {
+      "name": "temporary scheduler and Core export capability closure actually observed",
+      "status": "FAIL",
+      "error": "PROGRESS_CLEANUP_WITNESS_FAILED"
+    }
+  ],
+  "code_sha": "7ad6282e190d8303ca1c9c499570fca2b2871121",
+  "run_id": "36887678823",
+  "run_attempt": "1",
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "dataset_id": "fixture.cano.operation.36887678823-1",
+  "config": {
+    "environment_id": "isolated-test",
+    "enabled": true,
+    "dataset_id": "fixture.cano.operation.36887678823-1",
+    "fixture_only": true,
+    "cloud_activation": "ISOLATED_EXPORT_PROOF_ONLY",
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "valid_until": "2026-10-01T16:08:39.851Z",
+    "policies": [
+      {
+        "policy_id": "P10",
+        "version": "synthetic-cloud-export-v1",
+        "environment_id": "isolated-test",
+        "scope": "fixture.cano.operation.36887678823-1",
+        "owner": "synthetic-fixture",
+        "rationale": "Bounded technical export proof only; not production policy.",
+        "status": "APPROVED_RECORDED",
+        "effective_from": "2026-10-01T15:52:39.851Z",
+        "effective_to": "2026-10-01T16:08:39.851Z",
+        "values": {
+          "requests": 2,
+          "concurrency": 1,
+          "retries": 2,
+          "payload_bytes": 4096,
+          "timeout_ms": 5000,
+          "queue_limit": 4,
+          "lease_ms": 10000,
+          "retry_base_ms": 250,
+          "retry_max_ms": 1000,
+          "request_window_ms": 1000
+        }
+      }
+    ]
+  },
+  "config_hash": "05ab8d2f4d97d7404c382997400c93bf6d9c73b18911776ff2876c30e6bb30f3",
+  "probe_observation": {
+    "attempts": 1,
+    "last_status": 404,
+    "elapsed_ms": 114
+  },
+  "error": "PROGRESS_CLEANUP_WITNESS_FAILED",
+  "export_revoke_observation": {
+    "attempts": 2,
+    "last_status": 401,
+    "elapsed_ms": 1811
+  },
+  "scheduler_closure_observation": {
+    "attempts": 1,
+    "last_status": 503,
+    "elapsed_ms": 240
+  }
+}

@@ -123,3 +123,22 @@ for(const runId of [36878858323,36879691210,36880314625]){
   assert.ok(evidence.cases.some(item=>item.status==='FAIL'));
   console.log('PASS: preserved failed cloud counterexample '+runId+'; cause not inferred');
 }
+
+{
+ const runs=[36886876385,36887678823,36888587649,36889301581];
+ for(const run of runs){
+  const dir='docs/evidence/progress-'+run,snapshot=JSON.parse(await readFile(dir+'/SNAPSHOT.json','utf8'));
+  assert.equal(snapshot.run_id,run);assert.equal(snapshot.g1,'NOT_PASSED');assert.equal(snapshot.production_enabled,false);assert.equal(snapshot.legacy_sources_read,false);assert.equal(snapshot.full_system_backup_proven,false);
+  for(const [path,digest] of Object.entries(snapshot.files_sha256)){
+   assert.ok(['preflight.json','locator.public.json','cloud-evidence.json','progress-evidence.json','artifact-readback.json'].includes(path)||/^portable-publication-backup\/(COMPLETE|index\.json|objects\/[a-f0-9]{64}\.json)$/.test(path));
+   assert.equal(createHash('sha256').update(await readFile(dir+'/'+path)).digest('hex'),digest,path);
+  }
+  if(run===36889301581){
+   const e=JSON.parse(await readFile(dir+'/progress-evidence.json','utf8'));assert.equal(e.code_sha,snapshot.code_sha);assert.equal(e.status,'CLOUD_PROGRESS_SUBSET_PASS');assert.equal(e.cases.length,7);assert.ok(e.cases.every(c=>c.status==='PASS'));assert.equal(e.cleanup,'SUCCESS');assert.equal(e.production_enabled,false);assert.equal(e.legacy_sources_read,false);assert.equal(e.full_system_backup_proven,false);
+   assert.equal(e.config.fixture_only,true);assert.equal(e.config.cloud_activation,'ISOLATED_EXPORT_PROOF_ONLY');assert.equal(e.export_revoke_observation.last_status,401);assert.equal(e.scheduler_closure_observation.last_status,503);assert.equal(e.cleanup_witness.status,200);assert.equal(e.cleanup_witness.digest,e.receipt.digest);assert.equal(e.scheduler_status.jobs.length,1);assert.equal(e.scheduler_status.jobs[0].state,'DONE');assert.ok(e.scheduler_status.jobs[0].attempts>=1&&e.scheduler_status.jobs[0].attempts<=e.config.policies[0].values.retries+1);
+   const trust=JSON.parse(await readFile(dir+'/locator.public.json','utf8'));const {loadPortableBackup}=await import('./preparation/portable-backup.js');const fresh=(await loadPortableBackup(dir+'/portable-publication-backup',trust)).verification;
+   const pinned=JSON.parse(await readFile(dir+'/artifact-readback.json','utf8'));assert.equal(stable(Object.fromEntries(Object.keys(fresh).map(k=>[k,pinned[k]]))),stable(fresh));assert.equal(pinned.archive_transport_readback_verified,true);assert.equal(pinned.archive_sha256,snapshot.archive_sha256);assert.equal(pinned.full_system_backup_proven,false);assert.equal(fresh.resume_writer,false);
+  }else assert.notEqual(snapshot.status,'CLOUD_PROGRESS_SUBSET_PASS');
+ }
+ console.log('PASS: seven actual fixture-only cloud progress cases, independent portable backup readback and three unchanged failed snapshots; legacy/production gates remain closed');
+}
