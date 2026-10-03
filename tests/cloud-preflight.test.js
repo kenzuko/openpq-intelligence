@@ -67,3 +67,8 @@ test('isolated scheduler namespace is allowed only for the exact Worker/class pa
  const d=fixture();d['/workers/scripts']=[{id:WORKERS[4]}];d['/workers/durable_objects/namespaces']=[{id:'progress-ns',script:WORKERS[4],class:'ProgressScheduler'}];assert.equal((await cloudPreflight(params,fake(d))).status,'PREFLIGHT_PASS');
  d['/workers/durable_objects/namespaces'][0].class='DatasetCoordinator';await assert.rejects(cloudPreflight(params,fake(d)),/TEST_ACCOUNT_HAS_OTHER_NAMESPACES/);
 });
+
+test('ingestion Worker is allowed only in the isolated account and cannot own a namespace',async()=>{
+ const d=fixture();d['/workers/scripts']=[{id:WORKERS[5]}];assert.equal((await cloudPreflight(params,fake(d))).status,'PREFLIGHT_PASS');
+ d['/workers/durable_objects/namespaces']=[{id:'ingestion-ns',script:WORKERS[5],class:'DatasetCoordinator'}];await assert.rejects(cloudPreflight(params,fake(d)),/TEST_ACCOUNT_HAS_OTHER_NAMESPACES/);
+});
