@@ -1,0 +1,70 @@
+{
+  "run_id": "37126753697",
+  "code_sha": "c9e2e5422fbc4525dca21158c15f8cf47000b38c",
+  "artifact_id": 11274732605,
+  "artifact_sha256": "0683b683a5766d62438adb52433a3ca8dab7c331b6e9f6c7e11744c624d24360",
+  "source_authority": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "environment_id": "isolated-test",
+    "dataset_id": "fixture.recovery.37126753697",
+    "object_name": "isolated-test/fixture.recovery.37126753697/source",
+    "namespace_id": "ab4f47e11dc84c799a9eece455e0a309",
+    "native_id": "62fdaa1b0774bdd4c8bb23c3a5435f78d0915a2db1cce2b1629da7b7d64fc18f",
+    "authority_instance_id": "recovery-37126753697-source",
+    "authority_locator_version": "1",
+    "recovery_generation": "recovery-37126753697-old",
+    "artifacts": {
+      "rule": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+      "config": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+      "policy": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+      "schema": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7"
+    },
+    "receipt_keys": {
+      "old-key": {
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true,
+        "kty": "EC",
+        "x": "HJu0ueYG1dhO_RVMgKltgzqu5drj63qe45gUR2TyKwc",
+        "y": "SpU6Se9nCKJSlGJslHw7kN8CxI-e-LcdiAuB4KOVUSk",
+        "crv": "P-256"
+      }
+    },
+    "approved_positive_decision_types": [],
+    "locator_artifact_hash": "46bcd4dd60a03765dba1080c38e694dfd73e51339c92a23106f85c372821857b"
+  },
+  "target_authority": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "environment_id": "isolated-test",
+    "dataset_id": "fixture.recovery.37126753697",
+    "object_name": "isolated-test/fixture.recovery.37126753697/target",
+    "namespace_id": "02485fd7400840d4afeafc5dc9e2a835",
+    "native_id": "8178e01b41f0053370fd191600e886cac19cbb63c80c1dec6f23fcf495917ac2",
+    "authority_instance_id": "recovery-37126753697-target",
+    "authority_locator_version": "2",
+    "recovery_generation": "recovery-37126753697-new",
+    "artifacts": {
+      "rule": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+      "config": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+      "policy": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+      "schema": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7"
+    },
+    "receipt_keys": {
+      "new-key": {
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true,
+        "kty": "EC",
+        "x": "7bUl0nZ3GBroZuPphHjvaPXqXeuyfTrELmI_tp3ifRE",
+        "y": "ESc-YR99vklxZu_U4KDSWrdV2Sonzgr-T_RpgOpuR0Q",
+        "crv": "P-256"
+      }
+    },
+    "approved_positive_decision_types": [],
+    "locator_artifact_hash": "0ed06d3518bfeba20291a47025c82dcb9d4e01d795b75d03b0cfc74784eda4b5"
+  },
+  "source_snapshot_digest": "a7c9948b41c4b30fba988ce908fb5d5ffa6e62318a4f23061432761112542bc0",
+  "target_snapshot_digest": "65cbb3848290e63b2c95e4bca5b2a002760c5bedb6892c0588603825a697008e"
+}

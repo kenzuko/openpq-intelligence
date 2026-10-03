@@ -1,0 +1,27 @@
+// Offline readback of public evidence downloaded from the isolated cloud drill.
+import {readFile,writeFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {hash,requireThat,stable} from '../../src/platform/contracts.js';
+import {verifyAuthoritySnapshot} from '../../src/platform/authority-snapshot.js';
+const dir=process.argv[2],pinsPath=process.argv[3];requireThat(dir&&pinsPath,'CLOUD_RECOVERY_EVIDENCE_AND_INDEPENDENT_PINS_REQUIRED');
+const pins=JSON.parse(await readFile(pinsPath,'utf8'));
+const read=async name=>JSON.parse(await readFile(join(dir,name+'.json'),'utf8'));
+const report=await read('PROOF'),source=await read('SOURCE_TRUST'),target=await read('TARGET_TRUST'),plan=await read('RECOVERY_PLAN'),sourceSnapshot=await read('SOURCE_SNAPSHOT'),targetSnapshot=await read('TARGET_SNAPSHOT');
+requireThat(report.run_id===pins.run_id&&report.code_sha===pins.code_sha&&stable(source)===stable(pins.source_authority)&&stable(target)===stable(pins.target_authority)&&await hash(sourceSnapshot)===pins.source_snapshot_digest&&await hash(targetSnapshot)===pins.target_snapshot_digest,'CLOUD_RECOVERY_INDEPENDENT_PIN_MISMATCH');
+requireThat(report.status==='PASS_CLOUD_FROZEN_NATIVE_RECOVERY_SUBSET'&&report.cleanup.status==='SUCCESS'&&report.cases.length===5&&report.cases.every(x=>x.status==='PASS'),'CLOUD_RECOVERY_PASS_REQUIRED');
+requireThat(report.g1==='NOT_PASSED'&&report.writer_resumed===false&&report.production_enabled===false&&report.r2_s3_write_credential_revocation_proven===false&&report.external_artifact_restore_proven===false&&report.offsite_restore_proven===false,'CLOUD_RECOVERY_SCOPE_INVALID');
+requireThat(source.environment_id==='isolated-test'&&source.account_id==='c61a28455fe22f30619b35dd80c2d495'&&source.dataset_id==='fixture.recovery.'+report.run_id&&target.dataset_id===source.dataset_id&&target.account_id===source.account_id,'CLOUD_RECOVERY_TRUST_SCOPE_INVALID');
+requireThat(source.namespace_id!==target.namespace_id&&source.native_id!==target.native_id&&source.recovery_generation!==target.recovery_generation&&source.authority_locator_version!==target.authority_locator_version&&source.locator_artifact_hash!==target.locator_artifact_hash,'CLOUD_RECOVERY_MIGRATION_INVALID');
+requireThat(Object.values(target.receipt_keys).every(k=>!Object.values(source.receipt_keys).some(old=>old.x===k.x&&old.y===k.y)),'CLOUD_RECOVERY_SIGNER_REUSED');
+const before=await verifyAuthoritySnapshot(sourceSnapshot,source),after=await verifyAuthoritySnapshot(targetSnapshot,target),state=after.manifest.control;
+requireThat(plan.snapshot_digest===await hash(sourceSnapshot)&&plan.target_authority_hash===await hash(target)&&stable(plan.source_authority)===stable(source),'CLOUD_RECOVERY_PLAN_PIN_INVALID');
+requireThat(state.frozen===true&&state.active===null&&state.revision===0&&state.control_revision===0&&state.epoch===plan.old_epoch_high_watermark+1&&plan.old_epoch_high_watermark>=before.manifest.control.epoch,'CLOUD_RECOVERY_TARGET_STATE_INVALID');
+requireThat(state.recovery.snapshot_digest===plan.snapshot_digest&&stable(state.recovery.source_watermark)===stable(before.manifest.watermark)&&state.recovery.writer_resume_allowed===false,'CLOUD_RECOVERY_LINEAGE_INVALID');
+requireThat(after.tables.commands.length===0&&after.tables.prepared.length===0&&after.tables.outbox.length===0&&after.tables.audit.length===1&&JSON.parse(after.tables.audit[0].body).action==='RECOVERY_BOOTSTRAP','CLOUD_RECOVERY_HISTORY_REPLAYED');
+const fenced=report.cases[3].observation,restart=report.cases[4].observation;
+requireThat([401,403].includes(fenced.command_http_status)&&[401,403].includes(fenced.storage_gateway_http_status)&&fenced.command_positive_witness_status===200&&fenced.storage_gateway_write_witness_status===200&&fenced.old_r2_binding_removed===true&&fenced.scope==='APPLICATION_STORAGE_GATEWAY_AND_BINDING_NOT_S3_ACCESS_KEY','CLOUD_RECOVERY_FENCING_SCOPE_INVALID');
+requireThat(restart.native_incarnation_changed===true&&restart.frozen===true&&restart.old_history_replayed===false,'CLOUD_RECOVERY_RESTART_PROOF_INVALID');
+const pre=await read('PREFLIGHT'),post=await read('POSTFLIGHT'),sorted=x=>[...x].sort((a,b)=>a.id.localeCompare(b.id));
+requireThat(stable(sorted(pre.workers))===stable(sorted(post.workers))&&stable(sorted(pre.namespaces))===stable(sorted(post.namespaces)),'CLOUD_RECOVERY_PROTECTED_INVENTORY_CHANGED');
+const result={status:'INDEPENDENT_CLOUD_FROZEN_RECOVERY_READBACK_PASS',run_id:report.run_id,code_sha:report.code_sha,source_signature_verified:true,target_signature_verified:true,source_watermark:before.manifest.watermark,new_epoch:state.epoch,new_native_namespace:true,original_command_token_denied:true,storage_gateway_token_denied:true,old_r2_binding_removed:true,r2_s3_write_credential_revocation_proven:false,native_restart_verified:true,protected_inventory_preserved:true,temporary_workers_cleaned:true,writer_resumed:false,full_g1_passed:false,whole_core2_production_ready:false};
+await writeFile(join(dir,'INDEPENDENT_READBACK.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));

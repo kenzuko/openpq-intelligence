@@ -23,6 +23,10 @@ jobs:
         run: node scripts/rehearse-authority-snapshot.js
       - name: Restore a frozen authority and verify persisted state after native restart
         run: node scripts/rehearse-frozen-recovery.js
+      - name: Independently reopen actual cloud recovery evidence with pinned trust
+        run: |
+          python -c "import hashlib,json,pathlib,zipfile; r=pathlib.Path('evidence/core2-cloud-recovery-20261003'); m=json.loads((r/'ARTIFACTS.json').read_text()); p=r/m['cloud_archive']['file']; assert hashlib.sha256(p.read_bytes()).hexdigest()==m['cloud_archive']['sha256']; zipfile.ZipFile(p).extractall('.cloud-recovery')"
+          node scripts/cloud/verify-frozen-recovery-proof.js .cloud-recovery evidence/core2-cloud-recovery-20261003/TRUST_PINS.json
       - name: Independently reopen real Cron backups and validate their schemas
         run: |
           python -m pip install jsonschema==4.25.1
@@ -45,4 +49,5 @@ jobs:
             .authority-snapshot/TRUST.json
             .authority-snapshot/VERIFICATION.json
             .frozen-recovery/*.json
+            .cloud-recovery/INDEPENDENT_READBACK.json
           retention-days: 14

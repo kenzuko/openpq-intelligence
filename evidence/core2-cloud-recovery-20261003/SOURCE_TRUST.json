@@ -1,0 +1,31 @@
+{
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "environment_id": "isolated-test",
+  "dataset_id": "fixture.recovery.37126753697",
+  "object_name": "isolated-test/fixture.recovery.37126753697/source",
+  "namespace_id": "ab4f47e11dc84c799a9eece455e0a309",
+  "native_id": "62fdaa1b0774bdd4c8bb23c3a5435f78d0915a2db1cce2b1629da7b7d64fc18f",
+  "authority_instance_id": "recovery-37126753697-source",
+  "authority_locator_version": "1",
+  "recovery_generation": "recovery-37126753697-old",
+  "artifacts": {
+    "rule": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+    "config": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+    "policy": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7",
+    "schema": "83620abe11c3552756d5fa2506966dc08d277fe416850304c1d63f5ac0b8faa7"
+  },
+  "receipt_keys": {
+    "old-key": {
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "kty": "EC",
+      "x": "HJu0ueYG1dhO_RVMgKltgzqu5drj63qe45gUR2TyKwc",
+      "y": "SpU6Se9nCKJSlGJslHw7kN8CxI-e-LcdiAuB4KOVUSk",
+      "crv": "P-256"
+    }
+  },
+  "approved_positive_decision_types": [],
+  "locator_artifact_hash": "46bcd4dd60a03765dba1080c38e694dfd73e51339c92a23106f85c372821857b"
+}

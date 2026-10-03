@@ -1,0 +1,88 @@
+{
+  "status": "PASS_CLOUD_FROZEN_NATIVE_RECOVERY_SUBSET",
+  "code_sha": "c9e2e5422fbc4525dca21158c15f8cf47000b38c",
+  "run_id": "37126753697",
+  "started_at": "2026-10-03T13:37:31.547Z",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "writer_resumed": false,
+  "r2_s3_write_credential_revocation_proven": false,
+  "external_artifact_restore_proven": false,
+  "offsite_restore_proven": false,
+  "cases": [
+    {
+      "name": "actual cloud source commit and signed native capture",
+      "status": "PASS",
+      "elapsed_ms": 2787,
+      "observation": {
+        "revision": 1,
+        "namespace_id": "ab4f47e11dc84c799a9eece455e0a309",
+        "native_id": "62fdaa1b0774bdd4c8bb23c3a5435f78d0915a2db1cce2b1629da7b7d64fc18f"
+      }
+    },
+    {
+      "name": "disposable storage gateway write works before revocation",
+      "status": "PASS",
+      "elapsed_ms": 1598,
+      "observation": {
+        "key": "recovery/write-probes/37126753697-source.json",
+        "digest": "e9363abd8f9ce7a8d1c8abe033814fe0ae2412d266a65594ab5069ba50ad55ff",
+        "stored": true
+      }
+    },
+    {
+      "name": "signed snapshot independently reopens through bucket-scoped S3 read",
+      "status": "PASS",
+      "elapsed_ms": 2014,
+      "observation": {
+        "key": "recovery/snapshots/37126753697.json",
+        "digest": "96d6bbfe2cb39667a4cc5631a3a4dab496965d0783999218fd255b9dda39f4b1",
+        "s3_readback_verified": true
+      }
+    },
+    {
+      "name": "original source command and gateway write credentials denied with witnesses",
+      "status": "PASS",
+      "elapsed_ms": 7822,
+      "observation": {
+        "revoked_at": "2026-10-03T13:38:31.722Z",
+        "observed_at": "2026-10-03T13:38:39.544Z",
+        "command_http_status": 401,
+        "command_positive_witness_status": 200,
+        "storage_gateway_http_status": 401,
+        "storage_gateway_write_witness_status": 200,
+        "old_r2_binding_removed": true,
+        "command_credential_fingerprint": "9afd787a7b9edd8aa70fd01bcb3485a6fcdea24fc4909d9bc00ed862bd63f63f",
+        "storage_gateway_credential_fingerprint": "da6c3ec35989cf255f3d89d5674159d5d4e08e3c0ea5d28a90ce79b397e6e9d8",
+        "scope": "APPLICATION_STORAGE_GATEWAY_AND_BINDING_NOT_S3_ACCESS_KEY"
+      }
+    },
+    {
+      "name": "new native namespace frozen recovery and redeploy persistence",
+      "status": "PASS",
+      "elapsed_ms": 69832,
+      "observation": {
+        "bootstrap_ms": 2678,
+        "timing_scope": "THIS_SYNTHETIC_CLOUD_DRILL_ONLY_NOT_DOMAIN_SLA",
+        "native_incarnation_changed": true,
+        "epoch": 8,
+        "frozen": true,
+        "old_history_replayed": false
+      }
+    }
+  ],
+  "cleanup": {
+    "status": "SUCCESS",
+    "workers": [
+      {
+        "name": "openpq-intelligence-recovery-target-test",
+        "deleted": true
+      },
+      {
+        "name": "openpq-intelligence-recovery-source-test",
+        "deleted": true
+      }
+    ]
+  },
+  "finished_at": "2026-10-03T13:39:51.377Z"
+}

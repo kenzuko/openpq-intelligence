@@ -1,0 +1,24 @@
+{
+  "status": "INDEPENDENT_CLOUD_FROZEN_RECOVERY_READBACK_PASS",
+  "run_id": "37126753697",
+  "code_sha": "c9e2e5422fbc4525dca21158c15f8cf47000b38c",
+  "source_signature_verified": true,
+  "target_signature_verified": true,
+  "source_watermark": {
+    "revision": 1,
+    "control_revision": 0,
+    "epoch": 1
+  },
+  "new_epoch": 8,
+  "new_native_namespace": true,
+  "original_command_token_denied": true,
+  "storage_gateway_token_denied": true,
+  "old_r2_binding_removed": true,
+  "r2_s3_write_credential_revocation_proven": false,
+  "native_restart_verified": true,
+  "protected_inventory_preserved": true,
+  "temporary_workers_cleaned": true,
+  "writer_resumed": false,
+  "full_g1_passed": false,
+  "whole_core2_production_ready": false
+}
