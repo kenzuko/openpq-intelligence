@@ -20,6 +20,7 @@ export function principalSecrets(principals){
 }
 
 export async function prepareCloud(evidence,runId){
+  requireThat(!evidence.active_ingestion,'ACTIVE_INGESTION_MUST_BE_PAUSED_BEFORE_AUTHORITY_ROTATION',409);
   requireThat(evidence.status==='PREFLIGHT_PASS'&&/^[a-z0-9-]{1,64}$/.test(runId),'PREFLIGHT_REQUIRED');
   const account=evidence.account_id,dataset='fixture.cano.operation.'+runId;
   await mkdir('.cloud-proof',{recursive:true});
@@ -63,3 +64,4 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
     console.log('Prepared isolated config and temporary native-ID probe. No deployment performed.');
   }catch{console.error('CLOUD_PREPARATION_FAILED');process.exitCode=1;}
 }
+

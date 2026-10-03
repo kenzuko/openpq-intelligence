@@ -9,6 +9,7 @@ const fixture=()=>({
   ['/tokens/'+read]:{id:read,status:'active',policies:[{effect:'allow',resources:{[`com.cloudflare.edge.r2.bucket.${account}_default_${BUCKET}`]:'*'},permission_groups:[{id:'fixture-read',name:'Workers R2 Storage Bucket Item Read'}]}]},
   '/workers/scripts':[],
   '/r2/buckets':{buckets:[{name:BUCKET}]},
+  ['/workers/scripts/'+WORKERS[5]+'/schedules']:{schedules:[]},
   '/workers/durable_objects/namespaces':[]
 });
 const fake=(data,calls=[])=>async(url,opts)=>{calls.push({url,method:opts.method});const key=new URL(url).pathname.slice(('/client/v4/accounts/'+account).length);return Response.json({success:true,result:data[key]});};
@@ -68,8 +69,12 @@ test('isolated scheduler namespace is allowed only for the exact Worker/class pa
  d['/workers/durable_objects/namespaces'][0].class='DatasetCoordinator';await assert.rejects(cloudPreflight(params,fake(d)),/TEST_ACCOUNT_HAS_OTHER_NAMESPACES/);
 });
 
-test('ingestion Worker is allowed only in the isolated account and cannot own a namespace',async()=>{
+test('ingestion Worker permits only its non-authoritative pump namespace',async()=>{
  const d=fixture();d['/workers/scripts']=[{id:WORKERS[5]}];assert.equal((await cloudPreflight(params,fake(d))).status,'PREFLIGHT_PASS');
  d['/workers/durable_objects/namespaces']=[{id:'ingestion-ns',script:WORKERS[5],class:'DatasetSourcePump'}];assert.equal((await cloudPreflight(params,fake(d))).status,'PREFLIGHT_PASS');
  d['/workers/durable_objects/namespaces']=[{id:'ingestion-ns',script:WORKERS[5],class:'DatasetCoordinator'}];await assert.rejects(cloudPreflight(params,fake(d)),/TEST_ACCOUNT_HAS_OTHER_NAMESPACES/);
+});
+
+test('active feed schedule is recorded so authority provisioning cannot silently replace a running feed',async()=>{
+ const d=fixture();d['/workers/scripts']=[{id:WORKERS[5]}];d['/workers/scripts/'+WORKERS[5]+'/schedules']={schedules:[{cron:'*/4 * * * *'}]};assert.equal((await cloudPreflight(params,fake(d))).active_ingestion,true);
 });

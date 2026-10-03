@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {makeAuthority,principalSecrets} from '../scripts/cloud/prepare.js';
+import {makeAuthority,principalSecrets,prepareCloud} from '../scripts/cloud/prepare.js';
 import {denyProbe} from '../scripts/cloud/s3-deny-probe.js';
 import {hash} from '../src/platform/contracts.js';
 import {principal,authorize,PRINCIPAL_SECRET_NAMES} from '../src/platform/auth.js';
@@ -49,4 +49,9 @@ test('malformed capability shard fails closed even when another shard contains t
   await assert.rejects(principal(request,{PRINCIPALS_JSON:'[{"token":"valid"}]',PRINCIPALS_JSON_2:'{}'}),/AUTH_CONFIGURATION_INVALID/);
   const actor=await principal(request,{PRINCIPALS_JSON:'[{"token":"valid","id":"legacy"}]'});
   assert.equal(actor.id,'legacy');
+});
+
+
+test('authority preparation refuses a running unattended feed before writing configs',async()=>{
+ await assert.rejects(prepareCloud({active_ingestion:true},'must-not-rotate'),/ACTIVE_INGESTION_MUST_BE_PAUSED/);
 });

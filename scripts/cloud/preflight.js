@@ -50,6 +50,11 @@ export async function cloudPreflight({accountId,productionAccountIds,apiToken,re
   requireThat(Array.isArray(scripts.result),'WORKER_INVENTORY_UNKNOWN');
   requireThat(!scripts.result_info?.total_count||scripts.result_info.total_count<=scripts.result.length,'WORKER_INVENTORY_INCOMPLETE');
   requireThat(scripts.result.every(w=>WORKERS.includes(w.id)),'TEST_ACCOUNT_HAS_OTHER_WORKERS',403);
+  let active_ingestion=false;
+  if(scripts.result.some(w=>w.id===WORKERS[5])){
+    const schedules=(await get(`/accounts/${accountId}/workers/scripts/${WORKERS[5]}/schedules`)).result?.schedules;
+    requireThat(Array.isArray(schedules),'INGEST_SCHEDULE_INVENTORY_UNKNOWN');active_ingestion=schedules.length>0;
+  }
   const bucketResponse=await get(`/accounts/${accountId}/r2/buckets`);
   const buckets=bucketResponse.result?.buckets;
   requireThat(Array.isArray(buckets)&&!bucketResponse.result?.cursor,'BUCKET_INVENTORY_INCOMPLETE');
@@ -58,7 +63,7 @@ export async function cloudPreflight({accountId,productionAccountIds,apiToken,re
   const ns=await get(`/accounts/${accountId}/workers/durable_objects/namespaces`);
   requireThat(Array.isArray(ns.result)&&(!ns.result_info?.total_count||ns.result_info.total_count<=ns.result.length),'NAMESPACE_INVENTORY_UNKNOWN');
   requireThat(ns.result.every(n=>(n.script===WORKERS[0]&&n.class==='DatasetCoordinator')||(n.script===WORKERS[4]&&n.class==='ProgressScheduler')||(n.script===WORKERS[5]&&n.class==='DatasetSourcePump')),'TEST_ACCOUNT_HAS_OTHER_NAMESPACES',403);
-  return {status:'PREFLIGHT_PASS',cloud_gate:'NOT_PASSED',recorded_at_utc:new Date().toISOString(),account_id:accountId,production_account_ids:productionAccountIds,bucket:BUCKET,workers:scripts.result.map(w=>({id:w.id})),namespaces:ns.result.map(n=>({id:n.id,script:n.script,class:n.class})),deploy_token_id:verified.id,deploy_policies:deployPolicies,read_token_id:readAccessKey,read_policies:readPolicies,api_reads:paths};
+  return {status:'PREFLIGHT_PASS',cloud_gate:'NOT_PASSED',recorded_at_utc:new Date().toISOString(),account_id:accountId,production_account_ids:productionAccountIds,active_ingestion,bucket:BUCKET,workers:scripts.result.map(w=>({id:w.id})),namespaces:ns.result.map(n=>({id:n.id,script:n.script,class:n.class})),deploy_token_id:verified.id,deploy_policies:deployPolicies,read_token_id:readAccessKey,read_policies:readPolicies,api_reads:paths};
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){

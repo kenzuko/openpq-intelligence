@@ -10,6 +10,7 @@ export class DatasetSourcePump extends DurableObject {
   let dataset_id;
   try{
    requireThat(this.env.ENVIRONMENT_ID==='isolated-test'&&this.env.ACCOUNT_ID===ISOLATED_ACCOUNT_ID,'INGEST_ISOLATION_DENIED',403);
+   if(request.method==='GET'&&new URL(request.url).pathname==='/status')return Response.json({observation:await this.ctx.storage.get('last_observation')??null});
    requireThat(request.method==='POST'&&new URL(request.url).pathname==='/refresh','INGEST_METHOD_DENIED',405);
    // The namespace is owned exclusively by the source Worker. Select the
    // actor by this object's native identity, never caller supplied profile/URL.
@@ -41,6 +42,12 @@ export async function ingestionTick(env){
  return results;
 }
 export default {
- fetch(){return new Response('Not found',{status:404,headers:{'cache-control':'no-store'}});},
+ async fetch(request,env){
+  if(request.method==='GET'&&new URL(request.url).pathname==='/health'&&env.ENVIRONMENT_ID==='isolated-test'&&env.ACCOUNT_ID===ISOLATED_ACCOUNT_ID){
+   const datasets=await Promise.all(Object.values(DOMAIN_DATASETS).map(async dataset_id=>{try{const id=env.SOURCE_PUMPS.idFromName('isolated-test/'+dataset_id),r=await env.SOURCE_PUMPS.get(id).fetch('https://pump/status');return {dataset_id,...await r.json()};}catch{return {dataset_id,error:'PUMP_STATUS_UNAVAILABLE'};}}));
+   return Response.json({service:'isolated-reference-ingestion',code_sha:env.SOURCE_CODE_SHA??null,production_enabled:false,datasets},{headers:{'cache-control':'no-store'}});
+  }
+  return new Response('Not found',{status:404,headers:{'cache-control':'no-store'}});
+ },
  async scheduled(_event,env){const results=await ingestionTick(env);console.log(JSON.stringify({kind:'ISOLATED_REFERENCE_INGESTION',results}));}
 };
