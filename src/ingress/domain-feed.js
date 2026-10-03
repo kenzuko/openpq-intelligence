@@ -3,6 +3,7 @@ import {boundedText} from '../platform/bounded-text.js';
 import {gitBlobSha} from './cano-real-shadow.js';
 import {buildContinuousCandidate,validateContinuousProfile} from '../platform/domain-continuous-admission.js';
 import {ISOLATED_ACCOUNT_ID} from '../platform/domain-bridge-admission.js';
+import {mainCommitFromAdvertisement} from './git-ref.js';
 
 // Each secret holds one immutable authority/profile and one dataset-scoped actor.
 // There is no bootstrap, control, signing, bucket or production capability here.
@@ -12,9 +13,11 @@ export async function ownedReference(producer,fetcher=fetch){
   const raw_utf8=await boundedText(await get(producer.url),1500000);
   return {raw_utf8,pin:{source_kind:producer.source_kind,source_pointer:{url:producer.url},payload_sha256:await hash(raw_utf8),git_blob_sha:null}};
  }
- // One GitHub API request per repository per tick. Read the exact immutable
- // commit path over TLS, then compute the Git blob identity from those bytes.
- const commit=(await (await get('https://api.github.com/repos/'+producer.repository+'/commits/main')).json()).sha;
+ // Discover only the advertised main ref via Git's public read protocol.
+ // Read the exact immutable commit path and compute its Git blob identity.
+ const advertisement=await get('https://github.com/'+producer.repository+'.git/info/refs?service=git-upload-pack');
+ requireThat(advertisement.headers.get('content-type')?.split(';')[0]==='application/x-git-upload-pack-advertisement','INGEST_GIT_CONTENT_TYPE_DENIED');
+ const commit=mainCommitFromAdvertisement(await boundedText(advertisement,131072));
  requireThat(/^[a-f0-9]{40}$/.test(commit),'INGEST_COMMIT_PIN_REQUIRED');
  const raw_utf8=await boundedText(await get('https://raw.githubusercontent.com/'+producer.repository+'/'+commit+'/'+producer.path),1500000);
  return {raw_utf8,pin:{source_kind:producer.source_kind,source_pointer:{repository:producer.repository,commit_sha:commit,path:producer.path},payload_sha256:await hash(raw_utf8),git_blob_sha:await gitBlobSha(new TextEncoder().encode(raw_utf8))}};

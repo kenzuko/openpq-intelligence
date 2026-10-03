@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/current-consumer-audit.yml'
       - 'scripts/cloud/consumer-audit.py'
+      - 'scripts/cloud/ingestion-health.js'
       - 'scripts/rehearse-current-consumers.js'
       - 'src/ingress/**'
       - 'src/platform/domain-*'
@@ -30,7 +31,10 @@ jobs:
       - if: github.event_name != 'schedule'
         run: npm run check && npm run verify:handoff && npm test
       - run: python scripts/cloud/test_consumer_audit.py
+      - name: Observe isolated reference ingestion health
+        run: node scripts/cloud/ingestion-health.js .consumer-audit
       - name: Capture actual consumer outputs with bounded GET requests
+        if: always()
         run: python scripts/cloud/consumer-audit.py .consumer-audit
       - name: Native admission and three-source Near Me consumer rehearsal
         run: node scripts/rehearse-current-consumers.js .consumer-audit
@@ -43,3 +47,4 @@ jobs:
           include-hidden-files: true
           retention-days: 14
           if-no-files-found: error
+

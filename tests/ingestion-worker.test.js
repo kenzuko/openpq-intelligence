@@ -45,8 +45,8 @@ test('expired source fails closed without advancing revision; production tick ma
  }finally{await s.mf.dispose();}
 });
 test('repository source fetches exactly the captured commit path and preserves blob identity',async()=>{
- const requests=[],sha='a'.repeat(40),raw='{"version":"fixture"}\n';
- const result=await ownedReference({source_kind:'OWNER_REPOSITORY_SNAPSHOT',repository:'kenzuko/transit-jotrip',path:'data/network.json'},async(url,options)=>{requests.push(url);assert.equal(options.redirect,'manual');return new Response(url.includes('api.github.com')?JSON.stringify({sha}):raw);});
+ const requests=[],sha='a'.repeat(40),pkt=s=>(s.length+4).toString(16).padStart(4,'0')+s,advert=pkt('# service=git-upload-pack\n')+'0000'+pkt('a'.repeat(40)+' refs/heads/main\n')+'0000',raw='{"version":"fixture"}\n';
+ const result=await ownedReference({source_kind:'OWNER_REPOSITORY_SNAPSHOT',repository:'kenzuko/transit-jotrip',path:'data/network.json'},async(url,options)=>{requests.push(url);assert.equal(options.redirect,'manual');return url.includes('info/refs')?new Response(advert,{headers:{'content-type':'application/x-git-upload-pack-advertisement'}}):new Response(raw);});
  assert.equal(requests.length,2);assert.equal(requests[1],'https://raw.githubusercontent.com/kenzuko/transit-jotrip/'+sha+'/data/network.json');assert.equal(result.raw_utf8,raw);assert.match(result.pin.git_blob_sha,/^[a-f0-9]{40}$/);
 });
 

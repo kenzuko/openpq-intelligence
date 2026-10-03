@@ -5,6 +5,7 @@ import { ContractError, candidate, hash, instant, locator, requireThat, revision
 import { authorize, principal } from '../platform/auth.js';
 import {validateSemanticAdmission,validateSemanticReplayActor} from '../platform/semantic-admission.js';
 import { attest, exportCheckpoint } from '../platform/receipts.js';
+import {isExpiredForecastRetirement} from '../platform/forecast-retirement.js';
 
 function json(value,status=200) {return Response.json(value,{status,headers:{'cache-control':'no-store'}});}
 export class DatasetCoordinator extends DurableObject {
@@ -77,6 +78,13 @@ export class DatasetCoordinator extends DurableObject {
         const known=this.ctx.storage.sql.exec('SELECT digest,result FROM commands WHERE id=?',body.command_id).toArray()[0];
         if(known)await validateSemanticReplayActor(this.env,trust,actor,JSON.parse(known.result),new Date().toISOString());
         if(!known&&trust.semantic_profile_hash){const prepared=this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',body.digest).toArray()[0];requireThat(prepared,'NOT_PREPARED',409);await validateSemanticAdmission(this.env,trust,JSON.parse(prepared.body),new Date().toISOString(),actor);requireThat(sameLocator(this.trust(),trust),'TRUST_CHANGED',409);}
+        let retiredForecastDigest=null;
+        if(!known){
+          const active=this.state().active;
+          const old=active&&this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',active.digest).toArray()[0];
+          const next=this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',body.digest).toArray()[0];
+          if(old&&next&&await isExpiredForecastRetirement(JSON.parse(old.body),JSON.parse(next.body),Date.now()))retiredForecastDigest=active.digest;
+        }
         const receipt=this.ctx.storage.transactionSync(()=>{
           const now=Date.now();
           const s=this.state();requireThat(sameLocator(s,trust),'LOCATOR_CHANGED',409);
@@ -95,7 +103,7 @@ export class DatasetCoordinator extends DurableObject {
             const prior=s.active.semantic_admission,current=p.semantic_admission;
             requireThat(prior?.contract_version===CONTINUOUS_PROFILE_VERSION,'CONTINUOUS_PREVIOUS_PROFILE_DENIED',409);
             const before=instant(prior.source_version_time,'CONTINUOUS_PREVIOUS_VERSION'),after=instant(current.source_version_time,'CONTINUOUS_VERSION');
-            requireThat(after>=before&&(after!==before||current.input_hash===prior.input_hash),'CONTINUOUS_SOURCE_REGRESSION',409);
+            requireThat(after>=before&&(after!==before||current.input_hash===prior.input_hash||retiredForecastDigest===s.active.digest),'CONTINUOUS_SOURCE_REGRESSION',409);
           }
           if(p.operation!=='NORMAL') {requireThat(actor.permissions.includes('correct'),'CORRECTION_DENIED',403);requireThat(p.supersedes_revision===s.revision,'SUPERSEDES_MISMATCH',409);}
           candidate(p,now);
