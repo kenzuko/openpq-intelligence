@@ -1,0 +1,153 @@
+{
+  "authorization": "cho toàn quyền",
+  "recorded_date": "2026-10-03",
+  "legacy_read_and_transition_authorized": true,
+  "architecture_reopened": false,
+  "previous_checkpoint": "3da195fa74cd8194cc78192cf0b27792127cac32",
+  "inventory": [
+    {
+      "repository": "kenzuko/jotrip-home",
+      "commit": "158097d05393890bfd358956a502fee3f07fb966",
+      "files": [
+        {
+          "path": "wrangler.jsonc",
+          "git_blob_sha": "265d8d172188dc2bd6ff17b05062d206b664688a"
+        },
+        {
+          "path": "worker.js",
+          "git_blob_sha": "53da381a37af5e2ebba4e4e5d24fd5c403b56fcd"
+        },
+        {
+          "path": ".github/workflows/cloudflare-worker.yml",
+          "git_blob_sha": "07074ea24a2ad5af195d039261cf7e97dfaba0d3"
+        },
+        {
+          "path": "airport/SOURCE_LOCK.md",
+          "git_blob_sha": "06580c72afa9dc32fe3f2aabecfbff063e3c3194"
+        },
+        {
+          "path": "airport/live-config.js",
+          "git_blob_sha": "5547cc708f347a26bf7e262a68efbf77b285a8fa"
+        },
+        {
+          "path": "airport/live-source.js",
+          "git_blob_sha": "97a5610e3986ce17939d9a19b6b18cf28f2de53e"
+        },
+        {
+          "path": "transit/app.js",
+          "git_blob_sha": "6d3feb955717e0f958f9a269141d00b4592bc579"
+        },
+        {
+          "path": "nearme/nearme.js",
+          "git_blob_sha": "7618369e0466f61523bdda73b3e2d18ad25e75d9"
+        },
+        {
+          "path": "nearme/venue-normalizer.js",
+          "git_blob_sha": "a15ce81744e24887f2c4c37f1b70525e034b582a"
+        },
+        {
+          "path": "home-nearme-v2.js",
+          "git_blob_sha": "0819974e5c989f6ef8cfe6e2b70877375640b6d4"
+        },
+        {
+          "path": "cano/app.js",
+          "git_blob_sha": "dd262e51eea27d77cee9fde5dfd3b6526c161079"
+        },
+        {
+          "path": "functions/api/cms/cano-ops.js",
+          "git_blob_sha": "ddeb9942238fcf345820cd888377ca90b642f252"
+        },
+        {
+          "path": "functions/api/cms/cano-forecast.js",
+          "git_blob_sha": "4617289728f7011d5a30e7d46dfc3eec10e7c46b"
+        },
+        {
+          "path": "functions/_shared/weather-edge.js",
+          "git_blob_sha": "f1b76a4b51796b1520e42ec4eb839912c041ba2d"
+        },
+        {
+          "path": "core/weather-context-client.js",
+          "git_blob_sha": "1566491f6004dcf950087c8125b14671b818aef7"
+        },
+        {
+          "path": "package.json",
+          "git_blob_sha": "97e2874a30d931f8206c6708de813bd3be30f46c"
+        }
+      ]
+    },
+    {
+      "repository": "kenzuko/Jotrip-Weather",
+      "commit": "cf1429fba9eaa8d4379b67c34072681030c69e47",
+      "files": [
+        {
+          "path": "WEATHER_RUNTIME_SOURCE_LOCK.md",
+          "git_blob_sha": "c35bbad7e5ba0e68cf2055e5454424ffe7b3468b"
+        },
+        {
+          "path": "weather-runtime-config.js",
+          "git_blob_sha": "ae0445a992e8874434899f18bd55998e8f32f0d3"
+        },
+        {
+          "path": "cloudflare/weather-fresh-worker.js",
+          "git_blob_sha": "6461b5cdb9b8011b88a252eaf29fd459ace02330"
+        },
+        {
+          "path": "cloudflare/wrangler-fresh.toml",
+          "git_blob_sha": "355ebad86cb73627db43436c826e262870fff0de"
+        },
+        {
+          "path": ".github/workflows/sync-weather-runtime.yml",
+          "git_blob_sha": "ba21a29e62972933cc4ae15b45b92340da2a6339"
+        }
+      ]
+    },
+    {
+      "repository": "kenzuko/Jotrip-Lab",
+      "commit": "6126d7e7e2ba2ca6a3a70d2c92829c22a226c5ce",
+      "files": [
+        {
+          "path": "cloudflare/airport-live-worker.mjs",
+          "git_blob_sha": "74601b1671e936f8c72f9ec733addac07b9e0d3b"
+        },
+        {
+          "path": "wrangler.airport-live.jsonc",
+          "git_blob_sha": "f960957ef54e19dd2b8d79180dc6310b16c1df41"
+        },
+        {
+          "path": "server/airport-live-core.mjs",
+          "git_blob_sha": "f096b53870035d91535b82178fa06293e02abbef"
+        },
+        {
+          "path": ".github/workflows/airport-live-worker-deploy.yml",
+          "git_blob_sha": "2bc9eeefd1d95f05a3cffe5f469c0ed262aa4f6b"
+        }
+      ]
+    },
+    {
+      "repository": "kenzuko/transit-jotrip",
+      "commit": "cb89c54711ce2f098ba5bc7d896603c4bea8b738",
+      "files": [
+        {
+          "path": "cloudflare/transit-wake-worker.js",
+          "git_blob_sha": "80e53d5d90e9e13650183f4647ae70cd02ed44c2"
+        },
+        {
+          "path": ".github/workflows/update-transit.yml",
+          "git_blob_sha": "227496b57b1264585939bfa7aa15e84fbb328323"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha": "ee15640266e5ea24962859290cb42c3752bf0b5d"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    "Public Worker is openphuquoc-v3 in kenzuko/jotrip-home; CMS is administrative only.",
+    "Actual OpenPQ Weather edge paths differ from standalone Weather runtime seven captured products.",
+    "Near Me uses location index plus home-support and destination-venues.",
+    "Airport remains live proxy first with bounded frontend snapshot fallback; archive is not primary.",
+    "No production cutover has been executed."
+  ],
+  "production_ready": false
+}

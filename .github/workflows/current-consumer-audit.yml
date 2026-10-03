@@ -1,0 +1,33 @@
+name: Core 2.0 current consumer read-only audit
+on:
+  push:
+    branches: [cloud/core2-current-consumers-20261003]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: core2-current-consumer-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm run verify:handoff && npm test
+      - run: python scripts/cloud/test_consumer_audit.py
+      - name: Capture actual consumer outputs with bounded GET requests
+        run: python scripts/cloud/consumer-audit.py .consumer-audit
+      - name: Save exact captures and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core2-current-consumer-audit
+          path: .consumer-audit
+          retention-days: 7
+          if-no-files-found: error
