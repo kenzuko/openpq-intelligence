@@ -40,7 +40,7 @@ test('long cloud dataset packs every capability below the secret limit without c
 });
 test('capability packing rejects oversized values and exhaustion before deployment',()=>{
   assert.throws(()=>principalSecrets([{token:'x'.repeat(5000)}]),/CAPABILITY_SECRET_TOO_LARGE/);
-  assert.throws(()=>principalSecrets(Array.from({length:4},()=>({token:'x'.repeat(3000)}))),/CAPABILITY_SHARDS_EXHAUSTED/);
+  assert.throws(()=>principalSecrets(Array.from({length:PRINCIPAL_SECRET_NAMES.length+1},()=>({token:'x'.repeat(3000)}))),/CAPABILITY_SHARDS_EXHAUSTED/);
   assert.equal(principalSecrets([{token:'small'}]).PRINCIPALS_JSON_2,'[]');
 });
 test('malformed capability shard fails closed even when another shard contains the supplied token',async()=>{

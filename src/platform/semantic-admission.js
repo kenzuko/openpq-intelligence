@@ -1,5 +1,6 @@
-import {DOMAIN_PROFILE_VERSION,validateDomainBridgeProfile,validateDomainBridgeAdmission,validateDomainBridgeActor} from './domain-bridge-admission.js';
-import {REAL_PROFILE_VERSION,validateRealCanoProfile,validateRealCanoAdmission,validateRealCanoActor} from './real-cano-admission.js';
+import {readConfig,PROFILE_REGISTRY_BINDINGS} from './trusted-config.js';
+import {DOMAIN_PROFILE_VERSION,isDomainProfile,validateDomainBridgeProfile,validateDomainBridgeAdmission,validateDomainBridgeActor} from './domain-bridge-admission.js';
+import {REAL_PROFILE_VERSION,isRealProfile,validateRealCanoProfile,validateRealCanoAdmission,validateRealCanoActor} from './real-cano-admission.js';
 import {candidate,hash,instant,requireThat,stable} from './contracts.js';
 import {exactKeys,clone,digest,noSecrets} from '../preparation/common.js';
 import {preparationRegistry} from '../preparation/registry.js';
@@ -13,12 +14,16 @@ export async function packAdmissionProfile(profile){
  return Object.fromEntries(ADMISSION_BINDINGS.map((key,i)=>[key,chunks[i].join('')]));
 }
 async function configured(env,trust,evaluation_time){
- requireThat(env.ENVIRONMENT_ID==='local-test','SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
+ requireThat(['local-test','isolated-test'].includes(env.ENVIRONMENT_ID),'SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
+ requireThat(trust.environment_id===env.ENVIRONMENT_ID,'SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
  digest(trust.semantic_profile_hash,'SEMANTIC_PROFILE_HASH');
  const parts=ADMISSION_BINDINGS.map(key=>env[key]||'');requireThat(parts.every(p=>typeof p==='string'&&new TextEncoder().encode(p).length<=5000),'SEMANTIC_PROFILE_BINDING_OVERSIZE');
- const profile=JSON.parse(parts.join(''));
- if(profile.contract_version===DOMAIN_PROFILE_VERSION){await validateDomainBridgeProfile(profile,trust);return {profile};}
- if(profile.contract_version===REAL_PROFILE_VERSION){await validateRealCanoProfile(profile,trust);return {profile};}
+ const hasRegistry=PROFILE_REGISTRY_BINDINGS.some(key=>Boolean(env[key]));
+ requireThat(!hasRegistry||parts.every(p=>!p),'SEMANTIC_CONFIG_AMBIGUOUS',503);
+ const profile=hasRegistry?readConfig(env,PROFILE_REGISTRY_BINDINGS)[trust.dataset_id]:JSON.parse(parts.join(''));
+ requireThat(profile&&profile.environment_id===env.ENVIRONMENT_ID,'SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
+ if(isDomainProfile(profile)){await validateDomainBridgeProfile(profile,trust);return {profile};}
+ if(isRealProfile(profile)){await validateRealCanoProfile(profile,trust);return {profile};}
  exactKeys(profile,['contract_version','environment_id','dataset_id','source_kind','artifacts','policies','artifact_refs','target_scope'],'SEMANTIC_PROFILE');
  requireThat(profile.contract_version==='openpq-semantic-admission-local-v1'&&profile.source_kind==='SYNTHETIC_ONLY'&&profile.environment_id==='local-test'&&profile.dataset_id===trust.dataset_id,'SEMANTIC_PROFILE_SCOPE_INVALID');
  requireThat(await hash(profile)===trust.semantic_profile_hash,'SEMANTIC_PROFILE_PIN_MISMATCH',409);
@@ -34,8 +39,8 @@ export function semanticPayload(prepared){return {semantic_fact:{contract_versio
 export async function validateSemanticAdmission(env,trust,c,evaluation_time,actor=null){
  if(!trust.semantic_profile_hash){requireThat(!Object.hasOwn(c,'semantic_bundle')&&!Object.hasOwn(c,'semantic_admission'),'SEMANTIC_PROFILE_NOT_ACTIVATED',409);return null;}
  const at=instant(evaluation_time,'SEMANTIC_VALIDATION_TIME'),{profile,registry,policies}=await configured(env,trust,evaluation_time);
- if(profile.contract_version===DOMAIN_PROFILE_VERSION)return validateDomainBridgeAdmission(profile,trust,c,evaluation_time,actor);
- if(profile.contract_version===REAL_PROFILE_VERSION)return validateRealCanoAdmission(profile,trust,c,evaluation_time,actor);
+ if(isDomainProfile(profile))return validateDomainBridgeAdmission(profile,trust,c,evaluation_time,actor);
+ if(isRealProfile(profile))return validateRealCanoAdmission(profile,trust,c,evaluation_time,actor);
  requireThat(c.semantic_profile_hash===trust.semantic_profile_hash,'SEMANTIC_CANDIDATE_PROFILE_MISMATCH',409);noSecrets(c);
  const bundle=c.semantic_bundle;exactKeys(bundle,['contract_version','evidences','assertions'],'SEMANTIC_BUNDLE');requireThat(bundle.contract_version==='openpq-semantic-bundle-local-v1','SEMANTIC_BUNDLE_VERSION_INVALID');
  requireThat(stable(c.artifacts)===stable(trust.artifacts),'SEMANTIC_CANDIDATE_ARTIFACT_MISMATCH',409);
@@ -70,6 +75,6 @@ export async function buildSemanticCandidate(profile,trust,{evidences,assertions
 export async function validateSemanticReplayActor(env,trust,actor,receipt,evaluation_time){
  if(!trust.semantic_profile_hash)return;
  const {profile}=await configured(env,trust,evaluation_time);
- if(profile.contract_version===DOMAIN_PROFILE_VERSION)validateDomainBridgeActor(profile,actor,receipt?.semantic_admission?.operator_principal_id);
- if(profile.contract_version===REAL_PROFILE_VERSION)validateRealCanoActor(profile,actor,receipt?.semantic_admission?.operator_principal_id);
+ if(isDomainProfile(profile))validateDomainBridgeActor(profile,actor,receipt?.semantic_admission?.operator_principal_id);
+ if(isRealProfile(profile))validateRealCanoActor(profile,actor,receipt?.semantic_admission?.operator_principal_id);
 }

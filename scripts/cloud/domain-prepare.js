@@ -1,0 +1,15 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {prepareCloud} from './prepare.js';
+import {DOMAIN_DATASETS} from '../../src/ingress/domain-source-common.js';
+import {ISOLATED_ACCOUNT_ID} from '../../src/platform/domain-bridge-admission.js';
+import {requireThat} from '../../src/platform/contracts.js';
+const evidence=JSON.parse(await readFile('.cloud-proof/preflight.json','utf8'));
+requireThat(evidence.account_id===ISOLATED_ACCOUNT_ID,'ISOLATED_ACCOUNT_PIN_REQUIRED');
+const runId=process.env.GITHUB_RUN_ID+'-'+(process.env.GITHUB_RUN_ATTEMPT||'1');
+const plan=await prepareCloud(evidence,runId);
+plan.objects=Object.fromEntries([...Object.values(DOMAIN_DATASETS),'cano.operation.an-thoi'].map(id=>[id,'isolated-test/'+id+'/bridge-'+runId]));
+const config=JSON.parse(await readFile('.cloud-proof/core.json','utf8'));
+config.main='../scripts/cloud/domain-provision-worker.js';config.vars={ENVIRONMENT_ID:'isolated-test',PROVISION_OBJECTS_JSON:JSON.stringify(plan.objects)};
+await writeFile('.cloud-proof/core.json',JSON.stringify(config));
+await writeFile('.cloud-proof/plan.private.json',JSON.stringify(plan),{mode:0o600});
+console.log('Prepared eleven pinned isolated native object identities; no source read or authority initialization.');

@@ -1,5 +1,5 @@
 import { ContractError, requireThat, sameLocator } from './contracts.js';
-export const PRINCIPAL_SECRET_NAMES=['PRINCIPALS_JSON','PRINCIPALS_JSON_2','PRINCIPALS_JSON_3'];
+export const PRINCIPAL_SECRET_NAMES=Array.from({length:9},(_,i)=>i?'PRINCIPALS_JSON_'+(i+1):'PRINCIPALS_JSON');
 
 export async function principal(request, env) {
   let entries;
@@ -11,6 +11,7 @@ export async function principal(request, env) {
       entries.push(...shard);
     }
   } catch { throw new ContractError('AUTH_CONFIGURATION_INVALID',503); }
+  requireThat(entries.length<=64&&new Set(entries.map(x=>x.token)).size===entries.length,'AUTH_CONFIGURATION_INVALID',503);
   const raw=request.headers.get('authorization') || '';
   const token=raw.startsWith('Bearer ') ? raw.slice(7) : '';
   const encoder=new TextEncoder();

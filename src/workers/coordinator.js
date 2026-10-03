@@ -1,3 +1,4 @@
+import {trustMap} from '../platform/trusted-config.js';
 import { DurableObject } from 'cloudflare:workers';
 import { ContractError, candidate, hash, instant, locator, requireThat, revision, sameLocator, stable } from '../platform/contracts.js';
 import { authorize, principal } from '../platform/auth.js';
@@ -14,7 +15,7 @@ export class DatasetCoordinator extends DurableObject {
   save(s) {this.ctx.storage.sql.exec('INSERT INTO control(id,body) VALUES(1,?) ON CONFLICT(id) DO UPDATE SET body=excluded.body',stable(s));}
   trust() {
     requireThat(['local-test','isolated-test'].includes(this.env.ENVIRONMENT_ID),'PRODUCTION_GATE_CLOSED',503);
-    const map=JSON.parse(this.env.TRUST_JSON || '{}');
+    const map=trustMap(this.env);
     const entries=Object.values(map).filter(e=>e.native_id===this.ctx.id.toString());
     requireThat(entries.length===1,'AUTHORITY_INSTANCE_UNREGISTERED',409);
     const e=locator(entries[0]);
