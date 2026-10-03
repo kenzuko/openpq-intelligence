@@ -7,6 +7,14 @@ import {DOMAIN_DATASETS} from '../../src/ingress/domain-source-common.js';
 // The marker carries no authority, credentials or persisted control state.
 export class DatasetCoordinator extends NativeDatasetCoordinator {
  constructor(ctx,env){super(ctx,env);this.drill_activation=typeof OPENPQ_DRILL_ACTIVATION==='undefined'?'local':OPENPQ_DRILL_ACTIVATION;}
+ async fetch(request){
+  const response=await super.fetch(request);
+  if(new URL(request.url).pathname==='/read'&&request.method==='GET'&&response.status===200){
+   const body=await response.json();body.instance_observation.drill_activation=this.drill_activation;
+   return Response.json(body,{status:response.status,headers:response.headers});
+  }
+  return response;
+ }
 }
 export default {async fetch(request,env){
  const path=new URL(request.url).pathname,run=env.RECOVERY_DRILL_RUN_ID;
