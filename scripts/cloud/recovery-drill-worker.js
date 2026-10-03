@@ -1,9 +1,13 @@
 // Temporary isolated drill adapter. Never deploy this entrypoint on a consumer/feed Worker.
-import core,{DatasetCoordinator} from '../../src/workers/core.js';
+import core,{DatasetCoordinator as NativeDatasetCoordinator} from '../../src/workers/core.js';
 import {hash} from '../../src/platform/contracts.js';
 import {boundedText} from '../../src/platform/bounded-text.js';
 import {DOMAIN_DATASETS} from '../../src/ingress/domain-source-common.js';
-export {DatasetCoordinator};
+// A fresh compiled class revision makes configuration activation observable on existing DOs.
+// The marker carries no authority, credentials or persisted control state.
+export class DatasetCoordinator extends NativeDatasetCoordinator {
+ constructor(ctx,env){super(ctx,env);this.drill_activation=typeof OPENPQ_DRILL_ACTIVATION==='undefined'?'local':OPENPQ_DRILL_ACTIVATION;}
+}
 export default {async fetch(request,env){
  const path=new URL(request.url).pathname,run=env.RECOVERY_DRILL_RUN_ID;
  if(env.ENVIRONMENT_ID!=='isolated-test'||!/^\d{1,24}$/.test(run||'')||!['source','target'].includes(env.RECOVERY_DRILL_ROLE))return new Response(null,{status:503});

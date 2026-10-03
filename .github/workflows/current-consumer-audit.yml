@@ -6,6 +6,7 @@ on:
       - '.github/workflows/current-consumer-audit.yml'
       - 'scripts/cloud/consumer-audit.py'
       - 'scripts/cloud/ingestion-health.js'
+      - 'scripts/cloud/reference-observation-history.js'
       - 'scripts/rehearse-current-consumers.js'
       - 'src/ingress/**'
       - 'src/platform/domain-*'
@@ -14,6 +15,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: core2-current-consumer-audit
   cancel-in-progress: false
@@ -38,6 +40,11 @@ jobs:
         run: python scripts/cloud/consumer-audit.py .consumer-audit
       - name: Native admission and three-source Near Me consumer rehearsal
         run: node scripts/rehearse-current-consumers.js .consumer-audit
+      - name: Summarize actual sampled reference observations without opening operational gates
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/cloud/reference-observation-history.js .consumer-audit
       - name: Save exact captures and failure evidence
         if: always()
         uses: actions/upload-artifact@v4

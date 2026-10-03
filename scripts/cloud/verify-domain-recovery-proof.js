@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {hash,requireThat,stable} from '../../src/platform/contracts.js';
 import {verifyAuthoritySnapshot} from '../../src/platform/authority-snapshot.js';
 import {recoveredDomainReadback} from '../../src/platform/recovery-bootstrap.js';
+import {unpackDomainJson} from '../../src/platform/domain-codec.js';
 import {DOMAIN_DATASETS} from '../../src/ingress/domain-source-common.js';
 
 export async function verifyDomainRecoveryProof(directory,pins){
@@ -27,7 +28,7 @@ export async function verifyDomainRecoveryProof(directory,pins){
   const checked=await verifyAuthoritySnapshot(targetSnapshot,target),state=checked.manifest.control;
   requireThat(state.epoch===plan.old_epoch_high_watermark+1&&state.control_revision===0&&state.revision===0&&state.active===null&&state.frozen&&checked.tables.prepared.length===0&&checked.tables.commands.length===0&&checked.tables.outbox.length===0&&checked.tables.audit.length===1&&JSON.parse(checked.tables.audit[0].body).action==='RECOVERY_BOOTSTRAP','DOMAIN_CLOUD_PROOF_EXECUTABLE_HISTORY_IMPORTED');
   const closure=await recoveredDomainReadback(bundle,plan,state,proof.finished_at),f=row.fencing;
-  requireThat([401,403].includes(f.command_http_status)&&[401,403].includes(f.storage_gateway_http_status)&&f.read_witness_status===200&&f.write_witness_status===200&&f.old_r2_binding_removed===true&&f.scope==='APPLICATION_STORAGE_GATEWAY_AND_BINDING_NOT_S3_ACCESS_KEY'&&Date.parse(f.observed_at)>=Date.parse(f.revoked_at),'DOMAIN_CLOUD_PROOF_FENCING_INVALID');
+  requireThat([401,403].includes(f.command_http_status)&&[401,403].includes(f.storage_gateway_http_status)&&f.read_witness_status===200&&f.write_witness_status===200&&f.old_r2_binding_removed===true&&f.source_incarnation_changed_with_identical_control===true&&f.secrets_and_class_revision_deployed_atomically===true&&f.scope==='APPLICATION_STORAGE_GATEWAY_AND_BINDING_NOT_S3_ACCESS_KEY'&&Date.parse(f.observed_at)>=Date.parse(f.revoked_at),'DOMAIN_CLOUD_PROOF_FENCING_INVALID');
   requireThat(row.restart_changed_incarnation===true&&stable(row.captured_watermark)===stable(closure.watermark)&&row.timing.lost_committed_revisions_in_this_drill===0&&row.timing.scope==='THIS_FRESH_REFERENCE_DRILL_NOT_DOMAIN_SLA'&&Number.isFinite(row.timing.restore_and_restart_readback_ms)&&row.timing.restore_and_restart_readback_ms>=0&&Number.isFinite(row.timing.capture_export_lag_ms)&&row.timing.capture_export_lag_ms>=0,'DOMAIN_CLOUD_PROOF_RESTORE_OBSERVATION_INVALID');
   requireThat(observed.legacy_payload_digest===closure.legacy_payload_digest&&row.legacy_payload_digest===closure.legacy_payload_digest&&row.source_digest===bundle.generations.find(x=>x.content.semantic_admission.input_hash===row.source_digest)?.content.semantic_admission.input_hash&&observed.archive_readback_only===true&&observed.live_serving_restored===false&&observed.writer_resume_allowed===false&&observed.full_system_restore_proven===false,'DOMAIN_CLOUD_PROOF_READBACK_INVALID');
   results.push({domain,dataset_id:source.dataset_id,status:'INDEPENDENT_SIGNED_FROZEN_DOMAIN_ARCHIVE_PASS',legacy_payload_digest:closure.legacy_payload_digest,watermark:closure.watermark});
@@ -36,5 +37,7 @@ export async function verifyDomainRecoveryProof(directory,pins){
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const [directory,pinFile]=process.argv.slice(2);if(!directory||!pinFile)throw Error('usage: DIRECTORY INDEPENDENT_PINS');
- const result=await verifyDomainRecoveryProof(directory,JSON.parse(await readFile(pinFile,'utf8')));await writeFile(path.join(directory,'INDEPENDENT_READBACK.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+ const result=await verifyDomainRecoveryProof(directory,JSON.parse(await readFile(pinFile,'utf8'))),samples=[];
+ for(const domain of Object.keys(DOMAIN_DATASETS)){const bundle=JSON.parse(await readFile(path.join(directory,domain,'BUNDLE.json'),'utf8')),generation=bundle.generations.find(x=>x.key===bundle.publication.receipt.key).content;samples.push({kind:'profile',value:bundle.profile},{kind:'bundle',value:generation.semantic_bundle},{kind:'proof',value:generation.semantic_admission},{kind:'projection',value:await unpackDomainJson(generation.payload.domain_snapshot.encoded_projection)},{kind:'codec',value:generation.semantic_bundle.encoded_source});}
+ await writeFile(path.join(directory,'SIGNED_SCHEMA_SAMPLES.json'),JSON.stringify(samples)+'\n');await writeFile(path.join(directory,'INDEPENDENT_READBACK.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
 }
