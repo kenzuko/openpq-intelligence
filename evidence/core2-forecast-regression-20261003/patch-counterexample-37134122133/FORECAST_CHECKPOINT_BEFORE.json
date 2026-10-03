@@ -1,0 +1,60 @@
+{
+  "key_id": "proof-key",
+  "receipt": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "approved_positive_decision_types": [],
+    "artifacts": {
+      "config": "09876028f0dece93afdb2f39f0395ae2dcf3ebe3d18d8289c18cbd32ace8771a",
+      "policy": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4",
+      "rule": "a054026d5018b8d1649daa4cedde2e84e1e5733762353f323e63c9243d129207",
+      "schema": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+    },
+    "authority_instance_id": "bridge-37112667895-weather_forecast",
+    "authority_locator_version": "1",
+    "command_id": "ingest-0e66b65b-c097-4470-b08c-0a1224610b97",
+    "committed_at": "2026-10-03T15:40:51.699Z",
+    "control_revision": 0,
+    "dataset_id": "weather.forecast.bridge.phu-quoc",
+    "digest": "61125a1ad75cefaa93bab70593e02efe110129ab3af41f3b7b9741eeeba4650f",
+    "environment_id": "isolated-test",
+    "epoch": 1,
+    "key": "generations/bridge-37112667895-weather_forecast/bridge-generation-37112667895/61125a1ad75cefaa93bab70593e02efe110129ab3af41f3b7b9741eeeba4650f.json",
+    "locator_artifact_hash": "00d97d762cf5043dbc07248dafade74ab78b803bdb79f2c4db9626dc147cfa4a",
+    "logical_slot": 75,
+    "namespace_id": "97783b80477f4613a445b4e219b8158c",
+    "native_id": "4219c57e19d08db3e5a7a60f4453b1ffff0d5030fae60a30496c2c41d4000ed0",
+    "object_name": "isolated-test/weather.forecast.bridge.phu-quoc/bridge-37112667895-1",
+    "operation": "NORMAL",
+    "owner": "bridge-owner",
+    "previous_revision": 65,
+    "receipt_keys": {
+      "proof-key": {
+        "crv": "P-256",
+        "ext": true,
+        "key_ops": [
+          "verify"
+        ],
+        "kty": "EC",
+        "x": "C92ar_Prd8tvWqdmcfEtM4bSgl7_33T3ZPisjsKaVls",
+        "y": "ggcDHJY3_DgI5ndnzRk-6BT1-pUWHVtiAEbhoH5-gmE"
+      }
+    },
+    "recovery_generation": "bridge-generation-37112667895",
+    "revision": 66,
+    "semantic_admission": {
+      "action_allowed": false,
+      "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+      "input_hash": "e64918461c84f111431e98e659411078bcf60fe54d67b15608d8d6cdd38063a0",
+      "operator_principal_id": "bridge-operator-weather_forecast",
+      "preparation_hash": "ab96eaeb14c6279626682fd879e3041b6e1ff41af8e6dbf589362dea55f56000",
+      "producer_independence": false,
+      "profile_hash": "94c6704a9861d30546fbe2af116242d28a2b145c8712b041d318c438b0b7da33",
+      "source_author_assurance": "OWNED_OUTPUT_CAPTURE_ONLY",
+      "source_policies_activated": false,
+      "source_version_time": "2026-10-03T15:34:30.074Z",
+      "valid_until": "2026-10-03T15:45:50.380Z"
+    },
+    "semantic_profile_hash": "94c6704a9861d30546fbe2af116242d28a2b145c8712b041d318c438b0b7da33"
+  },
+  "signature": "C4RG1YwQxgnez0SjidQO2ew8g4rum7yoP1/KpPuweecRf037De1/l/SsSaTTwjCCD7vzfAkf3D7kGT7qPR1kVw=="
+}

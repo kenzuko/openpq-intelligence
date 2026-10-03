@@ -1,0 +1,8 @@
+{
+  "run_id": "37134122133",
+  "code_sha": "a8f2b6efce51183b9af4654a25133f255a8e682e",
+  "github_artifact_id": 11277629845,
+  "zip_sha256": "45b40a94c1a7c14d4d0e8a68c5a86d4e0e97041ba1ccbcd83a18c2bb1f9d3c52",
+  "rollback": "SUCCESS",
+  "status": "FAILED_SIGNED_REFRESH_AGGREGATE_CHECK_CAUSE_UNRESOLVED"
+}
