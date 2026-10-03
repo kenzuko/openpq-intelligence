@@ -1,0 +1,152 @@
+{
+  "envelope": {
+    "receipt": {
+      "environment_id": "local-test",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "authority_instance_id": "recovered-weather_marine",
+      "authority_locator_version": "2",
+      "locator_artifact_hash": "d697e137a2e9eaa9bc7193e5005d196ca02b9c398f7a447ce62bb79a8e5848a3",
+      "namespace_id": "local-domain-recovery",
+      "object_name": "local-test/domain-recovery/9d43abbe-a676-426a-9177-efcbe4f8a6c7",
+      "native_id": "25cf86a3c23270e5f488e8710b1a2bb06a2990308e23023f9140317de958f6bf",
+      "recovery_generation": "recovered-domain-v2",
+      "artifacts": {
+        "rule": "560b9df9aad5f8f84b0442710fb1d2c0f9c0d87b3013da8ef03f21de5e179b72",
+        "config": "562376145a32f10117e903cce00e01ae3441b245a5dacef72b2c8d94af39df4f",
+        "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+        "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+      },
+      "receipt_keys": {
+        "recovered-key": {
+          "key_ops": [
+            "verify"
+          ],
+          "ext": true,
+          "kty": "EC",
+          "x": "dIV6oIcGLyjVEqJEkodAORT3zNMELZZhF_1ehLF8gLs",
+          "y": "pKPf9cJc-5vfF_xvfiVEqd0dtl_GEdQmsHg255xOBRY",
+          "crv": "P-256"
+        }
+      },
+      "account_id": "synthetic-local-account",
+      "semantic_profile_hash": "f8182486470a5cffdaf4558580943e409a10ef417d5a1737f01cecc60f55acb4",
+      "approved_positive_decision_types": [],
+      "contract_version": "openpq-native-authority-snapshot-v1",
+      "snapshot_consistency": "ATOMIC_NATIVE_SQLITE_TABLES",
+      "captured_at": "2026-10-03T14:37:53.043Z",
+      "watermark": {
+        "revision": 0,
+        "control_revision": 0,
+        "epoch": 8
+      },
+      "control": {
+        "account_id": "synthetic-local-account",
+        "active": null,
+        "approved_positive_decision_types": [],
+        "artifacts": {
+          "config": "562376145a32f10117e903cce00e01ae3441b245a5dacef72b2c8d94af39df4f",
+          "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+          "rule": "560b9df9aad5f8f84b0442710fb1d2c0f9c0d87b3013da8ef03f21de5e179b72",
+          "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+        },
+        "authority_instance_id": "recovered-weather_marine",
+        "authority_locator_version": "2",
+        "control_revision": 0,
+        "dataset_id": "weather.marine.bridge.phu-quoc",
+        "environment_id": "local-test",
+        "epoch": 8,
+        "frozen": true,
+        "locator_artifact_hash": "d697e137a2e9eaa9bc7193e5005d196ca02b9c398f7a447ce62bb79a8e5848a3",
+        "namespace_id": "local-domain-recovery",
+        "native_id": "25cf86a3c23270e5f488e8710b1a2bb06a2990308e23023f9140317de958f6bf",
+        "next_transition_at": null,
+        "object_name": "local-test/domain-recovery/9d43abbe-a676-426a-9177-efcbe4f8a6c7",
+        "owner": "domain-recovery-owner",
+        "receipt_keys": {
+          "recovered-key": {
+            "crv": "P-256",
+            "ext": true,
+            "key_ops": [
+              "verify"
+            ],
+            "kty": "EC",
+            "x": "dIV6oIcGLyjVEqJEkodAORT3zNMELZZhF_1ehLF8gLs",
+            "y": "pKPf9cJc-5vfF_xvfiVEqd0dtl_GEdQmsHg255xOBRY"
+          }
+        },
+        "recovery": {
+          "active_receipt_imported": false,
+          "cloud_fencing_proven": false,
+          "contract_version": "openpq-frozen-recovery-bootstrap-v1",
+          "domain_archive": {
+            "archive_readback_only": true,
+            "artifact_documents_verified": true,
+            "digest": "2005e51b7bb3a3589cf6c555bcba3502a4e0e78a9074ca62455a8c68ffe2ac9d",
+            "key": "recovery/domains/weather_marine.json",
+            "prepared_generation_objects_verified": 1,
+            "source_payload_verified": true
+          },
+          "full_system_restore_proven": false,
+          "historical_commands_imported": false,
+          "historical_outbox_imported": false,
+          "history_discontinuity": false,
+          "overrides_imported": false,
+          "restored_at": "2026-10-03T14:37:52.744Z",
+          "snapshot_digest": "5163ec6f9d489829350c896f0a00fd665a4f5c6d921a7d1ffb885bc2d3dec83a",
+          "snapshot_key": "recovery/snapshots/weather_marine.json",
+          "source_locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_watermark": {
+            "control_revision": 0,
+            "epoch": 1,
+            "revision": 1
+          },
+          "writer_resume_allowed": false
+        },
+        "recovery_generation": "recovered-domain-v2",
+        "revision": 0,
+        "semantic_profile_hash": "f8182486470a5cffdaf4558580943e409a10ef417d5a1737f01cecc60f55acb4"
+      },
+      "table_counts": {
+        "prepared": 0,
+        "commands": 0,
+        "audit": 1,
+        "outbox": 0
+      },
+      "page_refs": [
+        {
+          "table": "audit",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "d5becbc7b5452afed0bc1b21beae64a2c83ecd64c2f8eb717139663266c596e2"
+        }
+      ],
+      "coverage": {
+        "native_control": true,
+        "prepared": true,
+        "commands": true,
+        "audit": true,
+        "outbox": true,
+        "external_artifacts": false,
+        "scheduler_state": false,
+        "deploy_code": false,
+        "storage_credentials": false
+      }
+    },
+    "key_id": "recovered-key",
+    "signature": "s7MD0H1H2G8vteTKRTM6qQutGDw9H5GD7372wimmdEGOXltWCAxo0+0Ppr2Il7YSnOq8A557Md8Ovp1ibbPArA=="
+  },
+  "pages": [
+    {
+      "table": "audit",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "d5becbc7b5452afed0bc1b21beae64a2c83ecd64c2f8eb717139663266c596e2",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA6VTTW+cMBT8Lz6zCV9mYW9tlXOqNKrUlsp62M/BCdj02bDdRvnvFYRNNk1yKjczozfjN+Mf96xx6sB27L5mIINxtma7ml1dfLr8enH1TXy8vLz+cn314XPNooXhaCEQSjchHZbfz4fdOmZCQSjRDEGYfnAUUNVsp6HzGNVMdm5UQqOVxt6IgdyE9hR2NhDIICYkf3TkBrTDr40m9wft5qi4aZwLPhAMmylZvCjXg7ECSLZmwtXR40EQgmpA3glnu9lsoHHWAwpGz3rKybFHG/ysbLRZTK8kZW7Qh8VKGsccedJsmyaDjJeV1IXknDeygYzHKeQY47aEKt7mEoo05xxKWZRaYwqyUovPOzy8WOT5o3F/vkcILZLogYzFs1s/LyCq2UA4AKESN2iRYI5KuOYW5Uu7SVQz70aSKAY4dA7Uv5d5iGqmx64T/uAD9oLQB0f4OofWzICR0Anp+h6s8m+leUJzY2jc7/dJB6GMn+M1djThcILPOyCj8E2F1aEScAwgLTZJvImz6yTfZdsdT8+2ef592ZO3MPjWBXGSGE+KDGWhK5WXVZlWGY9lWRU6hjjWqig45JrLQlVpAluVaN2UJW9kqjKFsszg5eBX0R2R98NbE+mchOBIPDWuBd8us+A/v1OVPQSkHujusf3Lc3KdIJzM+pziqGY4ONmuhTmBkrkeezIBaW7G2KOArnP750AeHljEjJqpP/8CXKvXM0AEAAA=",
+        "uncompressed_bytes": 1088,
+        "sha256": "9120ec07f21d57f109cf1522082259298f6492ae2d9cac542cbd03a45346a2ea"
+      }
+    }
+  ]
+}

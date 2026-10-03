@@ -1,0 +1,160 @@
+{
+  "source_archive_root": "evidence/core2-domain-recovery-closure-20261003",
+  "files": [
+    {
+      "file": "SUMMARY.json",
+      "sha256": "06de25665573a940e247527f819d00f8b6a29eb71dbe22426a4f853672773897",
+      "bytes": 7978
+    },
+    {
+      "file": "airport/RECOVERY_PLAN.json",
+      "sha256": "07f0f95f40d42e98439cb4aa0b64ade635dc7c1611cd148e82e52fbfdeef7846",
+      "bytes": 1921
+    },
+    {
+      "file": "airport/TARGET_SNAPSHOT.json",
+      "sha256": "681a5a997fe115eaa3dcfd79e6b4859c863243f27d7dd98a05e1399bf9b338ca",
+      "bytes": 6649
+    },
+    {
+      "file": "airport/TARGET_TRUST.json",
+      "sha256": "480b96a5e464a035477e1e2ae419e915d26c8f9ad07f8af71c8ed5c4f6d312c7",
+      "bytes": 1313
+    },
+    {
+      "file": "nearme/RECOVERY_PLAN.json",
+      "sha256": "b787fb132063e6569b7280652b06db38a22a22b0590c040ff177edf9a3df1c11",
+      "bytes": 1933
+    },
+    {
+      "file": "nearme/TARGET_SNAPSHOT.json",
+      "sha256": "12e92397e770c14cf768853d82277c4951edce1a8945b13fea5e0b5a82a467f7",
+      "bytes": 6659
+    },
+    {
+      "file": "nearme/TARGET_TRUST.json",
+      "sha256": "f704cd6a006eaea0fa7ca23f57f5620f88dfa36f10d8841dcf8e04e1657c32f5",
+      "bytes": 1319
+    },
+    {
+      "file": "transit/RECOVERY_PLAN.json",
+      "sha256": "dc7d0c2c82903315011840c5aa8616cc8845f08b80b86aa44635ae2c8819d13e",
+      "bytes": 1931
+    },
+    {
+      "file": "transit/TARGET_SNAPSHOT.json",
+      "sha256": "9b13167344ae1ae9173e871b394aef4c2dad5670d3f8e336c5fb815f221c3b6a",
+      "bytes": 6655
+    },
+    {
+      "file": "transit/TARGET_TRUST.json",
+      "sha256": "3e0a0d959fbec5f200895d79657bd58d3b3a525d3ac40f526b4ed834c9bfb4ab",
+      "bytes": 1318
+    },
+    {
+      "file": "weather/RECOVERY_PLAN.json",
+      "sha256": "82c96dd76546354f731aeed7bf4ceb4c6ee31b9a9c3bb0836e64ef435ec95955",
+      "bytes": 1931
+    },
+    {
+      "file": "weather/TARGET_SNAPSHOT.json",
+      "sha256": "b83e25e9a198fd108b10dff96ca2d83aef0969008781ec24b33fd5fc2e18d495",
+      "bytes": 6659
+    },
+    {
+      "file": "weather/TARGET_TRUST.json",
+      "sha256": "5418de5839f83ea9ca29a96b2edf76f5e31f000855bb50949194a94cfe784a76",
+      "bytes": 1318
+    },
+    {
+      "file": "weather_cloud/RECOVERY_PLAN.json",
+      "sha256": "d7984d6539cdb834db8678e73aa80d5c1e72766dd374693558d59576c467e320",
+      "bytes": 1955
+    },
+    {
+      "file": "weather_cloud/TARGET_SNAPSHOT.json",
+      "sha256": "3790b2f14b5f292f6e30417f9ead1d1db61565c1206306f6c707bd818ec69631",
+      "bytes": 6699
+    },
+    {
+      "file": "weather_cloud/TARGET_TRUST.json",
+      "sha256": "e4be068d897b03121c93d64ca8e1889db4d93eba3110ca06fdd5e8e390d637c5",
+      "bytes": 1330
+    },
+    {
+      "file": "weather_compact/RECOVERY_PLAN.json",
+      "sha256": "071f984e5e95822f68419d5923c7710d210713702292d138618f0ef793253621",
+      "bytes": 1963
+    },
+    {
+      "file": "weather_compact/TARGET_SNAPSHOT.json",
+      "sha256": "8865f775342e08dd0524efe227273a688d5184fb995a644f40dd332fe4340b68",
+      "bytes": 6715
+    },
+    {
+      "file": "weather_compact/TARGET_TRUST.json",
+      "sha256": "f05867a4f621c36b6d44e5f8dfd24ca844b6b06cd5c551dcba0f4cf7e5976d61",
+      "bytes": 1334
+    },
+    {
+      "file": "weather_forecast/RECOVERY_PLAN.json",
+      "sha256": "55a00e16ee77b4e0d5a96a7fcbc9d3a0cdef0e9005e0dc1ecfe371820241b6f8",
+      "bytes": 1967
+    },
+    {
+      "file": "weather_forecast/TARGET_SNAPSHOT.json",
+      "sha256": "9fa155ba0f5dcdbe5f8ab6bc3a7b0edd39d6d63397e71a81cb4ded9dee6ece51",
+      "bytes": 6717
+    },
+    {
+      "file": "weather_forecast/TARGET_TRUST.json",
+      "sha256": "7fab3a8755c89a59abe148e2cd097767fcf23f51fba341d5853f65888ae9c899",
+      "bytes": 1336
+    },
+    {
+      "file": "weather_manifest/RECOVERY_PLAN.json",
+      "sha256": "26654a572d9614986ac79ef531f322f76c52d18f1197cc9367b950a5be5fd58b",
+      "bytes": 1967
+    },
+    {
+      "file": "weather_manifest/TARGET_SNAPSHOT.json",
+      "sha256": "1e6c44a80ce6b11eb06a69dfd268bde66a38c0535c40a89b007f98421bdc152f",
+      "bytes": 6721
+    },
+    {
+      "file": "weather_manifest/TARGET_TRUST.json",
+      "sha256": "7bfb72b5be8ca0e6f5b0c71aee27db9bebcdb73351ea01d29ebde80bcb45fa01",
+      "bytes": 1336
+    },
+    {
+      "file": "weather_marine/RECOVERY_PLAN.json",
+      "sha256": "5089350daece646c50e860372bf0c8cab17fa05a19434571103f6749b9230dee",
+      "bytes": 1959
+    },
+    {
+      "file": "weather_marine/TARGET_SNAPSHOT.json",
+      "sha256": "a58f1aac24ff91ebbc2adf88be6e0c7a0208605cfa808ee13ce177e9a44d4df3",
+      "bytes": 6705
+    },
+    {
+      "file": "weather_marine/TARGET_TRUST.json",
+      "sha256": "a9d068cfb859fcd4d5f91487f8c23b29c8966f7d03549753431c95360ef984ae",
+      "bytes": 1332
+    },
+    {
+      "file": "weather_meta/RECOVERY_PLAN.json",
+      "sha256": "d4aeafdcc225d9a3a5dda2711f8ae0537b60c105df9ec26c10c9c54adcfe09cd",
+      "bytes": 1951
+    },
+    {
+      "file": "weather_meta/TARGET_SNAPSHOT.json",
+      "sha256": "58d5ccad0ae8bbb3f87ce8c942a90d8fb82f53e0c8870e1801d5942524cd3a93",
+      "bytes": 6693
+    },
+    {
+      "file": "weather_meta/TARGET_TRUST.json",
+      "sha256": "dbf08873386c7d684c37cf8315233a64085805fca2043095cd98e8710904d41d",
+      "bytes": 1328
+    }
+  ]
+}

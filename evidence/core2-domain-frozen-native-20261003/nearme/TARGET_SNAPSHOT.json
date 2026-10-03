@@ -1,0 +1,152 @@
+{
+  "envelope": {
+    "receipt": {
+      "environment_id": "local-test",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "authority_instance_id": "recovered-nearme",
+      "authority_locator_version": "2",
+      "locator_artifact_hash": "820ebb84fa89751a69484c7b9b1644f8ddd002ae23b8b1988f2872c8a0c15a12",
+      "namespace_id": "local-domain-recovery",
+      "object_name": "local-test/domain-recovery/c4ba499c-1ccb-4e58-a759-2df21e773eb2",
+      "native_id": "868f34bd909e6deff03fee23b9b1d1f806747ca053cc19b4f57bef4378b91cae",
+      "recovery_generation": "recovered-domain-v2",
+      "artifacts": {
+        "rule": "d5cd0a439b95c45e2125ea882ef894ef7bec0832fe6e17f50900e8e205570736",
+        "config": "6980d12d71bce00fadf058d1076678fe1940f5d979acaeb6a0a355018386c235",
+        "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+        "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+      },
+      "receipt_keys": {
+        "recovered-key": {
+          "key_ops": [
+            "verify"
+          ],
+          "ext": true,
+          "kty": "EC",
+          "x": "AZREvP62ZRFYY8boFkTR69TpzIXcL1Vb1ZEu5Sycxx4",
+          "y": "8ZFvxJJgFH0VO0UJXHbNaIHj7KnBH-y29vRcnPsXywo",
+          "crv": "P-256"
+        }
+      },
+      "account_id": "synthetic-local-account",
+      "semantic_profile_hash": "fcf955441258578a3e35c9977a0121a32cb8b7266caa7d046e83dc82376da89e",
+      "approved_positive_decision_types": [],
+      "contract_version": "openpq-native-authority-snapshot-v1",
+      "snapshot_consistency": "ATOMIC_NATIVE_SQLITE_TABLES",
+      "captured_at": "2026-10-03T14:37:58.556Z",
+      "watermark": {
+        "revision": 0,
+        "control_revision": 0,
+        "epoch": 8
+      },
+      "control": {
+        "account_id": "synthetic-local-account",
+        "active": null,
+        "approved_positive_decision_types": [],
+        "artifacts": {
+          "config": "6980d12d71bce00fadf058d1076678fe1940f5d979acaeb6a0a355018386c235",
+          "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+          "rule": "d5cd0a439b95c45e2125ea882ef894ef7bec0832fe6e17f50900e8e205570736",
+          "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+        },
+        "authority_instance_id": "recovered-nearme",
+        "authority_locator_version": "2",
+        "control_revision": 0,
+        "dataset_id": "directory.bridge.phu-quoc",
+        "environment_id": "local-test",
+        "epoch": 8,
+        "frozen": true,
+        "locator_artifact_hash": "820ebb84fa89751a69484c7b9b1644f8ddd002ae23b8b1988f2872c8a0c15a12",
+        "namespace_id": "local-domain-recovery",
+        "native_id": "868f34bd909e6deff03fee23b9b1d1f806747ca053cc19b4f57bef4378b91cae",
+        "next_transition_at": null,
+        "object_name": "local-test/domain-recovery/c4ba499c-1ccb-4e58-a759-2df21e773eb2",
+        "owner": "domain-recovery-owner",
+        "receipt_keys": {
+          "recovered-key": {
+            "crv": "P-256",
+            "ext": true,
+            "key_ops": [
+              "verify"
+            ],
+            "kty": "EC",
+            "x": "AZREvP62ZRFYY8boFkTR69TpzIXcL1Vb1ZEu5Sycxx4",
+            "y": "8ZFvxJJgFH0VO0UJXHbNaIHj7KnBH-y29vRcnPsXywo"
+          }
+        },
+        "recovery": {
+          "active_receipt_imported": false,
+          "cloud_fencing_proven": false,
+          "contract_version": "openpq-frozen-recovery-bootstrap-v1",
+          "domain_archive": {
+            "archive_readback_only": true,
+            "artifact_documents_verified": true,
+            "digest": "2c792fdf87ef626d8a3e4eeb1a10b0566b6f574d5bc07c1c6e19d866a376821d",
+            "key": "recovery/domains/nearme.json",
+            "prepared_generation_objects_verified": 1,
+            "source_payload_verified": true
+          },
+          "full_system_restore_proven": false,
+          "historical_commands_imported": false,
+          "historical_outbox_imported": false,
+          "history_discontinuity": false,
+          "overrides_imported": false,
+          "restored_at": "2026-10-03T14:37:58.067Z",
+          "snapshot_digest": "e0739e8fa5e21198a474c2928151da593f6a6a173e7fd2fd833b67278f4ff513",
+          "snapshot_key": "recovery/snapshots/nearme.json",
+          "source_locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_watermark": {
+            "control_revision": 0,
+            "epoch": 1,
+            "revision": 1
+          },
+          "writer_resume_allowed": false
+        },
+        "recovery_generation": "recovered-domain-v2",
+        "revision": 0,
+        "semantic_profile_hash": "fcf955441258578a3e35c9977a0121a32cb8b7266caa7d046e83dc82376da89e"
+      },
+      "table_counts": {
+        "prepared": 0,
+        "commands": 0,
+        "audit": 1,
+        "outbox": 0
+      },
+      "page_refs": [
+        {
+          "table": "audit",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "e2f1f5d62a9a2d3fd3640c35bb5a7e55e1761e6c9d8cee8ff323094cf1f99a40"
+        }
+      ],
+      "coverage": {
+        "native_control": true,
+        "prepared": true,
+        "commands": true,
+        "audit": true,
+        "outbox": true,
+        "external_artifacts": false,
+        "scheduler_state": false,
+        "deploy_code": false,
+        "storage_credentials": false
+      }
+    },
+    "key_id": "recovered-key",
+    "signature": "yQsYY08FV2f5vpm2juSB/3MoBYAV9GYUUgOHNpfY9s/G/FCLkvNyCNYu1C8xI5hEdxrhCypJr+6TRLTbQ45dSg=="
+  },
+  "pages": [
+    {
+      "table": "audit",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "e2f1f5d62a9a2d3fd3640c35bb5a7e55e1761e6c9d8cee8ff323094cf1f99a40",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA6VTwW6cMBD9F5/ZBMNi2L21Vc6p0qhSWyprsMdZJ+ChtiGlUf69giXNpklP9c1+T/PezBt/e2AN6Ynt2UPNQEVLrmb7ml1dfLj8fHH1Rb6/vLz+dH317mPNkoVBfiF4VDSin5bn58t+LTOi9KjQ9lHaricfUddsb6ANmNRMtTRoadAp625k72lEdwqTix5UlCP68OSIenT9j43x9Avd5klx0xDFED30m5EvXjR1YJ0Erw52xNXR8SI9gm5A3Uly7Ww2+mHWAx+tmfU0qaFDF8OsbI1dTK8kbW8wxMVKpspdZrSpSjQiE7qCHLeIDQeeNmkhRCNMUW510ai0VFwJ5DtdCQF5KaqM68XnHU4vBnl+NB7OHYLv8Ow2zI0nNes99uBRyxt06GGOSFJzi+qlTZ7ULNDgFcoeppZA/93EY1IzM7StDFOI2EmPIZLH1/M/2BmwClqpqOvA6fBWiic0GmJDP/9NmqS2YY7VusHG6QSfe/dW45sKq0MtYR18mokNTzdpfs23+7zcF9VZKsqvy5yCgz4cKMqTpDAt8x1WBgrMON9VsC23KttlFS+4hmKXGwECeJljaXRmdJXnjSizsjJbYwqevyz8KrIn5HVoaxItKYjk5Z8NO0A4LDXgP8+pyj1E9B34u+O2L9+HWulxtOv3SZOaYU/qsC7KCcTntbj3NqKfN2LoUELb0v1zEI+PLGFWz9TvvwHNV/TxMAQAAA==",
+        "uncompressed_bytes": 1072,
+        "sha256": "be31cb128ae4e4f9ab76f8f9a9cbbd6655c1ea1cffca0a94a5cd3d3e3fc8db96"
+      }
+    }
+  ]
+}

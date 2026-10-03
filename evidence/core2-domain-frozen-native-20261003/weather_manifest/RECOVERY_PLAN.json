@@ -1,0 +1,46 @@
+{
+  "contract_version": "openpq-frozen-recovery-bootstrap-v1",
+  "source_authority": {
+    "environment_id": "local-test",
+    "dataset_id": "weather.manifest.bridge.phu-quoc",
+    "authority_instance_id": "local-cano-authority",
+    "authority_locator_version": "1",
+    "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "namespace_id": "local-sqlite-namespace",
+    "object_name": "local-test/weather.manifest.bridge.phu-quoc",
+    "native_id": "c478c593ba22f007bd8731b40364ba07f6b2b8a107d72a62b0143fd35683a974",
+    "recovery_generation": "local-generation-1",
+    "artifacts": {
+      "rule": "1b36e02c67d4fab2936c7d68ae27987096a973d86184739dbbda9db8cb0ea0c9",
+      "config": "43e55d016a15cf359d1c24ea918d473094552283a129ad2cae89af382dfe6d4b",
+      "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+      "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+    },
+    "receipt_keys": {
+      "local-key": {
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true,
+        "kty": "EC",
+        "x": "Z0zpEuTKjy4t_irqsGWofXpOFxPohY9J730y1xLQndM",
+        "y": "x6XhAAEvAYmo46SgrF7LRLQpWMAnmAjbRnIxEV0ACH0",
+        "crv": "P-256"
+      }
+    },
+    "account_id": "synthetic-local-account",
+    "semantic_profile_hash": "0cdfe853300f6b4d557073a91f577a1a12c9ecc6760e4e810ba9a2dafbd03e9b",
+    "approved_positive_decision_types": [
+      "cano.operation.fixture"
+    ]
+  },
+  "target_authority_hash": "4aaad2c702271e9ebae3bee1b63b57a5990f4d93590a7fd9adc95030db76873e",
+  "snapshot_digest": "0237cdf1fe0bcdf5adfd66db977e20efe056b2186a33b1b849d0497f4a2ea086",
+  "snapshot_key": "recovery/snapshots/weather_manifest.json",
+  "owner": "domain-recovery-owner",
+  "old_epoch_high_watermark": 7,
+  "domain_archive": {
+    "key": "recovery/domains/weather_manifest.json",
+    "digest": "99a9d0d4c3bbb8e5adcfd647405e5966dc95962e3bc90cadba19881d635cbd06"
+  }
+}

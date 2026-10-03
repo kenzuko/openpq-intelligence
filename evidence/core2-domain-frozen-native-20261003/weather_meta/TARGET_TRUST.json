@@ -1,0 +1,32 @@
+{
+  "environment_id": "local-test",
+  "dataset_id": "weather.meta.bridge.phu-quoc",
+  "authority_instance_id": "recovered-weather_meta",
+  "authority_locator_version": "2",
+  "locator_artifact_hash": "4c712038285ac107969e5047552709b483628e80b9b315c5f1c466c6480c0a6d",
+  "namespace_id": "local-domain-recovery",
+  "object_name": "local-test/domain-recovery/f4491697-a03d-44e4-bf03-5a92291819a4",
+  "native_id": "ddf01cdf32751678f913d3762e98d5320ae2212d0d6a0102f8bee6c7d334e8a9",
+  "recovery_generation": "recovered-domain-v2",
+  "artifacts": {
+    "rule": "766da9228b23fb192d34436b18c96b2a8867659ff52c15d227c28edb3713c8b9",
+    "config": "cf5b06e29dd66e126eed5ad0b0a6ce6cbf848b0499146577c55b48bf6ee0cf38",
+    "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+    "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+  },
+  "receipt_keys": {
+    "recovered-key": {
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "kty": "EC",
+      "x": "htt7nIM5s-1Rw4Mu_Z4ot0uJ170ioTReNYX8NZWIaRk",
+      "y": "siBRgPCPi7B-GMGs7Hg9duFFPIdvkrgA6ZTHBe5-Ye0",
+      "crv": "P-256"
+    }
+  },
+  "account_id": "synthetic-local-account",
+  "semantic_profile_hash": "ada3b6ffe7f5e60c39a3e3dcc73051b3dc25523845e217e7306adbe218707a3e",
+  "approved_positive_decision_types": []
+}

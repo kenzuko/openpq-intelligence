@@ -1,0 +1,75 @@
+{
+  "contract_version": "openpq-reference-observation-history-v1",
+  "evaluated_at": "2026-10-03T15:10:14.719Z",
+  "status": "SAMPLED_REFERENCE_HISTORY_AVAILABLE",
+  "workflow": "current-consumer-audit.yml",
+  "total_runs": 4,
+  "successful_health_samples": 2,
+  "failed_health_samples": 1,
+  "unknown_health_samples": 1,
+  "failed_native_samples": 0,
+  "first_successful_sample": "2026-10-03T10:59:39Z",
+  "last_successful_sample": "2026-10-03T12:28:17Z",
+  "sampled_span_ms": 5318000,
+  "largest_gap_between_successful_samples_ms": 5318000,
+  "proposed_72h_span_elapsed": false,
+  "proposed_7d_span_elapsed": false,
+  "records": [
+    {
+      "run_id": "37104123902",
+      "code_sha": "a1ad18163093514e062ecdbddaaf94f07dcd86e0",
+      "observed_at": "2026-10-03T06:46:56Z",
+      "event": "push",
+      "workflow_conclusion": "success",
+      "steps": {
+        "health": "UNKNOWN",
+        "capture": "PASS",
+        "native": "PASS"
+      }
+    },
+    {
+      "run_id": "37118142041",
+      "code_sha": "4b212f14c8dba0cc874f841c7b54c6928fa8a440",
+      "observed_at": "2026-10-03T10:59:39Z",
+      "event": "push",
+      "workflow_conclusion": "success",
+      "steps": {
+        "health": "PASS",
+        "capture": "PASS",
+        "native": "PASS"
+      }
+    },
+    {
+      "run_id": "37122964663",
+      "code_sha": "4b212f14c8dba0cc874f841c7b54c6928fa8a440",
+      "observed_at": "2026-10-03T12:28:17Z",
+      "event": "schedule",
+      "workflow_conclusion": "success",
+      "steps": {
+        "health": "PASS",
+        "capture": "PASS",
+        "native": "PASS"
+      }
+    },
+    {
+      "run_id": "37128473087",
+      "code_sha": "ec9bd45c93b0d9cf80d1b6e75cfc895110256918",
+      "observed_at": "2026-10-03T14:07:31Z",
+      "event": "push",
+      "workflow_conclusion": "failure",
+      "steps": {
+        "health": "FAIL",
+        "capture": "PASS",
+        "native": "UNKNOWN"
+      }
+    }
+  ],
+  "continuous_uptime_proven": false,
+  "unattended_failure_injection_proven": false,
+  "critical_cycle_coverage_proven": false,
+  "policy_acceptance_proven": false,
+  "shadow_gate_passed": false,
+  "resilience_gate_passed": false,
+  "full_system_restore_proven": false,
+  "production_enabled": false
+}

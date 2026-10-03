@@ -1,0 +1,8 @@
+{
+  "run_id": "37133160893",
+  "code_sha": "41d1412d3ed13a953cd5eaedfa6431d7c474d359",
+  "github_artifact_id": 11277588416,
+  "zip_sha256": "a2163d42e2acff188364d50996ae8ebac7f584aedfde7c92d30bd83e20f104a8",
+  "status": "COUNTEREXAMPLE_RESTART_NOT_OBSERVED",
+  "cleanup": "SUCCESS"
+}

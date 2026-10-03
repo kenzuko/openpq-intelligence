@@ -1,0 +1,32 @@
+{
+  "environment_id": "local-test",
+  "dataset_id": "airport.bridge.pqc",
+  "authority_instance_id": "recovered-airport",
+  "authority_locator_version": "2",
+  "locator_artifact_hash": "c1f9396e8e24835d4873835b1a715536570b0ffc152539df37157b4d2ae196c5",
+  "namespace_id": "local-domain-recovery",
+  "object_name": "local-test/domain-recovery/38abb28c-8641-4afb-aed5-d13121191536",
+  "native_id": "278be3e0f4e77633a3d221fd7aeab914da018f69ce7ae231ad7ac53245097971",
+  "recovery_generation": "recovered-domain-v2",
+  "artifacts": {
+    "rule": "8893809dbe4a3805f2d8bce55566ba8d2dd3bac7922522500678fd13b4f4ef29",
+    "config": "503fdd16e96e2bc3fa5ba7fd321f7c4a9776124dbc2808b7982f0e53c5410bbf",
+    "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+    "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+  },
+  "receipt_keys": {
+    "recovered-key": {
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "kty": "EC",
+      "x": "1KWfTmo8wc3RUA_n1uWFvbB1ljAyRBENoQnUFVwM54Y",
+      "y": "osJAp0hQGj5GfO0vzTYli1dy0Cgy7ughPq26OE2EK7M",
+      "crv": "P-256"
+    }
+  },
+  "account_id": "synthetic-local-account",
+  "semantic_profile_hash": "c1e10f92d61be9baef2377152fc38219f760457e313951a9bdc59766b223a657",
+  "approved_positive_decision_types": []
+}

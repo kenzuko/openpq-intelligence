@@ -1,0 +1,46 @@
+{
+  "contract_version": "openpq-frozen-recovery-bootstrap-v1",
+  "source_authority": {
+    "environment_id": "local-test",
+    "dataset_id": "transit.bridge.phu-quoc",
+    "authority_instance_id": "local-cano-authority",
+    "authority_locator_version": "1",
+    "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "namespace_id": "local-sqlite-namespace",
+    "object_name": "local-test/transit.bridge.phu-quoc",
+    "native_id": "c74747137bc62ff5579ee6a0ffbde10fb3cc27a6e9c5499de94e1e27de5e9f29",
+    "recovery_generation": "local-generation-1",
+    "artifacts": {
+      "rule": "c14d6065ae1237cd3f8a5634b9c4500407d55b9149f1cc00bd095b405d515ff4",
+      "config": "1606e92874e33c3f2e5939353c89acb832dd2a6344ac287c6012901e66e104c4",
+      "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+      "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+    },
+    "receipt_keys": {
+      "local-key": {
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true,
+        "kty": "EC",
+        "x": "2_3uafZJCzy9yVKPId69Bw-7ltOPX-ETfh0cNiuJfaE",
+        "y": "ZEL3LsiVRUb8lAVvgc3-MSPyQBilq0gOozyzdznTfkg",
+        "crv": "P-256"
+      }
+    },
+    "account_id": "synthetic-local-account",
+    "semantic_profile_hash": "ae6ee4d0643e4896c3764bf77b297fef09a78e051dd9085d00d50b8f58aced6c",
+    "approved_positive_decision_types": [
+      "cano.operation.fixture"
+    ]
+  },
+  "target_authority_hash": "11a52bbf298542a0d4f864e695434ada2dded5e3bcb0353d5a81c25446d536a8",
+  "snapshot_digest": "8bf1d373265ed64808742efb770d7cee0431e5cc3f2146c0cbe758808c3e2fbc",
+  "snapshot_key": "recovery/snapshots/transit.json",
+  "owner": "domain-recovery-owner",
+  "old_epoch_high_watermark": 7,
+  "domain_archive": {
+    "key": "recovery/domains/transit.json",
+    "digest": "8989086560c59afa27f9acff8b53e7a884e94953ca80063c8a1ffef0e5e62a7d"
+  }
+}

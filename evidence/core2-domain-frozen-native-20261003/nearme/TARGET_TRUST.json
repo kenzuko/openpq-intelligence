@@ -1,0 +1,32 @@
+{
+  "environment_id": "local-test",
+  "dataset_id": "directory.bridge.phu-quoc",
+  "authority_instance_id": "recovered-nearme",
+  "authority_locator_version": "2",
+  "locator_artifact_hash": "820ebb84fa89751a69484c7b9b1644f8ddd002ae23b8b1988f2872c8a0c15a12",
+  "namespace_id": "local-domain-recovery",
+  "object_name": "local-test/domain-recovery/c4ba499c-1ccb-4e58-a759-2df21e773eb2",
+  "native_id": "868f34bd909e6deff03fee23b9b1d1f806747ca053cc19b4f57bef4378b91cae",
+  "recovery_generation": "recovered-domain-v2",
+  "artifacts": {
+    "rule": "d5cd0a439b95c45e2125ea882ef894ef7bec0832fe6e17f50900e8e205570736",
+    "config": "6980d12d71bce00fadf058d1076678fe1940f5d979acaeb6a0a355018386c235",
+    "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+    "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+  },
+  "receipt_keys": {
+    "recovered-key": {
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "kty": "EC",
+      "x": "AZREvP62ZRFYY8boFkTR69TpzIXcL1Vb1ZEu5Sycxx4",
+      "y": "8ZFvxJJgFH0VO0UJXHbNaIHj7KnBH-y29vRcnPsXywo",
+      "crv": "P-256"
+    }
+  },
+  "account_id": "synthetic-local-account",
+  "semantic_profile_hash": "fcf955441258578a3e35c9977a0121a32cb8b7266caa7d046e83dc82376da89e",
+  "approved_positive_decision_types": []
+}

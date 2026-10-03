@@ -1,0 +1,152 @@
+{
+  "envelope": {
+    "receipt": {
+      "environment_id": "local-test",
+      "dataset_id": "airport.bridge.pqc",
+      "authority_instance_id": "recovered-airport",
+      "authority_locator_version": "2",
+      "locator_artifact_hash": "c1f9396e8e24835d4873835b1a715536570b0ffc152539df37157b4d2ae196c5",
+      "namespace_id": "local-domain-recovery",
+      "object_name": "local-test/domain-recovery/38abb28c-8641-4afb-aed5-d13121191536",
+      "native_id": "278be3e0f4e77633a3d221fd7aeab914da018f69ce7ae231ad7ac53245097971",
+      "recovery_generation": "recovered-domain-v2",
+      "artifacts": {
+        "rule": "8893809dbe4a3805f2d8bce55566ba8d2dd3bac7922522500678fd13b4f4ef29",
+        "config": "503fdd16e96e2bc3fa5ba7fd321f7c4a9776124dbc2808b7982f0e53c5410bbf",
+        "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+        "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+      },
+      "receipt_keys": {
+        "recovered-key": {
+          "key_ops": [
+            "verify"
+          ],
+          "ext": true,
+          "kty": "EC",
+          "x": "1KWfTmo8wc3RUA_n1uWFvbB1ljAyRBENoQnUFVwM54Y",
+          "y": "osJAp0hQGj5GfO0vzTYli1dy0Cgy7ughPq26OE2EK7M",
+          "crv": "P-256"
+        }
+      },
+      "account_id": "synthetic-local-account",
+      "semantic_profile_hash": "c1e10f92d61be9baef2377152fc38219f760457e313951a9bdc59766b223a657",
+      "approved_positive_decision_types": [],
+      "contract_version": "openpq-native-authority-snapshot-v1",
+      "snapshot_consistency": "ATOMIC_NATIVE_SQLITE_TABLES",
+      "captured_at": "2026-10-03T14:37:56.923Z",
+      "watermark": {
+        "revision": 0,
+        "control_revision": 0,
+        "epoch": 8
+      },
+      "control": {
+        "account_id": "synthetic-local-account",
+        "active": null,
+        "approved_positive_decision_types": [],
+        "artifacts": {
+          "config": "503fdd16e96e2bc3fa5ba7fd321f7c4a9776124dbc2808b7982f0e53c5410bbf",
+          "policy": "00c6645b31d1f49c1fe25ebb2e0a66398e4404256457d2383128a45c3ddf935b",
+          "rule": "8893809dbe4a3805f2d8bce55566ba8d2dd3bac7922522500678fd13b4f4ef29",
+          "schema": "dfe0b7f6a4703a6e4da94076f2b00fb23acca8701f0304a78286d4f7d128b54e"
+        },
+        "authority_instance_id": "recovered-airport",
+        "authority_locator_version": "2",
+        "control_revision": 0,
+        "dataset_id": "airport.bridge.pqc",
+        "environment_id": "local-test",
+        "epoch": 8,
+        "frozen": true,
+        "locator_artifact_hash": "c1f9396e8e24835d4873835b1a715536570b0ffc152539df37157b4d2ae196c5",
+        "namespace_id": "local-domain-recovery",
+        "native_id": "278be3e0f4e77633a3d221fd7aeab914da018f69ce7ae231ad7ac53245097971",
+        "next_transition_at": null,
+        "object_name": "local-test/domain-recovery/38abb28c-8641-4afb-aed5-d13121191536",
+        "owner": "domain-recovery-owner",
+        "receipt_keys": {
+          "recovered-key": {
+            "crv": "P-256",
+            "ext": true,
+            "key_ops": [
+              "verify"
+            ],
+            "kty": "EC",
+            "x": "1KWfTmo8wc3RUA_n1uWFvbB1ljAyRBENoQnUFVwM54Y",
+            "y": "osJAp0hQGj5GfO0vzTYli1dy0Cgy7ughPq26OE2EK7M"
+          }
+        },
+        "recovery": {
+          "active_receipt_imported": false,
+          "cloud_fencing_proven": false,
+          "contract_version": "openpq-frozen-recovery-bootstrap-v1",
+          "domain_archive": {
+            "archive_readback_only": true,
+            "artifact_documents_verified": true,
+            "digest": "f612d277c9f154ddb82694359e1698138dfa3ded2a60d71b4e6a6b4c154256fc",
+            "key": "recovery/domains/airport.json",
+            "prepared_generation_objects_verified": 1,
+            "source_payload_verified": true
+          },
+          "full_system_restore_proven": false,
+          "historical_commands_imported": false,
+          "historical_outbox_imported": false,
+          "history_discontinuity": false,
+          "overrides_imported": false,
+          "restored_at": "2026-10-03T14:37:56.588Z",
+          "snapshot_digest": "e8420c96117a72b0fce22f832126e49113f547d6a07199c3691f44732aacd2a2",
+          "snapshot_key": "recovery/snapshots/airport.json",
+          "source_locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_watermark": {
+            "control_revision": 0,
+            "epoch": 1,
+            "revision": 1
+          },
+          "writer_resume_allowed": false
+        },
+        "recovery_generation": "recovered-domain-v2",
+        "revision": 0,
+        "semantic_profile_hash": "c1e10f92d61be9baef2377152fc38219f760457e313951a9bdc59766b223a657"
+      },
+      "table_counts": {
+        "prepared": 0,
+        "commands": 0,
+        "audit": 1,
+        "outbox": 0
+      },
+      "page_refs": [
+        {
+          "table": "audit",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "6a2ac85851a7d473d4d5c0979a498134c723ba948a75085783e2f6a1c424e9b0"
+        }
+      ],
+      "coverage": {
+        "native_control": true,
+        "prepared": true,
+        "commands": true,
+        "audit": true,
+        "outbox": true,
+        "external_artifacts": false,
+        "scheduler_state": false,
+        "deploy_code": false,
+        "storage_credentials": false
+      }
+    },
+    "key_id": "recovered-key",
+    "signature": "/AN17BbMZg35fRfTne+WDiqu+a7YNa8XNDIuDwTTvx+2CxtqVp3hB56TxDt/pJic9JNwgAw2u2zbV2TWwhwyKw=="
+  },
+  "pages": [
+    {
+      "table": "audit",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "6a2ac85851a7d473d4d5c0979a498134c723ba948a75085783e2f6a1c424e9b0",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA6VTTW/VMBD8Lz7ntbHz/W6Aei4qFRIQZG3sTZ/bxA5rJyVU/e8oeSl9peWEb/aMdmZ31t8eWOP0zPbsoWaggnG2ZvuaXV18uPx8cfVFvr+8vP50ffXuY82ileFoJRAqNyHN6/PzZb+VmVASKjRDkKYfHAXUNdu30HmMaqY6N2rZolXG3siB3IT2FHY2EKggJyT/5MgNaIcfu5bcL7S7J8Vd41zwgWDYTXz1ol0PxkogdTATbo6OF0kIugF1J53tFrOBxkUPKJh20dNOjT3a4Bdl05rV9EbS5gZ9WK20ORdaFIWqWp6lWjelyKs0ySrkeVXypNQtJBq1gDzWBW9SzCFvUsWzVGR5q1afdzi/GOT50bg/B0PLwM5u/dJ5VLOBcABCLW/QIsGSkXTNLaqXPnlUM+9GUigHmDsH+u8uHqOatWPXST/7gL0k9MERvg7gYBbAKOikcn0PVvu3YjyhuTE07ue/SbPUxi+5GjuaMJ/gS/NkNL6psDnUEo6TF7HIdzzexck1T/dJsc/ys6wsv65z8hYGf3BBnkSFZSpiVeWcF1CIJm4VCtGWieAix7TiPGmztNA5xAWvKpXkFW/TtEgEgNICxMvCrzJ7Qt5IbYuicwqCI/lnxw7gD2sR+M9zqnIPAakHujvu+/qBXCcJJ7N9oDiqGQ5OHbZNOYH4shf3ZALSshJjjxK6zt0/J/H4yCJm9EL9/huWB6K3MgQAAA==",
+        "uncompressed_bytes": 1074,
+        "sha256": "2b1f5297b39e1a7c2a21c4e9e058ec0d8e787b8ddea90589973081e93fa394dd"
+      }
+    }
+  ]
+}
