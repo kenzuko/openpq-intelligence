@@ -1,0 +1,223 @@
+{
+  "envelope": {
+    "receipt": {
+      "environment_id": "local-test",
+      "dataset_id": "cano.operation",
+      "authority_instance_id": "local-cano-authority",
+      "authority_locator_version": "1",
+      "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "namespace_id": "local-sqlite-namespace",
+      "object_name": "local-test/cano.operation",
+      "native_id": "f7889f18aed8d03177973582c0b9d485c234d92dd00967627a943f094b60a295",
+      "recovery_generation": "local-generation-1",
+      "artifacts": {
+        "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "receipt_keys": {
+        "local-key": {
+          "key_ops": [
+            "verify"
+          ],
+          "ext": true,
+          "kty": "EC",
+          "x": "6TVW_jBqS8jhSEu6O6w1iURW9Y-4lYGy2q7-X8zqrpk",
+          "y": "DY_d8fITcxAQhRPSioFCgD3DF-qYpB5dtsL5QoGccws",
+          "crv": "P-256"
+        }
+      },
+      "account_id": "synthetic-local-account",
+      "approved_positive_decision_types": [
+        "cano.operation.fixture"
+      ],
+      "contract_version": "openpq-native-authority-snapshot-v1",
+      "snapshot_consistency": "ATOMIC_NATIVE_SQLITE_TABLES",
+      "captured_at": "2026-10-03T12:47:42.872Z",
+      "watermark": {
+        "revision": 1,
+        "control_revision": 0,
+        "epoch": 1
+      },
+      "control": {
+        "account_id": "synthetic-local-account",
+        "active": {
+          "account_id": "synthetic-local-account",
+          "approved_positive_decision_types": [
+            "cano.operation.fixture"
+          ],
+          "artifacts": {
+            "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "authority_instance_id": "local-cano-authority",
+          "authority_locator_version": "1",
+          "command_id": "old-commit",
+          "committed_at": "2026-10-03T12:47:42.842Z",
+          "control_revision": 0,
+          "dataset_id": "cano.operation",
+          "digest": "5cace05f758f8558976deeca3d62bcdc715e8529cccf4a9fb5a891296bde244f",
+          "environment_id": "local-test",
+          "epoch": 1,
+          "key": "generations/local-cano-authority/local-generation-1/5cace05f758f8558976deeca3d62bcdc715e8529cccf4a9fb5a891296bde244f.json",
+          "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "logical_slot": 10,
+          "namespace_id": "local-sqlite-namespace",
+          "native_id": "f7889f18aed8d03177973582c0b9d485c234d92dd00967627a943f094b60a295",
+          "object_name": "local-test/cano.operation",
+          "operation": "NORMAL",
+          "owner": "pilot",
+          "previous_revision": 0,
+          "receipt_keys": {
+            "local-key": {
+              "crv": "P-256",
+              "ext": true,
+              "key_ops": [
+                "verify"
+              ],
+              "kty": "EC",
+              "x": "6TVW_jBqS8jhSEu6O6w1iURW9Y-4lYGy2q7-X8zqrpk",
+              "y": "DY_d8fITcxAQhRPSioFCgD3DF-qYpB5dtsL5QoGccws"
+            }
+          },
+          "recovery_generation": "local-generation-1",
+          "revision": 1
+        },
+        "approved_positive_decision_types": [
+          "cano.operation.fixture"
+        ],
+        "artifacts": {
+          "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "authority_instance_id": "local-cano-authority",
+        "authority_locator_version": "1",
+        "control_revision": 0,
+        "dataset_id": "cano.operation",
+        "environment_id": "local-test",
+        "epoch": 1,
+        "frozen": false,
+        "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "namespace_id": "local-sqlite-namespace",
+        "native_id": "f7889f18aed8d03177973582c0b9d485c234d92dd00967627a943f094b60a295",
+        "next_transition_at": null,
+        "object_name": "local-test/cano.operation",
+        "owner": "pilot",
+        "receipt_keys": {
+          "local-key": {
+            "crv": "P-256",
+            "ext": true,
+            "key_ops": [
+              "verify"
+            ],
+            "kty": "EC",
+            "x": "6TVW_jBqS8jhSEu6O6w1iURW9Y-4lYGy2q7-X8zqrpk",
+            "y": "DY_d8fITcxAQhRPSioFCgD3DF-qYpB5dtsL5QoGccws"
+          }
+        },
+        "recovery_generation": "local-generation-1",
+        "revision": 1
+      },
+      "table_counts": {
+        "prepared": 1,
+        "commands": 1,
+        "audit": 1,
+        "outbox": 1
+      },
+      "page_refs": [
+        {
+          "table": "prepared",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "7959293b767e9c967820e0dfe722e0c41375dfc50bc84ea74dbefe7aedc8aed1"
+        },
+        {
+          "table": "commands",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "37a9ce26eab73f8d479b63698aa7e9d38bf654e83f5f9cc0aca438c067b9d94d"
+        },
+        {
+          "table": "audit",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "aeea2dc2fd327b5fe9510050dbe4ea8a7e084b0362927e34abecd85815e1f6e4"
+        },
+        {
+          "table": "outbox",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "4ec411aef96d858a9121db354948c925d84cc88d84fe78459008fcf4d72ed544"
+        }
+      ],
+      "coverage": {
+        "native_control": true,
+        "prepared": true,
+        "commands": true,
+        "audit": true,
+        "outbox": true,
+        "external_artifacts": false,
+        "scheduler_state": false,
+        "deploy_code": false,
+        "storage_credentials": false
+      }
+    },
+    "key_id": "local-key",
+    "signature": "II4P3oUT370VZnLHYHVGPJdQ/W4tUj49aABC6+8Bt9WiZOeZl7CNRzI7I8517ZmmtacYkacB8NR2psi9aKGMbQ=="
+  },
+  "pages": [
+    {
+      "table": "prepared",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "7959293b767e9c967820e0dfe722e0c41375dfc50bc84ea74dbefe7aedc8aed1",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA61Va1PbOhD9L/6Mwe9HvlEIncwAaUOg5eKORpHWiYgtObLs4jL89zuSnUcpc3tnwN+sPbsr6Zw9eni2FoJ21sh6zixMiGi4Qoxm1iiz6o6rFShG7EIQXNhDOLOOMgtXlRQtUFSJminWAqJAWM0ER6qroM6s0UNmEczFsahAYsUEP87Zk2okZNYPXUEqlmOiNPQ5s4jgOVuavvidn9lgJQpGuo+rJ5sCPq5aTVZQ4g+q96Jvs1ErIZnqEOO1wpzAlsWeO82EvQP1FO5SNEQJiVqQmkGT5hoMwZwyitWumo8D7KQLbCeJm9gBxZG9SBywvdwJPJ844PrUZFKscA07Lf2uhB4xCKbnHxMdQA1XrDAZnuNFtuvYjj93/VEQjwLvOHH9f0wu5DkQZXBfpjeT+eRubNbXjPf9Lk7P5malZJyVTYmgZRT0tZSg85RsQLMKuBYcEUG3kr2YfJ/fzsbobHp9MZldnc4n0+tesFrXb5xlr2rNA2VLqPuNhQQTcMI8DpM8CcMkjSMKQLBPI29BKIndEJLQSwkheYDTfBHiJHW9NFpQ8IIg7w/KWyYFL2E/lj2hyrTRiBYXjdkJUqyEP+7O++PuniogCigigispCiSh3RLhHMZfrTNeNWZaH54zq8RPCC8BlXrBjxz9aV2LRu6ltzeQEvMGF/buqvbQ/9izu9/zFryl4Or0+vb00oRaXDCKlPiLaF40hWvoHWEJfGCvPnlrPobFPcx2T95L5/FjPQh/O25bB0QrXK8+zlsKsWQEF6guhBaiq3nhuIS6wq9dod4UTIG9i5p8jo2fD8A8TpI0dxMMNKGO78ZxGvth4hFnkdIgCYnnBzT1KHWcNIojL8Zp4OdOGiwiB3tpaEqKxSMQhXSfVxI+ecMYDv5GmXU9nV0NVFe4KwSmBw+GLPfAYWLH5wY7SA0JXnTDvOv5rCRUWALdGY0bp67ju2nkJV5ylFmbBhfGIfseZVWAAg51PfS4+nI5nvdmI6EWRbPrPxvfTC/vdPsXEyTAKoXW0A0vXH/oXoK6tmx7/7K9MBoG88CZ1tAhUQ2m1IJkedfb0Fr1Gh6fmaQn8xPN776hx0+bm+RxdTNuomn002W3s2/pvR0U9587bxPb35NfG1mtTVZf4vwe0SSfzMnT6dfV7MsNExdny3P//MLe3FefQqrqy/Cr+EzIzzqzXoZTiRZkh/ajcUDo4bwcPHO/vSuiAl5t7N3DYrfuwRjnUpR/d4P/O/LWkcWoNXq3E1svP/4F7BKysygJAAA=",
+        "uncompressed_bytes": 2344,
+        "sha256": "05f45dc663d69751cfdf9bb37943dfffe1fd3c82d4fb06f1b2a5a7b20db54cb4"
+      }
+    },
+    {
+      "table": "commands",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "37a9ce26eab73f8d479b63698aa7e9d38bf654e83f5f9cc0aca438c067b9d94d",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA62U23KbMBCG30XXxgHM+S7n6UzaHNvUDRlGlhYjByMsCWKa8bt3JLCdZnIXcwf7779i99M+vSHK5iAVSpBPMAHbz0M/yiPfj+IwoAAET2jgzggloeND5LsxIST3cJzPfBzFjhsHMwqu5+VohBhFCeIltQhfLplCIyRANqV2f0sRJoQ3lcoYTVGSItlVqgDFiFVygktrCKdolCJc14K3QLOaS6ZYCxkFwiTjVaa6GmSKkqcUEVzxMa9BYMV4Nc7ZWjUCUvSsHYRiOSZKS99SRHiVs7mpi7/4mAPWvGSkO5yfaEo4nJskBSzxgfw2upuNKrhgqstYJRWuCGyn2M9OT8LaifoR7lK0RHGRtSD0BE2aYzQaE1zRrdeenF2UKQU0w8rEXdsNLMe27MmD4yZemHjuOPLcP4O6UoKXmYCWDWXsUYooVljCDrr/kTGJ/QUw0a9eAeMHVcsEr5awR71vkjJltKLmpEhR4oxS9AI9RXOohkPJo896Onzcyyzn6KvHHS/k0IPtiLa3JiuwLA7HY8nnjOAykyXXjXb0YCq8BFnjjyTJVckUWLuoya+w2QGDMA+jKM6dCAONqD1xwjAOJ37kEnsWUy/yiTvxaOxSattxEAZuiGNvktuxNwts7Ma+seSzBRCV6TofRnT0CSPv3pIU/bi++3581QdeKxDmY83Mz+ndoBHkjfyIogACrFbZC3TDVuqL9gjoJSVaY3VjuX7Qk7LW/VKigR6VjNfD7mtBsLzrd92L6hk6PzVJa/MSPPx6zBYnq/toUdyfN8F18Oqwn3eP8dTyyull565C63f0dyXqF5PVW5xNMxrl3x7I+vi2uLu5Z/zidH42ObuwVtP6xKdKXvm3/JKQV5mizab/K96C6LI9mu8a+p7XftHte+Js0Ob5Hx1EF6eCBgAA",
+        "uncompressed_bytes": 1666,
+        "sha256": "009bbdcd06cb1b6a8c939a90d75ef99d43722b512a186442c4d2a2e3053f77a3"
+      }
+    },
+    {
+      "table": "audit",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "aeea2dc2fd327b5fe9510050dbe4ea8a7e084b0362927e34abecd85815e1f6e4",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA61VyXKjMBD9F52NA5j9lr1SlUw2z2Q8IUXJUmNkY4QlmZhJ+d+nkLCTSeUWc0K9vG69fjTPb2jKaYsS9JYiTBTjVYqSFJ3e3txcjVM00FYutLFkDWiTAAKsVilKdBbh60pljOog2VaqAMWIVXKCS6t3G6i6FrwBmtVcMsUayCgQJhmvMtXWIFOUPKeI4IoPeQ0Cd+0Mc7ZRawEpeukQhGI5Jkqa2oRXOZvpuvibj26w5iUj7eHwxLqEw6FJUsASHwhv27G5VgUXTLUZq6TCFYHdFM3suklY+yAzwn1KF6K4yBoQcicbR8cQvlziiu6weEmtzsTU3suUApphpf2u7QaWY1v2aOy4iRcmnjuMPPdPH10pwctMQMP6MvYgRRQrLGEvuv8loxMpm4E0BXyCCdh+HvpRHvl+FIcBBSB4RAN3SigJHR8i340JIbmH43zq4yh23DiYUnA9L9d4UDVM8GoJ71I3JCldpouoOSlSlDiDFC3AqGgGVd+UPPqK0974HmY5R99tdziXPQe7Ee2+mqzAsjicHks+YwSXmSx5R7TTDabCS5A1/qwkuSqZAmvv1fkV1jugD8zDKIpzJ8JAI2qPnDCMw5EfucSextSLfOKOPBq7lNp2HISBG+LYG+V27E0DG7uxryH5dA5EZV2dTyM6+kIjH05Jin7cPtwcXxvHawVm59VMX67bDZ0E+Vp+lmK/DLMFtP1WMkWNBLolJRoNdWe5fmCUsun4UmINRioZr/vd14BgeWt23UIZDZ2f6qSNPgTjX0/Z/GT1GM2Lx/N1cBu8Ouznw1M8sbxyctm6q9D6Hf1diXqhswzE2SSjUX41Jpvj++Lh7pHxi9PZ2ejswlpN6hOfKnnt3/NLQl5lirZbcyvegGizd2l+IPSjXvs/wp4TZ7tFA8Ro9/byD7En3thgBgAA",
+        "uncompressed_bytes": 1632,
+        "sha256": "6034644d9b388deca4f7c70eb5a30522b2b7475da0cd9aac390e44afd98abdad"
+      }
+    },
+    {
+      "table": "outbox",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "4ec411aef96d858a9121db354948c925d84cc88d84fe78459008fcf4d72ed544",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA61U23KbMBT8Fz0bBzBXv+U+nUmba5u6IcPI0sHIwRKWZGKa8b93JLCdZvIW84bOnj1idzlPb2gqaIvG6C1DmBCx4jpnNEPjDKmW6xI0I04lCK6cvpyhQYZwXUvRAM1roZhmDeQUCFNM8Fy3NagMjZ8yRDAXQ1GDxJoJPizYWq8kZOjZMEjNCky0gb5liAhesJmdi7/42AvWomKkPRyfXFVwODZFSljgA/FtjJorXQrJdJszrjTmBLYudt4ZJ5wdqLNw12IgWsi8AWkctG2exRCxWGBOt1yioo45YnpXZVoDzbG2dd/1I8dzHXf04PnjIB4H/jAJ/D89mmspqlxCw/ox7iBDFGusYBe6/yNjGymbgeoGhAQTcMMiDpMiCcMkjSMKQPCIRv6UUBJ7ISShnxJCigCnxTTESer5aTSl4AdBYfmAN0wKvoB91DuRtB1jELUgZYbG3iBDL9ClaAa8v5Q6+kzT/nAPc7yjr153OFe9BluLtn9NXmJVHi6PlZgxgqtcVcII7RljOF6AqvHHJKllxTQ4u6rt59jugB5YxEmSFl6CgSbUHXlxnMajMPGJO01pkITEHwU09Sl13TSKIz/GaTAq3DSYRi7209BSiukciM7NnA8WHX2SkXdv4wz9uL77fnzVFV45SHtYM/txZjeYCIqV+hhFCQRYrfMXaPut1A3tImCWlGws1Y3jh1GXlLXRS8sVdFHJRd3vvgYkK9pu173oLkPnp7ZpbV+ih1+P+fxkeZ/My/vzVXQdvXrs591jOnGCanLZ+svY+Z38Xcr6xXZ1FGeTnCbFtweyPr4t727umbg4nZ2Nzi6c5aQ+CalWV+GtuCTkVWVos+m+SjQg23wfzXeCvs9rt+j2mngbNECwroXUQM3fsCua2vM/cVXNYjwGAAA=",
+        "uncompressed_bytes": 1596,
+        "sha256": "6551f518411c3bb019099cdd6633da89b8324590c6da71b1caa5e676a7c85b9d"
+      }
+    }
+  ]
+}

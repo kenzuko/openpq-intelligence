@@ -1,0 +1,31 @@
+{
+  "environment_id": "local-test",
+  "dataset_id": "cano.operation",
+  "authority_instance_id": "local-recovered-authority",
+  "authority_locator_version": "2",
+  "locator_artifact_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "namespace_id": "local-recovery-sqlite-namespace",
+  "object_name": "local-test/recovery-565f10e3-435b-47b1-87b9-7523a59e525f",
+  "native_id": "1ee34d60c9d30ef24ab4b93c92a75d8223a0cd7d9d4525aa238b27757c3af353",
+  "recovery_generation": "local-recovery-generation-2",
+  "artifacts": {
+    "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "receipt_keys": {
+    "recovered-key": {
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "kty": "EC",
+      "x": "M5gHX5wEj3kSo3RYd3D6y_uTMm2cG65aZ9KcP0rX2U4",
+      "y": "UkINjyM1Ql2DYZo4TnPHwDwtFhAnU8KTNnSOB9rDwlk",
+      "crv": "P-256"
+    }
+  },
+  "account_id": "synthetic-local-account",
+  "approved_positive_decision_types": []
+}

@@ -7,6 +7,7 @@ import {validateSemanticAdmission,validateSemanticReplayActor} from '../platform
 import { attest, exportCheckpoint } from '../platform/receipts.js';
 import {isExpiredForecastRetirement} from '../platform/forecast-retirement.js';
 import {sealAuthoritySnapshot,SNAPSHOT_TABLES,SNAPSHOT_MAX_BYTES,SNAPSHOT_MAX_ROWS} from '../platform/authority-snapshot.js';
+import {frozenRecoveryState} from '../platform/recovery-bootstrap.js';
 
 function json(value,status=200) {return Response.json(value,{status,headers:{'cache-control':'no-store'}});}
 export class DatasetCoordinator extends DurableObject {
@@ -30,7 +31,7 @@ export class DatasetCoordinator extends DurableObject {
   async fetch(request) {
     try {
       const trust=this.trust(), actor=await principal(request,this.env), path=new URL(request.url).pathname;
-      const permission=path==='/read'||path==='/validate'?'read':path==='/prepare'||path==='/commit'?'promote':path==='/export'?'export':path==='/recovery-export'?'recovery-export':'control';
+      const permission=path==='/read'||path==='/validate'?'read':path==='/prepare'||path==='/commit'?'promote':path==='/export'?'export':path==='/recovery-export'?'recovery-export':path==='/recovery-bootstrap'?'recovery-bootstrap':'control';
       authorize(actor,permission,trust);
       if (path==='/read' && request.method==='GET') return json({state:this.state(),instance_observation:{incarnation_id:this.incarnation_id}});
       requireThat(request.method==='POST','METHOD_DENIED',405);
@@ -39,7 +40,26 @@ export class DatasetCoordinator extends DurableObject {
       const body=JSON.parse(bodyText), now=Date.now();
       // Re-check native/trust identity after awaits; final transactions also check state controls.
       requireThat(sameLocator(this.trust(),trust),'TRUST_CHANGED',409);
+      const recoveryPlans=JSON.parse(this.env.RECOVERY_PLANS_JSON||'{}'),recoveryPlan=recoveryPlans[trust.dataset_id];
+      if(path==='/recovery-bootstrap'){
+        requireThat(actor.mode==='LIVE','RECOVERY_BOOTSTRAP_MODE_DENIED',403);
+        requireThat(!this.state(),'ALREADY_BOOTSTRAPPED',409);
+        requireThat(recoveryPlan&&stable(Object.keys(body))==='[]','RECOVERY_PLAN_REQUIRED',503);
+        requireThat(/^recovery\/snapshots\/[a-zA-Z0-9_-]{1,128}\.json$/.test(recoveryPlan.snapshot_key),'RECOVERY_ARCHIVE_KEY_INVALID');
+        const object=await this.env.CANONICAL.get(recoveryPlan.snapshot_key);
+        requireThat(object&&object.size<=SNAPSHOT_MAX_BYTES+262144,'RECOVERY_SNAPSHOT_UNAVAILABLE',503);
+        const data=await object.text();requireThat(new TextEncoder().encode(data).length<=SNAPSHOT_MAX_BYTES+262144,'RECOVERY_SNAPSHOT_TOO_LARGE',413);
+        const state=await frozenRecoveryState(JSON.parse(data),recoveryPlan,trust,JSON.parse(this.env.RECEIPT_SIGNING_JSON||'{}'),new Date().toISOString());
+        return json(this.ctx.storage.transactionSync(()=>{
+          requireThat(sameLocator(this.trust(),trust),'TRUST_CHANGED',409);
+          requireThat(!this.state(),'ALREADY_BOOTSTRAPPED',409);
+          requireThat(['prepared','commands','audit','outbox'].every(table=>this.ctx.storage.sql.exec(`SELECT COUNT(*) AS n FROM ${table}`).toArray()[0].n===0),'RECOVERY_TARGET_NOT_EMPTY',409);
+          this.save(state);this.ctx.storage.sql.exec('INSERT INTO audit(body) VALUES(?)',stable({actor:actor.id,action:'RECOVERY_BOOTSTRAP',recovery:state.recovery}));
+          return {state,writer_resumed:false};
+        }));
+      }
       if (path==='/bootstrap') {
+        requireThat(!recoveryPlan,'RECOVERY_PLAN_REQUIRES_FROZEN_BOOTSTRAP',409);
         requireThat(actor.permissions.includes('bootstrap'),'BOOTSTRAP_DENIED',403);
         return json(this.ctx.storage.transactionSync(()=>{
           requireThat(!this.state(),'ALREADY_BOOTSTRAPPED',409);
@@ -152,7 +172,7 @@ export class DatasetCoordinator extends DurableObject {
           requireThat(instant(body.expires_at,'COMMAND_EXPIRES')>now,'COMMAND_EXPIRED',409);
           requireThat(typeof body.reason==='string'&&body.reason.length>0,'CONTROL_REASON_REQUIRED');
           if(body.action==='TRANSFER') {requireThat(typeof body.owner==='string'&&body.owner.length>0,'OWNER_REQUIRED');s.owner=body.owner;s.epoch=revision(s.epoch+1,'NEW_EPOCH');}
-          else if(body.action==='FREEZE') {requireThat(typeof body.frozen==='boolean','FREEZE_VALUE_REQUIRED');s.frozen=body.frozen;}
+          else if(body.action==='FREEZE') {requireThat(typeof body.frozen==='boolean','FREEZE_VALUE_REQUIRED');requireThat(body.frozen||!s.recovery||s.recovery.writer_resume_allowed===true,'RECOVERY_RESUME_GATE_CLOSED',409);s.frozen=body.frozen;}
           else if(body.action==='RESTRICT_AT') {requireThat(instant(body.effective_from,'EFFECTIVE_FROM')>now,'TRANSITION_NOT_FUTURE');s.next_transition_at=body.effective_from;}
           else throw new ContractError('CONTROL_ACTION_UNSUPPORTED');
           s.control_revision=revision(s.control_revision+1,'NEW_CONTROL_REVISION');this.save(s);

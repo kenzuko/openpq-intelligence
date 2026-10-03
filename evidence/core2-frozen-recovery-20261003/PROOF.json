@@ -1,0 +1,35 @@
+{
+  "status": "PASS_LOCAL_FROZEN_NATIVE_RECOVERY",
+  "source_watermark": {
+    "revision": 1,
+    "control_revision": 0,
+    "epoch": 1
+  },
+  "new_epoch": 8,
+  "old_epoch_high_watermark": 7,
+  "frozen": true,
+  "active_receipt_imported": false,
+  "historical_commands_imported": false,
+  "historical_outbox_imported": false,
+  "writer_resumed": false,
+  "local_old_command_denial": {
+    "role": "OLD_COMMAND",
+    "http_status": 401,
+    "positive_witness_status": 200,
+    "scope": "LOCAL_NATIVE_ONLY",
+    "cloud_fencing_proven": false,
+    "storage_write_fencing_proven": false
+  },
+  "new_route_old_token_status": 401,
+  "native_restart_state_equal": true,
+  "native_incarnation_changed": true,
+  "bootstrap_ms": 19.6096849999999,
+  "restart_readback_ms": 270.64009399999986,
+  "measurements_scope": "LOCAL_FIXTURE_ONLY_NOT_RPO_RTO_SLA",
+  "cloud_fencing_proven": false,
+  "storage_write_fencing_proven": false,
+  "external_artifact_restore_proven": false,
+  "offsite_restore_proven": false,
+  "full_g1_passed": false,
+  "production_enabled": false
+}

@@ -1,0 +1,16 @@
+{
+  "scope": "LOCAL_FROZEN_NATIVE_RECOVERY",
+  "cloud_deployed": false,
+  "full_g1_passed": false,
+  "writer_resumed": false,
+  "files": {
+    "PROOF.json": "6c4ad47892cbe0622d74e5233e708d2c35ec2c89c0085d17b29331a2cd765b2c",
+    "RECOVERY_PLAN.json": "70b431b0582febc14664ed0dc782b7a2fa5dd42348692ec8fec4de2ee20ff28e",
+    "SOURCE_SNAPSHOT.json": "bc1a22e53edc005f2a72d8644ea7eb178715a1a46b805fb382971280065c0cef",
+    "SOURCE_TRUST.json": "132366e7a83354ae9c29da5c0971abd9aff6841d148dec8b3904f5130ee605d0",
+    "TARGET_SNAPSHOT.json": "429313a56a7dc42dbdd1612f6a5378455ddf6cc4fb77101c6323b9f9ed3a8bf5",
+    "TARGET_TRUST.json": "97ca3219b39fbb25b7f5053a4a1b71601d7d648c700634d5e304df39d79fb929",
+    "TARGET_VERIFICATION.json": "88985f28e494512297a717f075938f5919042402fd161e0a273302b32897cd33",
+    "native-tests.txt": "9b7c754f61daa1134acb38622fe394ed1a675cf87aa3f5e0b286be85845cd69c"
+  }
+}

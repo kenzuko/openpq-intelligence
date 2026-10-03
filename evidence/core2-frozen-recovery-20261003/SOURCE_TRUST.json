@@ -1,0 +1,33 @@
+{
+  "environment_id": "local-test",
+  "dataset_id": "cano.operation",
+  "authority_instance_id": "local-cano-authority",
+  "authority_locator_version": "1",
+  "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "namespace_id": "local-sqlite-namespace",
+  "object_name": "local-test/cano.operation",
+  "native_id": "f7889f18aed8d03177973582c0b9d485c234d92dd00967627a943f094b60a295",
+  "recovery_generation": "local-generation-1",
+  "artifacts": {
+    "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "receipt_keys": {
+    "local-key": {
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "kty": "EC",
+      "x": "6TVW_jBqS8jhSEu6O6w1iURW9Y-4lYGy2q7-X8zqrpk",
+      "y": "DY_d8fITcxAQhRPSioFCgD3DF-qYpB5dtsL5QoGccws",
+      "crv": "P-256"
+    }
+  },
+  "account_id": "synthetic-local-account",
+  "approved_positive_decision_types": [
+    "cano.operation.fixture"
+  ]
+}

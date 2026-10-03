@@ -1,0 +1,142 @@
+{
+  "envelope": {
+    "receipt": {
+      "environment_id": "local-test",
+      "dataset_id": "cano.operation",
+      "authority_instance_id": "local-recovered-authority",
+      "authority_locator_version": "2",
+      "locator_artifact_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "namespace_id": "local-recovery-sqlite-namespace",
+      "object_name": "local-test/recovery-565f10e3-435b-47b1-87b9-7523a59e525f",
+      "native_id": "1ee34d60c9d30ef24ab4b93c92a75d8223a0cd7d9d4525aa238b27757c3af353",
+      "recovery_generation": "local-recovery-generation-2",
+      "artifacts": {
+        "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "receipt_keys": {
+        "recovered-key": {
+          "key_ops": [
+            "verify"
+          ],
+          "ext": true,
+          "kty": "EC",
+          "x": "M5gHX5wEj3kSo3RYd3D6y_uTMm2cG65aZ9KcP0rX2U4",
+          "y": "UkINjyM1Ql2DYZo4TnPHwDwtFhAnU8KTNnSOB9rDwlk",
+          "crv": "P-256"
+        }
+      },
+      "account_id": "synthetic-local-account",
+      "approved_positive_decision_types": [],
+      "contract_version": "openpq-native-authority-snapshot-v1",
+      "snapshot_consistency": "ATOMIC_NATIVE_SQLITE_TABLES",
+      "captured_at": "2026-10-03T12:47:43.745Z",
+      "watermark": {
+        "revision": 0,
+        "control_revision": 0,
+        "epoch": 8
+      },
+      "control": {
+        "account_id": "synthetic-local-account",
+        "active": null,
+        "approved_positive_decision_types": [],
+        "artifacts": {
+          "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "authority_instance_id": "local-recovered-authority",
+        "authority_locator_version": "2",
+        "control_revision": 0,
+        "dataset_id": "cano.operation",
+        "environment_id": "local-test",
+        "epoch": 8,
+        "frozen": true,
+        "locator_artifact_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "namespace_id": "local-recovery-sqlite-namespace",
+        "native_id": "1ee34d60c9d30ef24ab4b93c92a75d8223a0cd7d9d4525aa238b27757c3af353",
+        "next_transition_at": null,
+        "object_name": "local-test/recovery-565f10e3-435b-47b1-87b9-7523a59e525f",
+        "owner": "recovery-pilot",
+        "receipt_keys": {
+          "recovered-key": {
+            "crv": "P-256",
+            "ext": true,
+            "key_ops": [
+              "verify"
+            ],
+            "kty": "EC",
+            "x": "M5gHX5wEj3kSo3RYd3D6y_uTMm2cG65aZ9KcP0rX2U4",
+            "y": "UkINjyM1Ql2DYZo4TnPHwDwtFhAnU8KTNnSOB9rDwlk"
+          }
+        },
+        "recovery": {
+          "active_receipt_imported": false,
+          "cloud_fencing_proven": false,
+          "contract_version": "openpq-frozen-recovery-bootstrap-v1",
+          "full_system_restore_proven": false,
+          "historical_commands_imported": false,
+          "historical_outbox_imported": false,
+          "history_discontinuity": false,
+          "overrides_imported": false,
+          "restored_at": "2026-10-03T12:47:43.458Z",
+          "snapshot_digest": "0e7728b7b86e94390f51488b1b23331055cf1bae8a9adca5244e474c5039aa7c",
+          "snapshot_key": "recovery/snapshots/isolated-local-proof.json",
+          "source_locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source_watermark": {
+            "control_revision": 0,
+            "epoch": 1,
+            "revision": 1
+          },
+          "writer_resume_allowed": false
+        },
+        "recovery_generation": "local-recovery-generation-2",
+        "revision": 0
+      },
+      "table_counts": {
+        "prepared": 0,
+        "commands": 0,
+        "audit": 1,
+        "outbox": 0
+      },
+      "page_refs": [
+        {
+          "table": "audit",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "9035a1cd02fe8be3484d979673176c1873df71e7943cc3508675121d174cf24c"
+        }
+      ],
+      "coverage": {
+        "native_control": true,
+        "prepared": true,
+        "commands": true,
+        "audit": true,
+        "outbox": true,
+        "external_artifacts": false,
+        "scheduler_state": false,
+        "deploy_code": false,
+        "storage_credentials": false
+      }
+    },
+    "key_id": "recovered-key",
+    "signature": "jkPPnD0PbXIFD3PqHLoJ8cyL8gAH1ipLN/w64XMyl/6KNzijntgX7A1nMAm1GqoS5/xs6kWYVXLHpE7C4HXYAQ=="
+  },
+  "pages": [
+    {
+      "table": "audit",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "9035a1cd02fe8be3484d979673176c1873df71e7943cc3508675121d174cf24c",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA6VSy27bMBD8F56tRM9I1q0JcnbhGgXaqiBW1CpmQ3HVJSVXDfzvhRQ7cdD0VN6IGc7Mcufbk6ipmUQpnioBymuylSgrsb2/23y+336Rt5vN7tNu++FjJVYLg3ghWDwEjIpG5GmBXi/lSWpEyahQ917qrif22FSibME4XFVCGRoa2aJV2j7InmlEewmT9QzKyxHZnVNRj7b/GbRMv9G+2Ac1kXeeoQ/GaMnSDsZINzmPnWR0nhj/dtjrGdAKjFTUdWAb917OCxoNvqZf/yZNstFuDq7toP10gc85WTf4rsMpYSPBL1PGYXwTRGEQJrsoLtO8TJOrNCu+LqM5C73bk5eNfkD3/CDEPI+LOq+LG1ynyTpssygtijqq4yRJojDLVBvVgAWsoVGQxWmKaZ6qLEzWALl6K/yI06J6/t7rM+KutSMDHpvAkAIT9EzUXv1w83ZmBRpYoZwxTyyBvW7nDe7B7RdF+M9z6XIAj9wBPz73bakLGck46lNdwlUlsCc1e0fLN79A0XFViQNrjzz3Y+hQgjF0eF3L8ShWQjcz9fsf2ttgTCQDAAA=",
+        "uncompressed_bytes": 804,
+        "sha256": "91940928fa5d7c2cf7203aa2df2e77a965f7da59e7b665abd444c0345f345203"
+      }
+    }
+  ]
+}

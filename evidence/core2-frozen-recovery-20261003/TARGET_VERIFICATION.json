@@ -1,0 +1,11 @@
+{
+  "status": "SIGNED_NATIVE_AUTHORITY_TABLES_PASS",
+  "control_authenticity_verified": true,
+  "audit_authenticity_verified": true,
+  "commands_authenticity_verified": true,
+  "outbox_authenticity_verified": true,
+  "external_artifacts_included": false,
+  "full_system_restore_proven": false,
+  "offsite_proven": false,
+  "resume_writer": false
+}
