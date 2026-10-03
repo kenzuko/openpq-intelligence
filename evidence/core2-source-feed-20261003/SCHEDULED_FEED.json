@@ -1,0 +1,23 @@
+{
+  "status": "REAL_SCHEDULED_REFERENCE_FEED_SUBSET_PASS",
+  "run_id": 37117134469,
+  "code_sha": "1c9ca5f696b470db982aba2f9273af9452de4ddb",
+  "activated_at": "2026-10-03T10:40:57.935Z",
+  "completed_at": "2026-10-03T10:45:25.823Z",
+  "dataset_count": 10,
+  "authority_rotation": false,
+  "signer_rotation": false,
+  "cron": "*/4 * * * *",
+  "capability_denials": {
+    "bootstrap": 403,
+    "control": 403,
+    "cross_dataset": 403
+  },
+  "signed_publications_independently_verified": 10,
+  "portable_backups_independently_reopened_after_download": 10,
+  "actual_observed_cron_cycles_in_signed_proof": 1,
+  "cleanup": "TEMPORARY_OPERATORS_CLOSED_NARROW_FEED_RETAINED",
+  "continuous_uptime_proven": false,
+  "whole_brain_production_ready": false,
+  "full_report": "scheduled-feed-proof.zip:feed-evidence.public.json"
+}

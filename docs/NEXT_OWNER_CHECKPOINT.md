@@ -1,14 +1,13 @@
 # Next-owner checkpoint - Core 2.0
 
-Start from [the pinned current checkpoint](../evidence/core2-continuous-reference-20261003/CHECKPOINT.md). Owner “cho toàn quyền” releases the old-system boundary and authorizes implementation/transition work. Do not reopen architecture or ask again for already authorized read/repo/isolated-cloud actions.
+Start from [the verified scheduled-feed checkpoint](../evidence/core2-source-feed-20261003/CHECKPOINT.md). Owner “cho toàn quyền” authorizes ongoing implementation and isolated Cloudflare work. Do not reopen the overall architecture or ask again for already granted authority.
 
-Current proof:268/268 native tests,25/25 actual isolated cloud cases,23/23 consumer captures,9/9 actual-input native rehearsals,21independently signed backup readbacks. Source/deployed code83597cbe465b79ca085acf62abf7d85692210ad8. Reference decisions remain ABSTAIN, no operational policy activation. Temporary write capabilities closed.
+Current deployed source: `1c9ca5f696b470db982aba2f9273af9452de4ddb`, successful run `37117134469`. Full native suite: 282/282. Ten non-Cano roles now publish unattended through stable dataset authorities. Ten signed portable backups were independently reopened after download; five schemas passed 50 positive/150 negative actual signed samples. A second Cron cycle advanced all ten revisions with healthy Runtime.
 
-Public Worker/CMS/specialist source engines/UI/routes are preserved. Actual old account bindings were inventoried readonly. The new main source may be developed/verified independently; no production traffic switch follows from merging source code.
+Only narrow dataset-scoped source actors remain active. Signer, locators, native IDs, control state, epoch and recovery generation were preserved. Cano remains a dated manual fact. Read-only consumer audit now checks ingestion health every 30 minutes.
 
-Next implementation: remaining actual Weather and Cano report contracts; Near Me companions; durable bounded admission/retry/monitoring; G1 recovery/credential/retention/cost gaps; current critical-cycle observation; concrete consumer switches with exact parity and rollback. Preserve actual Airport fallback as archive and STALE/unknown source semantics. Do not invent source/model times, independent evidence or author assurances.
+Preserve working specialist engines, public Worker/CMS/UI/routes, immutable handoff and counterexamples. A main merge is not a traffic switch. Archive executable paths only after dependency checks prove them unused.
 
-Read-only consumer observation every30minutes is configured. It is not an unattended Core feed, a passed72hour cloud failure test, or a completed7day shadow window. Review actual scheduled runs/timestamps and extend evidence snapshots; do not infer success from configuration.
+Next: remaining Weather and Cano report contracts; Near Me companion authority; full G1 restore and old-credential/new-generation fencing; retention/cost and measured critical-cycle observation; exact consumer parity, switch and rollback. Keep STALE/fallback/unknown and actual source/model times. Airport's four-minute reference cadence does not prove its one-minute lag target.
 
-Archive only proven unused executable paths. Superseded mutable readiness/checkpoint headers were moved to docs/history; original immutable handoff and all counterexamples remain preserved.
-
+One signed Cron proof and one public follow-up do not complete 72-hour or seven-day gates. All reference decisions remain FACT/ABSTAIN, source policies unactivated and producer independence unclaimed. Whole Core 2.0 production readiness remains false. No owner permission request is pending.

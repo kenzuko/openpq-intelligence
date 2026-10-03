@@ -1,8 +1,8 @@
 # OpenPQ Intelligence
 
-Current Core 2.0 checkpoint: **268/268 native tests, 25/25 isolated cloud cases, 23/23 actual consumer outputs captured, 9/9 current-input native rehearsals**. Ten non-Cano source roles publish twice under one stable authority/profile; actual Airport bytes changed between captures. All 21 portable publication backups were independently reopened and signature verified. Operational actions and public consumer cutover remain closed.
+Current Core 2.0 checkpoint: **282/282 native tests and a real unattended 10/10 source reference feed on isolated Cloudflare**. Ten signed Cron publications and portable backups were independently verified after download. Actual signed samples pass 5 schemas, 50 positive and 150 negative checks. A second real Cron cycle advanced all ten Runtime revisions. Operational actions and public consumer cutover remain closed.
 
-Read [current readiness](docs/READINESS_MATRIX.md), [next-owner checkpoint](docs/NEXT_OWNER_CHECKPOINT.md), and [pinned cloud evidence](evidence/core2-continuous-reference-20261003/CHECKPOINT.md). F15/milestone checkpoint headers are retained in docs/history.
+Read [current readiness](docs/READINESS_MATRIX.md), [next-owner checkpoint](docs/NEXT_OWNER_CHECKPOINT.md), and [pinned cloud evidence](evidence/core2-source-feed-20261003/CHECKPOINT.md). F15/milestone checkpoint headers are retained in docs/history.
 
 
 Isolated authority/publication foundation for the locked V2.1 architecture. This is runnable code with local workerd proof, **not a production migration or a completed Intelligence system**.
@@ -26,6 +26,7 @@ Modules:
 
 - `src/workers/core.js`: deterministic dataset dispatch to a pinned native DO ID.
 - `src/workers/coordinator.js`: prepare immutable blob, verify hash, atomic SQLite commit/control/audit/outbox, owner epoch fencing, signed export.
+- `src/workers/ingestion.js`: scheduled owned-reference producer with ten dataset-scoped source pumps; no bootstrap/control/signing/R2 capability.
 - `src/workers/runtime.js`: committed blob reader, source-age and action expiry, bounded authority validation, signed cold checkpoint fallback. GET only; no R2 Worker write binding.
 - `src/platform/s3-reader.js`: AWS SigV4 object GET adapter for a separately provisioned read-only R2 credential. Its permission boundary has actual isolated cloud PUT/DELETE denial and pinned disposable read-credential revocation evidence.
 - `src/workers/operator.js`: separate console/API, forwards each operator's own capability. JoTrip Ops is not a command surface.

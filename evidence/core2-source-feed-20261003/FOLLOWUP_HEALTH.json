@@ -1,0 +1,79 @@
+{
+  "status": "SECOND_ACTUAL_CRON_PUBLIC_RUNTIME_PASS",
+  "recorded_at": "2026-10-03T10:49:40.010Z",
+  "independent_s3_signature_recheck_for_second_cycle": false,
+  "continuous_uptime_proven": false,
+  "whole_brain_production_ready": false,
+  "datasets": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "prior_signed_revision": 9,
+      "observed_revision": 10,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "prior_signed_revision": 4,
+      "observed_revision": 5,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "prior_signed_revision": 9,
+      "observed_revision": 10,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "prior_signed_revision": 9,
+      "observed_revision": 10,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "prior_signed_revision": 9,
+      "observed_revision": 10,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "prior_signed_revision": 9,
+      "observed_revision": 10,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "prior_signed_revision": 5,
+      "observed_revision": 6,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "prior_signed_revision": 8,
+      "observed_revision": 9,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "prior_signed_revision": 4,
+      "observed_revision": 5,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "prior_signed_revision": 9,
+      "observed_revision": 10,
+      "healthy": true,
+      "producer_status": "PUBLISHED_REFERENCE"
+    }
+  ]
+}

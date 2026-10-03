@@ -1,0 +1,30 @@
+{
+  "scheduled_feed": {
+    "file": "scheduled-feed-proof.zip",
+    "sha256": "a1a8e4d79ed78318046eafbcc1c8ea8661aef5bb7e234efa6dc2a59af3bf495a",
+    "run_id": 37117134469,
+    "artifact_id": 11272595384
+  },
+  "finite_baseline": {
+    "file": "initial-cloud-proof.zip",
+    "sha256": "fef2e89bc4c853cc7ac71afd218236ee49c53c32bbc0e0a3f2048ef434900c3b",
+    "run_id": 37112667895
+  },
+  "airport_counterexample": {
+    "file": "airport-counterexample.zip",
+    "sha256": "9e5227746c6edf4442aa4bec9c8c78454ad635a9a07a7286e06d2e06c1f5ab14",
+    "run_id": 37112074789
+  },
+  "stable_feed_counterexample": {
+    "file": "stable-feed-counterexample.zip",
+    "sha256": "1d0a43826f4e7a0694da3773c9d28db1935dd8d9005a19ae500df882239e7a96",
+    "run_id": 37114946126
+  },
+  "backup_parent_counterexample": {
+    "file": "backup-parent-counterexample.zip",
+    "sha256": "d70d02b98815f761815d3abb053f5b22c5492708ede04f29694b5f724c31a93a",
+    "run_id": 37116599082
+  },
+  "secrets_included": false,
+  "whole_brain_production_ready": false
+}

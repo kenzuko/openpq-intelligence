@@ -19,6 +19,22 @@ jobs:
       - run: npm run check
       - run: npm run verify:handoff
       - run: npm test
+      - name: Independently reopen real Cron backups and validate their schemas
+        run: |
+          python -m pip install jsonschema==4.25.1
+          python -c "import hashlib,json,pathlib,zipfile; root=pathlib.Path('evidence/core2-source-feed-20261003'); m=json.loads((root/'ARTIFACTS.json').read_text()); p=root/m['scheduled_feed']['file']; assert hashlib.sha256(p.read_bytes()).hexdigest()==m['scheduled_feed']['sha256']; zipfile.ZipFile(p).extractall('.cloud-readback')"
+          node scripts/cloud/verify-scheduled-backups.js .cloud-readback
+          python scripts/check-domain-bridge-schemas.py .cloud-readback/SIGNED_SCHEMA_SAMPLES.json domain-continuous-isolated > .cloud-readback/SCHEMA_VALIDATION.json
+          cat .cloud-readback/SCHEMA_VALIDATION.json
       - run: npm run rehearse:technical
       - run: npm run readiness:technical
       - run: npm run check:cloud-bundles
+      - name: Preserve independent signature and schema results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core2-independent-signed-schema-readback
+          path: |
+            .cloud-readback/INDEPENDENT_READBACK.json
+            .cloud-readback/SCHEMA_VALIDATION.json
+          retention-days: 14

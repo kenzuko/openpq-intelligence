@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "schema_count": 5,
+  "positive_samples": 50,
+  "negative_samples": 150,
+  "scope": "ISOLATED_BRIDGE_STRUCTURAL_ONLY",
+  "production_enabled": false
+}
