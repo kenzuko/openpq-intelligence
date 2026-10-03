@@ -1,0 +1,285 @@
+{
+  "status": "CLOUD_PROGRESS_SUBSET_PASS",
+  "g1": "NOT_PASSED",
+  "production_enabled": false,
+  "legacy_sources_read": false,
+  "cases": [
+    {
+      "name": "actual final Core probe is absent and fresh fixture bootstrap is locator pinned",
+      "status": "PASS"
+    },
+    {
+      "name": "actual scheduler capability cannot read, control, prepare or commit publication",
+      "status": "PASS"
+    },
+    {
+      "name": "actual scheduler rejects unauthenticated, wrong dataset and non-export jobs",
+      "status": "PASS"
+    },
+    {
+      "name": "actual cloud DO alarm drains committed outbox with idempotent scoped job",
+      "status": "PASS"
+    },
+    {
+      "name": "signed cloud checkpoint and Runtime match the committed non-actionable fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "actual cloud publication exports to portable backup and reopens with independent trust",
+      "status": "PASS"
+    },
+    {
+      "name": "temporary scheduler and Core export capability closure actually observed",
+      "status": "PASS"
+    }
+  ],
+  "code_sha": "dec9086175cdff524301cb9bf1b3197418e0eb88",
+  "run_id": "37098956441",
+  "run_attempt": "1",
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "dataset_id": "fixture.cano.operation.37098956441-1",
+  "config": {
+    "environment_id": "isolated-test",
+    "enabled": true,
+    "dataset_id": "fixture.cano.operation.37098956441-1",
+    "fixture_only": true,
+    "cloud_activation": "ISOLATED_EXPORT_PROOF_ONLY",
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "valid_until": "2026-10-03T05:26:54.607Z",
+    "policies": [
+      {
+        "policy_id": "P10",
+        "version": "synthetic-cloud-export-v1",
+        "environment_id": "isolated-test",
+        "scope": "fixture.cano.operation.37098956441-1",
+        "owner": "synthetic-fixture",
+        "rationale": "Bounded technical export proof only; not production policy.",
+        "status": "APPROVED_RECORDED",
+        "effective_from": "2026-10-03T05:10:54.607Z",
+        "effective_to": "2026-10-03T05:26:54.607Z",
+        "values": {
+          "requests": 2,
+          "concurrency": 1,
+          "retries": 2,
+          "payload_bytes": 4096,
+          "timeout_ms": 5000,
+          "queue_limit": 4,
+          "lease_ms": 10000,
+          "retry_base_ms": 250,
+          "retry_max_ms": 1000,
+          "request_window_ms": 1000
+        }
+      }
+    ]
+  },
+  "config_hash": "18ff57aab076391a42e33957ee6c827824fcf7791dd0e962fff343cad4349732",
+  "probe_observation": {
+    "attempts": 1,
+    "last_status": 404,
+    "elapsed_ms": 137
+  },
+  "progress_transport_observations": [
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/enqueue",
+      "status": 401,
+      "error": "PROGRESS_AUTH_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 422,
+      "error": "PROGRESS_TASK_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 422,
+      "error": "PROGRESS_TASK_DENIED"
+    },
+    {
+      "path": "/enqueue",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/enqueue",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/status",
+      "status": 503,
+      "error": "PROGRESS_CAPABILITY_MISSING"
+    }
+  ],
+  "progress_ready_observation": {
+    "attempts": 1,
+    "last_status": 200,
+    "elapsed_ms": 414
+  },
+  "publication_prepare_observation": {
+    "status": 200,
+    "error": null
+  },
+  "alarm_observation": {
+    "attempts": 3,
+    "last_status": 200,
+    "elapsed_ms": 3167
+  },
+  "scheduler_status": {
+    "jobs": [
+      {
+        "id": "f401edd7-1c29-4cbc-abb5-9e80f007a4cf",
+        "state": "DONE",
+        "attempts": 1,
+        "due": 1791004327419,
+        "deadline": 1791004506021
+      }
+    ],
+    "alarm_at": null,
+    "production_enabled": false,
+    "cloud_activation": true
+  },
+  "receipt": {
+    "account_id": "c61a28455fe22f30619b35dd80c2d495",
+    "approved_positive_decision_types": [
+      "cano.operation.fixture"
+    ],
+    "artifacts": {
+      "config": "5f684c15f591b17525c9e29434866749ab0684f06292e00a4407ab84c3a7b616",
+      "policy": "0e16ca3931f4a494063f434327b5e7210e846fc2aabe41ac0fd57837f351ee87",
+      "rule": "7a5f9e8c1b3ca5dc7b271924c31d712e9b28c84655b3c4632380795c8b826e20",
+      "schema": "61220618fc421e6e3d4fa1dc6a3d104c1a02932f7367b55cb8a573c9b07f1549"
+    },
+    "authority_instance_id": "proof-fixture.cano.operation.37098956441-1",
+    "authority_locator_version": "1",
+    "command_id": "86569032-171f-48ef-b5ef-6a0a7b342c25",
+    "committed_at": "2026-10-03T05:12:05.899Z",
+    "control_revision": 0,
+    "dataset_id": "fixture.cano.operation.37098956441-1",
+    "digest": "290bc692beaa325b6c1d89795443a9a0c97715649b7df3634abe247bb2d541b9",
+    "environment_id": "isolated-test",
+    "epoch": 1,
+    "key": "generations/proof-fixture.cano.operation.37098956441-1/fixture-generation-fixture.cano.operation.37098956441-1/290bc692beaa325b6c1d89795443a9a0c97715649b7df3634abe247bb2d541b9.json",
+    "locator_artifact_hash": "1fcb6d4e87312a5b480e6ff5cf09e7d5a7e68a73191d85399b32022e9abfa4ee",
+    "logical_slot": 20,
+    "namespace_id": "97783b80477f4613a445b4e219b8158c",
+    "native_id": "e1b959a40d03d3f76bfd6f472358e1469e5d464b68813e8496427dc3b2722c8d",
+    "object_name": "isolated-test/fixture.cano.operation.37098956441-1",
+    "operation": "NORMAL",
+    "owner": "proof-owner",
+    "previous_revision": 0,
+    "receipt_keys": {
+      "proof-key": {
+        "crv": "P-256",
+        "ext": true,
+        "key_ops": [
+          "verify"
+        ],
+        "kty": "EC",
+        "x": "diVVX-cFkyqa_yQSPcF7Rioiv39TytzJ3ik4iiEa62k",
+        "y": "xKwLUVPjh7E9hpictzmq08fKXyXOLOuP77aGs61WTWo"
+      }
+    },
+    "recovery_generation": "fixture-generation-fixture.cano.operation.37098956441-1",
+    "revision": 1
+  },
+  "backup": {
+    "contract_version": "openpq-preparation-v1",
+    "integrity": {
+      "contract_version": "openpq-preparation-v1",
+      "bundle_hash": "cf10c8ca152a9a0d746e7b5d0a378ce0aee47bbda9e16782171dfeecc3e7e494",
+      "record_count": 7,
+      "created_at": "2026-10-03T05:12:10.568Z",
+      "watermark": {
+        "control_revision": 0,
+        "revision": 1
+      },
+      "offsite_proven": false,
+      "pitr_proven": false,
+      "receipt_authenticity_verified": false,
+      "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+      "publication_admitted": false,
+      "production_enabled": false
+    },
+    "verified_publication_revisions": [
+      1
+    ],
+    "publication_receipt_authenticity_verified": true,
+    "control_authenticity_verified": false,
+    "audit_authenticity_verified": false,
+    "offsite_proven": false,
+    "resume_writer": false,
+    "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+    "publication_admitted": false,
+    "production_enabled": false,
+    "portable_filesystem_exported": true,
+    "object_count": 6
+  },
+  "backup_readback": {
+    "contract_version": "openpq-preparation-v1",
+    "integrity": {
+      "contract_version": "openpq-preparation-v1",
+      "bundle_hash": "cf10c8ca152a9a0d746e7b5d0a378ce0aee47bbda9e16782171dfeecc3e7e494",
+      "record_count": 7,
+      "created_at": "2026-10-03T05:12:10.568Z",
+      "watermark": {
+        "control_revision": 0,
+        "revision": 1
+      },
+      "offsite_proven": false,
+      "pitr_proven": false,
+      "receipt_authenticity_verified": false,
+      "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+      "publication_admitted": false,
+      "production_enabled": false
+    },
+    "verified_publication_revisions": [
+      1
+    ],
+    "publication_receipt_authenticity_verified": true,
+    "control_authenticity_verified": false,
+    "audit_authenticity_verified": false,
+    "offsite_proven": false,
+    "resume_writer": false,
+    "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+    "publication_admitted": false,
+    "production_enabled": false,
+    "portable_filesystem_readback_verified": true
+  },
+  "full_system_backup_proven": false,
+  "export_revoke_observation": {
+    "attempts": 1,
+    "last_status": 401,
+    "elapsed_ms": 209
+  },
+  "scheduler_closure_observation": {
+    "attempts": 1,
+    "last_status": 503,
+    "elapsed_ms": 112
+  },
+  "cleanup_witness": {
+    "kind": "RUNTIME_PUBLICATION_READ",
+    "status": 200,
+    "digest": "290bc692beaa325b6c1d89795443a9a0c97715649b7df3634abe247bb2d541b9"
+  },
+  "cleanup": "SUCCESS"
+}

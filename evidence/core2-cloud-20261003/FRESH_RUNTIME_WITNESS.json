@@ -1,0 +1,9 @@
+{
+  "observed_at_utc": "2026-10-03T05:13:45.165Z",
+  "status": 200,
+  "dataset_id": "fixture.cano.operation.37098956441-1",
+  "receipt_digest": "290bc692beaa325b6c1d89795443a9a0c97715649b7df3634abe247bb2d541b9",
+  "authority": "VERIFIED",
+  "eligibility": "ABSTAIN",
+  "fixture_only": true
+}
