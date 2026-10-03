@@ -87,3 +87,12 @@ test('compressed source codec preserves exact bytes and denies tampered digest/s
  const f=await fixture('nearme'),packed=await packDomainText(f.raw_utf8);assert.equal(await unpackDomainText(packed),f.raw_utf8);
  for(const change of [x=>x.sha256='f'.repeat(64),x=>x.uncompressed_bytes=2,x=>x.uncompressed_bytes=1500001,x=>x.encoding='PLAIN',x=>x.extra=true,x=>x.base64+='=']){const bad=copy(packed);change(bad);await assert.rejects(unpackDomainText(bad));}
 });
+
+
+test('actual official Airport row without scheduled time retains null and exact source bytes as partial reference',async()=>{
+ const raw_utf8=await readFile(new URL('./data/domains/airport_partial.json',import.meta.url),'utf8');
+ const pin={source_kind:'OWNER_PUBLIC_RUNTIME',source_pointer:{url:'https://jotrip-airport-live.kenzuko.workers.dev'},payload_sha256:await hash(raw_utf8),git_blob_sha:null};
+ const v=await normalizeAirportDomain({pin,raw_utf8},'2026-10-03T09:13:20Z');
+ const row=v.records.find(x=>x.scope.operating_flight_number==='B91A8');assert.ok(row);assert.equal(row.timestamps.scheduled_local,null);assert.equal(row.values.actual_time,'15:28');assert.ok(v.issues.some(x=>x.code==='AIRPORT_FLIGHT_SCHEDULE_UNRESOLVED'&&x.record_id===row.id));assert.deepEqual(v.legacy_payload,JSON.parse(raw_utf8));assert.equal(v.operational_action_allowed,false);
+ const bad=JSON.parse(raw_utf8);bad.latest.records.find(x=>x.operating_flight_number==='B91A8').scheduled_time='25:00';const malformed=JSON.stringify(bad);await assert.rejects(normalizeAirportDomain({pin:{...pin,payload_sha256:await hash(malformed)},raw_utf8:malformed},'2026-10-03T09:13:20Z'),/FLIGHT_SCHEDULE_REQUIRED/);
+});

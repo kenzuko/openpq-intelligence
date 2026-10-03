@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {setup} from './support.js';
-import {ingestDataset,ownedReference,ingestionTick} from '../src/workers/ingestion.js';
+import {ingestDataset,ownedReference} from '../src/ingress/domain-feed.js';
 import {CONTINUOUS_PROFILE_VERSION,continuousArtifactRefs} from '../src/platform/domain-continuous-admission.js';
 import {ISOLATED_ACCOUNT_ID} from '../src/platform/domain-bridge-admission.js';
 import {DOMAIN_RUNTIME_URLS} from '../src/ingress/domain-source-common.js';
@@ -41,7 +41,7 @@ test('expired source fails closed without advancing revision; production tick ma
  try{
   await assert.rejects(ingestDataset(entry,core,async()=>new Response(JSON.stringify({...raw,generated_at:new Date(Date.now()-700000).toISOString()}))),/SNAPSHOT_AGE_DENIED/);
   assert.equal((await s.call('read',undefined,token)).body.state.revision,0);
-  await assert.rejects(ingestionTick({ENVIRONMENT_ID:'production',ACCOUNT_ID:ISOLATED_ACCOUNT_ID}),/ISOLATION_DENIED/);
+  await assert.rejects(ingestDataset({...entry,authority:{...entry.authority,environment_id:'production'}},core,()=>{throw new Error('must not fetch');}),/SCOPE_DENIED/);
  }finally{await s.mf.dispose();}
 });
 test('repository source fetches exactly the captured commit path and preserves blob identity',async()=>{

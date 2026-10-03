@@ -57,7 +57,7 @@ export async function cloudPreflight({accountId,productionAccountIds,apiToken,re
   requireThat(!buckets[0].jurisdiction||buckets[0].jurisdiction==='default','TEST_BUCKET_JURISDICTION_UNSUPPORTED');
   const ns=await get(`/accounts/${accountId}/workers/durable_objects/namespaces`);
   requireThat(Array.isArray(ns.result)&&(!ns.result_info?.total_count||ns.result_info.total_count<=ns.result.length),'NAMESPACE_INVENTORY_UNKNOWN');
-  requireThat(ns.result.every(n=>(n.script===WORKERS[0]&&n.class==='DatasetCoordinator')||(n.script===WORKERS[4]&&n.class==='ProgressScheduler')),'TEST_ACCOUNT_HAS_OTHER_NAMESPACES',403);
+  requireThat(ns.result.every(n=>(n.script===WORKERS[0]&&n.class==='DatasetCoordinator')||(n.script===WORKERS[4]&&n.class==='ProgressScheduler')||(n.script===WORKERS[5]&&n.class==='DatasetSourcePump')),'TEST_ACCOUNT_HAS_OTHER_NAMESPACES',403);
   return {status:'PREFLIGHT_PASS',cloud_gate:'NOT_PASSED',recorded_at_utc:new Date().toISOString(),account_id:accountId,production_account_ids:productionAccountIds,bucket:BUCKET,workers:scripts.result.map(w=>({id:w.id})),namespaces:ns.result.map(n=>({id:n.id,script:n.script,class:n.class})),deploy_token_id:verified.id,deploy_policies:deployPolicies,read_token_id:readAccessKey,read_policies:readPolicies,api_reads:paths};
 }
 
