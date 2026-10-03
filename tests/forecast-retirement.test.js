@@ -3,14 +3,22 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {setup} from './support.js';
 import {hash} from '../src/platform/contracts.js';
-import {packDomainText} from '../src/platform/domain-codec.js';
-import {isExpiredForecastRetirement} from '../src/platform/forecast-retirement.js';
+import {packDomainText,unpackDomainText} from '../src/platform/domain-codec.js';
+import {isExpiredForecastRetirement,isFutureForecastExtension} from '../src/platform/forecast-retirement.js';
+import {verifyAttestation} from '../src/platform/receipts.js';
 import {mainCommitFromAdvertisement} from '../src/ingress/git-ref.js';
 import {continuousArtifactRefs,CONTINUOUS_PROFILE_VERSION,buildContinuousCandidate} from '../src/platform/domain-continuous-admission.js';
 import {ISOLATED_ACCOUNT_ID} from '../src/platform/domain-bridge-admission.js';
 import {DOMAIN_RUNTIME_URLS} from '../src/ingress/domain-source-common.js';
 import {ingestDataset} from '../src/ingress/domain-feed.js';
 const wrap=async raw=>({payload:{domain_snapshot:{domain:'weather_forecast'}},semantic_profile_hash:'same',semantic_admission:{source_version_time:'same'},semantic_bundle:{encoded_source:await packDomainText(JSON.stringify(raw))}});
+test('actual signed Forecast collision is an immutable future frame extension, with no changed model values or metadata',async()=>{
+ const root=new URL('../evidence/core2-forecast-regression-20261003/',import.meta.url),read=async name=>JSON.parse(await readFile(new URL(name+'.json',root),'utf8'));
+ const previous=await read('PREVIOUS_GENERATION'),current=await read('CURRENT_CANDIDATE'),comparison=await read('COMPARISON'),receipt=await verifyAttestation(await read('SIGNED_CHECKPOINT'),await read('TRUST'));assert.equal(await hash(previous),receipt.digest);
+ const at=Date.parse(comparison.evaluation_time);assert.equal(await isExpiredForecastRetirement(previous,current,at),false);assert.equal(await isFutureForecastExtension(previous,current,at),true);
+ const raw=JSON.parse(await unpackDomainText(current.semantic_bundle.encoded_source));
+ for(const change of [x=>x.spatial.frames[0].cells[0].temperature_c+=1,x=>x.spatial.frames.splice(x.spatial.frames.findIndex(f=>Date.parse(f.valid_time)>at),1),x=>x.spatial.frames.reverse(),x=>x.spatial.frames.push(x.spatial.frames.at(-1)),x=>x.generated_at='2026-10-03T15:00:00Z']){const bad=structuredClone(raw);change(bad);const candidate={...current,semantic_bundle:{...current.semantic_bundle,encoded_source:await packDomainText(JSON.stringify(bad))}};assert.equal(await isFutureForecastExtension(previous,candidate,at),false);}
+});
 test('forecast retirement preserves every retained value and rejects additions, mutations, reordering and removal of live frames',async()=>{
  const at=Date.now(),old={generated_at:'unchanged',spatial:{frames:[{valid_time:new Date(at-1000).toISOString(),value:1},{valid_time:new Date(at+1000).toISOString(),value:2},{valid_time:new Date(at+2000).toISOString(),value:3}]}};
  const next=structuredClone(old);next.spatial.frames.shift();const a=await wrap(old);
@@ -41,5 +49,9 @@ test('native authority admits only expired forecast retirement at the same cycle
   assert.equal((await s.call('read',undefined,'test-only-read')).body.state.revision,2);
   const liveRemoved=structuredClone(pruned);liveRemoved.spatial.frames.pop();assert.equal((await commit(liveRemoved,'live-removed',2)).status,409);
   assert.equal((await commit(pruned,'renew',2)).status,200);
+  const extended=structuredClone(pruned),frame=structuredClone(extended.spatial.frames.at(-1));frame.lead_hours+=3;frame.valid_time=new Date(run+frame.lead_hours*3600000).toISOString();for(const cell of frame.cells){cell.lead_hours=frame.lead_hours;cell.valid_time=frame.valid_time;}extended.spatial.frames.push(frame);
+  assert.equal((await commit(extended,'future-extension',3)).status,200);
+  const overwritten=structuredClone(extended);overwritten.spatial.frames[0].cells[0].temperature_c+=1;assert.equal((await commit(overwritten,'extension-collision',4)).body.error,'CONTINUOUS_SOURCE_REGRESSION');assert.equal((await s.call('read',undefined,'test-only-read')).body.state.revision,4);
+
  }finally{await s.mf.dispose();}
 });

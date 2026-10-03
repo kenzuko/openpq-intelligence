@@ -1,0 +1,25 @@
+{
+  "status": "READ_ONLY_SIGNED_REFERENCE_COMPARISON",
+  "run_id": "37132560370",
+  "code_sha": "9f4bfddb36a0d7041e1155ab4deea018b6cf9b8b",
+  "evaluation_time": "2026-10-03T15:14:55.787Z",
+  "dataset_id": "weather.forecast.bridge.phu-quoc",
+  "previous_revision": 64,
+  "previous_digest": "25e4b572eaf8d0589d840b545ebee7decea3592b76602b3cf1c9f914f2ad592d",
+  "current_source_digest": "128797e81433144f94a5d646682e3297892fd428b02da7ccd6d957d1964c2c71",
+  "previous_source_time": "2026-10-03T12:06:41.914Z",
+  "current_source_time": "2026-10-03T12:06:41.914Z",
+  "expired_retirement_admissible": false,
+  "old_frame_count": 25,
+  "new_frame_count": 26,
+  "metadata_changes": [],
+  "retained_changed": [],
+  "removed": [],
+  "added": [
+    "2026-10-06T15:00:00+00:00"
+  ],
+  "remote_writes": 0,
+  "rule_changed": false,
+  "producer_changed": false,
+  "production_enabled": false
+}

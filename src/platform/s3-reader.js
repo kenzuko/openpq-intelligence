@@ -7,8 +7,9 @@ async function digest(s){return hex(await crypto.subtle.digest('SHA-256',enc.enc
 async function hmac(key,s){const k=await crypto.subtle.importKey('raw',typeof key==='string'?enc.encode(key):key,{name:'HMAC',hash:'SHA-256'},false,['sign']);return crypto.subtle.sign('HMAC',k,enc.encode(s));}
 export class S3ReadonlyReader {
   constructor(config,fetcher=(url,options)=>fetch(url,options),clock=()=>Date.now()){this.config=config;this.fetcher=fetcher;this.clock=clock;}
-  async get(key) {
+  async get(key,{max_bytes=262144}={}) {
     requireThat(typeof key==='string' && !key.split('/').some(p=>p==='..'||p==='.') && !key.includes('\\'),'S3_KEY_INVALID');
+    requireThat(Number.isSafeInteger(max_bytes)&&max_bytes>0&&max_bytes<=16*1024*1024&&(max_bytes<=262144||/^recovery\/(snapshots|domains)\/[a-zA-Z0-9_-]{1,128}\.json$/.test(key)),'S3_ARCHIVE_LIMIT_INVALID');
     const c=this.config, root=new URL(c.endpoint);
     requireThat(root.protocol==='https:' && !root.username && !root.password && root.pathname==='/' && !root.search,'S3_ENDPOINT_INVALID');
     requireThat(/^[a-z0-9.-]+$/.test(c.bucket),'S3_BUCKET_INVALID');
@@ -22,6 +23,6 @@ export class S3ReadonlyReader {
     const response=await this.fetcher(root.origin+path,{method:'GET',redirect:'manual',headers:{'x-amz-date':date,'x-amz-content-sha256':payload,authorization:`AWS4-HMAC-SHA256 Credential=${c.access_key}/${scope}, SignedHeaders=${signed}, Signature=${signature}`}});
     if(response.status===404) return null;
     requireThat(response.ok,'S3_READ_UNAVAILABLE',503);
-    return boundedText(response);
+    return boundedText(response,max_bytes);
   }
 }

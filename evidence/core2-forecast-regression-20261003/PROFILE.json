@@ -1,0 +1,33 @@
+{
+  "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+  "environment_id": "isolated-test",
+  "dataset_id": "weather.forecast.bridge.phu-quoc",
+  "domain": "weather_forecast",
+  "fixture_only": false,
+  "producer": {
+    "source_kind": "OWNER_PUBLIC_RUNTIME",
+    "url": "https://openphuquoc.com/weather/data/weather-runtime/forecast.json"
+  },
+  "operator_principal_ids": [
+    "bridge-operator-weather_forecast"
+  ],
+  "reference_policy": {
+    "lease_ms": 300000,
+    "max_snapshot_age_ms": 86400000,
+    "future_skew_ms": 0
+  },
+  "artifact_refs": {
+    "rule": {
+      "hash": "a054026d5018b8d1649daa4cedde2e84e1e5733762353f323e63c9243d129207"
+    },
+    "config": {
+      "hash": "09876028f0dece93afdb2f39f0395ae2dcf3ebe3d18d8289c18cbd32ace8771a"
+    },
+    "policy": {
+      "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+    },
+    "schema": {
+      "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+    }
+  }
+}

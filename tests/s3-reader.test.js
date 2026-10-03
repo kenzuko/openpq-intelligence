@@ -16,3 +16,10 @@ test('streamed oversized canonical object is cancelled without unbounded bufferi
   let cancelled=false;const stream=new ReadableStream({pull(controller){controller.enqueue(new Uint8Array(131073));},cancel(){cancelled=true;}});
   await assert.rejects(new S3ReadonlyReader(config,async()=>new Response(stream)).get('a'),/CANONICAL_TOO_LARGE/);assert.equal(cancelled,true);
 });
+test('larger signed recovery archives use explicit bounded reads while Runtime canonical limits remain unchanged',async()=>{
+ const payload='x'.repeat(300000),reader=new S3ReadonlyReader(config,async()=>new Response(payload));
+ await assert.rejects(reader.get('recovery/domains/example.json'),/CANONICAL_TOO_LARGE/);
+ assert.equal((await reader.get('recovery/domains/example.json',{max_bytes:400000})).length,300000);
+ for(const [key,max_bytes] of [['generations/example.json',400000],['recovery/domains/example.json',16*1024*1024+1],['recovery/domains/example.json',NaN],['recovery/domains/example.json',-1]])await assert.rejects(reader.get(key,{max_bytes}),/S3_ARCHIVE_LIMIT_INVALID/);
+ await assert.rejects(reader.get('recovery/domains/example.json',{max_bytes:299999}),/CANONICAL_TOO_LARGE/);
+});

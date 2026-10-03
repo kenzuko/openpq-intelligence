@@ -5,7 +5,7 @@ import { ContractError, candidate, hash, instant, locator, requireThat, revision
 import { authorize, principal } from '../platform/auth.js';
 import {validateSemanticAdmission,validateSemanticReplayActor} from '../platform/semantic-admission.js';
 import { attest, exportCheckpoint } from '../platform/receipts.js';
-import {isExpiredForecastRetirement} from '../platform/forecast-retirement.js';
+import {isExpiredForecastRetirement,isFutureForecastExtension} from '../platform/forecast-retirement.js';
 import {sealAuthoritySnapshot,SNAPSHOT_TABLES,SNAPSHOT_MAX_BYTES,SNAPSHOT_MAX_ROWS} from '../platform/authority-snapshot.js';
 import {frozenRecoveryState,recoveredDomainReadback} from '../platform/recovery-bootstrap.js';
 
@@ -135,7 +135,7 @@ export class DatasetCoordinator extends DurableObject {
           const active=this.state().active;
           const old=active&&this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',active.digest).toArray()[0];
           const next=this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',body.digest).toArray()[0];
-          if(old&&next&&await isExpiredForecastRetirement(JSON.parse(old.body),JSON.parse(next.body),Date.now()))retiredForecastDigest=active.digest;
+          if(old&&next){const previous=JSON.parse(old.body),current=JSON.parse(next.body),at=Date.now();if(await isExpiredForecastRetirement(previous,current,at)||await isFutureForecastExtension(previous,current,at))retiredForecastDigest=active.digest;}
         }
         const receipt=this.ctx.storage.transactionSync(()=>{
           const now=Date.now();
