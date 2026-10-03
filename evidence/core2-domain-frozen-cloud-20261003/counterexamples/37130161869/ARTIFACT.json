@@ -1,0 +1,9 @@
+{
+  "run_id": 37130161869,
+  "code_sha": "6bd2352845fb27efe262e10b2ac0b1266421ff21",
+  "artifact_id": 11276303724,
+  "file": "cloud-counterexample.zip",
+  "sha256": "7b1592dcab1cc9739812e408e7ccbf4e8774a2a6548726f0b0215f3a8a8621c6",
+  "size_bytes": 267300,
+  "status": "FAILED_COUNTEREXAMPLE_NOT_ACCEPTANCE"
+}

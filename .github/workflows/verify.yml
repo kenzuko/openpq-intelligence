@@ -25,6 +25,8 @@ jobs:
         run: node scripts/rehearse-frozen-recovery.js
       - name: Reopen ten signed domain archives with complete semantic dependencies
         run: node scripts/rehearse-domain-recovery-closure.js
+      - name: Restore ten committed domain archives and verify native restart readback
+        run: node scripts/rehearse-recovered-domains.js
       - name: Reverify committed domain archive bytes and independent trust
         run: |
           python -c "import hashlib,json,pathlib,subprocess; r=pathlib.Path('evidence/core2-domain-recovery-closure-20261003'); m=json.loads((r/'ARTIFACTS.json').read_text()); assert all(hashlib.sha256((r/x['file']).read_bytes()).hexdigest()==x['sha256'] for x in m['files']); [subprocess.run(['node','scripts/verify-domain-recovery-closure.js',str(p),str(p.parent/'TRUST.json'),'2026-10-04T01:12:00.000Z'],check=True) for p in sorted(r.glob('*/BUNDLE.json'))]"
@@ -56,5 +58,6 @@ jobs:
             .frozen-recovery/*.json
             .domain-recovery-closure/**/VERIFICATION.json
             .domain-recovery-closure/SUMMARY.json
+            .recovered-domains/**/*.json
             .cloud-recovery/INDEPENDENT_READBACK.json
           retention-days: 14
