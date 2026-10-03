@@ -37,6 +37,10 @@ export async function setup({faults=false,semanticProfile=null,progressConfig=nu
   const baseOptions=options;
   const effectiveOptions=()=>{
     const o=baseOptions();
+    // Buffer at the test HTTP boundary so a service that rejects before reading
+    // the body cannot reset Miniflare's Node upload before its denial is observed.
+    // Forward the unchanged bytes and headers through a real service binding.
+    o.workers.push({name:'test-client',modules:true,script:`export default {async fetch(request,env){const body=request.body?await request.arrayBuffer():undefined;return env.CORE.fetch(new Request(request.url,{method:request.method,headers:request.headers,...(body===undefined?{}:{body})}));}};`,compatibilityDate:'2026-07-30',serviceBindings:{CORE:'core'}});
     if(progressConfig)o.workers.push({name:'progress',modules:true,scriptPath:root+'src/workers/progress.js',modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',durableObjects:{PROGRESS:{className:'ProgressScheduler',useSQLite:true}},bindings:progressBindings,serviceBindings:{CORE_EXPORT:'core'}});
     if(faults){o.workers[0].scriptPath=root+'tests/fault-core-worker.js';o.workers[0].serviceBindings={FAULT_GATE:'fault'};o.workers.push({name:'fault',modules:true,scriptPath:root+'tests/fault-gate-worker.js',compatibilityDate:'2026-07-30',serviceBindings:{GATE_HOST:gateHost}});}
     return o;
@@ -48,7 +52,7 @@ export async function setup({faults=false,semanticProfile=null,progressConfig=nu
   await mf.setOptions(effectiveOptions());
   const core=await mf.getWorker('core'), runtime=await mf.getWorker('runtime');
   const call=async(path,body,token='test-only-live')=>{
-    const current=await mf.getWorker('core');
+    const current=await mf.getWorker('test-client');
     const r=await current.fetch(`https://core/datasets/${dataset_id}/${path}`,{method:body===undefined?'GET':'POST',headers:{authorization:'Bearer '+token,'content-type':'application/json'},...(body===undefined?{}:{body:JSON.stringify(body)})});
     return {status:r.status,body:await r.json()};
   };
