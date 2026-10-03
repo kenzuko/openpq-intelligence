@@ -1,0 +1,374 @@
+{
+  "status": "SCHEDULED_FEED_FAILED_CLOSED",
+  "activated_at": "2026-10-03T10:31:07.648Z",
+  "code_sha": "e9f116adc0e01da8999536ea030ad723eff4f2ae",
+  "run_id": "37116599082",
+  "authority_rotation": false,
+  "signer_rotation": false,
+  "dataset_count": 10,
+  "cron": "*/4 * * * *",
+  "reference_lease_ms": 300000,
+  "production_enabled": false,
+  "whole_brain_production_ready": false,
+  "controls_before": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "revision": 6,
+      "profile_hash": "1b286165436cf3ce8108563e14f60e0770fcb3e682ec9c994e6fa7cc7d25f291",
+      "native_id": "acfc1330dab551d1f8ef49e15e8ad91635e3813c91512fedb21f83598c6a6f94",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "revision": 2,
+      "profile_hash": "94c6704a9861d30546fbe2af116242d28a2b145c8712b041d318c438b0b7da33",
+      "native_id": "4219c57e19d08db3e5a7a60f4453b1ffff0d5030fae60a30496c2c41d4000ed0",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "revision": 6,
+      "profile_hash": "aa03836fd7f1e3d7ffd359d47847aa4179fb8b478937f64d5a89aa7bf2a054a9",
+      "native_id": "b2164ce974064ef6a24ae329f5bacd19204a84ff7e51b23975ad2a82c3b6982b",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "revision": 6,
+      "profile_hash": "9fd2e7f9d81b4963b667a4b6a01a84abc9f33d970d975afce77479498fdd5f2a",
+      "native_id": "4a5511dfabcccab62e3cf7e8d040ce45e665944cf54ffb63a44831dba18d62e1",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "revision": 6,
+      "profile_hash": "9ea75d68cf21ed3576aaab7d26fb3bd16f94003cee4f5bd518384ed4d7740dba",
+      "native_id": "5be20c88188e1c1cf7e3d89651b393e87d2b933c496a2c0d2ea46e4fb03a1881",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "revision": 6,
+      "profile_hash": "a702e967d44e0e53fb9828215727db4c8d9f5e16a6bd18bf760a512aac28f9c5",
+      "native_id": "9cd79a02f258fbfece6dc04934193241bedfed44135a2c31b6d5dc4b456b2e41",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "revision": 2,
+      "profile_hash": "4edce80d283c022e0b8cdf9e6df40731bed9517b7d3c0615ecb35ba4890ab1e5",
+      "native_id": "9dbaedd6c2096ab0f0bdc02554606ea770e8c6986f13833984292e440124ea8f",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "revision": 6,
+      "profile_hash": "e4c63b45bdcf6ceb157b4133cf209afd846a7882e5a79d0a85e26e2ab34ed7ca",
+      "native_id": "2047332351be6315c3a4e2726e543be9eb45fdd79580b7cbc60c6fa328e5e394",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "revision": 2,
+      "profile_hash": "4d8f826b74b60798e3df83b5e76dd3dfe696da6efc8cf9ea8e3d1b46410cf551",
+      "native_id": "fbb1c6bfec2bdfd8306de525c040ee4ccdf81303346d8c8e84b2be198f677f71",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "revision": 6,
+      "profile_hash": "cdb417f1ddc18b232ec33b1b62e33b99843198c69b3ff8be46c93981fc5a866e",
+      "native_id": "b405309e41905c74c42eea7612dce355f15dd4725d4c6579867cd1aa3239b601",
+      "valid_to": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "revision": 1,
+      "profile_hash": "457caf83839b416a69a87bdc212dd5deecda9b6d97fae17f9dea974102c05997",
+      "native_id": "ed2825f5b9d7d8a4e66ba25f7ff0ec364d2d7639eb22e9c42633a9bec1efe4f3",
+      "valid_to": null
+    }
+  ],
+  "capability_denials": {
+    "bootstrap": 403,
+    "control": 403,
+    "cross_dataset": 403
+  },
+  "cloudflare_cron_confirmed": true,
+  "cleanup": "SOURCE_ACTORS_REVOKED_CRON_DISABLED",
+  "observations_count": 23,
+  "last_observation": {
+    "at": "2026-10-03T10:36:55.521Z",
+    "runtime": {
+      "status": "REFERENCE_FEED_HEALTHY_AT_OBSERVATION",
+      "recorded_at": "2026-10-03T10:36:54.720Z",
+      "read_only": true,
+      "production_enabled": false,
+      "whole_brain_production_ready": false,
+      "continuous_uptime_proven": false,
+      "datasets": [
+        {
+          "dataset_id": "weather.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 8,
+          "receipt_digest": "5ffa8e648a2eed1fc7a9a43195c3052afb304a5ebc3513f6b38e59e1c3e257d7",
+          "profile_hash": "1b286165436cf3ce8108563e14f60e0770fcb3e682ec9c994e6fa7cc7d25f291",
+          "source_time": "2026-10-03T10:11:19.782Z",
+          "display_expires_at": "2026-10-03T10:41:38.028Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "weather.forecast.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 3,
+          "receipt_digest": "55c56c65c2399f9cafbf7267776700ef61701d4e740cda8a12641e9fb6f428e0",
+          "profile_hash": "94c6704a9861d30546fbe2af116242d28a2b145c8712b041d318c438b0b7da33",
+          "source_time": "2026-10-03T01:22:13.834Z",
+          "display_expires_at": "2026-10-03T10:41:40.639Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "weather.marine.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 8,
+          "receipt_digest": "f4b80e7b608edb8cb6ed87596359e9bf41c4a83834237637c66f104be13105af",
+          "profile_hash": "aa03836fd7f1e3d7ffd359d47847aa4179fb8b478937f64d5a89aa7bf2a054a9",
+          "source_time": "2026-10-03T06:22:33.132Z",
+          "display_expires_at": "2026-10-03T10:41:43.326Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "weather.cloud.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 8,
+          "receipt_digest": "f2505595619d4b614f6eea18706ebf387759b5e5e787cfaec104f20ecfdf82ec",
+          "profile_hash": "9fd2e7f9d81b4963b667a4b6a01a84abc9f33d970d975afce77479498fdd5f2a",
+          "source_time": "2026-10-03T10:30:47.412Z",
+          "display_expires_at": "2026-10-03T10:41:45.622Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "weather.compact.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 8,
+          "receipt_digest": "35cd1031ee2627c733fcbfb183d5f15c59d0b7e1fb2cd5580dcee815e1e44622",
+          "profile_hash": "9ea75d68cf21ed3576aaab7d26fb3bd16f94003cee4f5bd518384ed4d7740dba",
+          "source_time": "2026-10-03T10:30:47.412Z",
+          "display_expires_at": "2026-10-03T10:41:48.648Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "weather.meta.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 8,
+          "receipt_digest": "4a4083cde7705f6a96bdb26eadd626ae6692225222808a9e36e173b79da78267",
+          "profile_hash": "a702e967d44e0e53fb9828215727db4c8d9f5e16a6bd18bf760a512aac28f9c5",
+          "source_time": "2026-10-03T06:24:37.072Z",
+          "display_expires_at": "2026-10-03T10:41:51.120Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "weather.manifest.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 3,
+          "receipt_digest": "6e90dcfcdc7bb185440ef6c8f8616156c13f259a9ffc01f9e5446820df160859",
+          "profile_hash": "4edce80d283c022e0b8cdf9e6df40731bed9517b7d3c0615ecb35ba4890ab1e5",
+          "source_time": "2026-10-03T10:21:23.113Z",
+          "display_expires_at": "2026-10-03T10:37:54.002Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "airport.bridge.pqc",
+          "status": 200,
+          "healthy": true,
+          "revision": 7,
+          "receipt_digest": "d2e6adde1eaf2accede4886b89bf724494647eb936e3753382d5460dc5ac46c0",
+          "profile_hash": "e4c63b45bdcf6ceb157b4133cf209afd846a7882e5a79d0a85e26e2ab34ed7ca",
+          "source_time": "2026-10-03T10:32:56.000Z",
+          "display_expires_at": "2026-10-03T10:37:58.277Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "transit.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 3,
+          "receipt_digest": "89c6c783c3f5e03f07da5e48cbf21454509ae4c87ff7fd8352a211bdaab00373",
+          "profile_hash": "4d8f826b74b60798e3df83b5e76dd3dfe696da6efc8cf9ea8e3d1b46410cf551",
+          "source_time": "2026-10-03T08:16:03.556Z",
+          "display_expires_at": "2026-10-03T10:38:00.986Z",
+          "authority": "VERIFIED",
+          "error": null
+        },
+        {
+          "dataset_id": "directory.bridge.phu-quoc",
+          "status": 200,
+          "healthy": true,
+          "revision": 7,
+          "receipt_digest": "92b8016d3eba90e2b18a4249dc18b33240c1fb94972d4675c814dcc261c4f205",
+          "profile_hash": "cdb417f1ddc18b232ec33b1b62e33b99843198c69b3ff8be46c93981fc5a866e",
+          "source_time": "2026-10-02T23:49:48.863Z",
+          "display_expires_at": "2026-10-03T10:38:03.257Z",
+          "authority": "VERIFIED",
+          "error": null
+        }
+      ]
+    },
+    "pump": {
+      "service": "isolated-reference-ingestion",
+      "code_sha": "e9f116adc0e01da8999536ea030ad723eff4f2ae",
+      "implementation_patch_sha": "",
+      "production_enabled": false,
+      "datasets": [
+        {
+          "dataset_id": "weather.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:36:40.477Z",
+            "dataset_id": "weather.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 8,
+            "receipt_digest": "5ffa8e648a2eed1fc7a9a43195c3052afb304a5ebc3513f6b38e59e1c3e257d7",
+            "source_digest": "fcac0a61fc7bb0e8a786655151a53f5e517649da8e991bc107e74aac6d92f358",
+            "display_expires_at": "2026-10-03T10:41:38.028Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "weather.forecast.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:36:43.163Z",
+            "dataset_id": "weather.forecast.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 3,
+            "receipt_digest": "55c56c65c2399f9cafbf7267776700ef61701d4e740cda8a12641e9fb6f428e0",
+            "source_digest": "7e93cc3a45ece03df4cedf9ee7f2719e85da6097f6e2bba8a6d9402516994097",
+            "display_expires_at": "2026-10-03T10:41:40.639Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "weather.marine.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:36:45.447Z",
+            "dataset_id": "weather.marine.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 8,
+            "receipt_digest": "f4b80e7b608edb8cb6ed87596359e9bf41c4a83834237637c66f104be13105af",
+            "source_digest": "9c515510fc220c074a2bf115b3f4b49dbb01b71a27da7cb69383420bb1639d2e",
+            "display_expires_at": "2026-10-03T10:41:43.326Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "weather.cloud.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:36:48.452Z",
+            "dataset_id": "weather.cloud.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 8,
+            "receipt_digest": "f2505595619d4b614f6eea18706ebf387759b5e5e787cfaec104f20ecfdf82ec",
+            "source_digest": "4b56de6325ae8cec3f1db2843d72094a5070081dc4f74dd04ed32fba5a2ca7f8",
+            "display_expires_at": "2026-10-03T10:41:45.622Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "weather.compact.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:36:50.981Z",
+            "dataset_id": "weather.compact.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 8,
+            "receipt_digest": "35cd1031ee2627c733fcbfb183d5f15c59d0b7e1fb2cd5580dcee815e1e44622",
+            "source_digest": "054f5a6481882d8e289d5b26791a6d88cebe30fd36e32be91f55bef940a8065b",
+            "display_expires_at": "2026-10-03T10:41:48.648Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "weather.meta.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:36:53.736Z",
+            "dataset_id": "weather.meta.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 8,
+            "receipt_digest": "4a4083cde7705f6a96bdb26eadd626ae6692225222808a9e36e173b79da78267",
+            "source_digest": "f7fb99dda253bb8b1872f41bd6951f3d3e1f397994e2c3980ee65e45d4bafc43",
+            "display_expires_at": "2026-10-03T10:41:51.120Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "weather.manifest.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:32:56.297Z",
+            "dataset_id": "weather.manifest.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 3,
+            "receipt_digest": "6e90dcfcdc7bb185440ef6c8f8616156c13f259a9ffc01f9e5446820df160859",
+            "source_digest": "55561c4f294c7ce467cf5309e244b188b28fe8753901173b823a0960e2b4c22f",
+            "display_expires_at": "2026-10-03T10:37:54.002Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "airport.bridge.pqc",
+          "observation": {
+            "at": "2026-10-03T10:33:00.600Z",
+            "dataset_id": "airport.bridge.pqc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 7,
+            "receipt_digest": "d2e6adde1eaf2accede4886b89bf724494647eb936e3753382d5460dc5ac46c0",
+            "source_digest": "1fc6c9ce4ea483a8e1604766a2d3096ff6df1a2c8f3940ad739ded3ae083a123",
+            "display_expires_at": "2026-10-03T10:37:58.277Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "transit.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:33:03.046Z",
+            "dataset_id": "transit.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 3,
+            "receipt_digest": "89c6c783c3f5e03f07da5e48cbf21454509ae4c87ff7fd8352a211bdaab00373",
+            "source_digest": "17c1dc0aa43df69df703e5f88828f5ea59a15468ee4938efef074cdc33c90764",
+            "display_expires_at": "2026-10-03T10:38:00.986Z",
+            "operational_action_allowed": false
+          }
+        },
+        {
+          "dataset_id": "directory.bridge.phu-quoc",
+          "observation": {
+            "at": "2026-10-03T10:33:06.489Z",
+            "dataset_id": "directory.bridge.phu-quoc",
+            "status": "PUBLISHED_REFERENCE",
+            "revision": 7,
+            "receipt_digest": "92b8016d3eba90e2b18a4249dc18b33240c1fb94972d4675c814dcc261c4f205",
+            "source_digest": "e4ef9c627d00f759596153ffc8a72f7afb11c3cff7b86b3c9aebbd162a8fb5b9",
+            "display_expires_at": "2026-10-03T10:38:03.257Z",
+            "operational_action_allowed": false
+          }
+        }
+      ]
+    }
+  },
+  "artifact_id": 11271712343,
+  "artifact_sha256": "d70d02b98815f761815d3abb053f5b22c5492708ede04f29694b5f724c31a93a",
+  "diagnosis": "All ten Runtime references and Cron results passed, then the backup caller omitted its parent directory. No signed backup success is claimed for this failed run."
+}

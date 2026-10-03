@@ -9,6 +9,7 @@ import {mainCommitFromAdvertisement} from '../src/ingress/git-ref.js';
 import {continuousArtifactRefs,CONTINUOUS_PROFILE_VERSION,buildContinuousCandidate} from '../src/platform/domain-continuous-admission.js';
 import {ISOLATED_ACCOUNT_ID} from '../src/platform/domain-bridge-admission.js';
 import {DOMAIN_RUNTIME_URLS} from '../src/ingress/domain-source-common.js';
+import {ingestDataset} from '../src/ingress/domain-feed.js';
 const wrap=async raw=>({payload:{domain_snapshot:{domain:'weather_forecast'}},semantic_profile_hash:'same',semantic_admission:{source_version_time:'same'},semantic_bundle:{encoded_source:await packDomainText(JSON.stringify(raw))}});
 test('forecast retirement preserves every retained value and rejects additions, mutations, reordering and removal of live frames',async()=>{
  const at=Date.now(),old={generated_at:'unchanged',spatial:{frames:[{valid_time:new Date(at-1000).toISOString(),value:1},{valid_time:new Date(at+1000).toISOString(),value:2},{valid_time:new Date(at+2000).toISOString(),value:3}]}};
@@ -31,10 +32,11 @@ test('native authority admits only expired forecast retirement at the same cycle
  for(const f of raw.spatial.frames){f.valid_time=new Date(run+f.lead_hours*3600000).toISOString();for(const c of f.cells)c.valid_time=f.valid_time;}
  const p={contract_version:CONTINUOUS_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:'weather.forecast.bridge.phu-quoc',domain:'weather_forecast',fixture_only:false,producer:{source_kind:'OWNER_PUBLIC_RUNTIME',url:DOMAIN_RUNTIME_URLS.weather_forecast},operator_principal_ids:['operator'],reference_policy:{lease_ms:300000,max_snapshot_age_ms:86400000,future_skew_ms:0},artifact_refs:{}};p.artifact_refs=await continuousArtifactRefs(p);
  const s=await setup({semanticProfile:p,dataset_id:p.dataset_id,environment_id:'isolated-test',account_id:ISOLATED_ACCOUNT_ID,domainOperator:true});
- const commit=async(data,id,revision)=>{const raw_utf8=JSON.stringify(data),pin={source_kind:'OWNER_PUBLIC_RUNTIME',source_pointer:{url:p.producer.url},payload_sha256:await hash(raw_utf8),git_blob_sha:null};const c=await buildContinuousCandidate(p,s.trust,{raw_utf8,pin,operator_principal_id:'operator',evaluation_time:new Date().toISOString(),candidate_id:id,expected_revision:revision,logical_slot:revision});const prepared=await s.call('prepare',c,'test-only-operator');assert.equal(prepared.status,200);return s.call('commit',{...s.trust,command_id:id,digest:prepared.body.digest,expires_at:c.valid_to},'test-only-operator');};
+ const operatorToken='test-only-operator'.padEnd(40,'x');s.principals.find(x=>x.id==='operator').token=operatorToken;s.principals.find(x=>x.id==='operator').permissions.push('read');await s.mf.setOptions(s.options());
+ const commit=async(data,id,revision)=>{const raw_utf8=JSON.stringify(data),pin={source_kind:'OWNER_PUBLIC_RUNTIME',source_pointer:{url:p.producer.url},payload_sha256:await hash(raw_utf8),git_blob_sha:null};const c=await buildContinuousCandidate(p,s.trust,{raw_utf8,pin,operator_principal_id:'operator',evaluation_time:new Date().toISOString(),candidate_id:id,expected_revision:revision,logical_slot:99+revision});const prepared=await s.call('prepare',c,operatorToken);assert.equal(prepared.status,200);return s.call('commit',{...s.trust,command_id:id,digest:prepared.body.digest,expires_at:c.valid_to},operatorToken);};
  try{
   assert.equal((await commit(raw,'first',0)).status,200);
-  const pruned=structuredClone(raw);pruned.spatial.frames.shift();assert.equal((await commit(pruned,'retired',1)).status,200);
+  const pruned=structuredClone(raw);pruned.spatial.frames.shift();const ingested=await ingestDataset({authority:s.trust,profile:p,actor_id:'operator',token:operatorToken},await s.mf.getWorker('test-client'),async()=>new Response(JSON.stringify(pruned)));assert.equal(ingested.revision,2);
   const changed=structuredClone(pruned);changed.spatial.frames[0].cells[0].temperature_c+=1;const denied=await commit(changed,'collision',2);assert.equal(denied.status,409);assert.equal(denied.body.error,'CONTINUOUS_SOURCE_REGRESSION');
   assert.equal((await s.call('read',undefined,'test-only-read')).body.state.revision,2);
   const liveRemoved=structuredClone(pruned);liveRemoved.spatial.frames.pop();assert.equal((await commit(liveRemoved,'live-removed',2)).status,409);

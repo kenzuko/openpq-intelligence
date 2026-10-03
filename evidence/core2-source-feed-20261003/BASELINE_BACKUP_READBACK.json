@@ -1,0 +1,134 @@
+{
+  "artifact_run": 37112667895,
+  "archive_sha256": "fef2e89bc4c853cc7ac71afd218236ee49c53c32bbc0e0a3f2048ef434900c3b",
+  "verified_count": 21,
+  "full_system_restore_proven": false,
+  "verified": [
+    {
+      "backup": "airport",
+      "dataset_id": "airport.bridge.pqc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "airport-revision2",
+      "dataset_id": "airport.bridge.pqc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "cano",
+      "dataset_id": "cano.operation.an-thoi",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "nearme",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "nearme-revision2",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "transit",
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "transit-revision2",
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather-revision2",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_cloud",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_cloud-revision2",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_compact",
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_compact-revision2",
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_forecast",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_forecast-revision2",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_manifest",
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_manifest-revision2",
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_marine",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_marine-revision2",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_meta",
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    },
+    {
+      "backup": "weather_meta-revision2",
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "signature_verified": true
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "attempts": [
+    {
+      "run_id": 37112074789,
+      "status": "FAILED_CLOSED",
+      "reason": "AIRPORT_FLIGHT_SCHEDULE_REQUIRED",
+      "fixed_by": "Preserve actual official null schedule as unresolved with exact raw parity"
+    },
+    {
+      "run_id": 37112667895,
+      "status": "FAILED_CLOSED",
+      "reason": "INGEST_SCHEDULED_PUBLICATION_NOT_PROVEN",
+      "cause": "Unattended code had unsupported redirect mode; pre-existing high logical slots were not inherited. Actual pre-deadline cron invocation was not demonstrated. No claim of source/legacy failure."
+    }
+  ],
+  "patches": [
+    {
+      "run_id": 37113002827,
+      "sha": "73e4cb4048a9edf1663511bd50b0c527d4ddfe99",
+      "status": "SUCCESS",
+      "change": "Workers manual redirect denial plus native source-pump proof"
+    },
+    {
+      "run_id": 37115540825,
+      "sha": "88efe9d417a9ffc40d302305ae3177f3f794a74d",
+      "status": "SUCCESS",
+      "change": "Inherit committed logical slot; explicit release and implementation-patch provenance"
+    }
+  ],
+  "whole_brain_production_ready": false
+}

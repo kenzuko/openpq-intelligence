@@ -78,6 +78,7 @@ try{
    const newPublications=health.datasets.every(x=>x.healthy&&x.revision>report.controls_before.find(b=>b.dataset_id===x.dataset_id).revision&&x.profile_hash===authorities[x.dataset_id].semantic_profile_hash);
    const genuineCron=pump.code_sha===process.env.GITHUB_SHA&&pump.datasets.length===10&&pump.datasets.every(x=>x.observation?.status==='PUBLISHED_REFERENCE'&&Date.parse(x.observation.at)>Date.parse(report.activated_at));
    if(newPublications&&genuineCron){
+    await mkdir(root+'scheduled-backups',{recursive:true});
     const proofs=[];
     for(const item of health.datasets){
      const trust=authorities[item.dataset_id],state=(await core(item.dataset_id,'read',privateData.readTokens[item.dataset_id])).body.state;
@@ -101,4 +102,4 @@ try{
    const c=JSON.parse(await readFile(root+'ingestion-patch.json','utf8'));c.triggers.crons=[];await writeFile(root+'ingestion-patch.json',JSON.stringify(c));command(['deploy','--config',root+'ingestion-patch.json'],'FEED_FAILURE_CRON_CLOSE_FAILED');await save({...report,status:'SCHEDULED_FEED_FAILED_CLOSED',cleanup:'SOURCE_ACTORS_REVOKED_CRON_DISABLED',production_enabled:false,whole_brain_production_ready:false});
   }
  }else throw new ContractError('FEED_MODE_INVALID');
-}catch(e){console.error(e instanceof ContractError?e.code:'FEED_RESUME_FAILED');process.exitCode=1;}
+}catch(e){const code=typeof e.code==='string'&&/^[A-Z0-9_]{1,100}$/.test(e.code)?e.code:'FEED_RESUME_FAILED';console.error(JSON.stringify({error:code,kind:['Error','TypeError','SyntaxError','ContractError','PreparationError'].includes(e.name)?e.name:'Error'}));process.exitCode=1;}
