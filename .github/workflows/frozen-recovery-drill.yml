@@ -1,0 +1,47 @@
+name: Isolated frozen native recovery drill
+on:
+  push:
+    branches: [cloud/core2-frozen-recovery-20261003]
+permissions:
+  contents: read
+concurrency:
+  group: intelligence-isolated-cloud-proof
+  cancel-in-progress: false
+jobs:
+  recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: intelligence-test
+    env:
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      CF_TEST_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+      CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      R2_TEST_READ_SECRET_ACCESS_KEY: ${{ secrets.R2_TEST_READ_SECRET_ACCESS_KEY }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm test
+      - name: Run separate cloud authorities and clean up their Workers and namespaces
+        run: node scripts/cloud/frozen-recovery-drill.js
+      - name: Preserve only public evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frozen-native-cloud-recovery-${{ github.run_id }}
+          path: |
+            .recovery-cloud/PROOF.json
+            .recovery-cloud/PREFLIGHT.json
+            .recovery-cloud/POSTFLIGHT.json
+            .recovery-cloud/SOURCE_TRUST.json
+            .recovery-cloud/TARGET_TRUST.json
+            .recovery-cloud/SOURCE_SNAPSHOT.json
+            .recovery-cloud/TARGET_SNAPSHOT.json
+            .recovery-cloud/TARGET_VERIFICATION.json
+            .recovery-cloud/RECOVERY_PLAN.json
+          retention-days: 14
