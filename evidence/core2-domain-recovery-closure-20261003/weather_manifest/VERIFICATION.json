@@ -1,0 +1,25 @@
+{
+  "status": "SIGNED_DOMAIN_ARCHIVE_CLOSURE_PASS",
+  "dataset_id": "weather.manifest.bridge.phu-quoc",
+  "domain": "weather_manifest",
+  "snapshot_digest": "0237cdf1fe0bcdf5adfd66db977e20efe056b2186a33b1b849d0497f4a2ea086",
+  "watermark": {
+    "revision": 1,
+    "control_revision": 0,
+    "epoch": 1
+  },
+  "artifact_documents_verified": true,
+  "prepared_generation_objects_verified": 1,
+  "source_payload_verified": true,
+  "legacy_payload_digest": "ec7f04229e79108291df3ce8c747ad9ab6a09861ae3bf7c715f2262e16871eb8",
+  "evaluated_at": "2026-10-04T01:12:00.000Z",
+  "display_lease_expired": true,
+  "archive_readback_only": true,
+  "writer_resume_allowed": false,
+  "live_serving_restored": false,
+  "deploy_code_included": false,
+  "scheduler_state_included": false,
+  "storage_credentials_included": false,
+  "full_system_restore_proven": false,
+  "production_enabled": false
+}

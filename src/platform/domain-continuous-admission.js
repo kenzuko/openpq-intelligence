@@ -7,9 +7,11 @@ import {packDomainText,packDomainJson,unpackDomainText,unpackDomainJson} from '.
 import {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION} from './domain-continuous-contract.js';
 export {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION};
 export const isContinuousProfile=p=>p?.contract_version===CONTINUOUS_PROFILE_VERSION;
+export function continuousArtifactDocuments(p){
+ return clone({rule:{contract:CONTINUOUS_PROFILE_VERSION,domain:p.domain,action_allowed:false},config:{producer:p.producer,operators:p.operator_principal_ids},policy:p.reference_policy,schema:{bundle:CONTINUOUS_BUNDLE_VERSION,snapshot:CONTINUOUS_SNAPSHOT_VERSION}});
+}
 export async function continuousArtifactRefs(p){
- const values={rule:{contract:CONTINUOUS_PROFILE_VERSION,domain:p.domain,action_allowed:false},config:{producer:p.producer,operators:p.operator_principal_ids},policy:p.reference_policy,schema:{bundle:CONTINUOUS_BUNDLE_VERSION,snapshot:CONTINUOUS_SNAPSHOT_VERSION}};
- return Object.fromEntries(await Promise.all(Object.entries(values).map(async([k,v])=>[k,{hash:await hash(v)}])));
+ return Object.fromEntries(await Promise.all(Object.entries(continuousArtifactDocuments(p)).map(async([k,v])=>[k,{hash:await hash(v)}])));
 }
 export async function validateContinuousProfile(p,trust){
  exact(p,['contract_version','environment_id','dataset_id','domain','fixture_only','producer','operator_principal_ids','reference_policy','artifact_refs'],'CONTINUOUS_PROFILE');
@@ -63,3 +65,4 @@ export async function buildContinuousCandidate(p,trust,{pin,raw_utf8,operator_pr
  const bundle={contract_version:CONTINUOUS_BUNDLE_VERSION,pin:clone(pin),encoded_source:await packDomainText(raw_utf8)},compact=await project(p,bundle,evaluation_time),f=derived(p,trust,compact,evaluation_time,operator_principal_id);
  const c={schema_version:'openpq-candidate-v1',...trust,candidate_id,expected_revision,expected_control_revision,logical_slot,evaluation_time,valid_from:f.valid_from,valid_to:f.valid_to,inputs:f.inputs,quality:f.quality,artifacts:trust.artifacts,payload:payload(p,compact,await packDomainJson(compact)),operation:'NORMAL',decision:f.decision,semantic_bundle:bundle,semantic_admission:f.proof};candidate(c,instant(evaluation_time,'CONTINUOUS_EVALUATION'));return c;
 }
+

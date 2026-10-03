@@ -23,6 +23,11 @@ jobs:
         run: node scripts/rehearse-authority-snapshot.js
       - name: Restore a frozen authority and verify persisted state after native restart
         run: node scripts/rehearse-frozen-recovery.js
+      - name: Reopen ten signed domain archives with complete semantic dependencies
+        run: node scripts/rehearse-domain-recovery-closure.js
+      - name: Reverify committed domain archive bytes and independent trust
+        run: |
+          python -c "import hashlib,json,pathlib,subprocess; r=pathlib.Path('evidence/core2-domain-recovery-closure-20261003'); m=json.loads((r/'ARTIFACTS.json').read_text()); assert all(hashlib.sha256((r/x['file']).read_bytes()).hexdigest()==x['sha256'] for x in m['files']); [subprocess.run(['node','scripts/verify-domain-recovery-closure.js',str(p),str(p.parent/'TRUST.json'),'2026-10-04T01:12:00.000Z'],check=True) for p in sorted(r.glob('*/BUNDLE.json'))]"
       - name: Independently reopen actual cloud recovery evidence with pinned trust
         run: |
           python -c "import hashlib,json,pathlib,zipfile; r=pathlib.Path('evidence/core2-cloud-recovery-20261003'); m=json.loads((r/'ARTIFACTS.json').read_text()); p=r/m['cloud_archive']['file']; assert hashlib.sha256(p.read_bytes()).hexdigest()==m['cloud_archive']['sha256']; zipfile.ZipFile(p).extractall('.cloud-recovery')"
@@ -49,5 +54,7 @@ jobs:
             .authority-snapshot/TRUST.json
             .authority-snapshot/VERIFICATION.json
             .frozen-recovery/*.json
+            .domain-recovery-closure/**/VERIFICATION.json
+            .domain-recovery-closure/SUMMARY.json
             .cloud-recovery/INDEPENDENT_READBACK.json
           retention-days: 14

@@ -1,0 +1,160 @@
+{
+  "source_scope": "OWNED_CAPTURED_SNAPSHOTS",
+  "files": [
+    {
+      "file": "SUMMARY.json",
+      "sha256": "3abbdf449b450420c5d39ed366a36a245e17f189499f7e5a92403c5801f3df14",
+      "bytes": 10105
+    },
+    {
+      "file": "airport/BUNDLE.json",
+      "sha256": "13e876fa7b844d1777c9eeab3d75eda4e801949849c4fb0d7f9abd1610680cf8",
+      "bytes": 65365
+    },
+    {
+      "file": "airport/TRUST.json",
+      "sha256": "663e86a8cf761afb89cb23c6662525b1282c69eaec1fa88c18839b338650bf0d",
+      "bytes": 1140
+    },
+    {
+      "file": "airport/VERIFICATION.json",
+      "sha256": "b8faeba9a54fdf91ff84ca14554eefb1bddea37c5f14c1d634290284de0d47c3",
+      "bytes": 861
+    },
+    {
+      "file": "nearme/BUNDLE.json",
+      "sha256": "1bd8f85e52ae2a104388326a66ae91766362d66d5cf021557055ab6cf969933c",
+      "bytes": 237111
+    },
+    {
+      "file": "nearme/TRUST.json",
+      "sha256": "78d66c62f3c394fb446f998ac323e37f09e01c1b771cba796516c2300330eb1f",
+      "bytes": 1154
+    },
+    {
+      "file": "nearme/VERIFICATION.json",
+      "sha256": "939247bf000f12580155cfd9c2137c9cf0152d3d89ffdd0d0fb3f3563844c512",
+      "bytes": 867
+    },
+    {
+      "file": "transit/BUNDLE.json",
+      "sha256": "25c9ea99bcdaadf453fdf737a1ac0a5b4500c8d5d5d2545b35ffc59edf599ab4",
+      "bytes": 44242
+    },
+    {
+      "file": "transit/TRUST.json",
+      "sha256": "08b2dbb3b7e2ad8290d85772eccb0a9cd66b9233a3d498418d69b52111e847ad",
+      "bytes": 1150
+    },
+    {
+      "file": "transit/VERIFICATION.json",
+      "sha256": "a2c1b4d20c705aec3c60e02949248e5b75d1f04d862317c921d0c2131ec42ee8",
+      "bytes": 866
+    },
+    {
+      "file": "weather/BUNDLE.json",
+      "sha256": "485c1e2dd20b3f03432374fd08299785288ae4810efbe388e105fcfda2163e33",
+      "bytes": 114888
+    },
+    {
+      "file": "weather/TRUST.json",
+      "sha256": "1f936ecd4aa83c9bd8c759a543ec08a7fa55fc45fbc53c235ae8e35063670fe3",
+      "bytes": 1150
+    },
+    {
+      "file": "weather/VERIFICATION.json",
+      "sha256": "3f25314ff266ae025e32b741da4543d591d5e1eb0d04f2812d4d7dbbbe2e5460",
+      "bytes": 866
+    },
+    {
+      "file": "weather_cloud/BUNDLE.json",
+      "sha256": "9d3537edffedf8a9e0dd2a8dc6424130794913ab42423cd690d9c77873ab6a99",
+      "bytes": 326380
+    },
+    {
+      "file": "weather_cloud/TRUST.json",
+      "sha256": "c79f7b1e38ae21b50e9c8e5ccf1217be2ed49b14116b1bd42b0b8b19d011e8b6",
+      "bytes": 1162
+    },
+    {
+      "file": "weather_cloud/VERIFICATION.json",
+      "sha256": "a3bacad5d4e61d875d130e77df55ea545957f8a87fe612f46830f0b33300e2ff",
+      "bytes": 878
+    },
+    {
+      "file": "weather_compact/BUNDLE.json",
+      "sha256": "10847ed5de6eb0ae02ab8967f8311024d360f9a6aad2b74b895cb4f19af3a029",
+      "bytes": 36418
+    },
+    {
+      "file": "weather_compact/TRUST.json",
+      "sha256": "98fe3dfc8cbc31de52f52418b014e4d59a607ecc6ca84f4a7b912fd7d03e35ca",
+      "bytes": 1166
+    },
+    {
+      "file": "weather_compact/VERIFICATION.json",
+      "sha256": "ed32a14d45f2021cfd9fb3a7550d79631fd998048c07d7c88de3e49d19a27313",
+      "bytes": 882
+    },
+    {
+      "file": "weather_forecast/BUNDLE.json",
+      "sha256": "2e809d6d9552adc80b687d3fda0f124201147b3dc041f36925659c2d2ae643f4",
+      "bytes": 118384
+    },
+    {
+      "file": "weather_forecast/TRUST.json",
+      "sha256": "2ac05f130c11add8750d866877326e318bb9f54cd0741e1acf4640ceb905fb70",
+      "bytes": 1168
+    },
+    {
+      "file": "weather_forecast/VERIFICATION.json",
+      "sha256": "611dd22b216e1e9f68d74fb939bba2ee5d12260546d963fe0ffff4a787b09567",
+      "bytes": 884
+    },
+    {
+      "file": "weather_manifest/BUNDLE.json",
+      "sha256": "f66edfc88e66cc5965f9d1acf92be41e25f92d91b031f78d3399230929f8b098",
+      "bytes": 26974
+    },
+    {
+      "file": "weather_manifest/TRUST.json",
+      "sha256": "0e78b6ada3b91e557f32f28bebe10212ab22c0161bd2e2ba5e1624af7c136bbf",
+      "bytes": 1168
+    },
+    {
+      "file": "weather_manifest/VERIFICATION.json",
+      "sha256": "de76491486254de5f7bd30d51e4a2538020b5d437f5a3ca77fa9e581aa9649bc",
+      "bytes": 884
+    },
+    {
+      "file": "weather_marine/BUNDLE.json",
+      "sha256": "0d25a7f574550d45ec824617d0ea5804207d8e7f66c27eb411a6722195d8a1a7",
+      "bytes": 67683
+    },
+    {
+      "file": "weather_marine/TRUST.json",
+      "sha256": "b40808516457559aeeaaaadd26f6c3df0cf17096ea245bebc9871a9839f6b3f4",
+      "bytes": 1164
+    },
+    {
+      "file": "weather_marine/VERIFICATION.json",
+      "sha256": "76ad89b84a531a5fb4891ee2b8d1b50ab2a2db939682de81016d0ba88079a487",
+      "bytes": 880
+    },
+    {
+      "file": "weather_meta/BUNDLE.json",
+      "sha256": "606f8e63f59d0e8d3d7d9e49e7bbba05ef0244610f7519917a9861f870336849",
+      "bytes": 29480
+    },
+    {
+      "file": "weather_meta/TRUST.json",
+      "sha256": "39fdef5fd77aa41120088236491972078166cc2d91da3104b812251061b5def0",
+      "bytes": 1160
+    },
+    {
+      "file": "weather_meta/VERIFICATION.json",
+      "sha256": "eb0e495b0a0b655b768f4b701df1c615d4ae344a85a0130c76157d0a7aecb72d",
+      "bytes": 876
+    }
+  ]
+}

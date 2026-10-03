@@ -1,0 +1,25 @@
+{
+  "status": "SIGNED_DOMAIN_ARCHIVE_CLOSURE_PASS",
+  "dataset_id": "transit.bridge.phu-quoc",
+  "domain": "transit",
+  "snapshot_digest": "8bf1d373265ed64808742efb770d7cee0431e5cc3f2146c0cbe758808c3e2fbc",
+  "watermark": {
+    "revision": 1,
+    "control_revision": 0,
+    "epoch": 1
+  },
+  "artifact_documents_verified": true,
+  "prepared_generation_objects_verified": 1,
+  "source_payload_verified": true,
+  "legacy_payload_digest": "36744be3efd384890e124dc54cddf92e46a40dad1e78dc877ad6835002ed0008",
+  "evaluated_at": "2026-10-04T01:12:00.000Z",
+  "display_lease_expired": true,
+  "archive_readback_only": true,
+  "writer_resume_allowed": false,
+  "live_serving_restored": false,
+  "deploy_code_included": false,
+  "scheduler_state_included": false,
+  "storage_credentials_included": false,
+  "full_system_restore_proven": false,
+  "production_enabled": false
+}

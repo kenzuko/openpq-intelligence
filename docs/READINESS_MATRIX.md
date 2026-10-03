@@ -3,7 +3,7 @@
 | Phần | Trạng thái | Evidence / giới hạn |
 |---|---|---|
 | F15 Cano offline | PASS_OFFLINE | 68/68, replay 33/33; không là xác nhận vận hành |
-| Full native Miniflare | PASS | 297/297 local; deployed feed giữ source 1c9ca5f |
+| Full native Miniflare | PASS | 308/308 local; deployed feed giữ source 1c9ca5f |
 | Finite isolated cloud baseline | PASS_SUBSET | 25/25 run 37112667895, giữ riêng với Cron proof |
 | Unattended reference feed | PASS_ACTUAL_CRON_SUBSET | 10/10 nguồn; run 37117134469; narrow feed được giữ chạy |
 | Follow-up Cron | PASS_PUBLIC_HEALTH_SUBSET | Cả 10 revision tăng; Runtime khỏe lúc 10:49:40Z |
@@ -16,7 +16,7 @@
 | Airport source semantics | PRESERVED | Null schedule unresolved; archive/fallback không bị sửa |
 | Additional Weather/Cano report contracts | PENDING | Cần semantic admission riêng |
 | Frozen native recovery trên cloud | PASS_ACTUAL_CLOUD_SUBSET | 5/5 run 37126753697; đọc lại độc lập, namespace/generation/signer mới, token command/gateway cũ 401, cleanup xong; chưa S3 write-key revocation/full restore |
-| Full G1/G2/G3/G4/G5 | NOT_PASSED | Restore/fencing, retention/cost, 72 giờ/7 ngày và switch/rollback còn thiếu |
+| Domain archive dependency closure | PASS_CAPTURED_SUBSET | 10/10 signed native archives after disposal and independent child readback; semantic artifacts/all prepared generations verified; no live restore |\n| Full G1/G2/G3/G4/G5 | NOT_PASSED | Restore/fencing, retention/cost, 72 giờ/7 ngày và switch/rollback còn thiếu |
 | Production authority / public cutover | NOT_EXECUTED | Giữ hệ nguồn, UI và route đang dùng tốt |
 | Whole Core 2.0 production-ready | FALSE | Feed reference đã chạy; các gate vận hành còn thiếu |
 

@@ -19,9 +19,11 @@ const adapters={weather:normalizeWeatherDomain,airport:normalizeAirportDomain,tr
 export async function projectOwnedDomain(domain,input,at){requireThat(Object.hasOwn(adapters,domain),'DOMAIN_UNSUPPORTED');return adapters[domain](input,at);}
 const RULE={contract_version:DOMAIN_PROFILE_VERSION,source_admission:'PINNED_OWNED_OUTPUT_SNAPSHOT',source_author_assurance:'OWNED_OUTPUT_CAPTURE_ONLY',action_allowed:false,mode:'BRIDGE_DEPENDENT_SHADOW',producer_independence:false,production_enabled:false};
 const SCHEMA={profile:DOMAIN_PROFILE_VERSION,bundle:DOMAIN_BUNDLE_VERSION,encoding:'GZIP_BASE64',raw_max_bytes:1500000,compressed_max_bytes:120000};
+export function domainBridgeArtifactDocuments(profile){
+ profile=clone(profile);return {rule:{...RULE,contract_version:profile.contract_version,domain:profile.domain,dataset_id:profile.dataset_id},config:{source_pin:profile.source_pin,operator_principal_ids:profile.operator_principal_ids},policy:{scope:isolated(profile)?'ISOLATED_CAPTURE_REFERENCE_LEASE_ONLY':'LOCAL_TEST_REHEARSAL_LEASE_ONLY',test_window:profile.test_window,source_policies_activated:false},schema:{...SCHEMA,profile:profile.contract_version,bundle:bundleVersion(profile)}};
+}
 export async function domainBridgeArtifactRefs(profile){
- profile=clone(profile);const a={rule:await hash({...RULE,contract_version:profile.contract_version,domain:profile.domain,dataset_id:profile.dataset_id}),config:await hash({source_pin:profile.source_pin,operator_principal_ids:profile.operator_principal_ids}),policy:await hash({scope:isolated(profile)?'ISOLATED_CAPTURE_REFERENCE_LEASE_ONLY':'LOCAL_TEST_REHEARSAL_LEASE_ONLY',test_window:profile.test_window,source_policies_activated:false}),schema:await hash({...SCHEMA,profile:profile.contract_version,bundle:bundleVersion(profile)})};
- return Object.fromEntries(Object.entries(a).map(([k,v])=>[k,{hash:v}]));
+ return Object.fromEntries(await Promise.all(Object.entries(domainBridgeArtifactDocuments(profile)).map(async([k,v])=>[k,{hash:await hash(v)}])));
 }
 export async function validateDomainBridgeProfile(profile,trust){
  profile=clone(profile);trust=clone(trust);exact(profile,['contract_version','environment_id','dataset_id','domain','fixture_only','source_pin','operator_principal_ids','test_window','artifact_refs'],'DOMAIN_PROFILE');
@@ -69,3 +71,4 @@ export async function buildDomainBridgeCandidate(profile,trust,{raw_utf8,operato
  const c={schema_version:'openpq-candidate-v1',...trust,candidate_id,expected_revision,expected_control_revision,logical_slot,evaluation_time,valid_from:profile.test_window.valid_from,valid_to:profile.test_window.valid_to,inputs:f.inputs,quality:f.quality,artifacts:trust.artifacts,payload:envelope(profile,compact,await packDomainJson(compact)),operation:'NORMAL',decision:f.decision,semantic_bundle:bundle,semantic_admission:f.proof};
  candidate(c,instant(evaluation_time,'DOMAIN_EVALUATION'));return c;
 }
+

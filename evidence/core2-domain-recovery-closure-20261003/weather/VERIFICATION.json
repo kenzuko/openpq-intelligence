@@ -1,0 +1,25 @@
+{
+  "status": "SIGNED_DOMAIN_ARCHIVE_CLOSURE_PASS",
+  "dataset_id": "weather.bridge.phu-quoc",
+  "domain": "weather",
+  "snapshot_digest": "3b639fe2d0abc3a2bcec6df51befffcf4be0338ca67f203b48c88e54f492ff4a",
+  "watermark": {
+    "revision": 1,
+    "control_revision": 0,
+    "epoch": 1
+  },
+  "artifact_documents_verified": true,
+  "prepared_generation_objects_verified": 1,
+  "source_payload_verified": true,
+  "legacy_payload_digest": "b08bd1429938605a43943ea6777c8575caa7480acc54535e7ecc95a95f8ccf6e",
+  "evaluated_at": "2026-10-04T01:12:00.000Z",
+  "display_lease_expired": true,
+  "archive_readback_only": true,
+  "writer_resume_allowed": false,
+  "live_serving_restored": false,
+  "deploy_code_included": false,
+  "scheduler_state_included": false,
+  "storage_credentials_included": false,
+  "full_system_restore_proven": false,
+  "production_enabled": false
+}

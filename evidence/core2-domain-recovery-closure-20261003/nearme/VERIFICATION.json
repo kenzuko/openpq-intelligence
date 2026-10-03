@@ -1,0 +1,25 @@
+{
+  "status": "SIGNED_DOMAIN_ARCHIVE_CLOSURE_PASS",
+  "dataset_id": "directory.bridge.phu-quoc",
+  "domain": "nearme",
+  "snapshot_digest": "e0739e8fa5e21198a474c2928151da593f6a6a173e7fd2fd833b67278f4ff513",
+  "watermark": {
+    "revision": 1,
+    "control_revision": 0,
+    "epoch": 1
+  },
+  "artifact_documents_verified": true,
+  "prepared_generation_objects_verified": 1,
+  "source_payload_verified": true,
+  "legacy_payload_digest": "a6148043af764e75e61465bbde211b9c997b9dd54509bd488378cb91347dce46",
+  "evaluated_at": "2026-10-04T01:12:00.000Z",
+  "display_lease_expired": true,
+  "archive_readback_only": true,
+  "writer_resume_allowed": false,
+  "live_serving_restored": false,
+  "deploy_code_included": false,
+  "scheduler_state_included": false,
+  "storage_credentials_included": false,
+  "full_system_restore_proven": false,
+  "production_enabled": false
+}

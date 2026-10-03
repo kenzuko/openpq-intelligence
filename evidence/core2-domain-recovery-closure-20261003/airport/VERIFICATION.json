@@ -1,0 +1,25 @@
+{
+  "status": "SIGNED_DOMAIN_ARCHIVE_CLOSURE_PASS",
+  "dataset_id": "airport.bridge.pqc",
+  "domain": "airport",
+  "snapshot_digest": "e8420c96117a72b0fce22f832126e49113f547d6a07199c3691f44732aacd2a2",
+  "watermark": {
+    "revision": 1,
+    "control_revision": 0,
+    "epoch": 1
+  },
+  "artifact_documents_verified": true,
+  "prepared_generation_objects_verified": 1,
+  "source_payload_verified": true,
+  "legacy_payload_digest": "b605d67b8874284fdb69c7b23f85e1d606a708a1ced7b233ee4078f43264e64e",
+  "evaluated_at": "2026-10-04T01:12:00.000Z",
+  "display_lease_expired": true,
+  "archive_readback_only": true,
+  "writer_resume_allowed": false,
+  "live_serving_restored": false,
+  "deploy_code_included": false,
+  "scheduler_state_included": false,
+  "storage_credentials_included": false,
+  "full_system_restore_proven": false,
+  "production_enabled": false
+}
