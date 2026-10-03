@@ -7,7 +7,7 @@ import {ISOLATED_ACCOUNT_ID} from '../platform/domain-bridge-admission.js';
 // Each secret holds one immutable authority/profile and one dataset-scoped actor.
 // There is no bootstrap, control, signing, bucket or production capability here.
 export async function ownedReference(producer,fetcher=fetch){
- const get=async url=>{const r=await fetcher(url,{headers:{accept:'application/json','user-agent':'OpenPQ-isolated-reference-ingestion'},redirect:'manual',signal:AbortSignal.timeout(15000)});requireThat(r.ok,'INGEST_SOURCE_UNAVAILABLE',503);return r;};
+ const get=async url=>{const r=await fetcher(url,{headers:{accept:'application/json','user-agent':'OpenPQ-isolated-reference-ingestion'},redirect:'manual',signal:AbortSignal.timeout(15000)});const kind=new URL(url).hostname==='api.github.com'?'GITHUB_API':new URL(url).hostname==='raw.githubusercontent.com'?'GITHUB_RAW':'OWNED_RUNTIME';requireThat(r.ok,'INGEST_SOURCE_HTTP_'+r.status+'_'+kind,503);return r;};
  if(producer.source_kind==='OWNER_PUBLIC_RUNTIME'){
   const raw_utf8=await boundedText(await get(producer.url),1500000);
   return {raw_utf8,pin:{source_kind:producer.source_kind,source_pointer:{url:producer.url},payload_sha256:await hash(raw_utf8),git_blob_sha:null}};
