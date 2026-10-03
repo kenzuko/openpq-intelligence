@@ -1,3 +1,4 @@
+import {waitForDomainRuntime} from './domain-readiness.js';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
 import {hash,requireThat,ContractError} from '../../src/platform/contracts.js';
@@ -18,7 +19,7 @@ let report={status:'REAL_CLOUD_BRIDGE_RUNNING',cases:[],datasets:[],source_captu
 const save=()=>writeFile(root+'domain-evidence.json',JSON.stringify(report,null,2)+'\n');
 const check=async(name,fn)=>{try{await fn();report.cases.push({name,status:'PASS'});}catch(e){report.cases.push({name,status:'FAIL',error:e instanceof ContractError?e.code:'DOMAIN_PROOF_FAILED'});throw e;}finally{await save();}};
 const core=async(dataset,path,body,token=tokens[dataset].operator)=>{const r=await fetch(origins.core+'/datasets/'+dataset+'/'+path,{method:body===undefined?'GET':'POST',headers:{authorization:'Bearer '+token,'content-type':'application/json'},redirect:'error',signal:AbortSignal.timeout(15000),...(body===undefined?{}:{body:JSON.stringify(body)})});const value=await r.json();report.core_observations??=[];report.core_observations.push({dataset_id:dataset,path,status:r.status,error:typeof value.error==='string'&&/^[A-Z0-9_]{1,100}$/.test(value.error)?value.error:null});return {status:r.status,body:value};};
-const runtime=async dataset=>{const r=await fetch(origins.runtime+'/datasets/'+dataset,{redirect:'error',signal:AbortSignal.timeout(15000)});return {status:r.status,body:await r.json()};};
+const runtime=async dataset=>{const start=Date.now();const r=await fetch(origins.runtime+'/datasets/'+dataset,{redirect:'error',signal:AbortSignal.timeout(15000)}),body=await r.json();report.runtime_observations??=[];report.runtime_observations.push({dataset_id:dataset,status:r.status,elapsed_ms:Date.now()-start,authority:body.serving?.authority??null,fallback:body.serving?.fallback??null,eligibility:body.serving?.decision_eligibility??null,error:typeof body.error==='string'&&/^[A-Z0-9_]{1,100}$/.test(body.error)?body.error:null});return {status:r.status,body};};
 const command=(args)=>{const r=spawnSync('node_modules/.bin/wrangler',args,{stdio:'pipe',encoding:'utf8',env:{...process.env,CLOUDFLARE_API_TOKEN:process.env.CF_TEST_API_TOKEN,CLOUDFLARE_ACCOUNT_ID:Object.values(authorities)[0].account_id,WRANGLER_SEND_METRICS:'false'}});requireThat(r.status===0,'DOMAIN_DEPLOY_COMMAND_FAILED',503);};
 const ids=Object.keys(authorities);
 try{
@@ -62,10 +63,10 @@ try{
    await writeFile(root+'read-outage.private.json',JSON.stringify(principalSecrets(entries.filter(x=>!x.id.startsWith('bridge-read-')))),{mode:0o600});
    command(['secret','bulk',root+'read-outage.private.json','--config',root+'core.json']);command(['deploy','--config',root+'core.json']);
    await waitForCapabilityStatus(()=>core(ids[0],'read',undefined,tokens[ids[0]].read),401,{failureCode:'DOMAIN_READ_OUTAGE_NOT_OBSERVED'});
-   for(const dataset of ids){const s=await runtime(dataset);requireThat(s.status===200&&s.body.serving.fallback===true&&s.body.serving.authority==='UNVERIFIED'&&s.body.serving.decision_eligibility==='ABSTAIN','DOMAIN_FALLBACK_INVALID');}
+   for(const dataset of ids)await waitForDomainRuntime(()=>runtime(dataset),{authority:'UNVERIFIED',fallback:true});
    command(['secret','bulk',root+'core-secrets.json','--config',root+'core.json']);command(['deploy','--config',root+'core.json']);
    await waitForCapabilityStatus(()=>core(ids[0],'read',undefined,tokens[ids[0]].read),200,{failureCode:'DOMAIN_READ_RESTORE_NOT_OBSERVED'});
-   for(const dataset of ids){const s=await runtime(dataset);requireThat(s.status===200&&s.body.serving.authority==='VERIFIED','DOMAIN_READ_RECOVERY_FAILED');}
+   for(const dataset of ids)await waitForDomainRuntime(()=>runtime(dataset),{authority:'VERIFIED',fallback:false});
   });
   report.status='REAL_CLOUD_BRIDGE_SUBSET_PASS';await save();
  }else if(mode==='cleanup'){
