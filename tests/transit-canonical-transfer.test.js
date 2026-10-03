@@ -12,6 +12,18 @@ import {TRANSIT_FACT_ACCOUNT,TRANSIT_FACT_ENVIRONMENT,TRANSIT_FACT_GATE,executio
 import {readTransitConsumer,TRANSIT_CANONICAL_ORIGIN,TRANSIT_LEGACY_URL} from '../src/platform/transit-consumer.js';
 const AT='2026-10-03T21:46:00.000Z',NOW=Date.parse(AT);
 const gate={ACCOUNT_ID:TRANSIT_FACT_ACCOUNT,CANONICAL_TRANSIT_GATE:TRANSIT_FACT_GATE};
+test('actual workerd legacy gateway uses native outbound fetch and preserves UTF-8 bytes/CORS while rejecting writes',async()=>{
+ const raw=await readFile(new URL('./data/transit-transfer/current-captured.json',import.meta.url),'utf8');
+ const mock=createFetchMock();mock.disableNetConnect();const upstream=mock.get('https://raw.githubusercontent.com');upstream.intercept({path:'/kenzuko/transit-jotrip/main/data/network.json',method:'GET'}).reply(200,raw,{headers:{'content-type':'text/plain; charset=utf-8'}});
+ const mf=new Miniflare({cf:false,modules:true,scriptPath:fileURLToPath(new URL('../src/workers/transit-consumer.js',import.meta.url)),modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',fetchMock:mock,bindings:{TRANSIT_READER_MODE:'LEGACY'}});
+ try{const r=await mf.dispatchFetch('https://reader/network.json');assert.equal(r.status,200,await r.clone().text());assert.equal(await r.text(),raw);assert.equal(r.headers.get('x-openpq-source-digest'),await hash(raw));assert.equal(r.headers.get('access-control-allow-origin'),'*');for(const method of ['POST','PUT','DELETE'])assert.equal((await mf.dispatchFetch('https://reader/network.json',{method})).status,405);
+ }finally{await mf.dispose();await mock.close();}
+});
+test('reader requests manual redirects and rejects a supplied 302 instead of changing source origin',async()=>{
+ let calls=0;
+ await assert.rejects(readTransitConsumer({mode:'LEGACY'},{fetcher:async(url,options)=>{calls++;assert.equal(url,TRANSIT_LEGACY_URL);assert.equal(options.redirect,'manual');return new Response('redirect',{status:302,headers:{location:'https://untrusted.invalid/source'}});}}),/TRANSIT_READER_HTTP_302/);
+ assert.equal(calls,1);
+});
 async function profile(){
  const p={contract_version:TRANSIT_FACT_PROFILE_VERSION,environment_id:TRANSIT_FACT_ENVIRONMENT,dataset_id:'transit.bridge.phu-quoc',domain:'transit',fixture_only:false,producer:{source_kind:'OWNER_REPOSITORY_SNAPSHOT',repository:'kenzuko/transit-jotrip',path:'data/network.json'},operator_principal_ids:['operator'],reference_policy:{lease_ms:300000,max_snapshot_age_ms:86400000,future_skew_ms:0},artifact_refs:{}};
  p.artifact_refs=await continuousArtifactRefs(p);return p;

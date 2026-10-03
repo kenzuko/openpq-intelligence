@@ -5,10 +5,11 @@ import {TRANSIT_FACT_PROFILE_VERSION} from './domain-continuous-contract.js';
 export const TRANSIT_CANONICAL_ORIGIN='https://openpq-intelligence-transit-runtime.kenzuko.workers.dev';
 export const TRANSIT_LEGACY_URL='https://raw.githubusercontent.com/kenzuko/transit-jotrip/main/data/network.json';
 // Transport an already admitted owner report. No collector, reclassification or silent fallback.
-export async function readTransitConsumer(config,{fetcher=fetch,clock=()=>Date.now()}={}){
+export async function readTransitConsumer(config,{fetcher=(url,options)=>fetch(url,options),clock=()=>Date.now()}={}){
  requireThat(config&&['LEGACY','CANONICAL'].includes(config.mode),'TRANSIT_READER_MODE_REQUIRED',503);
  const get=async url=>{
-  const r=await fetcher(url,{method:'GET',redirect:'error',signal:AbortSignal.timeout(8000),headers:{accept:'application/json'}});
+  // workerd supports manual/follow; reject 3xx ourselves instead of using unsupported "error".
+  const r=await fetcher(url,{method:'GET',redirect:'manual',signal:AbortSignal.timeout(8000),headers:{accept:'application/json'}});
   requireThat(r.ok,'TRANSIT_READER_HTTP_'+r.status,503);
   const type=r.headers.get('content-type')?.split(';')[0];
   requireThat(type==='application/json'||url===TRANSIT_LEGACY_URL&&type==='text/plain','TRANSIT_READER_CONTENT_TYPE_DENIED',503);

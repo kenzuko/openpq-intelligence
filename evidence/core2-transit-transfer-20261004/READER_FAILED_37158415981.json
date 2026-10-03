@@ -1,0 +1,448 @@
+{
+  "status": "READER_BOUNDARY_NOT_ACCEPTED",
+  "code_sha": "201f4eb66d32383203821ada82aa4edc6e599246",
+  "release_sha": "7252dad0f99ad297495a9474e564337b55589a59",
+  "account_id": "1a64a0a081ea758f72be8254030bdf11",
+  "target": "openpq-intelligence-transit-reader",
+  "mode": "LEGACY",
+  "canonical_transferred": false,
+  "public_app_switched": false,
+  "producer_independent": false,
+  "started_at": "2026-10-03T22:26:04.208Z",
+  "code_ci_runs": [
+    {
+      "id": 37157871806,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 37157869821,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "protected_before": {
+    "openphuquoc-v3": [
+      {
+        "version_id": "25aff0f1-bcbb-46ab-af3e-f90d2081d363",
+        "percentage": 100
+      }
+    ],
+    "jotrip-airport-live": [
+      {
+        "version_id": "40a09090-664d-4f38-935e-fc9f49e9d05f",
+        "percentage": 100
+      }
+    ]
+  },
+  "probes": [
+    {
+      "attempt": 0,
+      "http_status": 404,
+      "content_type": "text/html; charset=UTF-8",
+      "reader": null,
+      "body_digest": "2000e6b28a1517ba1268e1649cd3163326ef839492edfdba31e8959830580976",
+      "source_digest": null,
+      "error": null
+    },
+    {
+      "attempt": 1,
+      "http_status": 404,
+      "content_type": "text/html; charset=UTF-8",
+      "reader": null,
+      "body_digest": "2000e6b28a1517ba1268e1649cd3163326ef839492edfdba31e8959830580976",
+      "source_digest": null,
+      "error": null
+    },
+    {
+      "attempt": 2,
+      "http_status": 404,
+      "content_type": "text/html; charset=UTF-8",
+      "reader": null,
+      "body_digest": "2000e6b28a1517ba1268e1649cd3163326ef839492edfdba31e8959830580976",
+      "source_digest": null,
+      "error": null
+    },
+    {
+      "attempt": 3,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 4,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 5,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 6,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 7,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 8,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 9,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 10,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 11,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 12,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 13,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 14,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 15,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 16,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 17,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 18,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 19,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 20,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 21,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 22,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 23,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 24,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 25,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 26,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 27,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 28,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 29,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 30,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 31,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 32,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 33,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 34,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 35,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 36,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 37,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 38,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 39,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 40,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 41,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 42,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 43,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    },
+    {
+      "attempt": 44,
+      "http_status": 503,
+      "content_type": "application/json",
+      "reader": null,
+      "body_digest": "4efb8a5deede022bc442d23f2c9ba6907473b8b3189cfe3f13b51adf82cb0b7e",
+      "source_digest": null,
+      "error": "TRANSIT_READER_UNAVAILABLE"
+    }
+  ],
+  "error": "READER_DATA_WITNESS_UNAVAILABLE",
+  "cleanup": "NEW_UNACCEPTED_TARGET_REMOVED",
+  "finished_at": "2026-10-03T22:27:38.766Z"
+}

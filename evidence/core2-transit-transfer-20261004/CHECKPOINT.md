@@ -12,7 +12,9 @@ This is the normal owner-report consumer path, not frozen recovery writer resume
 
 ## Evidence and limits
 
-Full local suite at the first implementation milestone passed 335/335, versus baseline 333. Final reader MIME handling and immutable capture pins have separate focused acceptance. New native tests use the replay clock `2026-10-03T21:46:00Z`; they are not live cloud observations.
+Full local suite after the native fetch correction passed 337/337, versus baseline 333. Four new tests cover scoped authority, actual native gateway fetch, explicit redirect rejection and canonical consumer cutover/rollback. The earlier 335/335 milestone is retained as historical CI evidence. New native tests use the replay clock `2026-10-03T21:46:00Z`; they are not live cloud observations.
+
+Feature commit `201f4eb66d32383203821ada82aa4edc6e599246` passed both remote CI runs `37157869821` and `37157871806`. Gateway release attempts `37158212383` and `37158415981` deployed only the new unwired reader, failed data acceptance and removed that new target. They are failures, not canonical cutovers. The first attempt did not capture its response status; the second recorded 503 `TRANSIT_READER_UNAVAILABLE` during acceptance. Follow-up native workerd execution reproduced a TypeError at native fetch with `redirect: "error"`; `manual` plus explicit 3xx rejection fixes the native acceptance. This is an observed local platform counterexample; successful cloud readback on the patched version is still required. Existing source engines/public app were not deployed by those release attempts.
 
 The native test advances two actual captured owner snapshots through the actual SQLite Coordinator and signed R2 generation/receipt path. Runtime performs GET-only S3 reads via a mock transport with no Core write/R2 write binding. Legacy -> canonical -> explicit legacy reader rollback is tested, along with mixed-revision, expiry, wrong-trust and HTTP failure denial. Mock S3 permissions are not cloud credential proof. Two captured versions are not unattended live production updates.
 
