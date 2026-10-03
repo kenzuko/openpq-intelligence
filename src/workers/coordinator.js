@@ -7,7 +7,7 @@ import {validateSemanticAdmission,validateSemanticReplayActor} from '../platform
 import { attest, exportCheckpoint } from '../platform/receipts.js';
 import {isExpiredForecastRetirement} from '../platform/forecast-retirement.js';
 import {sealAuthoritySnapshot,SNAPSHOT_TABLES,SNAPSHOT_MAX_BYTES,SNAPSHOT_MAX_ROWS} from '../platform/authority-snapshot.js';
-import {frozenRecoveryState} from '../platform/recovery-bootstrap.js';
+import {frozenRecoveryState,recoveredDomainReadback} from '../platform/recovery-bootstrap.js';
 
 function json(value,status=200) {return Response.json(value,{status,headers:{'cache-control':'no-store'}});}
 export class DatasetCoordinator extends DurableObject {
@@ -17,6 +17,13 @@ export class DatasetCoordinator extends DurableObject {
   }
   state() { const row=this.ctx.storage.sql.exec('SELECT body FROM control WHERE id=1').toArray()[0];return row?JSON.parse(row.body):null; }
   save(s) {this.ctx.storage.sql.exec('INSERT INTO control(id,body) VALUES(1,?) ON CONFLICT(id) DO UPDATE SET body=excluded.body',stable(s));}
+  async domainRecoveryArchive(key){
+    requireThat(/^recovery\/domains\/[a-zA-Z0-9_-]{1,128}\.json$/.test(key),'RECOVERY_DOMAIN_ARCHIVE_KEY_INVALID');
+    const object=await this.env.CANONICAL.get(key);
+    requireThat(object&&object.size<=2*SNAPSHOT_MAX_BYTES,'RECOVERY_DOMAIN_ARCHIVE_UNAVAILABLE',503);
+    const text=await object.text();requireThat(new TextEncoder().encode(text).length<=2*SNAPSHOT_MAX_BYTES,'RECOVERY_DOMAIN_ARCHIVE_TOO_LARGE',413);
+    return JSON.parse(text);
+  }
   trust() {
     requireThat(['local-test','isolated-test'].includes(this.env.ENVIRONMENT_ID),'PRODUCTION_GATE_CLOSED',503);
     const map=trustMap(this.env);
@@ -31,7 +38,7 @@ export class DatasetCoordinator extends DurableObject {
   async fetch(request) {
     try {
       const trust=this.trust(), actor=await principal(request,this.env), path=new URL(request.url).pathname;
-      const permission=path==='/read'||path==='/validate'?'read':path==='/prepare'||path==='/commit'?'promote':path==='/export'?'export':path==='/recovery-export'?'recovery-export':path==='/recovery-bootstrap'?'recovery-bootstrap':'control';
+      const permission=path==='/read'||path==='/validate'?'read':path==='/prepare'||path==='/commit'?'promote':path==='/export'?'export':path==='/recovery-read'?'recovery-read':path==='/recovery-export'?'recovery-export':path==='/recovery-bootstrap'?'recovery-bootstrap':'control';
       authorize(actor,permission,trust);
       if (path==='/read' && request.method==='GET') return json({state:this.state(),instance_observation:{incarnation_id:this.incarnation_id}});
       requireThat(request.method==='POST','METHOD_DENIED',405);
@@ -49,7 +56,8 @@ export class DatasetCoordinator extends DurableObject {
         const object=await this.env.CANONICAL.get(recoveryPlan.snapshot_key);
         requireThat(object&&object.size<=SNAPSHOT_MAX_BYTES+262144,'RECOVERY_SNAPSHOT_UNAVAILABLE',503);
         const data=await object.text();requireThat(new TextEncoder().encode(data).length<=SNAPSHOT_MAX_BYTES+262144,'RECOVERY_SNAPSHOT_TOO_LARGE',413);
-        const state=await frozenRecoveryState(JSON.parse(data),recoveryPlan,trust,JSON.parse(this.env.RECEIPT_SIGNING_JSON||'{}'),new Date().toISOString());
+        const domainArchive=recoveryPlan.domain_archive?await this.domainRecoveryArchive(recoveryPlan.domain_archive.key):null;
+        const state=await frozenRecoveryState(JSON.parse(data),recoveryPlan,trust,JSON.parse(this.env.RECEIPT_SIGNING_JSON||'{}'),new Date().toISOString(),domainArchive);
         return json(this.ctx.storage.transactionSync(()=>{
           requireThat(sameLocator(this.trust(),trust),'TRUST_CHANGED',409);
           requireThat(!this.state(),'ALREADY_BOOTSTRAPPED',409);
@@ -70,6 +78,14 @@ export class DatasetCoordinator extends DurableObject {
         }));
       }
       requireThat(this.state(),'NOT_BOOTSTRAPPED',409);
+      if(path==='/recovery-read'){
+        requireThat(actor.mode==='LIVE'&&stable(Object.keys(body))==='[]','RECOVERY_READ_REQUEST_DENIED',403);
+        requireThat(recoveryPlan?.domain_archive&&recoveryPlan.target_authority_hash===await hash(trust),'RECOVERY_DOMAIN_ARCHIVE_REQUIRED',409);
+        const state=this.state(),archive=await this.domainRecoveryArchive(recoveryPlan.domain_archive.key);
+        const result=await recoveredDomainReadback(archive,recoveryPlan,state,new Date().toISOString());
+        requireThat(sameLocator(this.trust(),trust)&&stable(this.state())===stable(state),'RECOVERY_STATE_CHANGED',409);
+        return json(result);
+      }
       if(path==='/recovery-export'){
         requireThat(actor.mode==='LIVE','RECOVERY_EXPORT_MODE_DENIED',403);
         const captured=this.ctx.storage.transactionSync(()=>{

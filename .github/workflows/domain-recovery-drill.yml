@@ -1,0 +1,43 @@
+name: Ten owned domain frozen cloud recovery drill
+on:
+  push:
+    branches: [cloud/core2-domain-recovery-20261003]
+permissions:
+  contents: read
+concurrency:
+  group: intelligence-isolated-cloud-proof
+  cancel-in-progress: false
+jobs:
+  recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: intelligence-test
+    env:
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      CF_TEST_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+      CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      R2_TEST_READ_SECRET_ACCESS_KEY: ${{ secrets.R2_TEST_READ_SECRET_ACCESS_KEY }}
+      GITHUB_TOKEN: ${{ github.token }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm test
+      - name: Restore ten fresh domain archives into separate frozen native authorities
+        run: node scripts/cloud/domain-recovery-drill.js
+      - name: Preserve only public recovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ten-domain-frozen-recovery-${{ github.run_id }}
+          path: |
+            .domain-recovery-cloud/PROOF.json
+            .domain-recovery-cloud/PREFLIGHT.json
+            .domain-recovery-cloud/POSTFLIGHT.json
+            .domain-recovery-cloud/*/*.json
+          retention-days: 14

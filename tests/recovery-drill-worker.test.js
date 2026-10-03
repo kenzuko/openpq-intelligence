@@ -25,3 +25,11 @@ test('revoked gateway token is auth-denied and source adapter cannot archive a s
   await mf.setOptions(options({...vars,ENVIRONMENT_ID:'production'}));assert.equal((await call(mf,'/probe',vars.PROVISIONING_TOKEN,undefined,'GET')).status,503);
  }finally{await mf.dispose();}
 });
+test('domain drill adapter pins dataset identity and a distinct immutable archive slot',async()=>{
+ const bindings={...vars,RECOVERY_DRILL_DATASET:'weather.compact.bridge.phu-quoc',RECOVERY_ARCHIVE_SLOT:'123456-weather_compact'},mf=new Miniflare(options(bindings));try{
+  const probe=await call(mf,'/probe',vars.PROVISIONING_TOKEN,undefined,'GET'),identity=await probe.json();assert.equal(identity.dataset_id,bindings.RECOVERY_DRILL_DATASET);assert.equal(identity.object_name,'isolated-test/weather.compact.bridge.phu-quoc/123456/target');
+  const saved=await call(mf,'/domain-archive',vars.STORAGE_WRITER_TOKEN,'{}');assert.equal(saved.status,200);assert.equal((await saved.json()).key,'recovery/domains/123456-weather_compact.json');assert.equal((await call(mf,'/domain-archive',vars.STORAGE_WRITER_TOKEN,'{"changed":true}')).status,409);
+  await mf.setOptions(options({...bindings,RECOVERY_DRILL_ROLE:'source'}));assert.equal((await call(mf,'/domain-archive',vars.STORAGE_WRITER_TOKEN,'{}')).status,403);
+  await mf.setOptions(options({...bindings,RECOVERY_DRILL_DATASET:'unregistered'}));assert.equal((await call(mf,'/probe',vars.PROVISIONING_TOKEN,undefined,'GET')).status,403);
+ }finally{await mf.dispose();}
+});
