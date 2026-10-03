@@ -46,6 +46,21 @@ test('expired source fails closed without advancing revision; production tick ma
 });
 test('repository source fetches exactly the captured commit path and preserves blob identity',async()=>{
  const requests=[],sha='a'.repeat(40),raw='{"version":"fixture"}\n';
- const result=await ownedReference({source_kind:'OWNER_REPOSITORY_SNAPSHOT',repository:'kenzuko/transit-jotrip',path:'data/network.json'},async(url,options)=>{requests.push(url);assert.equal(options.redirect,'error');return new Response(url.includes('api.github.com')?JSON.stringify({sha}):raw);});
+ const result=await ownedReference({source_kind:'OWNER_REPOSITORY_SNAPSHOT',repository:'kenzuko/transit-jotrip',path:'data/network.json'},async(url,options)=>{requests.push(url);assert.equal(options.redirect,'manual');return new Response(url.includes('api.github.com')?JSON.stringify({sha}):raw);});
  assert.equal(requests.length,2);assert.equal(requests[1],'https://raw.githubusercontent.com/kenzuko/transit-jotrip/'+sha+'/data/network.json');assert.equal(result.raw_utf8,raw);assert.match(result.pin.git_blob_sha,/^[a-f0-9]{40}$/);
+});
+
+test('native non-authoritative pump dispatches only its configured dataset and exposes no public command route',async()=>{
+ const {s,entry,fetcher}=await setupIngestion();
+ try{
+  const options=s.options();options.workers.push({name:'source-pump',modules:true,scriptPath:new URL('../src/workers/ingestion.js',import.meta.url).pathname,modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',durableObjects:{SOURCE_PUMPS:{className:'DatasetSourcePump',useSQLite:true}},bindings:{ENVIRONMENT_ID:'isolated-test',ACCOUNT_ID:ISOLATED_ACCOUNT_ID,INGEST_DATASET_5:JSON.stringify(entry)},serviceBindings:{CORE_COMMAND:'core'},outboundService:fetcher});
+  await s.mf.setOptions(options);
+  const ns=await s.mf.getDurableObjectNamespace('SOURCE_PUMPS','source-pump'),pump=ns.get(ns.idFromName('isolated-test/'+entry.authority.dataset_id));
+  const a=await pump.fetch('https://pump/refresh',{method:'POST'});assert.equal(a.status,200,await a.clone().text());assert.equal((await a.json()).revision,1);
+  const b=await pump.fetch('https://pump/refresh',{method:'POST'});assert.equal(b.status,200,await b.clone().text());assert.equal((await b.json()).revision,2);
+  assert.equal((await pump.fetch('https://pump/refresh')).status,405);
+  const wrong=ns.get(ns.idFromName('isolated-test/airport.bridge.pqc'));assert.equal((await wrong.fetch('https://pump/refresh',{method:'POST'})).status,503);
+  assert.equal((await (await s.mf.getWorker('source-pump')).fetch('https://public/refresh',{method:'POST'})).status,404);
+  assert.equal((await s.call('read',undefined,token)).body.state.revision,2);
+ }finally{await s.mf.dispose();}
 });

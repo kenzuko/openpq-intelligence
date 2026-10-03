@@ -1,0 +1,47 @@
+name: Core 2.0 isolated source pump runtime patch
+on:
+  push:
+    branches: [cloud/core2-source-pump-runtime-fix-20261003]
+permissions:
+  contents: read
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    environment: intelligence-test
+    env:
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      CF_TEST_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm test
+      - name: Require exact isolated account and existing source pump
+        run: |
+          node -e "if(process.env.CF_TEST_ACCOUNT_ID !== 'c61a28455fe22f30619b35dd80c2d495') process.exit(1)"
+          node scripts/cloud/preflight.js
+          node -e "const p=JSON.parse(require('fs').readFileSync('.cloud-proof/preflight.json'));if(!p.workers.some(w=>w.id==='openpq-intelligence-ingestion-isolated-test')||!p.namespaces.some(n=>n.script==='openpq-intelligence-ingestion-isolated-test'&&n.class==='DatasetSourcePump'))process.exit(1)"
+      - name: Patch only source Worker code with unchanged narrow actors and schedule
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          node scripts/cloud/ingestion-patch-config.js
+          npx --no-install wrangler deploy --config .cloud-proof/ingestion-patch.json
+      - name: Save public patch provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-pump-runtime-patch
+          path: |
+            .cloud-proof/preflight.json
+            .cloud-proof/ingestion-patch.json
+          retention-days: 14
+
