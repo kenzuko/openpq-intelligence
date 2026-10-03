@@ -1,0 +1,9 @@
+# Ten owned domain frozen cloud restores
+
+Run 37134123700 at code 02152368e011dd7aef67c840983040391fccec9f passed all ten owned-source datasets. Actual source captures were prepared, committed and exported as signed native snapshots. Complete profile, artifact documents, prepared R2 generations and signed active publication were installed in separate fresh target authorities.
+
+Each old command and application storage-gateway token was auth-denied with positive read/write witnesses. Old source R2 bindings were removed; source incarnation changed with identical control. Targets use distinct namespace, native identity, locator, generation and signer; epoch 8, frozen, active null, executable prepared/commands/outbox empty and one bootstrap audit. Dedicated recovery reads preserve original JSON content and report archive freshness. Every target survived an observed restart with identical control and readback.
+
+Temporary Workers and namespaces were deleted. Six protected Workers and three namespaces match preflight. The downloaded original artifact ZIP SHA256 is 7a72625b60880fc4f1c0ce6a893b4042ca352b4c84f8b4edc4b37120879c1b33. Full public source/target trust and bundle/snapshot digests are separately pinned. Offline signature/closure verification passed ten targets; schema validation passed 5 schemas, 50 positives and 150 rejected negatives. CI reopens the committed ZIP. Actual failed earlier runs are preserved as counterexamples and never counted as acceptance.
+
+This proves frozen archive recovery in the isolated account. It does not resume writers, renew expired data, restore consumer Runtime serving, prove direct S3 writer-key revocation or full offsite recovery, establish domain SLA/RPO/RTO, or make Core 2.0 production-ready. Timings and zero lost revisions refer only to this fresh drill.

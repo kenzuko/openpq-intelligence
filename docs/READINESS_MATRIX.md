@@ -2,31 +2,28 @@
 
 | Phần | Trạng thái | Evidence / giới hạn |
 |---|---|---|
-| F15 Cano offline | PASS_OFFLINE | 68/68, replay 33/33; không là xác nhận vận hành |
-| Full native Miniflare | PASS | 325/325 local và CI 37133160112; ingestion giữ source 1c9ca5f |
-| Finite isolated cloud baseline | PASS_SUBSET | 25/25 run 37112667895, giữ riêng với Cron proof |
-| Unattended reference feed | PASS_ACTUAL_CRON_SUBSET | 10/10 nguồn; run 37117134469; narrow feed được giữ chạy |
-| Follow-up Cron | PASS_PUBLIC_HEALTH_SUBSET | Cả 10 revision tăng; Runtime khỏe lúc 10:49:40Z |
-| Capability fencing | PASS_SUBSET | Giữ signer/locator/generation; bootstrap/control/cross-dataset 403 |
-| Independent signed backups | PASS_SUBSET | 10 bản Cron mở lại sau tải xuống; 21 baseline giữ riêng; chưa full restore |
-| Continuous-reference schemas | PASS_ACTUAL_SIGNED_SAMPLES | 5 schema, 50 positive/150 negative từ 10 bản sao Cron thực |
-| Read-only monitoring | CONFIGURED_WITH_COUNTEREXAMPLES | 2 health PASS, 1 FAIL, 1 UNKNOWN trong lịch sử ghi nhận; chưa chứng minh uptime/SLA |
+| F15 Cano offline | PASS_OFFLINE | 68/68, replay 33/33; không xác nhận vận hành ngày hiện tại |
+| Full native Miniflare | PASS | 328/328 local; trước đó CI 37135047910 đạt 326/326; final CI chạy trên commit mới |
+| Finite isolated cloud baseline | PASS_SUBSET | 25/25 run 37112667895; giữ riêng với Cron proof |
+| Unattended reference feed | PASS_ACTUAL_CRON_SUBSET | 10/10 nguồn, run 37117134469; ingestion giữ source 1c9ca5f |
+| Latest scoped feed health | PASS_AT_OBSERVATION | 10/10 healthy lúc 2026-10-03T16:01:00.146Z; không tự chứng minh uptime |
+| Independent signed Cron backups | PASS_SUBSET | 10 bản Cron mở lại độc lập; chưa full disaster restore |
+| Continuous-reference schemas | PASS_ACTUAL_SIGNED_SAMPLES | 5 schema, 50 positive/150 negative cho Cron; thêm 50/150 từ cloud restore thực |
+| Read-only monitoring | CONFIGURED_WITH_COUNTEREXAMPLES | Lịch sử 2 health PASS, 1 FAIL, 1 UNKNOWN; gaps và 72 giờ/7 ngày chưa PASS |
 | Consumer capture / native rehearsal | PASS_PREVIOUS_SCOPED_SNAPSHOT | 23/23 capture, 9/9 rehearsal; không tự biến mọi route thành Core contract |
-| Near Me companions | PARITY_PASS_NOT_AUTHORITY | Chưa dùng editorial data xác nhận live opening |
-| Airport source semantics | PRESERVED | Null schedule unresolved; archive/fallback không bị sửa |
-| Additional Weather/Cano report contracts | PENDING | Cần semantic admission riêng |
-| Frozen native recovery trên cloud | PASS_ACTUAL_CLOUD_SUBSET | 5/5 run 37126753697; đọc lại độc lập, namespace/generation/signer mới, token command/gateway cũ 401, cleanup xong; chưa S3 write-key revocation/full restore |
-| Domain archive dependency closure | PASS_CAPTURED_SUBSET | 10/10 signed native archives after disposal and independent child readback; semantic artifacts/all prepared generations verified; no live restore |
-| Full G1/G2/G3/G4/G5 | NOT_PASSED | Restore/fencing, retention/cost, 72 giờ/7 ngày và switch/rollback còn thiếu |
-| Production authority / public cutover | NOT_EXECUTED | Giữ hệ nguồn, UI và route đang dùng tốt |
-| Whole Core 2.0 production-ready | FALSE | Feed reference đã chạy; các gate vận hành còn thiếu |
+| Near Me companions | PARITY_PASS_NOT_AUTHORITY | Editorial data chưa xác nhận live opening |
+| Airport source semantics | PRESERVED | Null schedule unresolved; không sửa specialist engine/archive fallback |
+| Additional Weather/Cano report contracts | PENDING | Cần admission riêng, không cấp operational action từ reference |
+| Generic frozen native recovery cloud | PASS_ACTUAL_SUBSET | 5/5 run 37126753697; original command/gateway deny, distinct target, restart, cleanup |
+| Domain archive dependency closure | PASS_CAPTURED_SUBSET | 10 signed native archives, full semantic artifact preimages/all generations, independent readback |
+| Frozen native domain restore | PASS_ACTUAL_NATIVE_SUBSET | 10/10 fresh targets, persisted restart, signed target reopened after disposal |
+| Frozen cloud domain restore | PASS_ACTUAL_CLOUD_SUBSET | 10/10 run 37134123700; current owned captures, narrow authenticated archive read, epoch 8 frozen, restart, fencing and cleanup; independent signature/schema readback |
+| Forecast future-frame admission | PASS_BOUNDED_FIX | Signed counterexample: same cycle, unchanged metadata/retained values, one future frame; mutation/rollback/live removal denied |
+| Isolated Core Forecast patch | PASS_ACTUAL_SCOPED_DEPLOY | Run 37134617745, Core version 21c8c7c3-195e-43ff-8b53-c69a8aad57ce; signed revision 70 to 71; owner/epoch/profile held, other 5 Worker versions unchanged |
+| Full G1/G2/G3/G4/G5 | NOT_PASSED | Complete restore/credential/config coverage, retention/cost, cycle coverage, 72 giờ/7 ngày và controlled consumer switch/rollback còn thiếu |
+| Production authority / public cutover | NOT_EXECUTED | Giữ specialist engines, UI và routes đang dùng tốt |
+| Whole Core 2.0 production-ready | FALSE | Frozen archive recovery không phải live Runtime restoration hay writer resume |
 
-Owner đã cấp toàn quyền. Không có yêu cầu xin phép đang chờ. Lease display không thay thời gian observation/model/provider; reference vẫn ABSTAIN và operational action bị đóng.
+Owner đã cấp toàn quyền. Không có yêu cầu xin phép đang chờ. Display lease không thay source observation/model/provider time; reference vẫn FACT/ABSTAIN, source policies và operational action chưa kích hoạt.
 
-Đọc [checkpoint đã ghim](../evidence/core2-source-feed-20261003/CHECKPOINT.md). Immutable V2.1 và mọi counterexample được giữ nguyên.
-
-Cloud recovery mới: [checkpoint và bằng chứng đã ghim](../evidence/core2-cloud-recovery-20261003/CHECKPOINT.md). Không resume writer và không đổi 10 feed đang chạy.
-
-Frozen domain restore: 10/10 Miniflare targets sống qua persisted restart, chữ ký/semantic archive đọc lại sau dispose. Cloud ten-domain acceptance chưa PASS. Các run lỗi được giữ, latest 37133160893 thiếu observed restart incarnation, cleanup SUCCESS.
-
-Forecast: signed old/current capture chứng minh cùng model cycle giữ nguyên metadata và mọi frame cũ, chỉ thêm 1 future frame. Rule đã vá giới hạn, 325 tests PASS. Isolated Core patch workflow có giữ binding và rollback đang chạy; chưa tuyên bố deploy PASS.
+Bằng chứng: [cloud domain recovery](../evidence/core2-domain-frozen-cloud-20261003/success-37134123700/CHECKPOINT.md), [Forecast patch](../evidence/core2-forecast-regression-20261003/CHECKPOINT.md), [scheduled feed](../evidence/core2-source-feed-20261003/CHECKPOINT.md). Immutable V2.1 và counterexamples được giữ nguyên. Direct S3 writer-key revocation, full offsite/deployment/scheduler/credential restore và domain SLA/RPO/RTO chưa được chứng minh.

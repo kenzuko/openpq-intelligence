@@ -1,0 +1,7 @@
+{
+  "openpq-intelligence-runtime-isolated-test": "109630f6-3967-47ab-a8b3-6855eeb08e00",
+  "openpq-intelligence-operator-isolated-test": "41261140-d731-444a-8b16-3a3b5ca2b2a4",
+  "openpq-intelligence-staging-isolated-test": "96743ac2-eeee-4ac6-b1a2-1a40d9852281",
+  "openpq-intelligence-progress-isolated-test": "4becaf42-9473-4822-aae4-ec0824c7579c",
+  "openpq-intelligence-ingestion-isolated-test": "e157e49e-518f-4d9a-820b-62aaa7a0033c"
+}

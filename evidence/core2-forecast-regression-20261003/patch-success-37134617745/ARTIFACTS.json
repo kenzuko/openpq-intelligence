@@ -1,0 +1,73 @@
+{
+  "run_id": "37134617745",
+  "code_sha": "6c2aeec3ce0b6a3af9fbf50ecf618b4c5f489553",
+  "github_artifact_id": 11278751644,
+  "downloaded_zip_sha256": "e29282b1cb351386f5292dbb900a8314695c1ac8c9d8e9d28a54739a1c6c7cea",
+  "files": [
+    {
+      "file": "BINDINGS_AFTER.json",
+      "sha256": "260b2f2a5f7937d4b93fb740613827b3a475fed2bd2a1be4f53dc0510c011360",
+      "bytes": 2282
+    },
+    {
+      "file": "BINDINGS_BEFORE.json",
+      "sha256": "260b2f2a5f7937d4b93fb740613827b3a475fed2bd2a1be4f53dc0510c011360",
+      "bytes": 2282
+    },
+    {
+      "file": "FORECAST_CHECKPOINT_AFTER.json",
+      "sha256": "3c977b8715779e4339087c69590f47f679dc13b3c751f7f0d781f32ee09cc0fb",
+      "bytes": 2852
+    },
+    {
+      "file": "FORECAST_CHECKPOINT_BEFORE.json",
+      "sha256": "e1f4f7622b0e47bde9d6672091db97c6cd826d477e773326439a432af1ffb9c9",
+      "bytes": 2852
+    },
+    {
+      "file": "FORECAST_CHECKPOINT_CANDIDATE.json",
+      "sha256": "3c977b8715779e4339087c69590f47f679dc13b3c751f7f0d781f32ee09cc0fb",
+      "bytes": 2852
+    },
+    {
+      "file": "FORECAST_GENERATION_AFTER.json",
+      "sha256": "e5aa357495d9615e74c561f669682f1114f5b5483330f0edfbeaedae11901ae5",
+      "bytes": 49349
+    },
+    {
+      "file": "FORECAST_GENERATION_CANDIDATE.json",
+      "sha256": "e5aa357495d9615e74c561f669682f1114f5b5483330f0edfbeaedae11901ae5",
+      "bytes": 49349
+    },
+    {
+      "file": "POSTFLIGHT.json",
+      "sha256": "0e056f3f8d9c0325458fe3ae5a9db58cff9053e163dad1fab3c71a863de39048",
+      "bytes": 3122
+    },
+    {
+      "file": "PREFLIGHT.json",
+      "sha256": "96fb1d5507d618d7a040dd94f3bc340b26af822faa730cd6858c5036f48ecefd",
+      "bytes": 3122
+    },
+    {
+      "file": "PROOF.json",
+      "sha256": "d3c11d477db4c066aed42ce802624c2c0780b5bd3cea8ea7aaa4d631553e819c",
+      "bytes": 11651
+    },
+    {
+      "file": "PROTECTED_VERSIONS_AFTER.json",
+      "sha256": "3ec593ed91048170cce695afbe2e06bc6e096a6d69d3dc6c81f73fb593da2e14",
+      "bytes": 442
+    },
+    {
+      "file": "PROTECTED_VERSIONS_BEFORE.json",
+      "sha256": "3ec593ed91048170cce695afbe2e06bc6e096a6d69d3dc6c81f73fb593da2e14",
+      "bytes": 442
+    },
+    {
+      "file": "core.json",
+      "sha256": "bad6850dba5d51ce64ca9e7677f8206c6d030daee2764307258205a32dc889b0",
+      "bytes": 503
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "bucket_name": "openpq-intelligence-canonical-isolated-test",
+    "name": "CANONICAL",
+    "type": "r2_bucket"
+  },
+  {
+    "class_name": "DatasetCoordinator",
+    "name": "DATASETS",
+    "namespace_id": "97783b80477f4613a445b4e219b8158c",
+    "type": "durable_object_namespace"
+  },
+  {
+    "name": "ENVIRONMENT_ID",
+    "text": "isolated-test",
+    "type": "plain_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON",
+    "type": "secret_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON_2",
+    "type": "secret_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON_3",
+    "type": "secret_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON_4",
+    "type": "secret_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON_5",
+    "type": "secret_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON_6",
+    "type": "secret_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON_7",
+    "type": "secret_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON_8",
+    "type": "secret_text"
+  },
+  {
+    "name": "PRINCIPALS_JSON_9",
+    "type": "secret_text"
+  },
+  {
+    "name": "RECEIPT_SIGNING_JSON",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_PROFILE_1",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_PROFILE_2",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_PROFILE_3",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_1",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_2",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_3",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_4",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_5",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_6",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_7",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_8",
+    "type": "secret_text"
+  },
+  {
+    "name": "SEMANTIC_REGISTRY_9",
+    "type": "secret_text"
+  },
+  {
+    "name": "TRUST_JSON",
+    "type": "secret_text"
+  },
+  {
+    "name": "TRUST_JSON_2",
+    "type": "secret_text"
+  },
+  {
+    "name": "TRUST_JSON_3",
+    "type": "secret_text"
+  },
+  {
+    "name": "TRUST_JSON_4",
+    "type": "secret_text"
+  },
+  {
+    "name": "TRUST_JSON_5",
+    "type": "secret_text"
+  },
+  {
+    "name": "TRUST_JSON_6",
+    "type": "secret_text"
+  }
+]
