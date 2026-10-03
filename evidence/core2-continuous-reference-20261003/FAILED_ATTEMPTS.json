@@ -1,0 +1,17 @@
+[
+  {
+    "run": 37102384488,
+    "commit": "f4535d0c79e8b21059043892b6f14ba19711b148",
+    "result": "23/23 GET captures succeeded; upload failed because default excludes hidden output directory; no cloud/production write."
+  },
+  {
+    "run": 37102929157,
+    "repo": "kenzuko/jotrip-home",
+    "result": "Inventory GET failed before request because existing account secret had trailing newline; fixed by trimming; no production writes."
+  },
+  {
+    "run": 37102977245,
+    "commit": "0100a51eb2e073179b5866cd8146579026a07c5b",
+    "result": "268 tests and23 GET captures passed; native admission rejected actual Airport HTTP snapshot fallback schema3.0. Adapter now preserves ARCHIVE_FALLBACK_CAPTURE and cannot label it LIVE; native9 subsequentPASS."
+  }
+]

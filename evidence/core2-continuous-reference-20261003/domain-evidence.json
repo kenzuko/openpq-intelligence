@@ -1,0 +1,2286 @@
+{
+  "status": "REAL_CLOUD_CONTINUOUS_REFERENCE_SUBSET_PASS",
+  "cases": [
+    {
+      "name": "final Core has no temporary native probe",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.forecast.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.marine.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.cloud.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.compact.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.meta.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.manifest.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "airport.bridge.pqc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "transit.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "directory.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "cano.operation.an-thoi authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.forecast.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.marine.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.cloud.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.compact.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.meta.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.manifest.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "airport.bridge.pqc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "transit.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "directory.bridge.phu-quoc refreshes under the same pinned authority and profile",
+      "status": "PASS"
+    },
+    {
+      "name": "all eleven sources coexist after admission",
+      "status": "PASS"
+    },
+    {
+      "name": "read authority outage serves signed references with no operational action",
+      "status": "PASS"
+    },
+    {
+      "name": "temporary source admission capabilities closed with positive Runtime witness",
+      "status": "PASS"
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "domain": "weather",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/current.json"
+        },
+        "payload_sha256": "af7d70fdb6f4f073de4c37ca9021ee690f591d0e2012c5063b52e0ffd02e1b78",
+        "git_blob_sha": null
+      },
+      "profile_hash": "1b286165436cf3ce8108563e14f60e0770fcb3e682ec9c994e6fa7cc7d25f291",
+      "receipt_digest": "123f0292316ec5b745f4b4b9ec2a71e0a2b26f3779cd283d9008324fd923e002",
+      "revision": 2,
+      "record_count": 206,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T06:28:56.822Z",
+      "display_expires_at": "2026-10-03T06:40:53.395Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/current.json"
+        },
+        "payload_sha256": "af7d70fdb6f4f073de4c37ca9021ee690f591d0e2012c5063b52e0ffd02e1b78",
+        "git_blob_sha": null
+      },
+      "first_receipt_digest": "396edcdba645dc3551d6facf0ef689f42ad6ebd9a0729b7234d6682cff520a29",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "domain": "weather_forecast",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/forecast.json"
+        },
+        "payload_sha256": "5e55e4c4365e2e7ac1825bb616f372b47faedf2b448b91a43f19725b69024656",
+        "git_blob_sha": null
+      },
+      "profile_hash": "94c6704a9861d30546fbe2af116242d28a2b145c8712b041d318c438b0b7da33",
+      "receipt_digest": "85b2639f13411f30457bf2542a83895eff02432c541061e6eb19f75ceab96486",
+      "revision": 2,
+      "record_count": 26,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T01:22:13.834Z",
+      "display_expires_at": "2026-10-03T06:40:57.660Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/forecast.json"
+        },
+        "payload_sha256": "5e55e4c4365e2e7ac1825bb616f372b47faedf2b448b91a43f19725b69024656",
+        "git_blob_sha": null
+      },
+      "first_receipt_digest": "6ea0217adcb8fb2b08da86bb32a50c9697b6017474b7c01ebd801b563f738da4",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "domain": "weather_marine",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/marine.json"
+        },
+        "payload_sha256": "9c515510fc220c074a2bf115b3f4b49dbb01b71a27da7cb69383420bb1639d2e",
+        "git_blob_sha": null
+      },
+      "profile_hash": "aa03836fd7f1e3d7ffd359d47847aa4179fb8b478937f64d5a89aa7bf2a054a9",
+      "receipt_digest": "ef5a88301b51f47ac4c1a3fc5f9fd85ab22082bafdd4e756264aa87fd3523777",
+      "revision": 2,
+      "record_count": 2,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T06:22:33.132Z",
+      "display_expires_at": "2026-10-03T06:41:01.453Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/marine.json"
+        },
+        "payload_sha256": "9c515510fc220c074a2bf115b3f4b49dbb01b71a27da7cb69383420bb1639d2e",
+        "git_blob_sha": null
+      },
+      "first_receipt_digest": "8994cfb40857a8e8b599b78c691984af3e9875b89636ddf9775c0fb5dc4c4e2c",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "domain": "weather_cloud",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/cloud.json"
+        },
+        "payload_sha256": "e23fb9c2ece4cf8534d6604b87ba04e5d3508bc1d1403f961f43f18d6d084cb8",
+        "git_blob_sha": null
+      },
+      "profile_hash": "9fd2e7f9d81b4963b667a4b6a01a84abc9f33d970d975afce77479498fdd5f2a",
+      "receipt_digest": "f4e78d0cdfb7e5ef362bd6e8d7cd6613d6fb542b014ef72500736b3c67964eb1",
+      "revision": 2,
+      "record_count": 6,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T06:31:30.762Z",
+      "display_expires_at": "2026-10-03T06:41:05.726Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/cloud.json"
+        },
+        "payload_sha256": "e23fb9c2ece4cf8534d6604b87ba04e5d3508bc1d1403f961f43f18d6d084cb8",
+        "git_blob_sha": null
+      },
+      "first_receipt_digest": "d9bda0eae3d439c9b0bab1a301233bbc3d02370f7f8e4420a2e196ae719a09a6",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "domain": "weather_compact",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/compact.json"
+        },
+        "payload_sha256": "12f30c46246162b8301b9dfff573a0e8aeb87427401d0c224967397a495eabaa",
+        "git_blob_sha": null
+      },
+      "profile_hash": "9ea75d68cf21ed3576aaab7d26fb3bd16f94003cee4f5bd518384ed4d7740dba",
+      "receipt_digest": "25afc60952cbaaa99898287b28d0e8c4581131047162bd67f8f9a588d1183cb4",
+      "revision": 2,
+      "record_count": 1,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T06:31:30.762Z",
+      "display_expires_at": "2026-10-03T06:41:10.099Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/compact.json"
+        },
+        "payload_sha256": "12f30c46246162b8301b9dfff573a0e8aeb87427401d0c224967397a495eabaa",
+        "git_blob_sha": null
+      },
+      "first_receipt_digest": "19ae854a5bfee60e8191c12e80b46db9b26771343affad456d9a272043c85aa5",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "domain": "weather_meta",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/meta.json"
+        },
+        "payload_sha256": "f7fb99dda253bb8b1872f41bd6951f3d3e1f397994e2c3980ee65e45d4bafc43",
+        "git_blob_sha": null
+      },
+      "profile_hash": "a702e967d44e0e53fb9828215727db4c8d9f5e16a6bd18bf760a512aac28f9c5",
+      "receipt_digest": "cd4cea670b5da24fda069027a0bfb7db311c5ee86c38da7dab802db579a6127a",
+      "revision": 2,
+      "record_count": 1,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T06:24:37.072Z",
+      "display_expires_at": "2026-10-03T06:41:13.760Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/weather/data/weather-runtime/meta.json"
+        },
+        "payload_sha256": "f7fb99dda253bb8b1872f41bd6951f3d3e1f397994e2c3980ee65e45d4bafc43",
+        "git_blob_sha": null
+      },
+      "first_receipt_digest": "290c8ae22f6bae5ba30b277520814c88cb188083617aff2c0a4a2ea276f08a66",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "domain": "weather_manifest",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "8e048ed5be8e90aed93cf02ec6a4479e37a3507f",
+          "path": "data/weather-runtime/manifest.json"
+        },
+        "payload_sha256": "b3eaa3195175e41b4f67552b67dfbfa4bc3c22a18aa3c22969940632de7db9a4",
+        "git_blob_sha": "2aac6852f2ef12916d1fffcdaf10bf86b8e53f7b"
+      },
+      "profile_hash": "4edce80d283c022e0b8cdf9e6df40731bed9517b7d3c0615ecb35ba4890ab1e5",
+      "receipt_digest": "c605133ee07727663ed55846c575eae93b359a8c4297c6886418d03881e9b555",
+      "revision": 2,
+      "record_count": 1,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T06:11:21.240Z",
+      "display_expires_at": "2026-10-03T06:41:17.980Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "8e048ed5be8e90aed93cf02ec6a4479e37a3507f",
+          "path": "data/weather-runtime/manifest.json"
+        },
+        "payload_sha256": "b3eaa3195175e41b4f67552b67dfbfa4bc3c22a18aa3c22969940632de7db9a4",
+        "git_blob_sha": "2aac6852f2ef12916d1fffcdaf10bf86b8e53f7b"
+      },
+      "first_receipt_digest": "023466223aeb1f8686bf7aacfe2027ec5714c13cdab0d73161424fb7640f8894",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "domain": "airport",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://jotrip-airport-live.kenzuko.workers.dev"
+        },
+        "payload_sha256": "19f0cd2d4b809e166542396a19cb8017cbb9eae0e1d9dcf728db9c41a35aee11",
+        "git_blob_sha": null
+      },
+      "profile_hash": "e4c63b45bdcf6ceb157b4133cf209afd846a7882e5a79d0a85e26e2ab34ed7ca",
+      "receipt_digest": "7315eeb895fbe8aa87ea47b5618434e6aa6e84b010b92341ef5a8f0c1492e512",
+      "revision": 2,
+      "record_count": 127,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T06:36:21.000Z",
+      "display_expires_at": "2026-10-03T06:41:25.579Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://jotrip-airport-live.kenzuko.workers.dev"
+        },
+        "payload_sha256": "ec405547a3b8a9dbf404623a6b7f204159391be51b9553a53561622684b5a7dc",
+        "git_blob_sha": null
+      },
+      "first_receipt_digest": "ae5555cdefa9f95ffae30d779e0c63304027b814942ede24fe161ca90ea30294",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": true
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "domain": "transit",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/transit-jotrip",
+          "commit_sha": "cb89c54711ce2f098ba5bc7d896603c4bea8b738",
+          "path": "data/network.json"
+        },
+        "payload_sha256": "1842a40c8648bf440a964819f10b5c7d5514e38e90f927c6d6810a8effab7639",
+        "git_blob_sha": "124eceb0ebd5f8ac4d281adf3791d21ab3f675b6"
+      },
+      "profile_hash": "4d8f826b74b60798e3df83b5e76dd3dfe696da6efc8cf9ea8e3d1b46410cf551",
+      "receipt_digest": "cc165454f674f24ec0b40924083578c583558b372b1eeeb2c9e1047b88b5c2d2",
+      "revision": 2,
+      "record_count": 34,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T05:43:08.204Z",
+      "display_expires_at": "2026-10-03T06:41:29.705Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/transit-jotrip",
+          "commit_sha": "cb89c54711ce2f098ba5bc7d896603c4bea8b738",
+          "path": "data/network.json"
+        },
+        "payload_sha256": "1842a40c8648bf440a964819f10b5c7d5514e38e90f927c6d6810a8effab7639",
+        "git_blob_sha": "124eceb0ebd5f8ac4d281adf3791d21ab3f675b6"
+      },
+      "first_receipt_digest": "e51180e31cfc427acf2e45e5cf4c50bda1bcfbd7b4c0089a9f2f3112ed94cbe6",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "domain": "nearme",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/data/views/location-index.json"
+        },
+        "payload_sha256": "e4ef9c627d00f759596153ffc8a72f7afb11c3cff7b86b3c9aebbd162a8fb5b9",
+        "git_blob_sha": null
+      },
+      "profile_hash": "cdb417f1ddc18b232ec33b1b62e33b99843198c69b3ff8be46c93981fc5a866e",
+      "receipt_digest": "f9e95afcde9de6e044712d6147fa707e6ed0b5b532cc81c0681b3000dd3c7246",
+      "revision": 2,
+      "record_count": 348,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-02T23:49:48.863Z",
+      "display_expires_at": "2026-10-03T06:41:33.609Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false,
+      "first_source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://openphuquoc.com/data/views/location-index.json"
+        },
+        "payload_sha256": "e4ef9c627d00f759596153ffc8a72f7afb11c3cff7b86b3c9aebbd162a8fb5b9",
+        "git_blob_sha": null
+      },
+      "first_receipt_digest": "b63425ac1e3d77bf8a74f921479b842daa8e74d9873d103d6c9d194907405a8a",
+      "continuous_profile_preserved": true,
+      "refresh_input_changed": false
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "domain": "cano",
+      "source_pin": {
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Lab",
+          "commit_sha": "5c5e519a3048d99ec1b114ef0a8e55ad9252b3b8",
+          "path": "data/marine_ops/manual-confirmations/2026-10-03-cano-an-thoi.json"
+        },
+        "payload_sha256": "004cc31fbf63f19f1432437fc3c0807e3f67648c168518a05c8161f4153fd6fd",
+        "git_blob_sha": "cf2405d897b30e770ba0afbee33f9f82151d358c"
+      },
+      "profile_hash": "457caf83839b416a69a87bdc212dd5deecda9b6d97fae17f9dea974102c05997",
+      "receipt_digest": "21da3cc17cac76c47d2d45c7050e71d72a39d1b4c56288d87d3968da25605f74",
+      "revision": 1,
+      "record_count": 1,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-02T23:06:00.000Z",
+      "display_expires_at": "2026-10-03T17:00:00.000Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    }
+  ],
+  "source_capture": "CURRENT_OWNED_OUTPUTS_CAPTURED_TWICE_WITH_STABLE_PROFILE_NOT_UNATTENDED_FEED",
+  "production_enabled": false,
+  "operational_action_allowed": false,
+  "full_system_restore_proven": false,
+  "code_sha": "83597cbe465b79ca085acf62abf7d85692210ad8",
+  "run_id": "37103462168",
+  "core_observations": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "CONTINUOUS_ACTION_OR_PROOF_DENIED"
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "prepare",
+      "status": 409,
+      "error": "REAL_CANO_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 401,
+      "error": "AUTH_DENIED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 401,
+      "error": "AUTH_DENIED"
+    }
+  ],
+  "runtime_observations": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 330,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "396edcdba645dc3551d6facf0ef689f42ad6ebd9a0729b7234d6682cff520a29",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 270,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "6ea0217adcb8fb2b08da86bb32a50c9697b6017474b7c01ebd801b563f738da4",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 321,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "8994cfb40857a8e8b599b78c691984af3e9875b89636ddf9775c0fb5dc4c4e2c",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 262,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "d9bda0eae3d439c9b0bab1a301233bbc3d02370f7f8e4420a2e196ae719a09a6",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 258,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "19ae854a5bfee60e8191c12e80b46db9b26771343affad456d9a272043c85aa5",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 260,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "290c8ae22f6bae5ba30b277520814c88cb188083617aff2c0a4a2ea276f08a66",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 237,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "023466223aeb1f8686bf7aacfe2027ec5714c13cdab0d73161424fb7640f8894",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "status": 200,
+      "elapsed_ms": 345,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "ae5555cdefa9f95ffae30d779e0c63304027b814942ede24fe161ca90ea30294",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 290,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "e51180e31cfc427acf2e45e5cf4c50bda1bcfbd7b4c0089a9f2f3112ed94cbe6",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 349,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "b63425ac1e3d77bf8a74f921479b842daa8e74d9873d103d6c9d194907405a8a",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "status": 200,
+      "elapsed_ms": 265,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "21da3cc17cac76c47d2d45c7050e71d72a39d1b4c56288d87d3968da25605f74",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 308,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "123f0292316ec5b745f4b4b9ec2a71e0a2b26f3779cd283d9008324fd923e002",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 257,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "85b2639f13411f30457bf2542a83895eff02432c541061e6eb19f75ceab96486",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 258,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "ef5a88301b51f47ac4c1a3fc5f9fd85ab22082bafdd4e756264aa87fd3523777",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 264,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "f4e78d0cdfb7e5ef362bd6e8d7cd6613d6fb542b014ef72500736b3c67964eb1",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 258,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "25afc60952cbaaa99898287b28d0e8c4581131047162bd67f8f9a588d1183cb4",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 269,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "cd4cea670b5da24fda069027a0bfb7db311c5ee86c38da7dab802db579a6127a",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 271,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "c605133ee07727663ed55846c575eae93b359a8c4297c6886418d03881e9b555",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "status": 200,
+      "elapsed_ms": 301,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "7315eeb895fbe8aa87ea47b5618434e6aa6e84b010b92341ef5a8f0c1492e512",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 260,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "cc165454f674f24ec0b40924083578c583558b372b1eeeb2c9e1047b88b5c2d2",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 511,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "f9e95afcde9de6e044712d6147fa707e6ed0b5b532cc81c0681b3000dd3c7246",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 321,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "123f0292316ec5b745f4b4b9ec2a71e0a2b26f3779cd283d9008324fd923e002",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 269,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "85b2639f13411f30457bf2542a83895eff02432c541061e6eb19f75ceab96486",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 283,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "ef5a88301b51f47ac4c1a3fc5f9fd85ab22082bafdd4e756264aa87fd3523777",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 330,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "f4e78d0cdfb7e5ef362bd6e8d7cd6613d6fb542b014ef72500736b3c67964eb1",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 276,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "25afc60952cbaaa99898287b28d0e8c4581131047162bd67f8f9a588d1183cb4",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 274,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "cd4cea670b5da24fda069027a0bfb7db311c5ee86c38da7dab802db579a6127a",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 281,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "c605133ee07727663ed55846c575eae93b359a8c4297c6886418d03881e9b555",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "status": 200,
+      "elapsed_ms": 293,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "7315eeb895fbe8aa87ea47b5618434e6aa6e84b010b92341ef5a8f0c1492e512",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 296,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "cc165454f674f24ec0b40924083578c583558b372b1eeeb2c9e1047b88b5c2d2",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 317,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "f9e95afcde9de6e044712d6147fa707e6ed0b5b532cc81c0681b3000dd3c7246",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "status": 200,
+      "elapsed_ms": 270,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "21da3cc17cac76c47d2d45c7050e71d72a39d1b4c56288d87d3968da25605f74",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 524,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "123f0292316ec5b745f4b4b9ec2a71e0a2b26f3779cd283d9008324fd923e002",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 730,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "85b2639f13411f30457bf2542a83895eff02432c541061e6eb19f75ceab96486",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 504,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "ef5a88301b51f47ac4c1a3fc5f9fd85ab22082bafdd4e756264aa87fd3523777",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 570,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "f4e78d0cdfb7e5ef362bd6e8d7cd6613d6fb542b014ef72500736b3c67964eb1",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 514,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "25afc60952cbaaa99898287b28d0e8c4581131047162bd67f8f9a588d1183cb4",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 497,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "cd4cea670b5da24fda069027a0bfb7db311c5ee86c38da7dab802db579a6127a",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 489,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "c605133ee07727663ed55846c575eae93b359a8c4297c6886418d03881e9b555",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "status": 200,
+      "elapsed_ms": 520,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "7315eeb895fbe8aa87ea47b5618434e6aa6e84b010b92341ef5a8f0c1492e512",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 621,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "cc165454f674f24ec0b40924083578c583558b372b1eeeb2c9e1047b88b5c2d2",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 567,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "f9e95afcde9de6e044712d6147fa707e6ed0b5b532cc81c0681b3000dd3c7246",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "status": 200,
+      "elapsed_ms": 494,
+      "authority": "UNVERIFIED",
+      "fallback": true,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "21da3cc17cac76c47d2d45c7050e71d72a39d1b4c56288d87d3968da25605f74",
+      "control_observation": {
+        "read_status": 401,
+        "read_error": "AUTH_DENIED",
+        "validation_status": null
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 321,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "123f0292316ec5b745f4b4b9ec2a71e0a2b26f3779cd283d9008324fd923e002",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 256,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "85b2639f13411f30457bf2542a83895eff02432c541061e6eb19f75ceab96486",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 238,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "ef5a88301b51f47ac4c1a3fc5f9fd85ab22082bafdd4e756264aa87fd3523777",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 237,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "f4e78d0cdfb7e5ef362bd6e8d7cd6613d6fb542b014ef72500736b3c67964eb1",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 242,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "25afc60952cbaaa99898287b28d0e8c4581131047162bd67f8f9a588d1183cb4",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 234,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "cd4cea670b5da24fda069027a0bfb7db311c5ee86c38da7dab802db579a6127a",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 296,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "c605133ee07727663ed55846c575eae93b359a8c4297c6886418d03881e9b555",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "status": 200,
+      "elapsed_ms": 249,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "7315eeb895fbe8aa87ea47b5618434e6aa6e84b010b92341ef5a8f0c1492e512",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 240,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "cc165454f674f24ec0b40924083578c583558b372b1eeeb2c9e1047b88b5c2d2",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 291,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "f9e95afcde9de6e044712d6147fa707e6ed0b5b532cc81c0681b3000dd3c7246",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "status": 200,
+      "elapsed_ms": 237,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "21da3cc17cac76c47d2d45c7050e71d72a39d1b4c56288d87d3968da25605f74",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": 200,
+      "elapsed_ms": 353,
+      "authority": "VERIFIED",
+      "fallback": false,
+      "eligibility": "ABSTAIN",
+      "receipt_digest": "123f0292316ec5b745f4b4b9ec2a71e0a2b26f3779cd283d9008324fd923e002",
+      "control_observation": {
+        "read_status": 200,
+        "read_error": null,
+        "validation_status": 200
+      },
+      "error": null
+    }
+  ],
+  "cleanup_witness": {
+    "kind": "RUNTIME_PUBLICATION_READ",
+    "status": 200
+  },
+  "cleanup": "SUCCESS"
+}

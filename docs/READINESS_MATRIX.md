@@ -1,24 +1,26 @@
-# Readiness hiện hành - F15 Cano offline
+# Readiness hiện hành - Core 2.0
 
-| Phần | Trạng thái | Evidence/giới hạn |
+| Phần | Trạng thái | Evidence / giới hạn |
 |---|---|---|
-| Raw -> normalizer, coherence, immutable correction ledger | PASS_OFFLINE | Selected 68/68; replay 33/33; synthetic only |
-| Import partial-failure fence, portable bundle, independent verifier | PASS_OFFLINE | Build/relocate/verify, diagnostic exit1, wrong pin exit2 |
-| Full Miniflare suite | PASS_LOCAL | 182/182 tests, exact lockfile dependencies; không là cloud proof |
-| JSON Schema definitions | PASS | 12 Draft 2020-12 definitions |
-| Schema sample coverage | PASS | All 12 schemas: 16 positive + 22 negative samples; không claim exhaustive branch coverage |
-| Schema helper failure gates | PASS | Missing coverage/wrong expectation exit1; local-only refs |
-| Owner work-pause checkpoint | ACKNOWLEDGED | User báo hệ cũ dừng chờ ở phiên này; không là auth-deny evidence |
-| Fresh repository/read-only snapshot | PASS_SCOPED_INVENTORY | Six main code/tree pins, branch/PR/README and narrow source files; not full deployment inventory |
-| Real Cano compatibility probe | COMPLETE_SHADOW_ONLY | 14 exact-byte records: 7 compatible, 7 reject for review; no admission |
-| Real source correction/history completeness | PENDING | Current snapshots preserved; per-day overwrite history and explicit supersedes require commit-history review |
-| Weather/Near Me/Transit/Airport new adapters | DEFERRED_NOT_PROVEN | Không suy từ tests Cano |
-| Source trust, licensing, numerical/operational policy | PENDING | Owner dataset read permission acknowledged; author authenticity/admission not inferred |
-| G1/G2 real admission | NOT_PASSED | Không activation |
-| Shared dirty/untracked/index state | NOT_OBSERVED | Remote API không chứng minh các worktree ở luồng khác clean |
-| Actual deployments/jobs/credential deny fences | NOT_OBSERVED | Không claim hệ vận hành đã dừng từ owner work-pause |
-| Production/cutover/rollback/writer resume | BLOCKED_PENDING_CONCRETE_GATES | production_ready=false |
+| F15 Cano offline | PASS_OFFLINE |68/68,33/33 replay; không là operational confirmation |
+| Full native Miniflare suite | PASS |268/268, code83597cb |
+| Bounded stable reference admission | PASS_NATIVE_AND_CLOUD_SUBSET |10roles,2publications,oneprofile/authority; only Airport actual new bytes |
+| Actual isolated Cloudflare | PASS_SUBSET |25/25 run37103462168; all temporary capabilities closed |
+| Continuous-reference schemas | PASS |5schemas,50positive/150negative actual samples |
+| Existing producer/consumer inventory | PASS_SCOPED |4repos plus actual old Cloudflare bindings; no old deployment |
+| Actual consumer outputs | PASS_CAPTURE |23/23 boundedGET; source state still may be STALE/fallback/unknown |
+| Actual-input native integration | PASS_SUBSET |8role admissions plus three-source Near Me rehearsal |
+| Near Me companions | PARITY_PASS_NOT_AUTHORITY |348mergedrows; editorial date only; no live opening claim |
+| Independent signed publication backups | PASS_SUBSET |21offsite downloads/reopened; not authoritative whole restore |
+| Read outage and recovery | PASS_SUBSET |all11signedreferencefallback then VERIFIED return, ABSTAIN |
+| Unattended source observation | CONFIGURED |30minute readonly GitHub schedule,14day artifacts; not Core ingestion or measured SLA |
+| Durable unattended Core feed | NOT_IMPLEMENTED |No persistent admission actor/cron is left by proof |
+| Additional actual Weather/Cano report contracts | PENDING |GET capture does not imply semantic admission for all paths |
+| Full G1/G2/G3/G4/G5 | NOT_PASSED |Historical/current subsets cannot fill unrun gates |
+| Public consumer switch / production authority | NOT_EXECUTED |Legacy engines/UI/routes preserved |
+| Whole Core 2.0 production-ready | FALSE |Need remaining contracts, durability, observation, policy and switch/rollback gates |
 
-Full local tests gồm các test synthetic của nhiều primitive, không chứng minh toàn brain hoặc domain compatibility. Evidence cũ nằm trong parent archive chỉ có giá trị historical.
+Owner granted full authority on03/10/2026. There is no pending permission request to read the old system or deploy authorized isolated work.
 
-Final inventory recheck observed Weather runtime mirror ref drift; pinned delta/refreshed read-only files are in inventory/WEATHER_REF_DRIFT.json. No globally frozen deployment claim.
+See [current pinned checkpoint](../evidence/core2-continuous-reference-20261003/CHECKPOINT.md). Previous mutable F15 checkpoint is retained in [history](history/F15_READINESS_MATRIX.md); immutable V2.1 reference remains unchanged.
+

@@ -1,11 +1,14 @@
-# Checkpoint đã mở và bước tiếp theo
+# Next-owner checkpoint - Core 2.0
 
-Owner đã nói: “Hoàn thiện f15 và thực hiện. Hệ cũ đang dừng laii tất cả chờ cậu”. Vì vậy điều kiện chờ trước fresh read-only inventory đã mở. Không tiếp tục ghi rằng đang chờ owner cho phép đọc hệ cũ.
+Start from [the pinned current checkpoint](../evidence/core2-continuous-reference-20261003/CHECKPOINT.md). Owner “cho toàn quyền” releases the old-system boundary and authorizes implementation/transition work. Do not reopen architecture or ask again for already authorized read/repo/isolated-cloud actions.
 
-Đã thực hiện: six repo/main code-tree pins, README và scoped producer/consumer/workflow reads, branches/open PR snapshots; pin data-marine-ops commit; lấy exact-byte 14 Cano records và local compatibility/parity probe. Không remote write/push/merge/deploy. Không đổi authority locator, route, cron hoặc legacy consumer.
+Current proof:268/268 native tests,25/25 actual isolated cloud cases,23/23 consumer captures,9/9 actual-input native rehearsals,21independently signed backup readbacks. Source/deployed code83597cbe465b79ca085acf62abf7d85692210ad8. Reference decisions remain ABSTAIN, no operational policy activation. Temporary write capabilities closed.
 
-Tiếp theo trong phạm vi chuyển tiếp: review per-day Git history cho immutable amendment/correction lineage; giữ 7 unsupported older records riêng, không tự đổi An Thới/Phú Quốc hay FIELD evidence; xác định adapter hẹp theo nguồn thật, exact-byte golden/shadow comparison và source trust/policy gates. Giữ source-time/day/validity; không dùng display regeneration làm source age. Xem MIGRATION_EXECUTION_PLAN.md.
+Public Worker/CMS/specialist source engines/UI/routes are preserved. Actual old account bindings were inventoried readonly. The new main source may be developed/verified independently; no production traffic switch follows from merging source code.
 
-Trước remote write đầu tiên hoặc PR/merge: recheck current main, affected areas/open PRs và task base; isolated branch/worktree; không reset/stash/force push hoặc overwrite công việc luồng khác. Các repo nguồn chuyên biệt giữ nguyên. Inventory remote không chứng minh worktree người khác clean.
+Next implementation: remaining actual Weather and Cano report contracts; Near Me companions; durable bounded admission/retry/monitoring; G1 recovery/credential/retention/cost gaps; current critical-cycle observation; concrete consumer switches with exact parity and rollback. Preserve actual Airport fallback as archive and STALE/unknown source semantics. Do not invent source/model times, independent evidence or author assurances.
 
-Trước production trust switch/resume: observed deployed identity và writer fencing, deterministic versioned coordinator locator, explicit authority migration, credential revoke/rotate có observed auth-deny; immutable history/amendments; rollback/trust gates; G1/G2 real admission. Owner work-pause không là evidence các cron hay credentials bị vô hiệu. Không activation chỉ vì local tests pass.
+Read-only consumer observation every30minutes is configured. It is not an unattended Core feed, a passed72hour cloud failure test, or a completed7day shadow window. Review actual scheduled runs/timestamps and extend evidence snapshots; do not infer success from configuration.
+
+Archive only proven unused executable paths. Superseded mutable readiness/checkpoint headers were moved to docs/history; original immutable handoff and all counterexamples remain preserved.
+

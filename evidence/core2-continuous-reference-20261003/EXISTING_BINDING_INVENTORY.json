@@ -1,0 +1,60 @@
+{
+  "contract": "openpq-core2-existing-binding-inventory-v1",
+  "read_only": true,
+  "methods": [
+    "GET"
+  ],
+  "account_id": "1a64a0a081ea758f72be8254030bdf11",
+  "workers": [
+    {
+      "name": "jotrip-airport-live",
+      "bindings": [],
+      "compatibility_date": "2026-09-16"
+    },
+    {
+      "name": "jotrip-weather-fresh",
+      "bindings": [
+        {
+          "name": "GITHUB_WEATHER_DISPATCH_TOKEN",
+          "type": "secret_text"
+        }
+      ],
+      "compatibility_date": "2026-09-16"
+    },
+    {
+      "name": "openphuquoc-v3",
+      "bindings": [
+        {
+          "name": "ASSETS",
+          "type": "assets"
+        },
+        {
+          "database_id": "7bf38208-9fd4-4f11-ac21-320707c52517",
+          "name": "CMS_DB",
+          "type": "d1"
+        },
+        {
+          "name": "OPS_ANALYTICS_BRIDGE_SECRET",
+          "type": "secret_text"
+        }
+      ],
+      "compatibility_date": "2026-09-19"
+    }
+  ],
+  "errors": [],
+  "script_names": [
+    "jotrip-airport-live",
+    "jotrip-dmc-preview",
+    "jotrip-lab",
+    "jotrip-ops",
+    "jotrip-quote-preview",
+    "jotrip-trip",
+    "jotrip-weather-fresh",
+    "jotrip-weather-live",
+    "openphuquoc-v3",
+    "phuquoc-careers-api",
+    "phuquoc-careers-visual-preview",
+    "phuquocfishingtours-desk"
+  ],
+  "status": "READ_ONLY_INVENTORY_COMPLETE"
+}

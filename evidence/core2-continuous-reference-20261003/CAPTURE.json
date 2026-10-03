@@ -1,0 +1,815 @@
+{
+  "contract": "openpq-current-consumer-capture-v1",
+  "read_only": true,
+  "source_policies_activated": false,
+  "production_ready_claim": false,
+  "captured": 23,
+  "total": 23,
+  "captures": [
+    {
+      "key": "weather-critical.json",
+      "url": "https://openphuquoc.com/weather/data/critical.json",
+      "checked_at": "2026-10-03T06:30:01.674157+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:39:21.796388+00:00",
+        "x-openpq-weather-kind": "critical"
+      },
+      "bytes": 56001,
+      "sha256": "268e186547bf6f4dfe8a8b7a1c6c6db56c35fd181ed66c2bfdf9e7f82cb10900",
+      "metadata": {
+        "schema_version": "2.2",
+        "generated_at": "2026-10-03T05:39:21.796388+00:00",
+        "top_level_keys": [
+          "actual",
+          "completeness",
+          "confidence",
+          "data_mode",
+          "decision",
+          "default_point",
+          "evidence_layers",
+          "gaps",
+          "generated_at",
+          "git_commit_sha",
+          "groundtruth",
+          "headline",
+          "human_weather",
+          "island_watch_order",
+          "local_generated_at",
+          "next_review",
+          "points",
+          "primary_points",
+          "public_forecast",
+          "report_status",
+          "schema_version",
+          "snapshot_id",
+          "source_cycles",
+          "source_state",
+          "sources"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-critical.json.json",
+      "latency_ms": 187
+    },
+    {
+      "key": "weather-local-now.json",
+      "url": "https://openphuquoc.com/weather/data/local-now.json",
+      "checked_at": "2026-10-03T06:30:01.674620+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:39:21.796388+00:00",
+        "x-openpq-weather-kind": "local"
+      },
+      "bytes": 34004,
+      "sha256": "262352feb423c67b385977262c0011387bfcb49c0427a1739deb9d39ede08ce4",
+      "metadata": {
+        "schema_version": "1.0",
+        "engine": "PQ_LOCAL_NOW_V2",
+        "data_class": "ESTIMATED_NOW",
+        "generated_at": "2026-10-03T05:39:21.796388+00:00",
+        "top_level_keys": [
+          "data_class",
+          "engine",
+          "generated_at",
+          "points",
+          "policy",
+          "schema_version",
+          "source_status",
+          "title"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-local-now.json.json",
+      "latency_ms": 179
+    },
+    {
+      "key": "weather-groundtruth.json",
+      "url": "https://openphuquoc.com/weather/data/groundtruth.json",
+      "checked_at": "2026-10-03T06:30:01.674890+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:39:21.796388+00:00",
+        "x-openpq-weather-kind": "ground"
+      },
+      "bytes": 41008,
+      "sha256": "e4e30d97e099f85a3f1ad629f94643f71c459c968629bc70d821885f60083c03",
+      "metadata": {
+        "schema_version": "2.0",
+        "generated_at": "2026-10-03T05:39:21.796388+00:00",
+        "status": "READY",
+        "top_level_keys": [
+          "actual_policy",
+          "atmosphere",
+          "errors",
+          "generated_at",
+          "historical_corpus",
+          "payload_hash",
+          "rainfall",
+          "schema_version",
+          "source_registry",
+          "station_status",
+          "status"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-groundtruth.json.json",
+      "latency_ms": 240
+    },
+    {
+      "key": "weather-current-bundle.json",
+      "url": "https://openphuquoc.com/weather/data/current-bundle.json",
+      "checked_at": "2026-10-03T06:30:01.675176+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:39:21.796388+00:00",
+        "x-openpq-weather-kind": "current"
+      },
+      "bytes": 178887,
+      "sha256": "f844ea7801c8bd4d3a717c6889fd25d6255310da0efa75cf3ab2904fa1216b51",
+      "metadata": {
+        "schema_version": "weather-current-v3",
+        "generated_at": "2026-10-03T05:39:21.796388+00:00",
+        "top_level_keys": [
+          "generated_at",
+          "groundtruth",
+          "local_now",
+          "model_72h",
+          "nowcast",
+          "schema_version",
+          "today_series"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-current-bundle.json.json",
+      "latency_ms": 209
+    },
+    {
+      "key": "weather-nowcast-compact.json",
+      "url": "https://openphuquoc.com/weather/data/nowcast-compact.json",
+      "checked_at": "2026-10-03T06:30:01.854104+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:40:20Z",
+        "x-openpq-weather-kind": "compact"
+      },
+      "bytes": 11735,
+      "sha256": "ab882b5e0189ead9f9453a1cee3877c67d2567961703edb20167dfd93d7855ef",
+      "metadata": {
+        "schema_version": "weather-nowcast-compact-v1",
+        "generated_at": "2026-10-03T06:03:52.704757+00:00",
+        "sampled_time": "2026-10-03T05:40:20Z",
+        "status": "POINT_NUMERIC_READY",
+        "top_level_keys": [
+          "corridor_motion",
+          "corridor_watch",
+          "generated_at",
+          "latest_object",
+          "lightning_observed",
+          "points",
+          "sampled_time",
+          "schema_version",
+          "source",
+          "status"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-nowcast-compact.json.json",
+      "latency_ms": 215
+    },
+    {
+      "key": "weather-jotrip-forecast.json",
+      "url": "https://openphuquoc.com/weather/data/jotrip-forecast.json",
+      "checked_at": "2026-10-03T06:30:01.861003+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T06:28:10.657796+00:00",
+        "x-openpq-weather-kind": "forecast"
+      },
+      "bytes": 55817,
+      "sha256": "00234de3058ca069c550d7492d224e077d4db32bf29fda9a7983695270d278f9",
+      "metadata": {
+        "schema_version": "1.1",
+        "generated_at": "2026-10-03T06:28:10.657796+00:00",
+        "run_time": "2026-10-03T00:00:00+00:00",
+        "top_level_keys": [
+          "cadence",
+          "calibration_ready_groups",
+          "calibration_status",
+          "calibration_total_groups",
+          "ensemble_completion_ratio",
+          "generated_at",
+          "horizon_hours",
+          "note",
+          "nowcast_context",
+          "product",
+          "regions",
+          "run_time",
+          "schema_version",
+          "source"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-jotrip-forecast.json.json",
+      "latency_ms": 216
+    },
+    {
+      "key": "weather-air-quality.json",
+      "url": "https://openphuquoc.com/weather/data/air-quality.json",
+      "checked_at": "2026-10-03T06:30:01.884131+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:33:05.892987+00:00",
+        "x-openpq-weather-kind": "aqi"
+      },
+      "bytes": 5415,
+      "sha256": "8ea5d216da4d5a53742437a434a5c78a9005b502e6b65b2071650faf340d7ce5",
+      "metadata": {
+        "generated_at": "2026-10-03T05:33:05.892987+00:00",
+        "sampled_time": "2026-10-03T05:00:00.000Z",
+        "status": "POINT_NUMERIC_READY",
+        "top_level_keys": [
+          "aqi_standard",
+          "cams_status",
+          "detail",
+          "generated_at",
+          "grid_resolution",
+          "iqair_status",
+          "pm_note",
+          "points",
+          "sampled_time",
+          "source",
+          "source_policy",
+          "source_type",
+          "status"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-air-quality.json.json",
+      "latency_ms": 253
+    },
+    {
+      "key": "weather-dashboard-data.json",
+      "url": "https://openphuquoc.com/weather/data/dashboard-data.json",
+      "checked_at": "2026-10-03T06:30:01.914899+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store",
+        "x-openpq-weather-edge": "ENGINE_DIRECT_LATEST",
+        "x-openpq-weather-source-time": "2026-10-03T13:24:37.072179+07:00",
+        "x-openpq-weather-kind": "dashboard"
+      },
+      "bytes": 155766,
+      "sha256": "613cebd3903c8d37f9810360026928e0dcdf398804d114d4939b1b396a602bce",
+      "metadata": {
+        "generated_at": "2026-10-03T13:24:37.072179+07:00",
+        "top_level_keys": [
+          "completeness",
+          "confidence",
+          "data_mode",
+          "decision",
+          "forecast_horizon_hours",
+          "gaps",
+          "generated_at",
+          "git_commit_sha",
+          "headline",
+          "horizon_policy",
+          "next_review",
+          "points",
+          "report_status",
+          "snapshot_id",
+          "source_cycles",
+          "sources"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-dashboard-data.json.json",
+      "latency_ms": 309
+    },
+    {
+      "key": "weather-tide.json",
+      "url": "https://openphuquoc.com/weather/data/tide.json",
+      "checked_at": "2026-10-03T06:30:02.068898+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T12:28:58.975336+07:00",
+        "x-openpq-weather-kind": "tide"
+      },
+      "bytes": 54505,
+      "sha256": "3e7ae9babfab55202f452a6fde581907b5edec6390507833814ba7dbdfe0f4d9",
+      "metadata": {
+        "generated_at": "2026-10-03T12:28:58.975336+07:00",
+        "status": "POINT_NUMERIC_READY",
+        "top_level_keys": [
+          "dataset",
+          "disclaimer",
+          "forecast_hours",
+          "generated_at",
+          "height_reference",
+          "method",
+          "points",
+          "source",
+          "status",
+          "variable"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-tide.json.json",
+      "latency_ms": 93
+    },
+    {
+      "key": "weather-weather-runtime-cloud.json",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/cloud.json",
+      "checked_at": "2026-10-03T06:30:02.077390+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:40:20Z",
+        "x-openpq-weather-kind": "cloud"
+      },
+      "bytes": 1337717,
+      "sha256": "f2944d9fd4d4d523e592568ba4eb0d2bd4de27d6932f1ec3f3aeb2c1ffe71f75",
+      "metadata": {
+        "generated_at": "2026-10-03T06:03:52.704757+00:00",
+        "sampled_time": "2026-10-03T05:40:20Z",
+        "status": "POINT_NUMERIC_READY",
+        "top_level_keys": [
+          "corridor_motion",
+          "generated_at",
+          "observation_resolution",
+          "points",
+          "sampled_time",
+          "source",
+          "source_type",
+          "spatial",
+          "status"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-weather-runtime-cloud.json.json",
+      "latency_ms": 223
+    },
+    {
+      "key": "weather-weather-runtime-compact.json",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/compact.json",
+      "checked_at": "2026-10-03T06:30:02.137107+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:40:20Z",
+        "x-openpq-weather-kind": "compact"
+      },
+      "bytes": 11735,
+      "sha256": "ab882b5e0189ead9f9453a1cee3877c67d2567961703edb20167dfd93d7855ef",
+      "metadata": {
+        "schema_version": "weather-nowcast-compact-v1",
+        "generated_at": "2026-10-03T06:03:52.704757+00:00",
+        "sampled_time": "2026-10-03T05:40:20Z",
+        "status": "POINT_NUMERIC_READY",
+        "top_level_keys": [
+          "corridor_motion",
+          "corridor_watch",
+          "generated_at",
+          "latest_object",
+          "lightning_observed",
+          "points",
+          "sampled_time",
+          "schema_version",
+          "source",
+          "status"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-weather-runtime-compact.json.json",
+      "latency_ms": 77
+    },
+    {
+      "key": "weather-weather-runtime-current.json",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/current.json",
+      "checked_at": "2026-10-03T06:30:02.161967+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T05:39:21.796388+00:00",
+        "x-openpq-weather-kind": "current"
+      },
+      "bytes": 178887,
+      "sha256": "f844ea7801c8bd4d3a717c6889fd25d6255310da0efa75cf3ab2904fa1216b51",
+      "metadata": {
+        "schema_version": "weather-current-v3",
+        "generated_at": "2026-10-03T05:39:21.796388+00:00",
+        "top_level_keys": [
+          "generated_at",
+          "groundtruth",
+          "local_now",
+          "model_72h",
+          "nowcast",
+          "schema_version",
+          "today_series"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-weather-runtime-current.json.json",
+      "latency_ms": 139
+    },
+    {
+      "key": "weather-weather-runtime-forecast.json",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/forecast.json",
+      "checked_at": "2026-10-03T06:30:02.213900+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-02T18:00:00+00:00",
+        "x-openpq-weather-kind": "spatial-forecast"
+      },
+      "bytes": 256717,
+      "sha256": "5e55e4c4365e2e7ac1825bb616f372b47faedf2b448b91a43f19725b69024656",
+      "metadata": {
+        "schema_version": "weather-scene-forecast-v1",
+        "generated_at": "2026-10-03T01:22:13.834397+00:00",
+        "run_time": "2026-10-02T18:00:00+00:00",
+        "top_level_keys": [
+          "generated_at",
+          "medium_run_time",
+          "product",
+          "run_time",
+          "schema_version",
+          "source",
+          "spatial"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-weather-runtime-forecast.json.json",
+      "latency_ms": 161
+    },
+    {
+      "key": "weather-weather-runtime-marine.json",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/marine.json",
+      "checked_at": "2026-10-03T06:30:02.223972+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T06:00:00Z",
+        "x-openpq-weather-kind": "marine"
+      },
+      "bytes": 123663,
+      "sha256": "9c515510fc220c074a2bf115b3f4b49dbb01b71a27da7cb69383420bb1639d2e",
+      "metadata": {
+        "schema_version": "weather-spatial-v1",
+        "generated_at": "2026-10-03T06:22:33.132064+00:00",
+        "top_level_keys": [
+          "current",
+          "current_dataset",
+          "generated_at",
+          "product",
+          "schema_version",
+          "source",
+          "wave",
+          "wave_dataset"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-weather-runtime-marine.json.json",
+      "latency_ms": 246
+    },
+    {
+      "key": "weather-weather-runtime-meta.json",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/meta.json",
+      "checked_at": "2026-10-03T06:30:02.301030+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-openpq-weather-edge": "ENGINE_DIRECT",
+        "x-openpq-weather-source-time": "2026-10-03T13:24:37.072179+07:00",
+        "x-openpq-weather-kind": "meta"
+      },
+      "bytes": 1358,
+      "sha256": "f7fb99dda253bb8b1872f41bd6951f3d3e1f397994e2c3980ee65e45d4bafc43",
+      "metadata": {
+        "schema_version": "weather-runtime-meta-v1",
+        "generated_at": "2026-10-03T13:24:37.072179+07:00",
+        "top_level_keys": [
+          "gaps",
+          "generated_at",
+          "report_status",
+          "schema_version",
+          "source_cycles",
+          "sources"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-weather-runtime-meta.json.json",
+      "latency_ms": 82
+    },
+    {
+      "key": "weather-health",
+      "url": "https://openphuquoc.com/weather/data/edge-health.json",
+      "checked_at": "2026-10-03T06:30:02.301411+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store"
+      },
+      "bytes": 1072,
+      "sha256": "f8ea16b901e93680177c69460d6b647a05417dc4fd2f182adbb57d899ef69be9",
+      "metadata": {
+        "schema_version": "openpq-weather-edge-health-v1",
+        "engine": "JOTRIP_DATA_ENGINE",
+        "status": "DEGRADED",
+        "top_level_keys": [
+          "checked_at",
+          "cloudflare_edge",
+          "engine",
+          "lab_website_dependency",
+          "results",
+          "schema_version",
+          "status"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "weather-health.json",
+      "latency_ms": 101
+    },
+    {
+      "key": "airport-live",
+      "url": "https://jotrip-airport-live.kenzuko.workers.dev/",
+      "checked_at": "2026-10-03T06:30:02.374801+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=0, s-maxage=30, stale-while-revalidate=90",
+        "x-jotrip-source": "LIVE",
+        "x-jotrip-version": "b4-127-5b558e1b",
+        "x-jotrip-cache": "MISS"
+      },
+      "bytes": 98174,
+      "sha256": "82554cc3ed26eb17368de57770feb4ffe7a2df6020704a9bb7892271fac5bc03",
+      "metadata": {
+        "top_level_keys": [
+          "available_dates",
+          "health",
+          "latest"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "airport-live.json",
+      "latency_ms": 1906
+    },
+    {
+      "key": "airport-version",
+      "url": "https://jotrip-airport-live.kenzuko.workers.dev/version",
+      "checked_at": "2026-10-03T06:30:02.383121+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store",
+        "x-jotrip-source": "LIVE",
+        "x-jotrip-version": "b4-127-5b558e1b",
+        "x-jotrip-cache": "MISS"
+      },
+      "bytes": 187,
+      "sha256": "c3b7a15a9d3c6aed463d3e99d16a0bef59055c9f072f8fc7f536b7e6aca15205",
+      "metadata": {
+        "source_date": "2026-10-03",
+        "collected_at_vn": "2026-10-03T13:30:02+07:00",
+        "top_level_keys": [
+          "cache_ttl_seconds",
+          "collected_at_vn",
+          "qa_passed",
+          "source_date",
+          "source_mode",
+          "version"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "airport-version.json",
+      "latency_ms": 1914
+    },
+    {
+      "key": "transit",
+      "url": "https://raw.githubusercontent.com/kenzuko/transit-jotrip/main/data/network.json",
+      "checked_at": "2026-10-03T06:30:02.402065+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "max-age=300",
+        "etag": "\"7b0a475138821b173cc305b5853faf613a3c8c04caf6eeddf4ce096f22a0b3c3\""
+      },
+      "bytes": 34865,
+      "sha256": "1842a40c8648bf440a964819f10b5c7d5514e38e90f927c6d6810a8effab7639",
+      "metadata": {
+        "schema_version": "1.1",
+        "generated_at": "2026-10-03T12:43:08.204882+07:00",
+        "top_level_keys": [
+          "alerts",
+          "departures",
+          "generated_at",
+          "health",
+          "ready",
+          "schema_version",
+          "services",
+          "sources",
+          "summary"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "transit.json",
+      "latency_ms": 483
+    },
+    {
+      "key": "cano",
+      "url": "https://raw.githubusercontent.com/kenzuko/Jotrip-Lab/data-marine-ops/data/marine_ops/latest.json",
+      "checked_at": "2026-10-03T06:30:02.470046+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "max-age=300",
+        "etag": "\"2d6fee13d366cf149bf7392252c4560a77072518e08e74e4f3df22fd13ee3593\""
+      },
+      "bytes": 6762,
+      "sha256": "0ebe6cc0de8b1d5766b56e4786a241b73acde266d93b4782a638de70cd231e44",
+      "metadata": {
+        "schema_version": "marine-ops-1.0",
+        "source_date": "03/10/2026",
+        "collected_at_vn": "2026-10-03T10:45:01.591923+07:00",
+        "top_level_keys": [
+          "categories",
+          "collected_at_vn",
+          "errors",
+          "market_condition_not_data_system_condition",
+          "rules",
+          "schema_version",
+          "source_date"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "cano.json",
+      "latency_ms": 710
+    },
+    {
+      "key": "nearme",
+      "url": "https://openphuquoc.com/data/views/location-index.json",
+      "checked_at": "2026-10-03T06:30:02.884650+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "etag": "\"177a2cf6f77fadb150db284aefc19f05\""
+      },
+      "bytes": 543034,
+      "sha256": "e4ef9c627d00f759596153ffc8a72f7afb11c3cff7b86b3c9aebbd162a8fb5b9",
+      "metadata": {
+        "schema_version": "1.0",
+        "generated_at": "2026-10-02T23:49:48.863Z",
+        "top_level_keys": [
+          "documents",
+          "generated_at",
+          "purpose",
+          "schema_version",
+          "summary"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "nearme.json",
+      "latency_ms": 140
+    },
+    {
+      "key": "nearme-support",
+      "url": "https://openphuquoc.com/data/home-support.json",
+      "checked_at": "2026-10-03T06:30:03.024549+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "etag": "\"5da18596acbb2d1ef16013f0f7ffe48c\""
+      },
+      "bytes": 44236,
+      "sha256": "fbe734897cba7fe6f577993fc458fe800b56df06d43b060c3fc45283f7d811e7",
+      "metadata": {
+        "schema_version": "1.0",
+        "top_level_keys": [
+          "activity_board",
+          "curiosity",
+          "curiosity_policy",
+          "hot_now",
+          "id_policy",
+          "near_me",
+          "rules",
+          "schema_version",
+          "scope",
+          "trip_clock",
+          "updated_at"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "nearme-support.json",
+      "latency_ms": 71
+    },
+    {
+      "key": "nearme-venues",
+      "url": "https://openphuquoc.com/data/entities/destination-venues.json",
+      "checked_at": "2026-10-03T06:30:03.095158+00:00",
+      "method": "GET",
+      "status": "CAPTURED_JSON_OBJECT",
+      "http_status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "etag": "\"e858bbc357d8348073320643230eec2c\""
+      },
+      "bytes": 8425,
+      "sha256": "1b3c447861046a5a083d2bcf29f46a290bbb7d8e74952ceaeef07d462b4109c6",
+      "metadata": {
+        "schema_version": "1.0",
+        "top_level_keys": [
+          "entities",
+          "schema_version",
+          "updated_at"
+        ],
+        "source_semantics_activated": false
+      },
+      "file": "nearme-venues.json",
+      "latency_ms": 70
+    }
+  ]
+}

@@ -1,0 +1,343 @@
+{
+  "contract": "openpq-current-consumer-native-rehearsal-v1",
+  "cloud_authority_proof": false,
+  "production_ready": false,
+  "cases": [
+    {
+      "domain": "airport",
+      "status": "PASS",
+      "records": 127,
+      "issues": [],
+      "metadata": {
+        "board_checked_at": {
+          "precision": "INSTANT",
+          "raw": "2026-10-03T13:30:02+07:00",
+          "utc": "2026-10-03T06:30:02.000Z"
+        },
+        "board_version": "b4-127-5b558e1b",
+        "counts": {
+          "arrivals": 62,
+          "departures": 65,
+          "total": 127
+        },
+        "live_update_lag_target_ms": 60000,
+        "live_update_lag_verified": false,
+        "operating_aliases_are_not_extra_flights": true,
+        "source_date": "2026-10-03",
+        "source_health_inferred_from_path": false,
+        "transport": "LIVE_PROXY_CAPTURE"
+      },
+      "input_sha256": "82554cc3ed26eb17368de57770feb4ffe7a2df6020704a9bb7892271fac5bc03",
+      "profile_hash": "5390902d31a039633ab2a6c93254f09ef92f14d81c049f392759431f6b997e57",
+      "revision": 1,
+      "decision": "ABSTAIN",
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather",
+      "status": "PASS",
+      "records": 206,
+      "issues": [
+        {
+          "code": "WEATHER_OBSERVATION_UNKNOWN_SOURCE_TIME",
+          "record_id": "synop:48917"
+        },
+        {
+          "code": "WEATHER_OBSERVATION_TIME_UNRESOLVED",
+          "record_id": "synop:48917"
+        },
+        {
+          "code": "WEATHER_OBSERVATION_OUTSIDE_REPORTED_BUDGET",
+          "record_id": "rain:an_thoi"
+        },
+        {
+          "code": "WEATHER_OBSERVATION_OUTSIDE_REPORTED_BUDGET",
+          "record_id": "rain:bai_thom"
+        },
+        {
+          "code": "WEATHER_OBSERVATION_OUTSIDE_REPORTED_BUDGET",
+          "record_id": "rain:cua_can"
+        },
+        {
+          "code": "WEATHER_LIGHTNING_NOT_DIRECTLY_OBSERVED"
+        },
+        {
+          "code": "WEATHER_MODEL_RUN_LINK_UNRESOLVED",
+          "records": 192
+        }
+      ],
+      "metadata": {
+        "generated_at": {
+          "precision": "INSTANT",
+          "raw": "2026-10-03T05:39:21.796388+00:00",
+          "utc": "2026-10-03T05:39:21.796Z"
+        },
+        "mirror_is_independent_evidence": false,
+        "policy_origin": "SOURCE_REGISTRY_REPORTED_BUDGETS_NOT_PRODUCTION_ACTIVATION",
+        "registry_source_count": 18,
+        "reported_status": "READY",
+        "unknowns_preserved": true
+      },
+      "input_sha256": "f844ea7801c8bd4d3a717c6889fd25d6255310da0efa75cf3ab2904fa1216b51",
+      "profile_hash": "7ec8567dbdf63aa57a0ddd3bd9c813b40340e9f0fec4a49260143fc7d4c25f0b",
+      "revision": 1,
+      "decision": "ABSTAIN",
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_forecast",
+      "status": "PASS",
+      "records": 26,
+      "issues": [],
+      "metadata": {
+        "canonical_path": "/data/weather-runtime/forecast.json",
+        "cell_values_recovered_from_pinned_source": true,
+        "generated_at": {
+          "precision": "INSTANT",
+          "raw": "2026-10-03T01:22:13.834397+00:00",
+          "utc": "2026-10-03T01:22:13.834Z"
+        },
+        "mirror_is_independent_evidence": false,
+        "provider_cycle_or_sample_preserved": true,
+        "source": "ECMWF_OPEN_DATA_DIRECT",
+        "source_schema": "weather-scene-forecast-v1"
+      },
+      "input_sha256": "5e55e4c4365e2e7ac1825bb616f372b47faedf2b448b91a43f19725b69024656",
+      "profile_hash": "cdde87ade147a2eff5d913780b0e9691f109de3df7d9b393d1583f77580ebd22",
+      "revision": 1,
+      "decision": "ABSTAIN",
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_marine",
+      "status": "PASS",
+      "records": 2,
+      "issues": [],
+      "metadata": {
+        "canonical_path": "/data/weather-runtime/marine.json",
+        "cell_values_recovered_from_pinned_source": true,
+        "generated_at": {
+          "precision": "INSTANT",
+          "raw": "2026-10-03T06:22:33.132064+00:00",
+          "utc": "2026-10-03T06:22:33.132Z"
+        },
+        "mirror_is_independent_evidence": false,
+        "provider_cycle_or_sample_preserved": true,
+        "source": "COPERNICUS_MARINE",
+        "source_schema": "weather-spatial-v1"
+      },
+      "input_sha256": "9c515510fc220c074a2bf115b3f4b49dbb01b71a27da7cb69383420bb1639d2e",
+      "profile_hash": "1379df35ef6425f0d0503806b89da5ae9a1b4318b01340267a835654d66c6311",
+      "revision": 1,
+      "decision": "ABSTAIN",
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_cloud",
+      "status": "PASS",
+      "records": 6,
+      "issues": [],
+      "metadata": {
+        "canonical_path": "/data/weather-runtime/cloud.json",
+        "cell_values_recovered_from_pinned_source": true,
+        "generated_at": {
+          "precision": "INSTANT",
+          "raw": "2026-10-03T06:03:52.704757+00:00",
+          "utc": "2026-10-03T06:03:52.704Z"
+        },
+        "mirror_is_independent_evidence": false,
+        "provider_cycle_or_sample_preserved": true,
+        "source": "JMA_HIMAWARI9_VIA_NOAA_OPEN_DATA",
+        "source_schema": null
+      },
+      "input_sha256": "f2944d9fd4d4d523e592568ba4eb0d2bd4de27d6932f1ec3f3aeb2c1ffe71f75",
+      "profile_hash": "24a497795213f9bc3de81923e82444c82e3d0b7cb45682c4dd473014903dd932",
+      "revision": 1,
+      "decision": "ABSTAIN",
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_compact",
+      "status": "PASS",
+      "records": 1,
+      "issues": [],
+      "metadata": {
+        "canonical_path": "/data/weather-runtime/compact.json",
+        "cell_values_recovered_from_pinned_source": true,
+        "generated_at": {
+          "precision": "INSTANT",
+          "raw": "2026-10-03T06:03:52.704757+00:00",
+          "utc": "2026-10-03T06:03:52.704Z"
+        },
+        "mirror_is_independent_evidence": false,
+        "provider_cycle_or_sample_preserved": true,
+        "source": "JMA_HIMAWARI9_VIA_NOAA_OPEN_DATA",
+        "source_schema": "weather-nowcast-compact-v1"
+      },
+      "input_sha256": "ab882b5e0189ead9f9453a1cee3877c67d2567961703edb20167dfd93d7855ef",
+      "profile_hash": "5544c1bfe0ed4d69d9cf20a607bf4ae8d76ed612f73ae162bae81c4509c12924",
+      "revision": 1,
+      "decision": "ABSTAIN",
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_meta",
+      "status": "PASS",
+      "records": 1,
+      "issues": [],
+      "metadata": {
+        "canonical_path": "/data/weather-runtime/meta.json",
+        "cell_values_recovered_from_pinned_source": true,
+        "generated_at": {
+          "precision": "INSTANT",
+          "raw": "2026-10-03T13:24:37.072179+07:00",
+          "utc": "2026-10-03T06:24:37.072Z"
+        },
+        "mirror_is_independent_evidence": false,
+        "provider_cycle_or_sample_preserved": true,
+        "source": null,
+        "source_schema": "weather-runtime-meta-v1"
+      },
+      "input_sha256": "f7fb99dda253bb8b1872f41bd6951f3d3e1f397994e2c3980ee65e45d4bafc43",
+      "profile_hash": "87b8110852eb6b65df9f70cb5d83de186d9534cfad06f1ad667fe12e6275885e",
+      "revision": 1,
+      "decision": "ABSTAIN",
+      "source_policies_activated": false
+    },
+    {
+      "domain": "nearme",
+      "status": "PASS",
+      "records": 348,
+      "issues": [
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_hon_thom"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_kiss_of_the_sea"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_once_show"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_sac_mau_venice"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_symphony_of_the_sea"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_tinh_hoa_viet_nam"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_bai_khem"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_bai_sao"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_bai_truong"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_kiss_bridge"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_cua_can"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_exotica"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_gieng_tien"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_grand_world"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_ham_ninh"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_rach_vem"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_sunset_town"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_suoi_da_ban"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_suoi_da_ngon"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_suoi_tien"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_teddy_bear_museum"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "utility_minimart_cs68_sunset"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "utility_minimart_homemart_an_thoi"
+        },
+        {
+          "code": "NEARME_EXPLICIT_DUPLICATE_EXCLUDED",
+          "record_id": "utility_osm_node_11873236278",
+          "target": "utility_dmx_ganhdau_to7"
+        },
+        {
+          "code": "NEARME_EXPLICIT_DUPLICATE_EXCLUDED",
+          "record_id": "utility_osm_node_6483568745",
+          "target": "utility_tgdd_73_nvc"
+        }
+      ],
+      "metadata": {
+        "bus_stop_import": false,
+        "generated_at": {
+          "precision": "INSTANT",
+          "raw": "2026-10-02T23:49:48.863Z",
+          "utc": "2026-10-02T23:49:48.863Z"
+        },
+        "index_is_derived": true,
+        "input_document_count": 350,
+        "live_opening_not_inferred": true,
+        "osm_attribution": "© OpenStreetMap contributors; ODbL-1.0 where source_license indicates ODbL",
+        "source_health_inferred_from_path": false
+      },
+      "input_sha256": "e4ef9c627d00f759596153ffc8a72f7afb11c3cff7b86b3c9aebbd162a8fb5b9",
+      "profile_hash": "5f246dcb40b5be519834e3b817281661df6bfbcb567cb51ddbf29f8bb5905420",
+      "revision": 1,
+      "decision": "ABSTAIN",
+      "source_policies_activated": false
+    },
+    {
+      "domain": "nearme-three-source-consumer",
+      "status": "PASS",
+      "merged_count": 348,
+      "rows_digest": "2e2ff6feaa92988e4e92742080a29f98a4e37933ce80f77cd704c3a932520e4b",
+      "companion_authority_admitted": false,
+      "live_open_confirmed": false
+    }
+  ]
+}

@@ -1,0 +1,701 @@
+{
+  "status": "PASS",
+  "independently_reopened": true,
+  "backup_count": 21,
+  "backups": [
+    {
+      "backup": "airport",
+      "dataset_id": "airport.bridge.pqc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "3337d2a8de1153a9b6386a57f2279ab0935230b8524e640ce63e4f0ebac5b68e",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:38.578Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "airport-revision2",
+      "dataset_id": "airport.bridge.pqc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "d27561894114e49e89f9ca86ece31289ef20edd33fd1a6b420b9202ed73c9404",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:29.335Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "cano",
+      "dataset_id": "cano.operation.an-thoi",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "e10ab4c5d196e1756b84d10e7500fad4734145309020b999e9416d7157ed8b3a",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:53.308Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "nearme",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "38e0000472556ead66ede06f730d89ab75e7ba1100d356321b925d9b9ec0e7f1",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:49.213Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "nearme-revision2",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "e303bec9c53510ddcc8e2fbca7ddc8d0a21ab5b562d040e83e35e2ce71d7050f",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:39.195Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "transit",
+      "dataset_id": "transit.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "8343606e21e545657bf326ff33daf9af0fcb71950eddff8672b6b6a9a125edb2",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:43.844Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "transit-revision2",
+      "dataset_id": "transit.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "582e7cb9c568119b78e64e910d4fa743cb464dfd4e0474e6507972ab694633e6",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:33.512Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "ed60ac12af81c652210f81c2d02bfef30b9a223fdb7273a3a1deb08dfd0388c4",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:34:58.795Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather-revision2",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "30e9d4521f569f1516877e57e1cd8063de0cca9f513c79216d8d93533571f920",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:57.570Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_cloud",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "0b37d13f43a14f6ff3e48872db00fa60b662357a13e40dcaf1b13e8d06a4dee3",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:15.921Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_cloud-revision2",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "beba67275e25944c6f027dc0c4762e1233676448a6d9188222a562cfa1fe5baf",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:09.978Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_compact",
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "0e6a334c52bd2abe7f2fc26da7bb8948b6eb661344831b275ec6da33d823081b",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:20.599Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_compact-revision2",
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "61db59f19d335afccc1d2b04a08bac95fbc8ae728b77c753646dd496da398cf9",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:13.710Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_forecast",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "ad8eda7d4c0cd9fb7c5d1ae2ca2e04f7ffb0756b05b052461f24d977623a7210",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:03.991Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_forecast-revision2",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "374a6ebde1be26c66b0ed07673116db9897c9c58a2697e2d49b4683fad288c41",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:01.396Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_manifest",
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "58bd52c23568b25b17b3b6149c0f04b6e688200af397c23534478a44ba9867f0",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:30.827Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_manifest-revision2",
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "8026cb14f082d4e5d13126eb1f0246080f872684acaa81b2edacd5278548c791",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:21.876Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_marine",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "6795efc271097823cb0c9386b20e8b24afef51724bcc3b30b0506c3b3b5dc851",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:09.982Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_marine-revision2",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "51ec533497b8ec3537b4b9b1340b45fade4b1be847a8fa0869b19522598274ae",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:05.624Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_meta",
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "98e91453f29185ead0ce90e41b86d2cb81e759f2265ed4c35804dff4f7f086a3",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:35:25.411Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 1
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        1
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    },
+    {
+      "backup": "weather_meta-revision2",
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "contract_version": "openpq-preparation-v1",
+      "integrity": {
+        "contract_version": "openpq-preparation-v1",
+        "bundle_hash": "db01c27cfaf6590389418ccbb8d5b3ba234244ead2501e50f565e20c68b36a92",
+        "record_count": 7,
+        "created_at": "2026-10-03T06:36:17.611Z",
+        "watermark": {
+          "control_revision": 0,
+          "revision": 2
+        },
+        "offsite_proven": false,
+        "pitr_proven": false,
+        "receipt_authenticity_verified": false,
+        "status": "LOCAL_BACKUP_INTEGRITY_PASS",
+        "publication_admitted": false,
+        "production_enabled": false
+      },
+      "verified_publication_revisions": [
+        2
+      ],
+      "publication_receipt_authenticity_verified": true,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "offsite_proven": false,
+      "resume_writer": false,
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "publication_admitted": false,
+      "production_enabled": false,
+      "portable_filesystem_readback_verified": true
+    }
+  ],
+  "full_disaster_restore_proven": false
+}

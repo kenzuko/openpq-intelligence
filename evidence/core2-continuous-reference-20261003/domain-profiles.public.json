@@ -1,0 +1,369 @@
+{
+  "weather.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.bridge.phu-quoc",
+    "domain": "weather",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/current.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "8231d99d3ea8d4c643142ab2e765f8cec5967985371f4abca151193bb9c35717"
+      },
+      "config": {
+        "hash": "480a163985069d704dab284e23f1c149e290816abb64caea2afc0e6aa755ecd6"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "weather.forecast.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.forecast.bridge.phu-quoc",
+    "domain": "weather_forecast",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/forecast.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_forecast"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "a054026d5018b8d1649daa4cedde2e84e1e5733762353f323e63c9243d129207"
+      },
+      "config": {
+        "hash": "09876028f0dece93afdb2f39f0395ae2dcf3ebe3d18d8289c18cbd32ace8771a"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "weather.marine.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.marine.bridge.phu-quoc",
+    "domain": "weather_marine",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/marine.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_marine"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "40efb4e50aeded6eabe820a384eace6fd53c6ff362ac1fdc5f2ebd55396e574f"
+      },
+      "config": {
+        "hash": "5b0cdcecce51e5eded05e39b5c6997aed103bd25941c6ff78925dc2b5bec7325"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "weather.cloud.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.cloud.bridge.phu-quoc",
+    "domain": "weather_cloud",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/cloud.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_cloud"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "361fabafcc3b3b1c5d27defd2a7740829e34b0b4c9f53c579d0265ddeeacd0a4"
+      },
+      "config": {
+        "hash": "f1ca60ea825e62696a9a1db2a5890236a559eeaca1ff6dc3af852e8b473fda99"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "weather.compact.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.compact.bridge.phu-quoc",
+    "domain": "weather_compact",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/compact.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_compact"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "281c2525387bb522817047ae00f9ed1d0794a2bedb4365d81645f6163a5a4807"
+      },
+      "config": {
+        "hash": "1982425984ec62b6b8de421fea46e4debf4869eb0abf9365cd2d132f5b607189"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "weather.meta.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.meta.bridge.phu-quoc",
+    "domain": "weather_meta",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "url": "https://openphuquoc.com/weather/data/weather-runtime/meta.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_meta"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "6bcc7b33eaadd9648d990c1aa6def4c5a94d6fae641f1f5816b68995c8738645"
+      },
+      "config": {
+        "hash": "791b09cc8b0fca1fa3703a8803359fce37de16307218f42602c2e37eb063b6f0"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "weather.manifest.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.manifest.bridge.phu-quoc",
+    "domain": "weather_manifest",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "repository": "kenzuko/Jotrip-Weather",
+      "path": "data/weather-runtime/manifest.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_manifest"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "ded974a9af5b73ddccb590960ec0937fb2983b6369504981191682f4b25d0fc7"
+      },
+      "config": {
+        "hash": "1d537f94da45ef67f7178e3b6d9921af349ebd2b3f4162be72503ca381ce9f99"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "airport.bridge.pqc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "airport.bridge.pqc",
+    "domain": "airport",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "url": "https://jotrip-airport-live.kenzuko.workers.dev"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-airport"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "cfce1c3114fd50f1f659060331c5c6550c43ca187fb469e3b021b70e4b636f2b"
+      },
+      "config": {
+        "hash": "14d39aa09d609a7e09cc9da5489a95775ab1ce198d865fe4d4405a76629044b4"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "transit.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "transit.bridge.phu-quoc",
+    "domain": "transit",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "repository": "kenzuko/transit-jotrip",
+      "path": "data/network.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-transit"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 86400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "229294ae467ceb457ff8eb179e659458b63539566a31331c12cc0933b08271a6"
+      },
+      "config": {
+        "hash": "9b385e370c1a72c5de9898f7b41be6a7013afbf95f7ca3f2a82caf04568b0f1b"
+      },
+      "policy": {
+        "hash": "b14024f5732f54e1060aa66b114e8d949264c0e4be5b218037ee84fa0cee7ba4"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "directory.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-continuous-reference-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "directory.bridge.phu-quoc",
+    "domain": "nearme",
+    "fixture_only": false,
+    "producer": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "url": "https://openphuquoc.com/data/views/location-index.json"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-nearme"
+    ],
+    "reference_policy": {
+      "lease_ms": 300000,
+      "max_snapshot_age_ms": 2678400000,
+      "future_skew_ms": 0
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "4d7e7c9a689ba13d9be4aaa8688f2cd13c450d9d9a516507080174c48262a401"
+      },
+      "config": {
+        "hash": "7a0ff4ed444f2f2b5053614f932facb862910c76ecb27da5d1e82b92606f4a2d"
+      },
+      "policy": {
+        "hash": "6009ac890200ab52717b4a57e097772e8bc394ea428b17138b104b70a6e62b86"
+      },
+      "schema": {
+        "hash": "b8ad60a6595d5a70d9643b8321a8d058bb9afde76f39814c308ccbb337d4c5c0"
+      }
+    }
+  },
+  "cano.operation.an-thoi": {
+    "contract_version": "openpq-real-cano-admission-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "cano.operation.an-thoi",
+    "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+    "fixture_only": false,
+    "source_records": [
+      {
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Lab",
+          "commit_sha": "5c5e519a3048d99ec1b114ef0a8e55ad9252b3b8",
+          "path": "data/marine_ops/manual-confirmations/2026-10-03-cano-an-thoi.json"
+        },
+        "payload_sha256": "004cc31fbf63f19f1432437fc3c0807e3f67648c168518a05c8161f4153fd6fd",
+        "git_blob_sha": "cf2405d897b30e770ba0afbee33f9f82151d358c"
+      }
+    ],
+    "operator_principal_ids": [
+      "bridge-operator-cano"
+    ],
+    "artifact_refs": {
+      "rule": {
+        "hash": "2f13393c6881839a5aa5719cc3ca0d150058f657e2e45c773fa347c245ee788b"
+      },
+      "config": {
+        "hash": "479a0c9dd9eccab5109c4288c533780c586d75201bb3c735167bd2508db36974"
+      },
+      "policy": {
+        "hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358"
+      },
+      "schema": {
+        "hash": "6da6de45af547d1f2048e8d2d54f9cb77545896597034c106ac7d19224c241c5"
+      }
+    }
+  }
+}

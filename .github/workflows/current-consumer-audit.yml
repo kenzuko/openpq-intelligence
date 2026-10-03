@@ -1,7 +1,15 @@
 name: Core 2.0 current consumer read-only audit
 on:
   push:
-    branches: [cloud/core2-current-consumers-20261003]
+    branches: [cloud/core2-current-consumers-20261003, main]
+    paths:
+      - '.github/workflows/current-consumer-audit.yml'
+      - 'scripts/cloud/consumer-audit.py'
+      - 'scripts/rehearse-current-consumers.js'
+      - 'src/ingress/**'
+      - 'src/platform/domain-*'
+  schedule:
+    - cron: '7,37 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,7 +27,8 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npm run check && npm run verify:handoff && npm test
+      - if: github.event_name != 'schedule'
+        run: npm run check && npm run verify:handoff && npm test
       - run: python scripts/cloud/test_consumer_audit.py
       - name: Capture actual consumer outputs with bounded GET requests
         run: python scripts/cloud/consumer-audit.py .consumer-audit
@@ -32,5 +41,5 @@ jobs:
           name: core2-current-consumer-audit
           path: .consumer-audit
           include-hidden-files: true
-          retention-days: 7
+          retention-days: 14
           if-no-files-found: error
