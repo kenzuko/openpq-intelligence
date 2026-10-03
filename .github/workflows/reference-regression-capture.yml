@@ -1,0 +1,29 @@
+name: Read-only signed reference regression capture
+on:
+  push:
+    branches: [cloud/core2-reference-regression-20261003]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: intelligence-test
+    env:
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      R2_TEST_READ_SECRET_ACCESS_KEY: ${{ secrets.R2_TEST_READ_SECRET_ACCESS_KEY }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/cloud/capture-reference-regression.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: signed-reference-regression-${{ github.run_id }}
+          path: .reference-regression/*.json
+          include-hidden-files: true
+          retention-days: 14
