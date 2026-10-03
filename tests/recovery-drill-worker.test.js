@@ -2,10 +2,25 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Miniflare} from 'miniflare';
 import {fileURLToPath} from 'node:url';
+import {setup} from './support.js';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const vars={ENVIRONMENT_ID:'isolated-test',RECOVERY_DRILL_RUN_ID:'123456',RECOVERY_DRILL_ROLE:'target',PROVISIONING_TOKEN:'fixture-provision',STORAGE_WRITER_TOKEN:'fixture-storage-writer'};
 const options=bindings=>({cf:false,host:'127.0.0.1',workers:[{name:'drill',modules:true,scriptPath:root+'scripts/cloud/recovery-drill-worker.js',modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',durableObjects:{DATASETS:{className:'DatasetCoordinator',useSQLite:true}},r2Buckets:{CANONICAL:'fixture-drill-canonical'},bindings},{name:'client',modules:true,script:`export default {async fetch(request,env){const body=request.body?await request.arrayBuffer():undefined;return env.DRILL.fetch(new Request(request.url,{method:request.method,headers:request.headers,...(body===undefined?{}:{body})}));}};`,compatibilityDate:'2026-07-30',serviceBindings:{DRILL:'drill'}}]});
 const call=async(mf,path,token,body,method='PUT')=>(await mf.getWorker('client')).fetch('https://drill'+path,{method,headers:{authorization:'Bearer '+token},...(body===undefined?{}:{body})});
+test('native drill activation is visible only after successful authenticated read and preserves control',async()=>{
+ const s=await setup({environment_id:'isolated-test'});
+ try{
+  const before=await s.call('read',undefined,'test-only-read'),o=s.options();
+  o.workers[0].scriptPath=root+'scripts/cloud/recovery-drill-worker.js';
+  Object.assign(o.workers[0].bindings,{RECOVERY_DRILL_RUN_ID:'123456',RECOVERY_DRILL_ROLE:'target'});
+  await s.mf.setOptions(o);
+  const after=await s.call('read',undefined,'test-only-read');
+  assert.equal(after.status,200);assert.deepEqual(after.body.state,before.body.state);
+  assert.equal(after.body.instance_observation.drill_activation,'local');
+  assert.notEqual(after.body.instance_observation.incarnation_id,before.body.instance_observation.incarnation_id);
+  const denied=await s.call('read',undefined,'unregistered-token');assert.equal(denied.status,401);assert.equal(denied.body.instance_observation,undefined);
+ }finally{await s.mf.dispose();}
+});
 test('temporary cloud adapter limits writes to its own run keys and pins immutable snapshot bytes',async()=>{
  const mf=new Miniflare(options(vars));try{
   assert.equal((await call(mf,'/snapshot-archive','wrong','{}')).status,401);
