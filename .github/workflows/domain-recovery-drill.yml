@@ -40,4 +40,5 @@ jobs:
             .domain-recovery-cloud/PREFLIGHT.json
             .domain-recovery-cloud/POSTFLIGHT.json
             .domain-recovery-cloud/*/*.json
+          include-hidden-files: true
           retention-days: 14
