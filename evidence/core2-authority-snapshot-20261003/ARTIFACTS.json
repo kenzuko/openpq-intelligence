@@ -1,0 +1,12 @@
+{
+  "scope": "LOCAL_SIGNED_NATIVE_AUTHORITY_TABLES",
+  "cloud_deployed": false,
+  "full_system_restore_proven": false,
+  "resume_writer": false,
+  "files": {
+    "SNAPSHOT.json": "d09747151adc0f96fc480a87b8ff87c3f696d913624a4eb01e30d91a89e3fb19",
+    "TRUST.json": "82099466073705ac311ef606fc3412b51cbf25844dfca6718395887a95c20b65",
+    "VERIFICATION.json": "66aa51f98826a71ed76d2bd5c00bdaec3e2b9bc25e75351e5ed44ed62a4ea4f9",
+    "native-tests.txt": "d3ec52e7634f75b2cfdee948fd6f8db44aba6e9015e5d15ecb13c2a4dcf25527"
+  }
+}

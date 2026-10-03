@@ -1,0 +1,223 @@
+{
+  "envelope": {
+    "receipt": {
+      "environment_id": "local-test",
+      "dataset_id": "cano.operation",
+      "authority_instance_id": "local-cano-authority",
+      "authority_locator_version": "1",
+      "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "namespace_id": "local-sqlite-namespace",
+      "object_name": "local-test/cano.operation",
+      "native_id": "f7889f18aed8d03177973582c0b9d485c234d92dd00967627a943f094b60a295",
+      "recovery_generation": "local-generation-1",
+      "artifacts": {
+        "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "receipt_keys": {
+        "local-key": {
+          "key_ops": [
+            "verify"
+          ],
+          "ext": true,
+          "kty": "EC",
+          "x": "x_D9zAJl5yyj0sf8ExB3n8IVYmXkHYay83bngu2iVT8",
+          "y": "H6JGukBEDYl-chDXnDSlfjhk034zVXtxJLbZdBYCLvc",
+          "crv": "P-256"
+        }
+      },
+      "account_id": "synthetic-local-account",
+      "approved_positive_decision_types": [
+        "cano.operation.fixture"
+      ],
+      "contract_version": "openpq-native-authority-snapshot-v1",
+      "snapshot_consistency": "ATOMIC_NATIVE_SQLITE_TABLES",
+      "captured_at": "2026-10-03T12:32:48.960Z",
+      "watermark": {
+        "revision": 1,
+        "control_revision": 1,
+        "epoch": 1
+      },
+      "control": {
+        "account_id": "synthetic-local-account",
+        "active": {
+          "account_id": "synthetic-local-account",
+          "approved_positive_decision_types": [
+            "cano.operation.fixture"
+          ],
+          "artifacts": {
+            "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "authority_instance_id": "local-cano-authority",
+          "authority_locator_version": "1",
+          "command_id": "recovery-proof-commit",
+          "committed_at": "2026-10-03T12:32:48.954Z",
+          "control_revision": 0,
+          "dataset_id": "cano.operation",
+          "digest": "3fbeb6e466c441f20ada8fe5395deb8cfe3d63b7c8bef9e1a33bfc0164350119",
+          "environment_id": "local-test",
+          "epoch": 1,
+          "key": "generations/local-cano-authority/local-generation-1/3fbeb6e466c441f20ada8fe5395deb8cfe3d63b7c8bef9e1a33bfc0164350119.json",
+          "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "logical_slot": 10,
+          "namespace_id": "local-sqlite-namespace",
+          "native_id": "f7889f18aed8d03177973582c0b9d485c234d92dd00967627a943f094b60a295",
+          "object_name": "local-test/cano.operation",
+          "operation": "NORMAL",
+          "owner": "pilot",
+          "previous_revision": 0,
+          "receipt_keys": {
+            "local-key": {
+              "crv": "P-256",
+              "ext": true,
+              "key_ops": [
+                "verify"
+              ],
+              "kty": "EC",
+              "x": "x_D9zAJl5yyj0sf8ExB3n8IVYmXkHYay83bngu2iVT8",
+              "y": "H6JGukBEDYl-chDXnDSlfjhk034zVXtxJLbZdBYCLvc"
+            }
+          },
+          "recovery_generation": "local-generation-1",
+          "revision": 1
+        },
+        "approved_positive_decision_types": [
+          "cano.operation.fixture"
+        ],
+        "artifacts": {
+          "config": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "policy": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "rule": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "authority_instance_id": "local-cano-authority",
+        "authority_locator_version": "1",
+        "control_revision": 1,
+        "dataset_id": "cano.operation",
+        "environment_id": "local-test",
+        "epoch": 1,
+        "frozen": true,
+        "locator_artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "namespace_id": "local-sqlite-namespace",
+        "native_id": "f7889f18aed8d03177973582c0b9d485c234d92dd00967627a943f094b60a295",
+        "next_transition_at": null,
+        "object_name": "local-test/cano.operation",
+        "owner": "pilot",
+        "receipt_keys": {
+          "local-key": {
+            "crv": "P-256",
+            "ext": true,
+            "key_ops": [
+              "verify"
+            ],
+            "kty": "EC",
+            "x": "x_D9zAJl5yyj0sf8ExB3n8IVYmXkHYay83bngu2iVT8",
+            "y": "H6JGukBEDYl-chDXnDSlfjhk034zVXtxJLbZdBYCLvc"
+          }
+        },
+        "recovery_generation": "local-generation-1",
+        "revision": 1
+      },
+      "table_counts": {
+        "prepared": 1,
+        "commands": 2,
+        "audit": 2,
+        "outbox": 1
+      },
+      "page_refs": [
+        {
+          "table": "prepared",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "2dab8039058c9632ab0035ce3a3a81b29b8823ed89cb2390c7ba3838b8576a36"
+        },
+        {
+          "table": "commands",
+          "index": 0,
+          "row_count": 2,
+          "codec_hash": "7261b33155e10cd7cb02c65f05cb8a9c47ed5f952e5775b0dc7f9b19c90f4834"
+        },
+        {
+          "table": "audit",
+          "index": 0,
+          "row_count": 2,
+          "codec_hash": "36b9a23c2b9104c0c7169cb03841ad5f777d264bec76eadfe5fbdc32c2568fd8"
+        },
+        {
+          "table": "outbox",
+          "index": 0,
+          "row_count": 1,
+          "codec_hash": "5ade8c805006fdcf8b81fc168c34f49daee611b768eb8a1b38e79c2dd98fd0d4"
+        }
+      ],
+      "coverage": {
+        "native_control": true,
+        "prepared": true,
+        "commands": true,
+        "audit": true,
+        "outbox": true,
+        "external_artifacts": false,
+        "scheduler_state": false,
+        "deploy_code": false,
+        "storage_credentials": false
+      }
+    },
+    "key_id": "local-key",
+    "signature": "GeXe7UtsPo44K4mTe3EiVl7OQGoPU7Ye4Jv4sHUuT6o7DfZC33ITIrk75U2bjZ8YjU0doJMLEWEIx9ot/l4rKg=="
+  },
+  "pages": [
+    {
+      "table": "prepared",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "2dab8039058c9632ab0035ce3a3a81b29b8823ed89cb2390c7ba3838b8576a36",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA61Va2+cOhD9L3wuCWCe+y2Pze1GeVTJNkoaKsvYw66zYBMwaGmU/35lwz6aRrdXSviG58yM7XPm+PHFyiTrrYn1klqEUtkKhTlLrUlqNb1QS1Cc2oWkpLDHcGp9SS1SVbXsgOFKNlzxDjADyhsuBVZ9BU1qTR5TixIhD2QFNVFcioOcr1VbQ2r91BVqxXNClYa+pBaVIucL05d88DMbrGTBaf959eq2gM+r1tAllOST6r3q22zVUtZc9ZiLRhFBYcPiwJ1mwt6CBgq3KRqiZI07qDWDJs01GEoE44yobbWE+l6YhGA7xA1sP0GZHTsJsvMoiGhOszBOHJPJiCINbLX0uxIGxCiYgX9CdQC3QvHCZHiOF9quYzto7qIJ8iZ+fJB4wQ+TC3kOVBnct+vb2Xx2NzXrKy6GfmdHJ3OzUnLBy7bE0HEG+lpK0HmqbkGzCqSRAlPJNpI9m93Pv99M8cn11dns5vJoPru+GgSrdf3OWXaq1jwwvoBm2BjKM8hC8MOQ+r6bew5hJM4hQEnAIItpDoiFKItonEGegEsQynLquKGPAsd1k+GgouO1FCXsxnIgVJk2GtGRojU7wYqX8MfdeX/c3boCqoBhKoWqZYFr6DZEOPvxN+tcVK2Z1seX1CrJGpMF4FIvoNDRn9a1bOud9HYGUhLRksLeXtUO+h97jnZ73oA3FFweXX0/ujChjhScYSX/IppXTeEKBkdYgBjZaw7fm49xcQez3cOP0nnw1IzC34zbxgHxkjTLz/OWQi44JQVuCqmF6GpeBCmhqchbV2ieC67A3kZNviDGz0dgHsVxkrsxARYzB7lRlEQoiD3qZAnz44B6yGeJx5jjJGEUehFJfJQ7iZ+FDvGSwJSU2RNQhXWfNxI+fMcY9v4mqXV1fXM5Ul2RvpCE7T0YdbkDjhM7PTXYUWpYiqIf513PZ1VDRWpgW6Nxo8R1kOuEceLrm3puSWEccuhRVgUoENA0Y4/LbxfT+WA2NTSyaLf9b6a31xd3uv2rCVLglcIr6McXbjj0IEFdu+4G/7K9IBwHc8+ZVtBjWY2m1EHN836woZUaNDw9MUlr87PGp8mvo/Mi6Psnp8nj6foYiXh291Der74+kD5GmVi0Hr+bxyZrKPE1PP+nXR1PTx8Kmy5P78XpbZE/LVcO8n/d3av1+UX2gx0/nFx0NLVex1PJDuoe70Zjj9D9edl75n57V2QFonq2tw+L3bl7Y5zXsvy7G/zfkbe+WJxZkw87sfX681/pzdpkKAkAAA==",
+        "uncompressed_bytes": 2344,
+        "sha256": "5bf6156557106ca4534c288c39a44834f70c31d37bfcc134f5698524331c89dd"
+      }
+    },
+    {
+      "table": "commands",
+      "index": 0,
+      "row_count": 2,
+      "codec_hash": "7261b33155e10cd7cb02c65f05cb8a9c47ed5f952e5775b0dc7f9b19c90f4834",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA+1V227bOBD9Fz5biSRKMum3pgm2G2Qv2BZB0qoQKHJoM5ZJLUWpVgL/e6FL7Kw3BRo4RVHAepM4c4aaOXPOpwck1Bwqh2YIyxzyBKIk4VEUyNBnghEJMaaxgJxwCVgkOJ9ykoOkEDCMc8n9IIlw7AcBRROkBJohC9w0YFuvtMZIj5vVSjk0QRaquugKPaSIcW5q7TIlUjRLUdVqtwCnuFcYzgpvPE7RJEWsLK1pQGSlqZRTDWQCuKqU0ZlrS6hSNPuUIs60OTElWOaU0SdSrV1tIUWfOwTrlGTcdaEPKeJGSzXv67IDn/6CpSkUb18Pz9YFvB5axRewYq+Et+m6WbuFscq1mdKVY5rD4xSH2XWT8LZBwwi3KV2IMzZrwHYT7NOCPqajCdPiEetZEm0DlXMgMub60NAPEy/wPR9/CMIZDmcROaFx9HGM1s6aIrPQqLGiP0mRYI5VsOXff9nTJw5r0Z8euhg9HuhGWaNXsGP90C/Xl+kiSsMXKZoFkxQtYSDUHPR4qer0ufaOH3dhXnB66HVP7qqxB4/TelygbMGqxetRszBzxVmRVYXpGh10g9FsBVXJ9klV/VsoB972tM/XrJeDMVBOCaEyIAwEET4OplM6xTEJuZ9TEZGYhzgSNBTC92kyTcIpoxGWPo3yxGchjXtIk98Bd1lXZ29Ep89w5MnbLEV//vXPH2+uhoMvGmz/sVT9z3Uy0VHQ1NU+FS1wUKXLltCOAjUUHSjQ6ZVteqi/vTBOBqasu345W8NAlcyUoww2YJVsB9lbuoFDF2/7pHX/ss7O6f2byyJu2zu/kuRifYY1+f36dnWzfHfLWoJzPa9Ddf2B9FkDxLvk8rd6eXZxflt4fHF+o8/fF/JusfRxdH9949aXV/lHcXb79qrhKdpsJrv9zXbUfNLQp3wdNG/Xk2CDNpOntoQhYRRjzjHhoeRcCJKEOAbqhyTEJAxEkEfcj8CHMBcJJRwARxgnktGcJt+wJWkB7mHPlirHHAxdf4lD8Y6HL087GtshaEdjOxrb0diOxvYLGdtR9A9F+3VE/3/qHHyXOr9MTaU196B3K/ODde0na5iGtcucZbrbHKMHm9R1Ubxc356RsaNc7cvVBm0+fwWzkVJuIRIAAA==",
+        "uncompressed_bytes": 4641,
+        "sha256": "900f62b498f0c53909fc1a800904500695d2a2a09aba170887666a4a9b8b2f77"
+      }
+    },
+    {
+      "table": "audit",
+      "index": 0,
+      "row_count": 2,
+      "codec_hash": "36b9a23c2b9104c0c7169cb03841ad5f777d264bec76eadfe5fbdc32c2568fd8",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA+1WXW/bOBD8KwGfrUTflvzWJL5rg+R66AVBkqoQKHJlM5ZJHUnprBT+7weRsp2madEgORyK2k8muTtL7w5n/PEzKgTt0AR9zhAmmgmeoUmGTt5fXLy7zNDI7AppNivWgtmSQIDVOkMTk0VEw3XOqAlSHddz0Iw4lSC4coZjC1XXUrRA81ooplkLOQXCFBM8110NKkOTjxkimItDUYPE/XUOS7bSjYQMfeoRpGYlJlrZ2kTwks1MXfzCj7lgLSpGutfDk00Fr4emyByW+JXw1n03Gz0XkukuZ1xpzAlspmhn10/C2QbZEW5T+hAtZN6CVBvaeCaGiOUSc7rBkkBEC7JzailE6fSnTG8DmdZAc6xNqO/6seO5jhtcev4k8CdhcphG4e0QzbUUVS6hZUNFd5QhijVWsOXfl+wxiZTNQNkCQVlAEUMYxyQMvdJ3McVJCVGQRhSKhJQQ0DgoxiQpoEzBw0FQlMT14jCIXM9LDR7wlknBl7Bjve2XNmX6iFqQeYYm3ihDC7CEmgEfLqWOnmrvsLkLc7yjl1738E4NPdhMa/OA8jlW89ejZiVmjOAqV5XoG+31g+F4CarGj0ml/q6YBmd7avI5NnIwBJbjJElLL8FAE+oG3nicjoMo8YlbpDRMIuIHIU19Sl03jcexP8ZpGJRuGhaxi/00MpCiuAOi877OoxEdPcGRB6tJhv54/+Hizbk9+IeDlb+amR/Xy0RPQdGox1QcdDFfQDcIlC1qKdDrlWwN1J+OH8WWKau+X1o2YKmSi3qQwRYkKzsrewttOTQ9MUkrs1jlp+n9m7Mq6ro7V5XJdHUc8OTd1c3yevH2BndJUPBZ47Ory8RkWYi38dnvzeJ4enpTOWR+es1P/6rKu/nCDcL7q2u9Ojsvbunxzcl5SzK0Xo927zffUfNBQx/ydTCHbU+89RqNEKP9t9E3nOa3D9Pp7fSR09hp9AsDiNUQzJSosAZ6oNiMAz2wtDlQHNdqLvSBURirlRpreL5BEW08bu9r38fb+9re1/a+tve1X9bX9qL/UrSfR/S/Umfvh9T5eWpaSnEPfPdk/mNd+581jMNK51pi3r8cwa1N8qaqnq9vT8jYXq6+9TfcX3/6F9veKxvyEQAA",
+        "uncompressed_bytes": 4594,
+        "sha256": "ca7805963feb4974b000ab5b0f6e77262d1a68fdfe90490fe0f286c5b0dbb59a"
+      }
+    },
+    {
+      "table": "outbox",
+      "index": 0,
+      "row_count": 1,
+      "codec_hash": "5ade8c805006fdcf8b81fc168c34f49daee611b768eb8a1b38e79c2dd98fd0d4",
+      "codec": {
+        "encoding": "GZIP_BASE64",
+        "base64": "H4sIAAAAAAAAA61UXU/jMBD8L35uSr6b9A0oOg5xH7pDiEJQ5Nibxm1q52w314D630920pZDvNG8OTs768xM9ukVFYJ2aIpeM4QJERuuc0YzNM2Q6riuQDPi1ILg2hnKGRplCDeNFC3QvBGKadZCToEwxQTPddeAytD0KUMEczEWDUismeDjkm31RkKGng2D1KzERBvoa4aI4CVb2Ln4k4+9YCNqRrrT8clNDadjU6SCNT4R386oudGVkEx3OeNKY05g72LvnXHCOYB6Cw8tBqKFzFuQxkHb5lkMEes15nTPJYGIFmTnNFKI0jFVpg9ApjXQHGsL9V0/djzXcYM7z58G/jRMxmkUPg5orqWocwktGya6owxRrLGCQ/7+T49tpGwBqh8QlAUUMYRxTMLQK30XU5yUEAVpRKFISAkBjYNiQpICyhQ8HARFSVwvDoPI9bzU8gFvmRR8DcfU93ppO8YgGkGqDE29UYZW0AdqAXy4lDr7SN7h5RHmeGefve54qQYN9m7tf6C8wqo6XTRrsWAE17mqhRHaM8ZwvAbV4PehUn9qpsE5VG0/x3YdDMBykiRp6SUYaELdwJtM0kkQJT5xi5SGSUT8IKSpT6nrpvEk9ic4DYPSTcMidrGfRpZSFEsgOjdz3ll09kFG3pymGfr+49e389u+8JeDtC8bZj/OrAkTQbFR76MogQBrdL6CblhQ/dA+AmZfydZS/XT8KO6TsjV6abmBPiq5aIY12IJkZdevvZXuM3R1aZu29rDNZ+nL+U0ddd3SVWVytb0IePL1fr5+WF3PcZcEBV9sfHZ/l9iunuI6vvmyWV1czea1Q6rZA5/9rstltXKD8OX+QW9vbotHejG/vG1Jhna70fH/zY/RfCPo27z2O++oibdDIwTbRkgN1Eh0KJra8z8aeURmRwYAAA==",
+        "uncompressed_bytes": 1607,
+        "sha256": "22ca73fb5ae5921ce50644165756825bc585aee71cde22bfce81a74f0b580b84"
+      }
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import { authorize, principal } from '../platform/auth.js';
 import {validateSemanticAdmission,validateSemanticReplayActor} from '../platform/semantic-admission.js';
 import { attest, exportCheckpoint } from '../platform/receipts.js';
 import {isExpiredForecastRetirement} from '../platform/forecast-retirement.js';
+import {sealAuthoritySnapshot,SNAPSHOT_TABLES,SNAPSHOT_MAX_BYTES,SNAPSHOT_MAX_ROWS} from '../platform/authority-snapshot.js';
 
 function json(value,status=200) {return Response.json(value,{status,headers:{'cache-control':'no-store'}});}
 export class DatasetCoordinator extends DurableObject {
@@ -29,7 +30,7 @@ export class DatasetCoordinator extends DurableObject {
   async fetch(request) {
     try {
       const trust=this.trust(), actor=await principal(request,this.env), path=new URL(request.url).pathname;
-      const permission=path==='/read'||path==='/validate'?'read':path==='/prepare'||path==='/commit'?'promote':path==='/export'?'export':'control';
+      const permission=path==='/read'||path==='/validate'?'read':path==='/prepare'||path==='/commit'?'promote':path==='/export'?'export':path==='/recovery-export'?'recovery-export':'control';
       authorize(actor,permission,trust);
       if (path==='/read' && request.method==='GET') return json({state:this.state(),instance_observation:{incarnation_id:this.incarnation_id}});
       requireThat(request.method==='POST','METHOD_DENIED',405);
@@ -49,6 +50,21 @@ export class DatasetCoordinator extends DurableObject {
         }));
       }
       requireThat(this.state(),'NOT_BOOTSTRAPPED',409);
+      if(path==='/recovery-export'){
+        requireThat(actor.mode==='LIVE','RECOVERY_EXPORT_MODE_DENIED',403);
+        const captured=this.ctx.storage.transactionSync(()=>{
+          const control=this.state();requireThat(sameLocator(control,trust),'LOCATOR_CHANGED',409);
+          let count=0,bytes=0;
+          for(const table of SNAPSHOT_TABLES){const column=table==='commands'?'result':'body',m=this.ctx.storage.sql.exec(`SELECT COUNT(*) AS count,COALESCE(SUM(length(CAST(${column} AS BLOB))),0) AS bytes FROM ${table}`).toArray()[0];count+=m.count;bytes+=m.bytes;}
+          requireThat(count<=SNAPSHOT_MAX_ROWS&&bytes<=SNAPSHOT_MAX_BYTES,'SNAPSHOT_TOO_LARGE',413);
+          const tables={prepared:this.ctx.storage.sql.exec('SELECT id,body FROM prepared ORDER BY id').toArray(),commands:this.ctx.storage.sql.exec('SELECT id,digest,result FROM commands ORDER BY id').toArray(),audit:this.ctx.storage.sql.exec('SELECT id,body FROM audit ORDER BY id').toArray(),outbox:this.ctx.storage.sql.exec('SELECT revision,body,exported FROM outbox ORDER BY revision').toArray()};
+          return {authority:trust,control,tables,captured_at:new Date().toISOString()};
+        });
+        const signer=JSON.parse(this.env.RECEIPT_SIGNING_JSON||'{}');
+        const snapshot=await sealAuthoritySnapshot(captured,signer);
+        requireThat(sameLocator(this.trust(),trust),'TRUST_CHANGED',409);
+        return json(snapshot);
+      }
       if (path==='/prepare') {
         requireThat(actor.mode==='LIVE','MODE_PROMOTION_DENIED',403);
         const c=candidate(body,now);requireThat(sameLocator(c,trust),'CANDIDATE_LOCATOR_MISMATCH',409);

@@ -1,0 +1,33 @@
+{
+  "status": "SIGNED_NATIVE_AUTHORITY_TABLES_PASS",
+  "control_authenticity_verified": true,
+  "audit_authenticity_verified": true,
+  "commands_authenticity_verified": true,
+  "outbox_authenticity_verified": true,
+  "external_artifacts_included": false,
+  "full_system_restore_proven": false,
+  "offsite_proven": false,
+  "resume_writer": false,
+  "watermark": {
+    "revision": 1,
+    "control_revision": 1,
+    "epoch": 1
+  },
+  "table_counts": {
+    "prepared": 1,
+    "commands": 2,
+    "audit": 2,
+    "outbox": 1
+  },
+  "coverage": {
+    "native_control": true,
+    "prepared": true,
+    "commands": true,
+    "audit": true,
+    "outbox": true,
+    "external_artifacts": false,
+    "scheduler_state": false,
+    "deploy_code": false,
+    "storage_credentials": false
+  }
+}
