@@ -9,3 +9,9 @@ test('runtime propagation waits for signed fallback rather than accepting health
 test('missing response, action eligibility and unobserved fallback never satisfy cloud recovery proof',async()=>{
  for(const result of [{status:503,body:{error:'NO_TRUSTED_CHECKPOINT'}},view('UNVERIFIED',false),view('UNVERIFIED',true,'ELIGIBLE')])await assert.rejects(waitForDomainRuntime(async()=>result,{authority:'UNVERIFIED',fallback:true},{attempts:2,pause:async()=>{}}),/STATE_NOT_OBSERVED/);
 });
+test('healthy old publication cannot satisfy readiness for the newly deployed receipt',async()=>{
+ const old={...view('VERIFIED',false),body:{...view('VERIFIED',false).body,receipt:{digest:'old'}}};
+ await assert.rejects(waitForDomainRuntime(async()=>old,{authority:'VERIFIED',receipt_digest:'new'},{attempts:2,pause:async()=>{}}),/STATE_NOT_OBSERVED/);
+ const current={...old,body:{...old.body,receipt:{digest:'new'}}};
+ await waitForDomainRuntime(async()=>current,{authority:'VERIFIED',receipt_digest:'new'},{attempts:1});
+});
