@@ -7,6 +7,8 @@ export const DOMAIN_DATASETS=Object.freeze({weather:'weather.bridge.phu-quoc',we
 const weatherOrigin=Object.freeze(['kenzuko/Jotrip-Weather','data/weather-runtime/']);
 export const DOMAIN_ORIGINS=Object.freeze({weather:weatherOrigin,weather_forecast:weatherOrigin,weather_marine:weatherOrigin,weather_cloud:weatherOrigin,weather_compact:weatherOrigin,weather_meta:weatherOrigin,weather_manifest:weatherOrigin,airport:Object.freeze(['kenzuko/Jotrip-Lab','data/sunairport/']),transit:Object.freeze(['kenzuko/transit-jotrip','data/']),nearme:Object.freeze(['kenzuko/jotrip-home','data/'])});
 export const AIRPORT_RUNTIME_URL='https://jotrip-airport-live.kenzuko.workers.dev';
+export const DOMAIN_RUNTIME_URLS=Object.freeze({airport:AIRPORT_RUNTIME_URL,weather:'https://openphuquoc.com/weather/data/weather-runtime/current.json',weather_forecast:'https://openphuquoc.com/weather/data/weather-runtime/forecast.json',weather_marine:'https://openphuquoc.com/weather/data/weather-runtime/marine.json',weather_cloud:'https://openphuquoc.com/weather/data/weather-runtime/cloud.json',weather_compact:'https://openphuquoc.com/weather/data/weather-runtime/compact.json',weather_meta:'https://openphuquoc.com/weather/data/weather-runtime/meta.json',nearme:'https://openphuquoc.com/data/views/location-index.json'});
+export const NEARME_COMPANION_RUNTIME_URLS=Object.freeze(['https://openphuquoc.com/data/home-support.json','https://openphuquoc.com/data/entities/destination-venues.json']);
 export const exact=(v,keys,label)=>requireThat(v&&typeof v==='object'&&!Array.isArray(v)&&stable(Object.keys(v).sort())===stable([...keys].sort()),label+'_FIELDS_INVALID');
 export function list(v,label,max=10000){requireThat(Array.isArray(v)&&v.length<=max,label+'_ARRAY_REQUIRED');return v;}
 export function nonempty(v,label){requireThat(typeof v==='string'&&v.length>0&&v.length<=1024,label+'_TEXT_REQUIRED');return v;}
@@ -41,7 +43,7 @@ export async function decodeOwnedSource(domain,input){
   requireThat(p.repository===origin[0]&&typeof p.commit_sha==='string'&&/^[a-f0-9]{40}$/.test(p.commit_sha)&&typeof p.path==='string'&&p.path.startsWith(origin[1])&&p.path.split('/').every(x=>x&&x!=='.'&&x!=='..')&&!p.path.includes('\\')&&!p.path.includes('\0'),'DOMAIN_ORIGIN_DENIED');
   requireThat(typeof pin.git_blob_sha==='string'&&/^[a-f0-9]{40}$/.test(pin.git_blob_sha)&&await gitBlobSha(new TextEncoder().encode(raw_utf8))===pin.git_blob_sha,'DOMAIN_GIT_BLOB_MISMATCH');
  }else{
-  exact(pin.source_pointer,['url'],'DOMAIN_HTTP_POINTER');requireThat(domain==='airport'&&pin.source_kind==='OWNER_PUBLIC_RUNTIME'&&pin.source_pointer.url===AIRPORT_RUNTIME_URL&&pin.git_blob_sha===null,'DOMAIN_ORIGIN_DENIED');
+  exact(pin.source_pointer,['url'],'DOMAIN_HTTP_POINTER');requireThat(pin.source_kind==='OWNER_PUBLIC_RUNTIME'&&(Object.hasOwn(DOMAIN_RUNTIME_URLS,domain)&&pin.source_pointer.url===DOMAIN_RUNTIME_URLS[domain]||domain==='nearme'&&NEARME_COMPANION_RUNTIME_URLS.includes(pin.source_pointer.url))&&pin.git_blob_sha===null,'DOMAIN_ORIGIN_DENIED');
  }
  requireThat(await hash(raw_utf8)===pin.payload_sha256,'DOMAIN_PAYLOAD_HASH_MISMATCH');
  const data=JSON.parse(raw_utf8);requireThat(data&&typeof data==='object'&&!Array.isArray(data),'DOMAIN_SOURCE_OBJECT_REQUIRED');noSecrets(data);

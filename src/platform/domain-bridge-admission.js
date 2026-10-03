@@ -16,6 +16,7 @@ const isolated=p=>p.contract_version===ISOLATED_DOMAIN_PROFILE_VERSION;
 const bundleVersion=p=>isolated(p)?'openpq-owned-domain-bundle-isolated-v1':DOMAIN_BUNDLE_VERSION;
 export const DOMAIN_BUNDLE_VERSION='openpq-owned-domain-bundle-local-v1';
 const adapters={weather:normalizeWeatherDomain,airport:normalizeAirportDomain,transit:normalizeTransitDomain,nearme:normalizeNearMeDomain,...Object.fromEntries(['weather_forecast','weather_marine','weather_cloud','weather_compact','weather_meta','weather_manifest'].map(key=>[key,(input,at)=>normalizeWeatherProduct(key,input,at)]))};
+export async function projectOwnedDomain(domain,input,at){requireThat(Object.hasOwn(adapters,domain),'DOMAIN_UNSUPPORTED');return adapters[domain](input,at);}
 const RULE={contract_version:DOMAIN_PROFILE_VERSION,source_admission:'PINNED_OWNED_OUTPUT_SNAPSHOT',source_author_assurance:'OWNED_OUTPUT_CAPTURE_ONLY',action_allowed:false,mode:'BRIDGE_DEPENDENT_SHADOW',producer_independence:false,production_enabled:false};
 const SCHEMA={profile:DOMAIN_PROFILE_VERSION,bundle:DOMAIN_BUNDLE_VERSION,encoding:'GZIP_BASE64',raw_max_bytes:1500000,compressed_max_bytes:120000};
 export async function domainBridgeArtifactRefs(profile){

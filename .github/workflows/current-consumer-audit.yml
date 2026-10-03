@@ -23,6 +23,8 @@ jobs:
       - run: python scripts/cloud/test_consumer_audit.py
       - name: Capture actual consumer outputs with bounded GET requests
         run: python scripts/cloud/consumer-audit.py .consumer-audit
+      - name: Native admission and three-source Near Me consumer rehearsal
+        run: node scripts/rehearse-current-consumers.js .consumer-audit
       - name: Save exact captures and failure evidence
         if: always()
         uses: actions/upload-artifact@v4

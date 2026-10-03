@@ -6,7 +6,7 @@ const schemas={weather_forecast:'weather-scene-forecast-v1',weather_marine:'weat
 const files={weather_forecast:'forecast',weather_marine:'marine',weather_cloud:'cloud',weather_compact:'compact',weather_meta:'meta',weather_manifest:'manifest'};
 export async function normalizeWeatherProduct(domain,input,evaluation_time){
  requireThat(Object.hasOwn(files,domain),'WEATHER_PRODUCT_UNSUPPORTED');const source=await decodeOwnedSource(domain,input),d=source.data;
- requireThat(source.pin.source_pointer.path==='data/weather-runtime/'+files[domain]+'.json','WEATHER_PRODUCT_PATH_DENIED');
+ requireThat(source.pin.source_kind==='OWNER_PUBLIC_RUNTIME'||source.pin.source_pointer.path==='data/weather-runtime/'+files[domain]+'.json','WEATHER_PRODUCT_PATH_DENIED');
  requireThat(utcTime(d.generated_at),'WEATHER_PRODUCT_GENERATED_TIME_REQUIRED');if(domain!=='weather_cloud')requireThat(d.schema_version===schemas[domain],'WEATHER_PRODUCT_SCHEMA_DENIED');
  const records=[],issues=[];
  if(domain==='weather_forecast'){

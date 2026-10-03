@@ -1,4 +1,5 @@
 import {readConfig,PROFILE_REGISTRY_BINDINGS} from './trusted-config.js';
+import {isContinuousProfile,validateContinuousProfile,validateContinuousAdmission} from './domain-continuous-admission.js';
 import {DOMAIN_PROFILE_VERSION,isDomainProfile,validateDomainBridgeProfile,validateDomainBridgeAdmission,validateDomainBridgeActor} from './domain-bridge-admission.js';
 import {REAL_PROFILE_VERSION,isRealProfile,validateRealCanoProfile,validateRealCanoAdmission,validateRealCanoActor} from './real-cano-admission.js';
 import {candidate,hash,instant,requireThat,stable} from './contracts.js';
@@ -23,6 +24,7 @@ async function configured(env,trust,evaluation_time){
  const profile=hasRegistry?readConfig(env,PROFILE_REGISTRY_BINDINGS)[trust.dataset_id]:JSON.parse(parts.join(''));
  requireThat(profile&&profile.environment_id===env.ENVIRONMENT_ID,'SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
  if(isDomainProfile(profile)){await validateDomainBridgeProfile(profile,trust);return {profile};}
+ if(isContinuousProfile(profile)){await validateContinuousProfile(profile,trust);return {profile};}
  if(isRealProfile(profile)){await validateRealCanoProfile(profile,trust);return {profile};}
  exactKeys(profile,['contract_version','environment_id','dataset_id','source_kind','artifacts','policies','artifact_refs','target_scope'],'SEMANTIC_PROFILE');
  requireThat(profile.contract_version==='openpq-semantic-admission-local-v1'&&profile.source_kind==='SYNTHETIC_ONLY'&&profile.environment_id==='local-test'&&profile.dataset_id===trust.dataset_id,'SEMANTIC_PROFILE_SCOPE_INVALID');
@@ -40,6 +42,7 @@ export async function validateSemanticAdmission(env,trust,c,evaluation_time,acto
  if(!trust.semantic_profile_hash){requireThat(!Object.hasOwn(c,'semantic_bundle')&&!Object.hasOwn(c,'semantic_admission'),'SEMANTIC_PROFILE_NOT_ACTIVATED',409);return null;}
  const at=instant(evaluation_time,'SEMANTIC_VALIDATION_TIME'),{profile,registry,policies}=await configured(env,trust,evaluation_time);
  if(isDomainProfile(profile))return validateDomainBridgeAdmission(profile,trust,c,evaluation_time,actor);
+ if(isContinuousProfile(profile))return validateContinuousAdmission(profile,trust,c,evaluation_time,actor);
  if(isRealProfile(profile))return validateRealCanoAdmission(profile,trust,c,evaluation_time,actor);
  requireThat(c.semantic_profile_hash===trust.semantic_profile_hash,'SEMANTIC_CANDIDATE_PROFILE_MISMATCH',409);noSecrets(c);
  const bundle=c.semantic_bundle;exactKeys(bundle,['contract_version','evidences','assertions'],'SEMANTIC_BUNDLE');requireThat(bundle.contract_version==='openpq-semantic-bundle-local-v1','SEMANTIC_BUNDLE_VERSION_INVALID');
@@ -76,5 +79,6 @@ export async function validateSemanticReplayActor(env,trust,actor,receipt,evalua
  if(!trust.semantic_profile_hash)return;
  const {profile}=await configured(env,trust,evaluation_time);
  if(isDomainProfile(profile))validateDomainBridgeActor(profile,actor,receipt?.semantic_admission?.operator_principal_id);
+ if(isContinuousProfile(profile))validateDomainBridgeActor(profile,actor,receipt?.semantic_admission?.operator_principal_id);
  if(isRealProfile(profile))validateRealCanoActor(profile,actor,receipt?.semantic_admission?.operator_principal_id);
 }

@@ -1,5 +1,5 @@
 import {requireThat,hash} from '../platform/contracts.js';
-import {decodeOwnedSource} from './domain-source-common.js';
+import {decodeOwnedSource,DOMAIN_RUNTIME_URLS,NEARME_COMPANION_RUNTIME_URLS} from './domain-source-common.js';
 import {venueKernel} from './nearme-venue-kernel.js';
 
 // Offline consumer rehearsal of the existing page's three pinned inputs.
@@ -7,7 +7,8 @@ import {venueKernel} from './nearme-venue-kernel.js';
 export async function rehearseNearMeConsumer({index,support,venues}){
  const inputs=await Promise.all([index,support,venues].map(x=>decodeOwnedSource('nearme',x)));
  const paths=['data/views/location-index.json','data/home-support.json','data/entities/destination-venues.json'];
- inputs.forEach((s,i)=>requireThat(s.pin.source_pointer.path===paths[i],'NEARME_CONSUMER_PATH_DENIED'));
+ const urls=[DOMAIN_RUNTIME_URLS.nearme,...NEARME_COMPANION_RUNTIME_URLS];
+ inputs.forEach((s,i)=>requireThat(s.pin.source_kind==='OWNER_REPOSITORY_SNAPSHOT'?s.pin.source_pointer.path===paths[i]:s.pin.source_pointer.url===urls[i],'NEARME_CONSUMER_PATH_DENIED'));
  const [locationIndex,homeSupport,venueDirectory]=inputs.map(s=>s.data);
  requireThat(Array.isArray(locationIndex.documents)&&Array.isArray(homeSupport.near_me?.items)&&Array.isArray(homeSupport.near_me?.categories)&&Array.isArray(venueDirectory.entities),'NEARME_COMPANION_SCHEMA_DENIED');
  const utilityMeta=new Map(homeSupport.near_me.items.map(x=>[x.utility_id,x]));

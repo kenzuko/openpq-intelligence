@@ -1,4 +1,5 @@
 import {trustMap} from '../platform/trusted-config.js';
+import {CONTINUOUS_PROFILE_VERSION} from '../platform/domain-continuous-contract.js';
 import { DurableObject } from 'cloudflare:workers';
 import { ContractError, candidate, hash, instant, locator, requireThat, revision, sameLocator, stable } from '../platform/contracts.js';
 import { authorize, principal } from '../platform/auth.js';
@@ -90,6 +91,12 @@ export class DatasetCoordinator extends DurableObject {
           requireThat(!s.frozen || p.operation==='RETRACTION','PUBLICATION_FROZEN',409);
           requireThat(Object.keys(s.artifacts).every(k=>p.artifacts[k]===s.artifacts[k]),'ACTIVATION_MISMATCH',409);
           requireThat(p.operation!=='NORMAL'||!s.active||p.logical_slot>=s.active.logical_slot,'OBSOLETE_SLOT',409);
+          if(p.semantic_admission?.contract_version===CONTINUOUS_PROFILE_VERSION&&s.active){
+            const prior=s.active.semantic_admission,current=p.semantic_admission;
+            requireThat(prior?.contract_version===CONTINUOUS_PROFILE_VERSION,'CONTINUOUS_PREVIOUS_PROFILE_DENIED',409);
+            const before=instant(prior.source_version_time,'CONTINUOUS_PREVIOUS_VERSION'),after=instant(current.source_version_time,'CONTINUOUS_VERSION');
+            requireThat(after>=before&&(after!==before||current.input_hash===prior.input_hash),'CONTINUOUS_SOURCE_REGRESSION',409);
+          }
           if(p.operation!=='NORMAL') {requireThat(actor.permissions.includes('correct'),'CORRECTION_DENIED',403);requireThat(p.supersedes_revision===s.revision,'SUPERSEDES_MISMATCH',409);}
           candidate(p,now);
           if(trust.semantic_profile_hash){requireThat(p.semantic_admission?.profile_hash===trust.semantic_profile_hash&&now<instant(p.semantic_admission.valid_until,'SEMANTIC_VALID_UNTIL'),'SEMANTIC_ADMISSION_EXPIRED',409);requireThat(p.decision?.effect==='ABSTAIN','SEMANTIC_ACTION_FORBIDDEN',409);}
