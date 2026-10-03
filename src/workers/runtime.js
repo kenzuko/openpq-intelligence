@@ -1,3 +1,4 @@
+import {domainSnapshotServing} from '../platform/domain-serving.js';
 import { ContractError, hash, locator, requireThat, sameLocator } from '../platform/contracts.js';
 import { servingView } from '../platform/serving.js';
 import { verifyAttestation } from '../platform/receipts.js';
@@ -42,7 +43,8 @@ export default {
       const view=servingView(generation,receipt,trust,validation,now);
       // The display interval is bounded by the activated generation, even during outage.
       requireThat(now<Date.parse(generation.valid_to),'DISPLAY_EXPIRED',503);
-      return Response.json({contract:'openpq-runtime-v1',receipt,data:generation.payload,decision:generation.decision || null,serving:{...view,fallback}},{headers:{'cache-control':'no-store'}});
+      const domain=generation.semantic_admission?.contract_version==='openpq-owned-domain-bridge-local-v1'?await domainSnapshotServing(generation,now):null;
+      return Response.json({contract:'openpq-runtime-v1',receipt,data:domain?domain.projection:generation.payload,decision:generation.decision || null,serving:{...view,...(domain?{freshness:'SOURCE_SNAPSHOT_REFERENCE',domain_fields:domain.serving}:{}),fallback}},{headers:{'cache-control':'no-store'}});
     } catch(e) {return Response.json({error:e instanceof ContractError?e.code:'RUNTIME_UNAVAILABLE'},{status:e instanceof ContractError?e.status:503,headers:{'cache-control':'no-store'}});}
   }
 };

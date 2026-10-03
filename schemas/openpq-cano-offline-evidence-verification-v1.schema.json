@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://openpq.local/schemas/openpq-cano-offline-evidence-verification-v1.schema.json",
+  "title":"OpenPQ Cano Offline Evidence Verification v1",
+  "type":"object","additionalProperties":false,
+  "required":["contract_version","fixture_only","verification_status","bundle_status","baseline_match","audit_match","inventory_verified","action_eligible","publication_admitted","reason_codes"],
+  "properties":{
+    "contract_version":{"const":"openpq-cano-offline-evidence-verification-v1"},
+    "fixture_only":{"const":true},
+    "verification_status":{"enum":["VERIFIED_FIXTURE_ONLY","DIAGNOSTIC_INVALID_BATCH","BASELINE_MISMATCH","CORRUPT_OR_ERROR"]},
+    "bundle_status":{"type":["string","null"]},
+    "baseline_match":{"type":"boolean"},"audit_match":{"type":"boolean"},"inventory_verified":{"type":"boolean"},
+    "action_eligible":{"const":false},"publication_admitted":{"const":false},
+    "expected_baseline_source_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "bundle_baseline_source_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "reason_codes":{"type":"array","items":{"type":"string"},"uniqueItems":true}
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openpq:owned-domain-local:projection:v1",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "dataset_id",
+    "domain",
+    "mode",
+    "fixture_only",
+    "sources",
+    "records",
+    "issues",
+    "metadata",
+    "independent_source_count",
+    "source_health_inferred_from_path",
+    "legacy_payload_digest",
+    "operational_action_allowed",
+    "production_enabled",
+    "projection_digest"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "openpq-owned-domain-shadow-v1"
+    },
+    "dataset_id": {
+      "type": "string"
+    },
+    "domain": {
+      "enum": [
+        "weather",
+        "weather_forecast",
+        "weather_marine",
+        "weather_cloud",
+        "weather_compact",
+        "weather_meta",
+        "weather_manifest",
+        "airport",
+        "transit",
+        "nearme"
+      ]
+    },
+    "mode": {
+      "const": "BRIDGE_DEPENDENT_SHADOW"
+    },
+    "fixture_only": {
+      "const": false
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "source_kind",
+          "source_pointer",
+          "payload_sha256",
+          "git_blob_sha"
+        ],
+        "properties": {
+          "source_kind": {
+            "enum": [
+              "OWNER_REPOSITORY_SNAPSHOT",
+              "OWNER_PUBLIC_RUNTIME"
+            ]
+          },
+          "source_pointer": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": [
+                  "repository",
+                  "commit_sha",
+                  "path"
+                ],
+                "properties": {
+                  "repository": {
+                    "type": "string"
+                  },
+                  "commit_sha": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{40}$"
+                  },
+                  "path": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "required": [
+                  "url"
+                ],
+                "properties": {
+                  "url": {
+                    "const": "https://jotrip-airport-live.kenzuko.workers.dev"
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "payload_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "git_blob_sha": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{40}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "records": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "scope",
+          "data_class",
+          "timestamps",
+          "values",
+          "lineage_key",
+          "operational_action_allowed"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "object"
+          },
+          "data_class": {
+            "type": "string"
+          },
+          "timestamps": {
+            "type": "object"
+          },
+          "values": {
+            "type": "object"
+          },
+          "lineage_key": {
+            "type": "string"
+          },
+          "operational_action_allowed": {
+            "const": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "independent_source_count": {
+      "type": "null"
+    },
+    "source_health_inferred_from_path": {
+      "const": false
+    },
+    "legacy_payload_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "operational_action_allowed": {
+      "const": false
+    },
+    "production_enabled": {
+      "const": false
+    },
+    "projection_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

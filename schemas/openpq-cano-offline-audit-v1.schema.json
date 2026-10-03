@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openpq.local/schemas/openpq-cano-offline-audit-v1.schema.json",
+  "title": "OpenPQ Cano Offline Audit v1 - FIXTURE ONLY",
+  "$comment": "F13 local audit report only. diagnostic_ledger is never a batch projection when diagnostic_only=true.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "fixture_only",
+    "mode",
+    "manifest_contract_version",
+    "manifest_digest",
+    "manifest_payload_sha256",
+    "limits",
+    "target",
+    "evaluation_time",
+    "input_count",
+    "inputs",
+    "diagnostic_ledger",
+    "batch_projection",
+    "aggregate_result",
+    "errors",
+    "action_eligible",
+    "publication_admitted"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "openpq-cano-offline-audit-v1"
+    },
+    "fixture_only": {
+      "const": true
+    },
+    "mode": {
+      "const": "FIXTURE_ONLY"
+    },
+    "manifest_contract_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "manifest_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "manifest_payload_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_records",
+        "max_raw_bytes",
+        "max_manifest_bytes"
+      ],
+      "properties": {
+        "max_records": {
+          "const": 64
+        },
+        "max_raw_bytes": {
+          "const": 8192
+        },
+        "max_manifest_bytes": {
+          "const": 131072
+        }
+      }
+    },
+    "target": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "evaluation_time": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "input_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Observed manifest record count, including rejected oversized batches; inputs contains at most the bounded diagnostic prefix."
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "index",
+          "raw_file",
+          "source_pointer",
+          "raw_sha256",
+          "declared_payload_sha256",
+          "normalize_status",
+          "wrapper_status",
+          "revision_id",
+          "wrapper_id",
+          "supersedes",
+          "primary_error"
+        ],
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "raw_file": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_pointer": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "raw_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "declared_payload_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "normalize_status": {
+            "enum": [
+              "NOT_RUN",
+              "NORMALIZED_SHADOW",
+              "QUARANTINED"
+            ]
+          },
+          "wrapper_status": {
+            "enum": [
+              "NOT_RUN",
+              "WRAPPED"
+            ]
+          },
+          "revision_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "wrapper_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "supersedes": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "primary_error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "maxItems": 64
+    },
+    "diagnostic_ledger": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "diagnostic_only",
+            "input_index_map",
+            "result"
+          ],
+          "properties": {
+            "diagnostic_only": {
+              "type": "boolean"
+            },
+            "input_index_map": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "result": {
+              "type": "object"
+            }
+          }
+        }
+      ]
+    },
+    "batch_projection": {
+      "$ref": "#/$defs/projection"
+    },
+    "aggregate_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "projection_status",
+        "reason_codes"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "INVALID"
+          ]
+        },
+        "projection_status": {
+          "enum": [
+            "RESOLVED",
+            "UNRESOLVED",
+            "AMBIGUOUS",
+            "QUARANTINED",
+            "EXPIRED"
+          ]
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "input_index",
+          "stage",
+          "code"
+        ],
+        "properties": {
+          "input_index": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "stage": {
+            "enum": [
+              "MANIFEST",
+              "PREFLIGHT",
+              "LOAD",
+              "NORMALIZE",
+              "WRAP",
+              "LEDGER"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "action_eligible": {
+      "const": false
+    },
+    "publication_admitted": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "terminal_revision_id",
+        "reported_state",
+        "source_time",
+        "valid_to",
+        "reason_codes",
+        "action_eligible",
+        "publication_admitted"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "RESOLVED",
+            "UNRESOLVED",
+            "AMBIGUOUS",
+            "QUARANTINED",
+            "EXPIRED"
+          ]
+        },
+        "terminal_revision_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "reported_state": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_time": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "action_eligible": {
+          "const": false
+        },
+        "publication_admitted": {
+          "const": false
+        }
+      }
+    }
+  }
+}

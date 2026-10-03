@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openpq.local/schemas/openpq-cano-preflight-rejection-v1.schema.json",
+  "title": "OpenPQ Cano Preflight Rejection v1 - PROPOSED_NOT_ACTIVATED",
+  "$comment": "Offline/fixture rejection only. Used when target or evaluation_time is invalid before ledger construction.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "fixture_only",
+    "status",
+    "projection_status",
+    "reason_codes",
+    "action_eligible",
+    "publication_admitted"
+  ],
+  "properties": {
+    "contract_version": {"const": "openpq-cano-preflight-rejection-v1"},
+    "fixture_only": {"const": true},
+    "status": {"const": "INVALID"},
+    "projection_status": {"const": "UNRESOLVED"},
+    "reason_codes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {"enum": ["TARGET_INVALID", "EVALUATION_TIME_INVALID"]}
+    },
+    "action_eligible": {"const": false},
+    "publication_admitted": {"const": false}
+  }
+}

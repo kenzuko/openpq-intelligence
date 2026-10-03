@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://openpq.local/schemas/openpq-cano-offline-evidence-bundle-v1.schema.json",
+  "title":"OpenPQ Cano Offline Evidence Bundle Marker v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["contract_version","fixture_only","mode","bundle_status","snapshot_manifest_path","audit_path","baseline_source_path","manifest_contract_version","audit_contract_version","target","evaluation_time","aggregate_status","projection_status","action_eligible","publication_admitted","source_authenticated"],
+  "properties":{
+    "contract_version":{"const":"openpq-cano-offline-evidence-bundle-v1"},
+    "fixture_only":{"const":true},
+    "mode":{"const":"FIXTURE_ONLY"},
+    "bundle_status":{"enum":["EVIDENCE_ONLY","INVALID"]},
+    "snapshot_manifest_path":{"const":"snapshot/manifest.json"},
+    "audit_path":{"const":"audit/audit.json"},
+    "baseline_source_path":{"const":"BASELINE_SOURCE.json"},
+    "manifest_contract_version":{"type":["string","null"]},
+    "audit_contract_version":{"const":"openpq-cano-offline-audit-v1"},
+    "target":{"type":["object","null"]},
+    "evaluation_time":{"type":["string","null"]},
+    "aggregate_status":{"enum":["VALID","INVALID"]},
+    "projection_status":{"enum":["RESOLVED","UNRESOLVED","AMBIGUOUS","QUARANTINED","EXPIRED"]},
+    "action_eligible":{"const":false},
+    "publication_admitted":{"const":false},
+    "source_authenticated":{"const":false}
+  }
+}

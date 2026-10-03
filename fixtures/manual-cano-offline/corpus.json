@@ -1,0 +1,2987 @@
+{
+  "contract_version": "openpq-cano-offline-corpus-v1",
+  "fixture_only": true,
+  "fixed_default_evaluation_time": "2030-01-15T12:00:00.000Z",
+  "source_note": "Synthetic only. No operational meaning. R2 vectors copied from F12 handoff; supplemental graph vectors derive from immutable F11 review fixtures except superseded boundary cases.",
+  "r2_vectors": [
+    {
+      "id": "F12-TV-01",
+      "title": "exact raw bytes",
+      "entry_point": "buildCanoShadowFromRaw",
+      "input": {
+        "raw_utf8": "{\"schema_version\":\"marine-ops-manual-1.0\",\"category\":\"cano\",\"date\":\"15/01/2030\",\"state\":\"RUNNING\",\"status_label\":\"Hoạt động bình thường\",\"valid_scope\":\"Ngày 15/01/2030 - cano du lịch An Thới, Phú Quốc\",\"recorded_at_vn\":\"2030-01-15T06:15:00+07:00\",\"confirmation_channel\":\"SYNTHETIC_FIXTURE_ONLY\",\"confirmed_by\":\"kenzuko\",\"evidence\":{\"category\":\"cano\",\"source\":\"JOTRIP_FIELD_CONFIRMATION\",\"source_tier\":\"FIELD\",\"evidence_class\":\"DIRECT\",\"status\":\"SYNTHETIC\",\"area\":\"Phú Quốc / An Thới\",\"confirmed_at_text\":\"SYNTHETIC\",\"evidence_note\":\"SYNTHETIC FIXTURE - NO OPERATIONAL MEANING\"},\"verification_note\":\"SYNTHETIC FIXTURE ONLY\"}",
+        "provenance": {
+          "repository": "kenzuko/Jotrip-Lab",
+          "commit_sha": "1111111111111111111111111111111111111111",
+          "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+          "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313"
+        }
+      },
+      "expected": {
+        "status": "VALID",
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "RUNNING",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+          "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-02",
+      "title": "wrong dataset",
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ],
+        "target": {
+          "dataset_id": "cano.operation.alternate",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "evaluation_time": "2030-01-15T12:00:00.000Z"
+      },
+      "expected": {
+        "ledger_status": "INVALID",
+        "projection_status": "UNRESOLVED",
+        "reason_codes": [
+          "TARGET_BINDING_MISMATCH"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-03",
+      "title": "wrong service area",
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ],
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "Alternate",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "evaluation_time": "2030-01-15T12:00:00.000Z"
+      },
+      "expected": {
+        "ledger_status": "INVALID",
+        "projection_status": "UNRESOLVED",
+        "reason_codes": [
+          "TARGET_BINDING_MISMATCH"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-04",
+      "title": "wrong operational day",
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ],
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-16",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "evaluation_time": "2030-01-15T12:00:00.000Z"
+      },
+      "expected": {
+        "ledger_status": "INVALID",
+        "projection_status": "UNRESOLVED",
+        "reason_codes": [
+          "TARGET_BINDING_MISMATCH"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-05",
+      "title": "author reason missing with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "RUNNING",
+            "source_author": null,
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "23f157163bae2a1578198b1e11edad4851df693bdb5381334edeb7dea631c397",
+          "revision_id": "70e2a17ed86aa8624a2d63ba32bdcd9e37626b6b371dade7e1052b6bc367e8f9",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-06",
+      "title": "UNKNOWN with no quarantine with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "UNKNOWN",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "4114d939e18ef021c0f37db13df35cdf84ee3e35cefdcf5012a1cb0c58a7904e",
+          "revision_id": "564eefac49bfc4907f4f9bcd4b0de43e3035b6c467be61ecee3065ce33f06e13",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-07",
+      "title": "FIELD_REQUIRED with no quarantine with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "FIELD_REQUIRED",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "ef21394961dffdfb17e0e318d9f15560f95f8d942069ee1998e0fb6e66151872",
+          "revision_id": "0a1b72ea78deefad7b2f2ff6bc833f013e8770d89462146dd88bc630f0ac90cf",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-08",
+      "title": "wrong policy with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "RUNNING",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "1bb1d458f138f6def61d9a7b2036534249eb7dc14e168864827e265496cf6798",
+          "revision_id": "861bd40d9932f32b442152ccb92933e926b457e44c53fe636f8fccd04d8a7674",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-09",
+      "title": "wrong path with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-16-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-16-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "RUNNING",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "6edcb87761d727bcfd406bbb95d0ecaad6d7a36c482073b86050c73d16b047c6",
+          "revision_id": "f08f9cd429b2f3944ff19ec52648d49fcb200b02807e5d7516a711654d4e1729",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-10",
+      "title": "valid_from differs with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-15T00:00:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "RUNNING",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "b1ae551b7f9f924b0b36033407a73dd92c03d732d2f1290e1c4022a3b6fdaddf",
+          "revision_id": "9ea529303cd30d03510424a001b4bc342b1f81722d5ad9f1a22cc8a151dcbe2c",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-11",
+      "title": "wrong expiry with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-16T17:00:00.000Z",
+            "reported_state": "RUNNING",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "f800d0628c0c18abcd9c75f252633cb9eeec00ad315c09408ec7d7821f4caee8",
+          "revision_id": "3c4de72012d2254c69f8cac7812613eb98259c8d620809b0b092f491886448da",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-12",
+      "title": "invalid calendar with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "manual-cano-an-thoi-v1"
+            },
+            "source_time": "2030-02-30T00:00:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "RUNNING",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "4d64636701db364e61f9bbb41ab58927ce092c7d1dd7b9baf66d53d0ad498301",
+          "revision_id": "89dd75a5c1129f631cbd15bc8440dbbe209036420bf68ecc6a7ccbc5031ed3fd",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-13",
+      "title": "wrong mapping with recomputed identity",
+      "entry_point": "validateCanoShadow",
+      "input": {
+        "shadow": {
+          "contract_version": "openpq-cano-manual-shadow-v1",
+          "fixture_only": true,
+          "source_pointer": {
+            "repository": "kenzuko/Jotrip-Lab",
+            "commit_sha": "1111111111111111111111111111111111111111",
+            "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+          },
+          "normalized_record": {
+            "contract_version": "openpq-manual-cano-stage-v1",
+            "mode": "SHADOW",
+            "dataset_id": "cano.operation.an-thoi",
+            "source": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+              "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+              "source_id": "JOTRIP_FIELD_CONFIRMATION",
+              "source_type": "MANUAL",
+              "identity_assurance": "SOURCE_RECORDED_ONLY"
+            },
+            "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+            "scope": {
+              "category": "cano",
+              "service_area": "An Thới, Phú Quốc",
+              "operational_day": "2030-01-15",
+              "timezone": "Asia/Ho_Chi_Minh",
+              "mapping_id": "alternate"
+            },
+            "source_time": "2030-01-14T23:15:00.000Z",
+            "valid_from": "2030-01-14T23:15:00.000Z",
+            "valid_to": "2030-01-15T17:00:00.000Z",
+            "reported_state": "RUNNING",
+            "source_author": "kenzuko",
+            "normalization_status": "NORMALIZED_SHADOW",
+            "reason_codes": [],
+            "publication_admitted": false
+          },
+          "normalized_record_digest": "0c0fe75eb3409906569e554f5709838bbf949f73c8b22083c543b0e0b6b4db51",
+          "revision_id": "2bbe607df501c3d85e4dc47775150871c99d844c823c5f6d4a979e145e8b5fc7",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "NORMALIZED_RECORD_INCONSISTENT"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-14",
+      "title": "empty ledger",
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "wrappers": [],
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "evaluation_time": "2030-01-15T12:00:00.000Z"
+      },
+      "expected": {
+        "ledger_status": "VALID",
+        "projection_status": "UNRESOLVED"
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-15",
+      "title": "not yet effective",
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ],
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "evaluation_time": "2030-01-14T23:14:59.999Z"
+      },
+      "expected": {
+        "ledger_status": "VALID",
+        "projection_status": "UNRESOLVED"
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-16",
+      "title": "boundary expiry",
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ],
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "evaluation_time": "2030-01-15T17:00:00.000Z"
+      },
+      "expected": {
+        "ledger_status": "VALID",
+        "projection_status": "EXPIRED"
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-17",
+      "title": "invalid evaluation calendar",
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ],
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "evaluation_time": "2030-02-30T12:00:00.000Z"
+      },
+      "expected": {
+        "ledger_status": "INVALID",
+        "projection_status": "UNRESOLVED",
+        "reason_codes": [
+          "EVALUATION_TIME_INVALID"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-18",
+      "title": "raw whitespace changes payload hash",
+      "entry_point": "buildCanoShadowFromRaw",
+      "input": {
+        "raw_utf8": "{\"schema_version\":\"marine-ops-manual-1.0\",\"category\":\"cano\",\"date\":\"15/01/2030\",\"state\":\"RUNNING\",\"status_label\":\"Hoạt động bình thường\",\"valid_scope\":\"Ngày 15/01/2030 - cano du lịch An Thới, Phú Quốc\",\"recorded_at_vn\":\"2030-01-15T06:15:00+07:00\",\"confirmation_channel\":\"SYNTHETIC_FIXTURE_ONLY\",\"confirmed_by\":\"kenzuko\",\"evidence\":{\"category\":\"cano\",\"source\":\"JOTRIP_FIELD_CONFIRMATION\",\"source_tier\":\"FIELD\",\"evidence_class\":\"DIRECT\",\"status\":\"SYNTHETIC\",\"area\":\"Phú Quốc / An Thới\",\"confirmed_at_text\":\"SYNTHETIC\",\"evidence_note\":\"SYNTHETIC FIXTURE - NO OPERATIONAL MEANING\"},\"verification_note\":\"SYNTHETIC FIXTURE ONLY\"}\n",
+        "provenance": {
+          "repository": "kenzuko/Jotrip-Lab",
+          "commit_sha": "1111111111111111111111111111111111111111",
+          "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+          "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313"
+        }
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "MANUAL_PAYLOAD_HASH_MISMATCH"
+        ]
+      },
+      "fixture_only": true
+    },
+    {
+      "id": "F12-TV-19",
+      "title": "mixed target days, do not silently filter",
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "0aa82328835201bedadc0ac66e64f295c2e492190f10157ff8dc25b2d8bffdad",
+            "wrapper_id": "97cb77dfeffaf3e144795e900600c2518435197dddc67e0df279410fc370d552",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-16-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-16-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-16",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T23:15:00.000Z",
+                "valid_from": "2030-01-15T23:15:00.000Z",
+                "valid_to": "2030-01-16T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "26eacd4766aee5bc02dd1d2314c33310e4ed5bd17ac84f7eb37018c5ebb2a6f4",
+              "revision_id": "0aa82328835201bedadc0ac66e64f295c2e492190f10157ff8dc25b2d8bffdad",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ],
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "evaluation_time": "2030-01-15T12:00:00.000Z"
+      },
+      "expected": {
+        "ledger_status": "INVALID",
+        "projection_status": "UNRESOLVED",
+        "reason_codes": [
+          "TARGET_BINDING_MISMATCH"
+        ]
+      },
+      "fixture_only": true
+    }
+  ],
+  "supplemental_graph_vectors": [
+    {
+      "id": "F11-TV-05",
+      "title": "exact duplicate replay is idempotent",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "byte-equivalent wrapper replay is informational, not a new revision"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "VALID",
+        "reason_codes": [
+          "CANO_EXACT_DUPLICATE_REPLAY",
+          "CANO_PROJECTION_SINGLE_TERMINAL"
+        ],
+        "retained_revision_count": 1,
+        "duplicate_revision_ids": [
+          "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73"
+        ]
+      }
+    },
+    {
+      "id": "F11-TV-07",
+      "title": "claimed revision ID mismatch is validation error",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "revision_id is recomputed from versioned identity material; caller claim is never trusted"
+      ],
+      "entry_point": "validateCanoRevisionWrapper",
+      "input": {
+        "wrapper": {
+          "contract_version": "openpq-cano-revision-wrapper-v1",
+          "fixture_only": true,
+          "revision_id": "9999999999999999999999999999999999999999999999999999999999999999",
+          "wrapper_id": "5f211959b120b529bc51472d997540385099527f0fe295763f748fc3dd585f46",
+          "shadow_record": {
+            "contract_version": "openpq-cano-manual-shadow-v1",
+            "fixture_only": true,
+            "source_pointer": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+            },
+            "normalized_record": {
+              "contract_version": "openpq-manual-cano-stage-v1",
+              "mode": "SHADOW",
+              "dataset_id": "cano.operation.an-thoi",
+              "source": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                "source_type": "MANUAL",
+                "identity_assurance": "SOURCE_RECORDED_ONLY"
+              },
+              "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+              "scope": {
+                "category": "cano",
+                "service_area": "An Thới, Phú Quốc",
+                "operational_day": "2030-01-15",
+                "timezone": "Asia/Ho_Chi_Minh",
+                "mapping_id": "manual-cano-an-thoi-v1"
+              },
+              "source_time": "2030-01-14T23:15:00.000Z",
+              "valid_from": "2030-01-14T23:15:00.000Z",
+              "valid_to": "2030-01-15T17:00:00.000Z",
+              "reported_state": "RUNNING",
+              "source_author": "kenzuko",
+              "normalization_status": "NORMALIZED_SHADOW",
+              "reason_codes": [],
+              "publication_admitted": false
+            },
+            "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          "supersedes": null,
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "VALIDATION_ERROR",
+        "reason_codes": [
+          "CANO_REVISION_ID_MISMATCH"
+        ],
+        "must_not_be_treated_as_new_revision": true
+      }
+    },
+    {
+      "id": "F11-TV-08",
+      "title": "same immutable source pointer with different content digest is conflict",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "repo+commit+path identifies one immutable source slot; multiple normalized digests for it are contradictory evidence, not ordinary revisions"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "43d058d9d79639c4f256d86e156ef5498519873db2364b3f407ad493523d899f",
+            "wrapper_id": "acedf59a2e0aba9707fe1c7facc3ef341a56ec4e6f54672d96aae60678c99ebd",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:16:00.000Z",
+                "valid_from": "2030-01-14T23:16:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "SUSPENDED",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "7bfa4453eb02d5ab5f904f1d54782198860b0f9373cdfa3732ae2c1692138078",
+              "revision_id": "43d058d9d79639c4f256d86e156ef5498519873db2364b3f407ad493523d899f",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "CANO_SOURCE_POINTER_CONTENT_CONFLICT",
+          "CANO_PROJECTION_GRAPH_INVALID"
+        ],
+        "projection_state": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "F11-TV-09",
+      "title": "supersedes target must exist in same ledger input",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "supersedes is an explicit graph edge and cannot point to an absent revision"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "319881d4144d3b4ae7ef55c2f8ca8187351f34ee9f7be1f392980395e9bbd227",
+            "wrapper_id": "151a19362518bc61ee68831e8a2f2dc21564d1731a81f0dceb6189517bdb51dd",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "4444444444444444444444444444444444444444",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "4444444444444444444444444444444444444444",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T02:00:00.000Z",
+                "valid_from": "2030-01-15T02:00:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RESTRICTED",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "41b7639402651c7d6726fd6dc72501790623f7efbe8e86085d428c1743743263",
+              "revision_id": "319881d4144d3b4ae7ef55c2f8ca8187351f34ee9f7be1f392980395e9bbd227",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "8888888888888888888888888888888888888888888888888888888888888888",
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "CANO_SUPERSEDES_TARGET_MISSING",
+          "CANO_PROJECTION_GRAPH_INVALID"
+        ],
+        "projection_state": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "F11-TV-10",
+      "title": "supersedes graph cycle is invalid",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "correction lineage must be acyclic; timestamp/order cannot break a cycle"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "de9e591151bfcc3bfb653d3902359e9421f1c06c1871f828cc799c5f135cae3d",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+            "wrapper_id": "3a3e4dda4ac04048c00fc891142797f23102abef4c61ca13625b0f4eee9019b1",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "2222222222222222222222222222222222222222",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "2222222222222222222222222222222222222222",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T01:00:00.000Z",
+                "valid_from": "2030-01-15T01:00:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "SUSPENDED",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "36063008f70f29c1c4888aa74acbbd10f27b8c791b12cbf4514d570d04507807",
+              "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "CANO_SUPERSEDES_CYCLE",
+          "CANO_PROJECTION_GRAPH_INVALID"
+        ],
+        "projection_state": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "F11-TV-14",
+      "title": "two unrelated terminal revisions stay ambiguous even if arrival order differs",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "latest timestamp/input order/Git ancestry does not invent correction semantics"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "319881d4144d3b4ae7ef55c2f8ca8187351f34ee9f7be1f392980395e9bbd227",
+            "wrapper_id": "cbfd8ec612fc1a92bbaecf281e82cda781e6b58e8d7b344de4b9dc1c619a0611",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "4444444444444444444444444444444444444444",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "4444444444444444444444444444444444444444",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T02:00:00.000Z",
+                "valid_from": "2030-01-15T02:00:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RESTRICTED",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "41b7639402651c7d6726fd6dc72501790623f7efbe8e86085d428c1743743263",
+              "revision_id": "319881d4144d3b4ae7ef55c2f8ca8187351f34ee9f7be1f392980395e9bbd227",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "VALID",
+        "reason_codes": [
+          "CANO_PROJECTION_MULTIPLE_TERMINALS"
+        ],
+        "projection_state": "AMBIGUOUS",
+        "terminal_revision_id": null,
+        "retained_revision_count": 2
+      }
+    },
+    {
+      "id": "F11-TV-15",
+      "title": "valid correction chain retains both revisions and projects explicit terminal",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "authoritative offline ledger retains immutable revisions; compatibility projection may select only the explicit terminal"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+            "wrapper_id": "3a3e4dda4ac04048c00fc891142797f23102abef4c61ca13625b0f4eee9019b1",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "2222222222222222222222222222222222222222",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "2222222222222222222222222222222222222222",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T01:00:00.000Z",
+                "valid_from": "2030-01-15T01:00:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "SUSPENDED",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "36063008f70f29c1c4888aa74acbbd10f27b8c791b12cbf4514d570d04507807",
+              "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "VALID",
+        "reason_codes": [
+          "CANO_PROJECTION_SINGLE_TERMINAL"
+        ],
+        "projection_state": "RESOLVED",
+        "terminal_revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+        "reported_state": "SUSPENDED",
+        "retained_revision_count": 2
+      }
+    },
+    {
+      "id": "F11-TV-16",
+      "title": "fixture requesting publish authority is structurally rejected",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "fixture_only is const true; publication_admitted/action_eligible are const false"
+      ],
+      "entry_point": "validateCanoRevisionWrapper",
+      "input": {
+        "wrapper": {
+          "contract_version": "openpq-cano-revision-wrapper-v1",
+          "fixture_only": false,
+          "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+          "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+          "shadow_record": {
+            "contract_version": "openpq-cano-manual-shadow-v1",
+            "fixture_only": true,
+            "source_pointer": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "1111111111111111111111111111111111111111",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+            },
+            "normalized_record": {
+              "contract_version": "openpq-manual-cano-stage-v1",
+              "mode": "SHADOW",
+              "dataset_id": "cano.operation.an-thoi",
+              "source": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                "source_type": "MANUAL",
+                "identity_assurance": "SOURCE_RECORDED_ONLY"
+              },
+              "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+              "scope": {
+                "category": "cano",
+                "service_area": "An Thới, Phú Quốc",
+                "operational_day": "2030-01-15",
+                "timezone": "Asia/Ho_Chi_Minh",
+                "mapping_id": "manual-cano-an-thoi-v1"
+              },
+              "source_time": "2030-01-14T23:15:00.000Z",
+              "valid_from": "2030-01-14T23:15:00.000Z",
+              "valid_to": "2030-01-15T17:00:00.000Z",
+              "reported_state": "RUNNING",
+              "source_author": "kenzuko",
+              "normalization_status": "NORMALIZED_SHADOW",
+              "reason_codes": [],
+              "publication_admitted": false
+            },
+            "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          "supersedes": null,
+          "action_eligible": true,
+          "publication_admitted": true
+        }
+      },
+      "expected": {
+        "status": "SCHEMA_REJECT",
+        "reason_codes": [
+          "CANO_FIXTURE_FENCE_VIOLATION"
+        ],
+        "publication_must_remain_closed": true
+      }
+    },
+    {
+      "id": "F11-TV-17",
+      "title": "claimed wrapper identity mismatch is validation error",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "wrapper_id is recomputed from revision_id + explicit supersedes; caller claim is never trusted"
+      ],
+      "entry_point": "validateCanoRevisionWrapper",
+      "input": {
+        "wrapper": {
+          "contract_version": "openpq-cano-revision-wrapper-v1",
+          "fixture_only": true,
+          "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+          "wrapper_id": "0000000000000000000000000000000000000000000000000000000000000000",
+          "shadow_record": {
+            "contract_version": "openpq-cano-manual-shadow-v1",
+            "fixture_only": true,
+            "source_pointer": {
+              "repository": "kenzuko/Jotrip-Lab",
+              "commit_sha": "2222222222222222222222222222222222222222",
+              "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+            },
+            "normalized_record": {
+              "contract_version": "openpq-manual-cano-stage-v1",
+              "mode": "SHADOW",
+              "dataset_id": "cano.operation.an-thoi",
+              "source": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "2222222222222222222222222222222222222222",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                "source_type": "MANUAL",
+                "identity_assurance": "SOURCE_RECORDED_ONLY"
+              },
+              "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+              "scope": {
+                "category": "cano",
+                "service_area": "An Thới, Phú Quốc",
+                "operational_day": "2030-01-15",
+                "timezone": "Asia/Ho_Chi_Minh",
+                "mapping_id": "manual-cano-an-thoi-v1"
+              },
+              "source_time": "2030-01-15T01:00:00.000Z",
+              "valid_from": "2030-01-15T01:00:00.000Z",
+              "valid_to": "2030-01-15T17:00:00.000Z",
+              "reported_state": "SUSPENDED",
+              "source_author": "kenzuko",
+              "normalization_status": "NORMALIZED_SHADOW",
+              "reason_codes": [],
+              "publication_admitted": false
+            },
+            "normalized_record_digest": "36063008f70f29c1c4888aa74acbbd10f27b8c791b12cbf4514d570d04507807",
+            "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          "supersedes": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+          "action_eligible": false,
+          "publication_admitted": false
+        }
+      },
+      "expected": {
+        "status": "VALIDATION_ERROR",
+        "reason_codes": [
+          "CANO_WRAPPER_ID_MISMATCH"
+        ]
+      }
+    },
+    {
+      "id": "F11-TV-18",
+      "title": "same revision cannot arrive with two different wrapper relations",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "revision identity is content/provenance identity; one revision cannot have two contradictory semantic-edge wrappers"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "de9e591151bfcc3bfb653d3902359e9421f1c06c1871f828cc799c5f135cae3d",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+            "wrapper_id": "3a3e4dda4ac04048c00fc891142797f23102abef4c61ca13625b0f4eee9019b1",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "2222222222222222222222222222222222222222",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "2222222222222222222222222222222222222222",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T01:00:00.000Z",
+                "valid_from": "2030-01-15T01:00:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "SUSPENDED",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "36063008f70f29c1c4888aa74acbbd10f27b8c791b12cbf4514d570d04507807",
+              "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "CANO_REVISION_WRAPPER_CONFLICT",
+          "CANO_PROJECTION_GRAPH_INVALID"
+        ],
+        "projection_state": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "F11-TV-19",
+      "title": "single quarantined terminal never becomes resolved projection",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "quarantine is not a structural validation failure but cannot become a resolved projection"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "28ade57bb190bf302f0dfa179f8584fbd2c75b12a9d27586f17a41498d1e5fa7",
+            "wrapper_id": "71562e0619680efd56600fe0e61c5b9715b7f4a52e5b27197e1471d85ba38039",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "3333333333333333333333333333333333333333",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "3333333333333333333333333333333333333333",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T00:00:00.000Z",
+                "valid_from": "2030-01-15T00:00:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": null,
+                "normalization_status": "QUARANTINED",
+                "reason_codes": [
+                  "MANUAL_AUTHOR_NOT_EXPLICIT"
+                ],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "0cd076ecf9bf95d804248294cc1bfe6bcb529a0023a61591f6c35ab3de24d17a",
+              "revision_id": "28ade57bb190bf302f0dfa179f8584fbd2c75b12a9d27586f17a41498d1e5fa7",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "VALID",
+        "reason_codes": [
+          "CANO_PROJECTION_TERMINAL_QUARANTINED"
+        ],
+        "projection_state": "QUARANTINED",
+        "terminal_revision_id": "28ade57bb190bf302f0dfa179f8584fbd2c75b12a9d27586f17a41498d1e5fa7",
+        "reported_state": null
+      }
+    },
+    {
+      "id": "F11-TV-20",
+      "title": "self supersedes is invalid",
+      "fixture_only": true,
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "normative_basis": [
+        "a semantic correction edge cannot self-reference"
+      ],
+      "entry_point": "reduceCanoLedger",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "0e2280200baea8ed23417f39d29eb830d9938cb2a3e2130e8a2e96de15d7b698",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "INVALID",
+        "reason_codes": [
+          "CANO_SUPERSEDES_SELF",
+          "CANO_PROJECTION_GRAPH_INVALID"
+        ],
+        "projection_state": "UNRESOLVED"
+      }
+    },
+    {
+      "id": "F12-SUP-CORRECTION-PERM-1",
+      "title": "explicit correction permutation 1",
+      "fixture_only": true,
+      "entry_point": "reduceCanoLedger",
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+            "wrapper_id": "3a3e4dda4ac04048c00fc891142797f23102abef4c61ca13625b0f4eee9019b1",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "2222222222222222222222222222222222222222",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "2222222222222222222222222222222222222222",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T01:00:00.000Z",
+                "valid_from": "2030-01-15T01:00:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "SUSPENDED",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "36063008f70f29c1c4888aa74acbbd10f27b8c791b12cbf4514d570d04507807",
+              "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "VALID",
+        "reason_codes": [
+          "CANO_PROJECTION_SINGLE_TERMINAL"
+        ],
+        "terminal_revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+        "reported_state": "SUSPENDED",
+        "retained_revision_count": 2
+      }
+    },
+    {
+      "id": "F12-SUP-CORRECTION-PERM-2",
+      "title": "explicit correction permutation 2",
+      "fixture_only": true,
+      "entry_point": "reduceCanoLedger",
+      "evaluation_time": "2030-01-15T12:00:00.000Z",
+      "input": {
+        "target": {
+          "dataset_id": "cano.operation.an-thoi",
+          "scope": {
+            "category": "cano",
+            "service_area": "An Thới, Phú Quốc",
+            "operational_day": "2030-01-15",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "mapping_id": "manual-cano-an-thoi-v1"
+          }
+        },
+        "wrappers": [
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "wrapper_id": "e7d0fbb16e844728fa4036546bbfe36378ae2e248db59771a0bcedb2dbf7e855",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "1111111111111111111111111111111111111111",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "1111111111111111111111111111111111111111",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-14T23:15:00.000Z",
+                "valid_from": "2030-01-14T23:15:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "RUNNING",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "94c348c90baa8c6f3b5d7a35827968d165ffa00af262b739d1b41159aec82bae",
+              "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": null,
+            "action_eligible": false,
+            "publication_admitted": false
+          },
+          {
+            "contract_version": "openpq-cano-revision-wrapper-v1",
+            "fixture_only": true,
+            "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+            "wrapper_id": "3a3e4dda4ac04048c00fc891142797f23102abef4c61ca13625b0f4eee9019b1",
+            "shadow_record": {
+              "contract_version": "openpq-cano-manual-shadow-v1",
+              "fixture_only": true,
+              "source_pointer": {
+                "repository": "kenzuko/Jotrip-Lab",
+                "commit_sha": "2222222222222222222222222222222222222222",
+                "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json"
+              },
+              "normalized_record": {
+                "contract_version": "openpq-manual-cano-stage-v1",
+                "mode": "SHADOW",
+                "dataset_id": "cano.operation.an-thoi",
+                "source": {
+                  "repository": "kenzuko/Jotrip-Lab",
+                  "commit_sha": "2222222222222222222222222222222222222222",
+                  "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+                  "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                  "source_id": "JOTRIP_FIELD_CONFIRMATION",
+                  "source_type": "MANUAL",
+                  "identity_assurance": "SOURCE_RECORDED_ONLY"
+                },
+                "policy_hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358",
+                "scope": {
+                  "category": "cano",
+                  "service_area": "An Thới, Phú Quốc",
+                  "operational_day": "2030-01-15",
+                  "timezone": "Asia/Ho_Chi_Minh",
+                  "mapping_id": "manual-cano-an-thoi-v1"
+                },
+                "source_time": "2030-01-15T01:00:00.000Z",
+                "valid_from": "2030-01-15T01:00:00.000Z",
+                "valid_to": "2030-01-15T17:00:00.000Z",
+                "reported_state": "SUSPENDED",
+                "source_author": "kenzuko",
+                "normalization_status": "NORMALIZED_SHADOW",
+                "reason_codes": [],
+                "publication_admitted": false
+              },
+              "normalized_record_digest": "36063008f70f29c1c4888aa74acbbd10f27b8c791b12cbf4514d570d04507807",
+              "revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+              "action_eligible": false,
+              "publication_admitted": false
+            },
+            "supersedes": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73",
+            "action_eligible": false,
+            "publication_admitted": false
+          }
+        ]
+      },
+      "expected": {
+        "status": "VALID",
+        "reason_codes": [
+          "CANO_PROJECTION_SINGLE_TERMINAL"
+        ],
+        "terminal_revision_id": "72241908bbdf3bdacefb3cd85ae2c2e24047b78d3cccfc3bdad565a884f84d29",
+        "reported_state": "SUSPENDED",
+        "retained_revision_count": 2
+      }
+    }
+  ],
+  "historical_vector_migration": [
+    {
+      "id": "F11-TV-01",
+      "r2_disposition": "SUPERSEDED_BY_F12-TV-01",
+      "reason": "F11 raw_source object is descriptive only; R2 requires exact raw UTF-8 bytes."
+    },
+    {
+      "id": "F11-TV-04",
+      "r2_disposition": "REPLACED_BY_RAW_BOUNDARY_TEST",
+      "reason": "R2 raw boundary uses exact raw UTF-8; missing-author behavior is retested with actual normalizeManualCano."
+    },
+    {
+      "id": "F11-TV-11",
+      "r2_disposition": "TARGET_BINDING_MISMATCH",
+      "reason": "Target-bound reduction rejects coherent cross-day wrapper before graph edge semantics."
+    },
+    {
+      "id": "F11-TV-12",
+      "r2_disposition": "NORMALIZED_RECORD_INCONSISTENT",
+      "reason": "Alternate service area/mapping violates R2 normalized coherence before graph edge semantics."
+    },
+    {
+      "id": "F11-TV-13",
+      "r2_disposition": "NORMALIZED_RECORD_INCONSISTENT",
+      "reason": "Alternate dataset violates R2 normalized coherence before graph edge semantics."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openpq.local/schemas/openpq-cano-revision-wrapper-v1.schema.json",
+  "title": "OpenPQ Cano Revision Wrapper v1 - PROPOSED_NOT_ACTIVATED",
+  "$comment": "Offline/fixture wrapper only. revision_id equality, wrapper_id recompute, graph edges and pointer conflicts require semantic validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "fixture_only",
+    "revision_id",
+    "wrapper_id",
+    "shadow_record",
+    "supersedes",
+    "action_eligible",
+    "publication_admitted"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "openpq-cano-revision-wrapper-v1"
+    },
+    "fixture_only": {
+      "const": true
+    },
+    "revision_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "wrapper_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "shadow_record": {
+      "$ref": "https://openpq.local/schemas/openpq-cano-manual-shadow-v1.schema.json"
+    },
+    "supersedes": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      ]
+    },
+    "action_eligible": {
+      "const": false
+    },
+    "publication_admitted": {
+      "const": false
+    }
+  }
+}

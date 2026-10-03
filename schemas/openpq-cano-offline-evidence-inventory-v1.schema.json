@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://openpq.local/schemas/openpq-cano-offline-evidence-inventory-v1.schema.json",
+  "title":"OpenPQ Cano Offline Evidence Inventory v1",
+  "type":"object","additionalProperties":false,
+  "required":["contract_version","fixture_only","files","total_bytes","inventory_payload_sha256"],
+  "properties":{
+    "contract_version":{"const":"openpq-cano-offline-evidence-inventory-v1"},
+    "fixture_only":{"const":true},
+    "files":{"type":"array","maxItems":128,"items":{"type":"object","additionalProperties":false,"required":["path","size","sha256"],"properties":{"path":{"type":"string","minLength":1,"maxLength":512},"size":{"type":"integer","minimum":0,"maximum":524288},"sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"}}}},
+    "total_bytes":{"type":"integer","minimum":0,"maximum":4194304},
+    "inventory_payload_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}

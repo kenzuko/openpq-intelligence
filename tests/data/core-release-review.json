@@ -1,0 +1,595 @@
+{
+  "contract_version": "openpq-core-release-review-v1",
+  "core_base_sha": "c8d020acd14267f673ffae1dc06f851f511b2027",
+  "current_core_main_sha": "c8d020acd14267f673ffae1dc06f851f511b2027",
+  "source_changes_sha256": "e889f83b86156c9813c86cf8ce53b4114cbef0260be756916a126ded5131e58c",
+  "native_snapshot_proofs": [
+    {
+      "domain": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 206,
+      "issues": [
+        {
+          "code": "WEATHER_OBSERVATION_UNKNOWN_SOURCE_TIME",
+          "record_id": "synop:48917"
+        },
+        {
+          "code": "WEATHER_OBSERVATION_TIME_UNRESOLVED",
+          "record_id": "synop:48917"
+        },
+        {
+          "code": "WEATHER_OBSERVATION_OUTSIDE_REPORTED_BUDGET",
+          "record_id": "rain:an_thoi"
+        },
+        {
+          "code": "WEATHER_OBSERVATION_OUTSIDE_REPORTED_BUDGET",
+          "record_id": "rain:bai_thom"
+        },
+        {
+          "code": "WEATHER_OBSERVATION_OUTSIDE_REPORTED_BUDGET",
+          "record_id": "rain:cua_can"
+        },
+        {
+          "code": "WEATHER_LIGHTNING_NOT_DIRECTLY_OBSERVED"
+        },
+        {
+          "code": "WEATHER_MODEL_RUN_LINK_UNRESOLVED",
+          "records": 192
+        }
+      ],
+      "candidate_bytes": 49628,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/current.json",
+          "repository": "kenzuko/Jotrip-Weather"
+        },
+        "payload_sha256": "c31c09373d29d89f9e5b3afd7b533c2ebe1dff8831d104cabe10d45d8e092816",
+        "git_blob_sha": "6c50a19601d9a20e4bdebeddd49327317a1b6078"
+      },
+      "profile_hash": "91aaeaa3325b95442efe0837160ca00aab46b385c61bdd8cab0a3a0a39042eab",
+      "generation_digest": "d6cacffdefcd97df9739abce413991bf449b93dbdafbe1b759bd23124214ab2d",
+      "legacy_payload_digest": "b08bd1429938605a43943ea6777c8575caa7480acc54535e7ecc95a95f8ccf6e",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "weather_forecast",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 26,
+      "issues": [],
+      "candidate_bytes": 51140,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/forecast.json"
+        },
+        "payload_sha256": "490f416c7e3c291824c7915841c5fba079ee03cc41a8d656e6b725d9eca96d1f",
+        "git_blob_sha": "ed692ecb69c8813c84bbdad10240dac1f0577010"
+      },
+      "profile_hash": "28996f4f7fefed719f4b67b93b962fb3d1ad47a81b45868128bfd103e8211a16",
+      "generation_digest": "530cf7a88f735a254a933b45ffa9827d1c1933167126839b8d4f946c4d968623",
+      "legacy_payload_digest": "c6b5c800089c98b00a129587cc12fd1cc9f0bd732f024a21e3d8c1a9135cfdb8",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "weather_marine",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 2,
+      "issues": [],
+      "candidate_bytes": 26011,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/marine.json"
+        },
+        "payload_sha256": "e4ed10ae6c9b4a13319360634b7a9ae13a74df61f94857eb821ad63dd1d8bbb6",
+        "git_blob_sha": "33c4371d960bc3a2dc283e436030354e4d19f850"
+      },
+      "profile_hash": "f8182486470a5cffdaf4558580943e409a10ef417d5a1737f01cecc60f55acb4",
+      "generation_digest": "34d7054eb052573a3786d331645cf173b13afa213cc115ed2ce4b095dc0d0882",
+      "legacy_payload_digest": "124a360250f8898c537ec7f9ffb05a9354c0445c32224e8bc5e541ba6e2355ca",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "weather_cloud",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 6,
+      "issues": [],
+      "candidate_bytes": 154927,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/cloud.json"
+        },
+        "payload_sha256": "07d4623174ae2166652bd51750099ea2b560fc8ae60e2d7dd224c2c213004a61",
+        "git_blob_sha": "f803583fe824cbc3dca3a97eaedd040f46d48a82"
+      },
+      "profile_hash": "516f2b1403dc84ee9db5092a9b3a4712445a2e9b8c05a6428c2d65fd879a1a17",
+      "generation_digest": "c586be3e2ffb53eb047d9cd85f538807b2153156fe348098014a39dcc748c367",
+      "legacy_payload_digest": "7ab716924a420630905c2dff4af36bc725fe826af6bae36421a6b9185113c8ca",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "weather_compact",
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 1,
+      "issues": [],
+      "candidate_bytes": 10442,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/compact.json"
+        },
+        "payload_sha256": "ec578eb6727cd00b8d4c343c814c57709a0caac1ce2fda264a8def2a95e51199",
+        "git_blob_sha": "f4460de272e14cae45be4928dd541368d2c993fc"
+      },
+      "profile_hash": "756e847b8de58197bcc01318f9ce41fa262200a69a228cea8b688e4938aa6dbb",
+      "generation_digest": "f7c90cda127a3744b23808f030775ff82e623a766dc84173bd2f3c5a750e59a1",
+      "legacy_payload_digest": "dcefdbd231a9374907f953d9323f00c6f6bb32a3aedcae38b1c2f2c688fb5b53",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "weather_meta",
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 1,
+      "issues": [],
+      "candidate_bytes": 7029,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/meta.json"
+        },
+        "payload_sha256": "03d88b72471d7abf8839c74cd043f3cc52597f6b065118a9d7d8a08bc5455b7c",
+        "git_blob_sha": "28130c572c00b6601ba68fcb3d1d8b1393bc3f17"
+      },
+      "profile_hash": "ada3b6ffe7f5e60c39a3e3dcc73051b3dc25523845e217e7306adbe218707a3e",
+      "generation_digest": "ed870f7c16bf42bdd98c4dd86052714fc0fd6bc88e37dd1f4a86703739ec6b72",
+      "legacy_payload_digest": "10b0a3aa4a3a8b22065960641ebbfb765fdd425921a11327105192ea71e6d6e2",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "weather_manifest",
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 1,
+      "issues": [],
+      "candidate_bytes": 5791,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/manifest.json"
+        },
+        "payload_sha256": "fe40aacbcacebff6e27c491103ba62005a3c4d8c97657039a53b9b6547f3faf9",
+        "git_blob_sha": "bba298b5f2820aed17ad9c74feb3f8a144779927"
+      },
+      "profile_hash": "0cdfe853300f6b4d557073a91f577a1a12c9ecc6760e4e810ba9a2dafbd03e9b",
+      "generation_digest": "d37c6678f70ca8f5c784bc5ae0b423f8371f047b55fb60b7d32b6b0cd8084e3e",
+      "legacy_payload_digest": "ec7f04229e79108291df3ce8c747ad9ab6a09861ae3bf7c715f2262e16871eb8",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "airport",
+      "dataset_id": "airport.bridge.pqc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 127,
+      "issues": [],
+      "candidate_bytes": 25043,
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://jotrip-airport-live.kenzuko.workers.dev"
+        },
+        "payload_sha256": "6ce1c0d38bac2f3d2a414ca643e7d534cd979d4b2782a3cd057cb97546192d86",
+        "git_blob_sha": null
+      },
+      "profile_hash": "c1e10f92d61be9baef2377152fc38219f760457e313951a9bdc59766b223a657",
+      "generation_digest": "d3cd596b31d5772d2d0b8ee5c71ea4e4ee52713048214edcc382eba96e3950d3",
+      "legacy_payload_digest": "b605d67b8874284fdb69c7b23f85e1d606a708a1ced7b233ee4078f43264e64e",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "transit",
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 44,
+      "issues": [
+        {
+          "code": "TRANSIT_PROVIDER_ERROR",
+          "provider_id": "binh_an",
+          "records": 0
+        },
+        {
+          "code": "TRANSIT_STATUS_TIME_NOT_EXPLICIT",
+          "records": 41
+        }
+      ],
+      "candidate_bytes": 14414,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "commit_sha": "07b47173870fc7629c872739bf08f0b6d329d7f9",
+          "path": "data/network.json",
+          "repository": "kenzuko/transit-jotrip"
+        },
+        "payload_sha256": "d4f00073c67e049d7baf5da8fa5c5a7115376021efe972f39a080fc9e15b62ea",
+        "git_blob_sha": "12e5c7679d5399e77831c418ef3e26dbdb087407"
+      },
+      "profile_hash": "ae6ee4d0643e4896c3764bf77b297fef09a78e051dd9085d00d50b8f58aced6c",
+      "generation_digest": "09c8867867445667f5fb78045519891b4dac4876b64fa0aa3a74c7dbfe0e4f1d",
+      "legacy_payload_digest": "36744be3efd384890e124dc54cddf92e46a40dad1e78dc877ad6835002ed0008",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    },
+    {
+      "domain": "nearme",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": "PASS_NATIVE_PORTABLE_PUBLICATION_READBACK",
+      "records": 348,
+      "issues": [
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_hon_thom"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_kiss_of_the_sea"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_once_show"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_sac_mau_venice"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_symphony_of_the_sea"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "activity_tinh_hoa_viet_nam"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_bai_khem"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_bai_sao"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_bai_truong"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_kiss_bridge"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_cua_can"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_exotica"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_gieng_tien"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_grand_world"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_ham_ninh"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_rach_vem"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_sunset_town"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_suoi_da_ban"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_suoi_da_ngon"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_suoi_tien"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "place_teddy_bear_museum"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "utility_minimart_cs68_sunset"
+        },
+        {
+          "code": "NEARME_AREA_ANCHOR_NOT_ENTRANCE",
+          "record_id": "utility_minimart_homemart_an_thoi"
+        },
+        {
+          "code": "NEARME_EXPLICIT_DUPLICATE_EXCLUDED",
+          "record_id": "utility_osm_node_11873236278",
+          "target": "utility_dmx_ganhdau_to7"
+        },
+        {
+          "code": "NEARME_EXPLICIT_DUPLICATE_EXCLUDED",
+          "record_id": "utility_osm_node_6483568745",
+          "target": "utility_tgdd_73_nvc"
+        }
+      ],
+      "candidate_bytes": 110282,
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "commit_sha": "9c4267c8a10d8b06578eb63f4244a17bda1dcaff",
+          "path": "data/views/location-index.json",
+          "repository": "kenzuko/jotrip-home"
+        },
+        "payload_sha256": "9a1618f1a1561a02481f0f8f9f9cc462a2d39d79f5ecf2ec00232659425552c0",
+        "git_blob_sha": "7a2d6dfc074514f8754d0bcbf6f90d0fcb331b4f"
+      },
+      "profile_hash": "fcf955441258578a3e35c9977a0121a32cb8b7266caa7d046e83dc82376da89e",
+      "generation_digest": "37d7ba91dea2be14920c1b61646581e325f0d68f0cba0e4717d25ce605e5d1ae",
+      "legacy_payload_digest": "a6148043af764e75e61465bbde211b9c997b9dd54509bd488378cb91347dce46",
+      "source_exact_git_or_http_digest_verified": true,
+      "portable_readback_after_native_disposal": true,
+      "native_outage_signed_fallback_abstain": true,
+      "native_corrupt_generation_denied_then_original_restored": true,
+      "native_expiry_denied_during_control_outage": true,
+      "wrong_trust_and_corrupt_marker_denied": true,
+      "offsite_proven": false,
+      "control_authenticity_verified": false,
+      "audit_authenticity_verified": false,
+      "writer_resumed": false,
+      "legacy_shape_parity": "EXACT_PARSED_JSON_AFTER_INDEPENDENT_SIGNATURE_VERIFICATION",
+      "clock": "CAPTURED_SOURCE_REPLAY",
+      "evaluated_at": "2026-10-03T01:12:00.000Z",
+      "authority_revision": 1,
+      "receipt_signature": "EPHEMERAL_LOCAL_KEY",
+      "operator_authentication": "LOCAL_TEST_CAPABILITY_ONLY",
+      "source_policies_activated": false,
+      "producer_independent": false,
+      "operational_action_allowed": false,
+      "production_enabled": false
+    }
+  ],
+  "independent_readback_count": 10,
+  "owner_bindings": [
+    {
+      "domain": "Weather",
+      "target_environment": null,
+      "authority_locator_ref": null,
+      "operator_identity_ref": null,
+      "approved_policy_set_ref": null,
+      "previous_deployment_ref": null
+    },
+    {
+      "domain": "Airport",
+      "target_environment": null,
+      "authority_locator_ref": null,
+      "operator_identity_ref": null,
+      "approved_policy_set_ref": null,
+      "previous_deployment_ref": null
+    },
+    {
+      "domain": "Transit",
+      "target_environment": null,
+      "authority_locator_ref": null,
+      "operator_identity_ref": null,
+      "approved_policy_set_ref": null,
+      "previous_deployment_ref": null
+    },
+    {
+      "domain": "Near Me",
+      "target_environment": null,
+      "authority_locator_ref": null,
+      "operator_identity_ref": null,
+      "approved_policy_set_ref": null,
+      "previous_deployment_ref": null
+    }
+  ],
+  "remote_writes": 0,
+  "operational_action_allowed": false,
+  "content_hash": "9bbcbe0260ac3ffd2fc1a5a8373ea36694f631cbefdd12fcbb9964734ea2ba14"
+}

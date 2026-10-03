@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openpq.local/schemas/openpq-cano-offline-import-manifest-v1.schema.json",
+  "title": "OpenPQ Cano Offline Import Manifest v1 - FIXTURE ONLY",
+  "$comment": "F13 local-file harness only. This is not an operational quota, publication wire, or production admission contract.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "fixture_only", "target", "evaluation_time", "records"],
+  "properties": {
+    "contract_version": {"const": "openpq-cano-offline-import-manifest-v1"},
+    "fixture_only": {"const": true},
+    "target": {"$ref": "#/$defs/target"},
+    "evaluation_time": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"},
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {"$ref": "#/$defs/record"}
+    }
+  },
+  "$defs": {
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dataset_id", "scope"],
+      "properties": {
+        "dataset_id": {"type": "string", "pattern": "^cano\\.operation\\.[a-z0-9-]+$"},
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["category", "service_area", "operational_day", "timezone", "mapping_id"],
+          "properties": {
+            "category": {"const": "cano"},
+            "service_area": {"type": "string", "minLength": 1, "maxLength": 128},
+            "operational_day": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+            "timezone": {"const": "Asia/Ho_Chi_Minh"},
+            "mapping_id": {"type": "string", "minLength": 1, "maxLength": 128}
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit_sha", "path", "payload_sha256"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1, "maxLength": 128},
+        "commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "path": {"type": "string", "minLength": 1, "maxLength": 512},
+        "payload_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw_file", "provenance", "supersedes"],
+      "properties": {
+        "raw_file": {"type": "string", "minLength": 1, "maxLength": 512, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"},
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "supersedes": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          ]
+        }
+      }
+    }
+  }
+}

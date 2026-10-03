@@ -1,0 +1,12 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://openpq.local/schemas/openpq-cano-offline-baseline-source-v1.schema.json",
+  "title":"OpenPQ Cano Offline Reviewed Pipeline Baseline v1",
+  "type":"object","additionalProperties":false,
+  "required":["contract_version","files","baseline_source_sha256"],
+  "properties":{
+    "contract_version":{"const":"openpq-cano-offline-baseline-source-v1"},
+    "files":{"type":"array","minItems":1,"maxItems":64,"items":{"type":"object","additionalProperties":false,"required":["path","size","sha256"],"properties":{"path":{"type":"string","minLength":1,"maxLength":512},"size":{"type":"integer","minimum":0,"maximum":524288},"sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"}}}},
+    "baseline_source_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}

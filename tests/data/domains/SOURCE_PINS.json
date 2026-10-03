@@ -1,0 +1,135 @@
+{
+  "fixture_only": false,
+  "source_authority": "CAPTURED_OWNED_OUTPUTS_ONLY",
+  "evaluation_time": "2026-10-03T01:12:00.000Z",
+  "pins": {
+    "weather": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/current.json",
+        "repository": "kenzuko/Jotrip-Weather"
+      },
+      "payload_sha256": "c31c09373d29d89f9e5b3afd7b533c2ebe1dff8831d104cabe10d45d8e092816",
+      "git_blob_sha": "6c50a19601d9a20e4bdebeddd49327317a1b6078"
+    },
+    "airport_archive": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "commit_sha": "55fd2484b08ce815d97de5e26fa88c0bf6fb6bca",
+        "path": "data/sunairport/latest.json",
+        "repository": "kenzuko/Jotrip-Lab"
+      },
+      "payload_sha256": "a823c93463d8779da56309ac1ef51f88e67530a74910182afa5b83acc16927a3",
+      "git_blob_sha": "2f505ebce2b476294a7c6758eb892ced821f9dfd"
+    },
+    "transit": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "commit_sha": "07b47173870fc7629c872739bf08f0b6d329d7f9",
+        "path": "data/network.json",
+        "repository": "kenzuko/transit-jotrip"
+      },
+      "payload_sha256": "d4f00073c67e049d7baf5da8fa5c5a7115376021efe972f39a080fc9e15b62ea",
+      "git_blob_sha": "12e5c7679d5399e77831c418ef3e26dbdb087407"
+    },
+    "nearme": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "commit_sha": "9c4267c8a10d8b06578eb63f4244a17bda1dcaff",
+        "path": "data/views/location-index.json",
+        "repository": "kenzuko/jotrip-home"
+      },
+      "payload_sha256": "9a1618f1a1561a02481f0f8f9f9cc462a2d39d79f5ecf2ec00232659425552c0",
+      "git_blob_sha": "7a2d6dfc074514f8754d0bcbf6f90d0fcb331b4f"
+    },
+    "airport": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "source_pointer": {
+        "url": "https://jotrip-airport-live.kenzuko.workers.dev"
+      },
+      "payload_sha256": "6ce1c0d38bac2f3d2a414ca643e7d534cd979d4b2782a3cd057cb97546192d86",
+      "git_blob_sha": null
+    },
+    "weather_forecast": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/forecast.json"
+      },
+      "payload_sha256": "490f416c7e3c291824c7915841c5fba079ee03cc41a8d656e6b725d9eca96d1f",
+      "git_blob_sha": "ed692ecb69c8813c84bbdad10240dac1f0577010"
+    },
+    "weather_marine": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/marine.json"
+      },
+      "payload_sha256": "e4ed10ae6c9b4a13319360634b7a9ae13a74df61f94857eb821ad63dd1d8bbb6",
+      "git_blob_sha": "33c4371d960bc3a2dc283e436030354e4d19f850"
+    },
+    "weather_cloud": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/cloud.json"
+      },
+      "payload_sha256": "07d4623174ae2166652bd51750099ea2b560fc8ae60e2d7dd224c2c213004a61",
+      "git_blob_sha": "f803583fe824cbc3dca3a97eaedd040f46d48a82"
+    },
+    "weather_compact": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/compact.json"
+      },
+      "payload_sha256": "ec578eb6727cd00b8d4c343c814c57709a0caac1ce2fda264a8def2a95e51199",
+      "git_blob_sha": "f4460de272e14cae45be4928dd541368d2c993fc"
+    },
+    "weather_meta": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/meta.json"
+      },
+      "payload_sha256": "03d88b72471d7abf8839c74cd043f3cc52597f6b065118a9d7d8a08bc5455b7c",
+      "git_blob_sha": "28130c572c00b6601ba68fcb3d1d8b1393bc3f17"
+    },
+    "weather_manifest": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/manifest.json"
+      },
+      "payload_sha256": "fe40aacbcacebff6e27c491103ba62005a3c4d8c97657039a53b9b6547f3faf9",
+      "git_blob_sha": "bba298b5f2820aed17ad9c74feb3f8a144779927"
+    },
+    "nearme_support": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/jotrip-home",
+        "commit_sha": "9c4267c8a10d8b06578eb63f4244a17bda1dcaff",
+        "path": "data/home-support.json"
+      },
+      "payload_sha256": "fbe734897cba7fe6f577993fc458fe800b56df06d43b060c3fc45283f7d811e7",
+      "git_blob_sha": "1c8e151baff0e14247d7ed7fdc17ce2b8393552a"
+    },
+    "nearme_venues": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/jotrip-home",
+        "commit_sha": "9c4267c8a10d8b06578eb63f4244a17bda1dcaff",
+        "path": "data/entities/destination-venues.json"
+      },
+      "payload_sha256": "1b3c447861046a5a083d2bcf29f46a290bbb7d8e74952ceaeef07d462b4109c6",
+      "git_blob_sha": "15e3b3c43bf19f64eaa8b028e9da3d5b88ba7822"
+    }
+  }
+}

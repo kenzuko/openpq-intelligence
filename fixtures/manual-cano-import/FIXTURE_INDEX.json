@@ -1,0 +1,46 @@
+{
+  "fixture_only": true,
+  "target": {
+    "dataset_id": "cano.operation.an-thoi",
+    "scope": {
+      "category": "cano",
+      "service_area": "An Thới, Phú Quốc",
+      "operational_day": "2030-01-15",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "mapping_id": "manual-cano-an-thoi-v1"
+    }
+  },
+  "evaluation_time": "2030-01-15T12:00:00.000Z",
+  "records": {
+    "base": {
+      "raw_file": "raw/base.raw.json",
+      "provenance": {
+        "repository": "kenzuko/Jotrip-Lab",
+        "commit_sha": "1111111111111111111111111111111111111111",
+        "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+        "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313"
+      },
+      "revision_id": "b7b31b2dc93178a90847384a273ac015c5992b4163be43913e3f90c826fada73"
+    },
+    "correction": {
+      "raw_file": "raw/correction.raw.json",
+      "provenance": {
+        "repository": "kenzuko/Jotrip-Lab",
+        "commit_sha": "2222222222222222222222222222222222222222",
+        "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+        "payload_sha256": "f6f6ae3a3498d8c4367749648cc6fcff3fca695a54bfd0067123c8b6aa66d09e"
+      },
+      "revision_id": "c43c77b7d24f90f16a63c81b2a33b9d13f6425cd19f97f9322623f7887b821ac"
+    },
+    "quarantine": {
+      "raw_file": "raw/quarantine.raw.json",
+      "provenance": {
+        "repository": "kenzuko/Jotrip-Lab",
+        "commit_sha": "3333333333333333333333333333333333333333",
+        "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+        "payload_sha256": "afb9b927918f923c366ed8b6043f6c41ed069bc1ccec206d0338f4df038d0d32"
+      },
+      "revision_id": "0942e80db1d3b5c0c1f14d221d55113335ad700bb66b465dbff5fd663bc49f7e"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { DurableObject } from 'cloudflare:workers';
 import { ContractError, candidate, hash, instant, locator, requireThat, revision, sameLocator, stable } from '../platform/contracts.js';
 import { authorize, principal } from '../platform/auth.js';
-import {validateSemanticAdmission} from '../platform/semantic-admission.js';
+import {validateSemanticAdmission,validateSemanticReplayActor} from '../platform/semantic-admission.js';
 import { attest, exportCheckpoint } from '../platform/receipts.js';
 
 function json(value,status=200) {return Response.json(value,{status,headers:{'cache-control':'no-store'}});}
@@ -49,7 +49,7 @@ export class DatasetCoordinator extends DurableObject {
       if (path==='/prepare') {
         requireThat(actor.mode==='LIVE','MODE_PROMOTION_DENIED',403);
         const c=candidate(body,now);requireThat(sameLocator(c,trust),'CANDIDATE_LOCATOR_MISMATCH',409);
-        await validateSemanticAdmission(this.env,trust,c,new Date(now).toISOString());
+        await validateSemanticAdmission(this.env,trust,c,new Date(now).toISOString(),actor);
         requireThat(actor.owner===this.state().owner && actor.epoch===this.state().epoch,'OWNER_EPOCH_DENIED',409);
         const digest=await hash(c), key=`generations/${trust.authority_instance_id}/${trust.recovery_generation}/${digest}.json`;
         const data=stable(c);const written=await this.env.CANONICAL.put(key,data,{onlyIf:{etagDoesNotMatch:'*'}});
@@ -73,7 +73,8 @@ export class DatasetCoordinator extends DurableObject {
         const deadline=instant(body.expires_at,'COMMAND_EXPIRES');
         // Validate a configured semantic generation before the transaction. Idempotent completed commands still return their exact prior receipt.
         const known=this.ctx.storage.sql.exec('SELECT digest,result FROM commands WHERE id=?',body.command_id).toArray()[0];
-        if(!known&&trust.semantic_profile_hash){const prepared=this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',body.digest).toArray()[0];requireThat(prepared,'NOT_PREPARED',409);await validateSemanticAdmission(this.env,trust,JSON.parse(prepared.body),new Date().toISOString());requireThat(sameLocator(this.trust(),trust),'TRUST_CHANGED',409);}
+        if(known)await validateSemanticReplayActor(this.env,trust,actor,JSON.parse(known.result),new Date().toISOString());
+        if(!known&&trust.semantic_profile_hash){const prepared=this.ctx.storage.sql.exec('SELECT body FROM prepared WHERE id=?',body.digest).toArray()[0];requireThat(prepared,'NOT_PREPARED',409);await validateSemanticAdmission(this.env,trust,JSON.parse(prepared.body),new Date().toISOString(),actor);requireThat(sameLocator(this.trust(),trust),'TRUST_CHANGED',409);}
         const receipt=this.ctx.storage.transactionSync(()=>{
           const now=Date.now();
           const s=this.state();requireThat(sameLocator(s,trust),'LOCATOR_CHANGED',409);

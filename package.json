@@ -13,7 +13,10 @@
     "check:cloud-bundles": "node scripts/cloud/dry-run.js",
     "replay:semantic": "node scripts/replay-semantic.js",
     "rehearse:technical": "node scripts/preparation/rehearse.js",
-    "readiness:technical": "node scripts/preparation/readiness.js fixtures/preparation/unresolved-domain.json"
+    "readiness:technical": "node scripts/preparation/readiness.js fixtures/preparation/unresolved-domain.json",
+    "import:cano:offline": "node scripts/import-manual-cano-offline.js fixtures/manual-cano-import manifest.happy.json",
+    "build:cano:evidence": "node scripts/build-manual-cano-evidence-bundle.js fixtures/manual-cano-import manifest.happy.json .tmp-cano-evidence-bundle",
+    "verify:cano:evidence": "node scripts/verify-manual-cano-evidence-bundle.js .tmp-cano-evidence-bundle fixtures/manual-cano-evidence/TRUSTED_BASELINE_PIN.json"
   },
   "devDependencies": {
     "miniflare": "4.20260730.0",

@@ -1,8 +1,8 @@
-name: Isolated Cloudflare protocol proof
+name: Core 2.0 isolated Cloudflare deployment
 on:
   workflow_dispatch:
   push:
-    branches: [cloud/protocol-regression-m5, cloud/protocol-regression-m5-hardening]
+    branches: [cloud/core2-20261003]
 permissions:
   contents: read
 concurrency:
@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm run check && npm run verify:handoff && npm test
+      - name: Pin dedicated Cloudflare account
+        run: node -e "if(process.env.CF_TEST_ACCOUNT_ID !== 'c61a28455fe22f30619b35dd80c2d495') process.exit(1)"
       - name: Read-only token/resource isolation preflight
         run: node scripts/cloud/preflight.js
       - name: Prepare unique fixture dataset and isolated configs

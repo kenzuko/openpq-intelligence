@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openpq:owned-domain-local:profile:v1",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "environment_id",
+    "dataset_id",
+    "domain",
+    "fixture_only",
+    "source_pin",
+    "operator_principal_ids",
+    "test_window",
+    "artifact_refs"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "openpq-owned-domain-bridge-local-v1"
+    },
+    "environment_id": {
+      "const": "local-test"
+    },
+    "dataset_id": {
+      "type": "string"
+    },
+    "domain": {
+      "enum": [
+        "weather",
+        "weather_forecast",
+        "weather_marine",
+        "weather_cloud",
+        "weather_compact",
+        "weather_meta",
+        "weather_manifest",
+        "airport",
+        "transit",
+        "nearme"
+      ]
+    },
+    "fixture_only": {
+      "const": false
+    },
+    "source_pin": {
+      "type": "object",
+      "required": [
+        "source_kind",
+        "source_pointer",
+        "payload_sha256",
+        "git_blob_sha"
+      ],
+      "properties": {
+        "source_kind": {
+          "enum": [
+            "OWNER_REPOSITORY_SNAPSHOT",
+            "OWNER_PUBLIC_RUNTIME"
+          ]
+        },
+        "source_pointer": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "repository",
+                "commit_sha",
+                "path"
+              ],
+              "properties": {
+                "repository": {
+                  "type": "string"
+                },
+                "commit_sha": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{40}$"
+                },
+                "path": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": [
+                "url"
+              ],
+              "properties": {
+                "url": {
+                  "const": "https://jotrip-airport-live.kenzuko.workers.dev"
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "payload_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "git_blob_sha": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "operator_principal_ids": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9_-]{1,128}$"
+      }
+    },
+    "test_window": {
+      "type": "object",
+      "required": [
+        "valid_from",
+        "valid_to",
+        "basis"
+      ],
+      "properties": {
+        "valid_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "valid_to": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "basis": {
+          "const": "LOCAL_TEST_REHEARSAL_ONLY"
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifact_refs": {
+      "type": "object",
+      "required": [
+        "rule",
+        "config",
+        "policy",
+        "schema"
+      ],
+      "properties": {
+        "rule": {
+          "type": "object",
+          "required": [
+            "hash"
+          ],
+          "properties": {
+            "hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "config": {
+          "type": "object",
+          "required": [
+            "hash"
+          ],
+          "properties": {
+            "hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "policy": {
+          "type": "object",
+          "required": [
+            "hash"
+          ],
+          "properties": {
+            "hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "schema": {
+          "type": "object",
+          "required": [
+            "hash"
+          ],
+          "properties": {
+            "hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

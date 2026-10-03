@@ -1,0 +1,1022 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-27",
+  "scope": "homepage_supporting_operational_data",
+  "id_policy": {
+    "rule": "ONE_ENTITY_ONE_CANONICAL_ID_MANY_SURFACES",
+    "note": "entity_id references the existing canonical entity layer. Homepage data must not clone place/activity knowledge."
+  },
+  "trip_clock": {
+    "timezone": "Asia/Ho_Chi_Minh",
+    "items": [
+      {
+        "id": "clock_symphony",
+        "entity_id": "activity_symphony_of_the_sea",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=symphony-of-the-sea",
+        "schedule_source": "canonical_entity.opening_hours",
+        "feature_in_today": true
+      },
+      {
+        "id": "clock_kiss_of_the_sea",
+        "entity_id": "activity_kiss_of_the_sea",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=kiss-of-the-sea",
+        "schedule_source": "canonical_entity.opening_hours",
+        "timing_note": "Show lúc 21:00-21:30, trừ thứ Ba. Nếu ở xa Nam đảo, tính giờ đi và xe về trước.",
+        "feature_in_today": true,
+        "performance_duration_min": 30
+      },
+      {
+        "id": "clock_dinh_cau",
+        "entity_id": "place_dinh_cau",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=dinh-cau",
+        "schedule_source": "canonical_entity.opening_hours",
+        "timing_note": "Đẹp nhất vào cuối chiều, có thể ghép chợ đêm.",
+        "preferred_start": "16:00"
+      },
+      {
+        "id": "clock_ho_quoc",
+        "entity_id": "place_ho_quoc",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=ho-quoc",
+        "schedule_source": "SOFT_DAYLIGHT",
+        "timing_note": "Dành thời gian tĩnh tâm, dâng hương và cầu nguyện. Giữ yên tĩnh và trang phục phù hợp."
+      },
+      {
+        "id": "clock_night_market",
+        "entity_id": "place_night_market",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=night-market",
+        "schedule_source": "canonical_entity.opening_hours"
+      },
+      {
+        "id": "clock_grand_world",
+        "entity_id": "place_grand_world",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=grand-world",
+        "schedule_source": "SOFT_EVENING",
+        "timing_note": "Từ cuối chiều trở đi dễ chịu hơn, lên đèn cũng đẹp hơn."
+      },
+      {
+        "id": "clock_hon_thom",
+        "entity_id": "activity_hon_thom",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=hon-thom",
+        "schedule_source": "canonical_entity.opening_hours",
+        "timing_note": "Cáp treo chạy theo từng khung và tạm nghỉ giữa các nhịp; khung sáng kết thúc không có nghĩa hết cáp trong ngày."
+      },
+      {
+        "id": "clock_safari",
+        "entity_id": "place_vinpearl_safari",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=vinpearl-safari",
+        "schedule_source": "canonical_entity.opening_hours",
+        "timing_note": "Safari đóng cửa lúc 16:00. Kiểm tra giờ nhận khách tại cổng.",
+        "practical_source_id": "vinwonders_safari_hours_detail_2026"
+      },
+      {
+        "id": "clock_vinwonders",
+        "entity_id": "place_vinwonders",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=vinwonders",
+        "schedule_source": "canonical_entity.opening_hours",
+        "timing_note": "Phần lớn trò chơi ngừng khoảng 17:00; ONCE diễn ra 18:45-19:05 theo lịch.",
+        "practical_source_id": "vinwonders_phuquoc_hours_2026",
+        "full_visit_end_at": "17:00"
+      },
+      {
+        "id": "clock_teddy_bear",
+        "entity_id": "place_teddy_bear_museum",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=teddy-bear-museum",
+        "schedule_source": "canonical_entity.opening_hours",
+        "latest_sensible_start": "19:30",
+        "timing_note": "Hợp để ghép Grand World. Nếu định xem Tinh Hoa Việt Nam, hãy kiểm tra thông báo suất diễn trong ngày.",
+        "practical_source_id": "vinwonders_grandworld_hours_2026"
+      },
+      {
+        "id": "clock_tinh_hoa_viet_nam",
+        "entity_id": "activity_tinh_hoa_viet_nam",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=tinh-hoa-viet-nam",
+        "schedule_source": "canonical_entity.opening_hours",
+        "timing_note": "Show chính 20:15-21:00 tại Grand World.",
+        "practical_source_id": "vinwonders_grandworld_show_schedule_2026"
+      },
+      {
+        "id": "clock_sac_mau_venice",
+        "entity_id": "activity_sac_mau_venice",
+        "status_code": "SUSPENDED",
+        "route": "places/detail.html?id=sac-mau-venice",
+        "schedule_source": "canonical_entity.opening_hours",
+        "timing_note": "Đang tạm dừng để nâng cấp từ 28/09/2026 và chưa có thông báo ngày hoạt động trở lại.",
+        "practical_source_id": "vinwonders_grandworld_show_schedule_2026"
+      },
+      {
+        "id": "clock_once_show",
+        "entity_id": "activity_once_show",
+        "status_code": "UNKNOWN",
+        "route": "places/detail.html?id=once-show",
+        "schedule_source": "canonical_entity.opening_hours",
+        "show_label": "ONCE Show",
+        "timing_note": "ONCE 18:45-19:05; cần vé vào công viên và kiểm tra lịch show trong ngày.",
+        "practical_source_id": "vinwonders_phuquoc_hours_2026"
+      }
+    ]
+  },
+  "activity_board": [
+    {
+      "surface_id": "activity_three_islands",
+      "entity_id": "activity_tour_3_islands",
+      "operational_binding": "cano",
+      "status_code": "DYNAMIC",
+      "operating_window": null,
+      "warning_rule": "SEA_DEPENDENT",
+      "route": "cano/"
+    },
+    {
+      "surface_id": "activity_hon_thom",
+      "entity_id": "activity_hon_thom",
+      "operational_binding": null,
+      "status_code": "UNKNOWN",
+      "warning_rule": "WEATHER_DEPENDENT",
+      "route": "places/detail.html?id=hon-thom",
+      "schedule_source": "canonical_entity.opening_hours"
+    },
+    {
+      "surface_id": "activity_big_game_fishing",
+      "entity_id": "activity_big_game_fishing",
+      "operational_binding": null,
+      "status_code": "UNKNOWN",
+      "warning_rule": "SEA_DEPENDENT",
+      "route": "places/detail.html?id=big-game-fishing",
+      "schedule_source": "canonical_entity.opening_hours"
+    },
+    {
+      "surface_id": "activity_symphony",
+      "entity_id": "activity_symphony_of_the_sea",
+      "operational_binding": null,
+      "status_code": "UNKNOWN",
+      "warning_rule": "WEATHER_DEPENDENT",
+      "route": "places/detail.html?id=symphony-of-the-sea",
+      "schedule_source": "canonical_entity.opening_hours"
+    },
+    {
+      "surface_id": "activity_kiss_of_the_sea",
+      "entity_id": "activity_kiss_of_the_sea",
+      "operational_binding": null,
+      "status_code": "UNKNOWN",
+      "warning_rule": "WEATHER_DEPENDENT",
+      "route": "places/detail.html?id=kiss-of-the-sea",
+      "schedule_source": "canonical_entity.opening_hours"
+    }
+  ],
+  "near_me": {
+    "request_location_on_load": false,
+    "ranking": [
+      "distance",
+      "open_status"
+    ],
+    "manual_areas": [
+      {
+        "id": "all",
+        "label": "Toàn đảo",
+        "type": "all"
+      },
+      {
+        "id": "zone_central_west",
+        "label": "Dương Đông",
+        "type": "zone",
+        "map_query": "Dương Đông, Phú Quốc, An Giang, Việt Nam"
+      },
+      {
+        "id": "zone_south",
+        "label": "An Thới",
+        "type": "zone",
+        "map_query": "An Thới, Phú Quốc, An Giang, Việt Nam"
+      },
+      {
+        "id": "place_sunset_town",
+        "label": "Sunset Town",
+        "type": "place",
+        "map_query": "Sunset Town, An Thới, Phú Quốc, An Giang, Việt Nam"
+      },
+      {
+        "id": "zone_north",
+        "label": "Gành Dầu",
+        "type": "zone",
+        "map_query": "Gành Dầu, Phú Quốc, An Giang, Việt Nam"
+      }
+    ],
+    "categories": [
+      {
+        "id": "DESTINATION",
+        "label": "Điểm đến",
+        "icon": "●"
+      },
+      {
+        "id": "BEACH",
+        "label": "Bãi biển",
+        "icon": "≈"
+      },
+      {
+        "id": "ENTERTAINMENT",
+        "label": "Vui chơi",
+        "icon": "★"
+      },
+      {
+        "id": "CULTURE",
+        "label": "Văn hóa",
+        "icon": "◇"
+      },
+      {
+        "id": "MARKET",
+        "label": "Chợ",
+        "icon": "▦"
+      },
+      {
+        "id": "HOTEL",
+        "label": "Khách sạn",
+        "icon": "H"
+      },
+      {
+        "id": "ACTIVITY",
+        "label": "Show & trải nghiệm",
+        "icon": "▶"
+      },
+      {
+        "id": "TOILET",
+        "label": "Nhà vệ sinh",
+        "icon": "WC"
+      },
+      {
+        "id": "ATM",
+        "label": "ATM",
+        "icon": "ATM"
+      },
+      {
+        "id": "PHARMACY",
+        "label": "Nhà thuốc",
+        "icon": "+"
+      },
+      {
+        "id": "FUEL",
+        "label": "Cây xăng",
+        "icon": "⛽"
+      },
+      {
+        "id": "PARKING",
+        "label": "Bãi đỗ",
+        "icon": "P"
+      },
+      {
+        "id": "MINIMART",
+        "label": "Cửa hàng tiện lợi",
+        "icon": "□"
+      },
+      {
+        "id": "CLINIC_HOSPITAL",
+        "label": "Y tế",
+        "icon": "✚"
+      },
+      {
+        "id": "CHARGING",
+        "label": "Sạc",
+        "icon": "⚡",
+        "mode": "directory_search",
+        "search_query": "trạm sạc xe điện Phú Quốc"
+      },
+      {
+        "id": "SHOWER_LOCKER",
+        "label": "Tắm / tủ gửi đồ",
+        "icon": "↧"
+      },
+      {
+        "id": "LOCAL_FOOD",
+        "label": "Quán ăn",
+        "icon": "Ăn",
+        "mode": "directory_search",
+        "search_query": "quán ăn"
+      },
+      {
+        "id": "RESTAURANT",
+        "label": "Nhà hàng",
+        "icon": "NH",
+        "mode": "directory_search",
+        "search_query": "nhà hàng"
+      },
+      {
+        "id": "CAFE",
+        "label": "Cà phê",
+        "icon": "☕",
+        "mode": "directory_search",
+        "search_query": "cafe"
+      },
+      {
+        "id": "EMERGENCY",
+        "label": "Khẩn cấp",
+        "icon": "!",
+        "mode": "directory_search",
+        "search_query": "bệnh viện cấp cứu công an Phú Quốc"
+      },
+      {
+        "id": "GROCERY",
+        "label": "Tạp hóa & siêu thị",
+        "icon": "▤",
+        "mode": "directory_search",
+        "search_query": "siêu thị cửa hàng tạp hóa"
+      },
+      {
+        "id": "LAUNDRY",
+        "label": "Giặt ủi",
+        "icon": "◌",
+        "mode": "directory_search",
+        "search_query": "tiệm giặt ủi"
+      },
+      {
+        "id": "BANK",
+        "label": "Ngân hàng",
+        "icon": "₫",
+        "mode": "directory_search",
+        "search_query": "ngân hàng ATM"
+      },
+      {
+        "id": "VIEWPOINT",
+        "label": "Điểm ngắm cảnh",
+        "icon": "⌖",
+        "mode": "directory_search",
+        "search_query": "điểm ngắm cảnh"
+      },
+      {
+        "id": "TOURIST_INFO",
+        "label": "Thông tin du lịch",
+        "icon": "i",
+        "mode": "directory_search",
+        "search_query": "trung tâm thông tin du lịch"
+      },
+      {
+        "id": "PUBLIC_TRANSPORT",
+        "label": "Bến & điểm đón",
+        "icon": "↗",
+        "mode": "directory_search",
+        "search_query": "bến xe bến tàu Phú Quốc"
+      },
+      {
+        "id": "ELECTRONICS",
+        "label": "Điện thoại & điện máy",
+        "icon": "▣"
+      },
+      {
+        "id": "POST_OFFICE",
+        "label": "Bưu điện",
+        "icon": "✉",
+        "mode": "directory_search",
+        "search_query": "bưu điện Phú Quốc"
+      },
+      {
+        "id": "VEHICLE_REPAIR",
+        "label": "Sửa xe",
+        "icon": "🔧"
+      },
+      {
+        "id": "LUGGAGE_STORAGE",
+        "label": "Giữ hành lý",
+        "icon": "🧳"
+      }
+    ],
+    "items": [
+      {
+        "utility_id": "utility_longchau_tran_phu",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Hệ thống Long Châu công bố khung 06:00-23:00, nhưng giờ từng cơ sở có thể khác.",
+        "access_notes": "Địa chỉ hiện hành có trong danh sách chính thức Long Châu tại Phú Quốc.",
+        "source_id": "longchau_phuquoc_storelist_2026",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "confidence": "HIGH",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_longchau_nguyen_trung_truc",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Hệ thống Long Châu công bố khung 06:00-23:00, nhưng giờ từng cơ sở có thể khác.",
+        "access_notes": "Địa chỉ hiện hành có trong danh sách chính thức Long Châu tại Phú Quốc.",
+        "source_id": "longchau_phuquoc_storelist_2026",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "confidence": "HIGH",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_longchau_an_thoi",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Hệ thống Long Châu công bố khung 06:00-23:00, nhưng giờ từng cơ sở có thể khác.",
+        "access_notes": "Địa chỉ hiện hành có trong danh sách chính thức Long Châu tại Phú Quốc.",
+        "source_id": "longchau_phuquoc_storelist_2026",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "confidence": "HIGH",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_longchau_ganh_dau",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Hệ thống Long Châu công bố khung 06:00-23:00, nhưng giờ từng cơ sở có thể khác.",
+        "access_notes": "Địa chỉ hiện hành có trong danh sách chính thức Long Châu tại Phú Quốc.",
+        "source_id": "longchau_phuquoc_storelist_2026",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "confidence": "HIGH",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_longchau_suoi_da",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Hệ thống Long Châu công bố khung 06:00-23:00, nhưng giờ từng cơ sở có thể khác.",
+        "access_notes": "Địa chỉ Suối Đá - Dương Tơ có trong danh sách chính thức Long Châu tại Phú Quốc.",
+        "source_id": "longchau_phuquoc_storelist_2026",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "confidence": "HIGH",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_vinmec_duong_dong_clinic",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Trang chính thức xác nhận cơ sở và dịch vụ; giờ khám nên kiểm tra trước khi đi.",
+        "access_notes": "Có khám chuyên khoa, cấp cứu, xét nghiệm và chẩn đoán hình ảnh theo thông tin Vinmec.",
+        "source_id": "vinmec_duongdong_current",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "confidence": "HIGH",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_vinmec_phuquoc_emergency",
+        "current_status": "OPEN",
+        "opening_hours_note": "Cấp cứu hồi sức 24/24, kể cả cuối tuần và ngày lễ.",
+        "access_notes": "Đây là trạng thái của khoa cấp cứu, không đồng nghĩa mọi phòng khám chuyên khoa mở 24/24.",
+        "source_id": "vinmec_phuquoc_current",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "confidence": "HIGH",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_vcb_atm_hung_vuong",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Có nguồn danh bạ nhận diện ATM tại địa chỉ này; chưa dùng nhãn 24/7 vì Vietcombank chưa xác nhận riêng quyền truy cập ATM ngoài giờ.",
+        "access_notes": "Vietcombank xác nhận đây là địa điểm Chi nhánh Phú Quốc hiện hành. Danh bạ ATM 2026 ghi nhận ATM tại cùng địa chỉ.",
+        "source_id": "tienmat_atm_phuquoc_2026",
+        "supporting_source_ids": [
+          "vietcombank_phuquoc_locations_20251201"
+        ],
+        "source_type": "COMMUNITY",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_vcb_atm_nguyen_trung_truc",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Có nguồn danh bạ nhận diện ATM tại địa chỉ này; chưa dùng nhãn 24/7 vì Vietcombank chưa xác nhận riêng quyền truy cập ATM ngoài giờ.",
+        "access_notes": "Vietcombank xác nhận đây là địa điểm PGD Dương Đông hiện hành. Danh bạ ATM 2026 ghi nhận ATM tại cùng địa chỉ.",
+        "source_id": "tienmat_atm_phuquoc_2026",
+        "supporting_source_ids": [
+          "vietcombank_phuquoc_locations_20251201"
+        ],
+        "source_type": "COMMUNITY",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_vcb_atm_an_thoi",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Có nguồn danh bạ nhận diện ATM tại địa chỉ này; chưa dùng nhãn 24/7 vì Vietcombank chưa xác nhận riêng quyền truy cập ATM ngoài giờ.",
+        "access_notes": "Vietcombank xác nhận đây là địa điểm PGD An Thới hiện hành. Danh bạ ATM 2026 ghi nhận ATM tại cùng địa chỉ.",
+        "source_id": "tienmat_atm_phuquoc_2026",
+        "supporting_source_ids": [
+          "vietcombank_phuquoc_locations_20251201"
+        ],
+        "source_type": "COMMUNITY",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_fuel_dong_loi_1",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Danh bạ bản đồ hiện hành ghi 06:00-19:30 hằng ngày; Open Phu Quoc chưa coi đây là trạng thái mở cửa thời gian thực.",
+        "access_notes": "Tên, tuyến đường và số điện thoại trùng giữa danh bạ du lịch Phú Quốc và danh bạ bản đồ hiện hành.",
+        "source_id": "visitpq_fuel_directory_2026",
+        "supporting_source_ids": [
+          "map_directory_phuquoc_20260921"
+        ],
+        "source_type": "OFFICIAL_TOURISM",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_fuel_my_anh_an_thoi",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Danh bạ bản đồ hiện hành ghi 05:30-21:00 hằng ngày; nên kiểm tra lại nếu đi sát giờ đóng.",
+        "access_notes": "Danh bạ du lịch Phú Quốc và danh bạ bản đồ hiện hành cùng nhận diện điểm này trên Nguyễn Văn Cừ, An Thới.",
+        "source_id": "visitpq_fuel_directory_2026",
+        "supporting_source_ids": [
+          "map_directory_phuquoc_20260921"
+        ],
+        "source_type": "OFFICIAL_TOURISM",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_fuel_nhi_phung_ganh_dau",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Chưa có giờ mở cửa hiện hành đủ mạnh để công bố.",
+        "access_notes": "UBND Phú Quốc đã cấp giấy phép môi trường cho cơ sở tại Gành Dầu; danh bạ du lịch Phú Quốc cũng liệt kê Xăng Dầu Nhi Phụng tại khu vực này.",
+        "source_id": "pqgov_nhiphung_fuel_permit_2024",
+        "supporting_source_ids": [
+          "visitpq_fuel_directory_2026"
+        ],
+        "source_type": "OFFICIAL_GOVERNMENT",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_parking_sunset_nightmarket",
+        "place_id": "place_sunset_town",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Sun World xác nhận khu vực quanh chợ có các bãi gửi xe; chưa khóa một cổng/bãi cụ thể hoặc giờ vận hành riêng.",
+        "access_notes": "Dùng cho chọn khu vực Sunset Town. Chưa dùng GPS distance ranking cho tới khi xác minh điểm vào bãi chính xác.",
+        "source_id": "sunworld_sunset_nightmarket_parking_2026",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_toilet_sunset_venice_67",
+        "place_id": "place_sunset_town",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Danh bạ bản đồ hiện hành nhận diện đây là nhà vệ sinh công cộng; chưa có giờ vận hành chính thức.",
+        "access_notes": "Điểm tiện ích cộng đồng; giữ trạng thái UNKNOWN cho tới khi có operator/field verification.",
+        "source_id": "map_directory_phuquoc_20260921",
+        "source_type": "COMMUNITY",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_toilet_sunset_venice_02",
+        "place_id": "place_sunset_town",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Danh bạ bản đồ hiện hành nhận diện đây là khu vực vệ sinh; chưa có giờ vận hành chính thức.",
+        "access_notes": "Điểm tiện ích cộng đồng; giữ trạng thái UNKNOWN cho tới khi có operator/field verification.",
+        "source_id": "map_directory_phuquoc_20260921",
+        "source_type": "COMMUNITY",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_minimart_one_mart_duong_dong",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Danh bạ bản đồ hiện hành ghi 06:00-02:00 hằng ngày; đây là giờ niêm yết cộng đồng, không phải feed live.",
+        "access_notes": "Cửa hàng tiện lợi được nhận diện tại trung tâm Dương Đông.",
+        "source_id": "map_directory_phuquoc_20260921",
+        "source_type": "COMMUNITY",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_minimart_homemart_an_thoi",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Danh bạ bản đồ hiện hành ghi 08:00-22:00 hằng ngày; chưa coi là trạng thái live.",
+        "access_notes": "Điểm mua nhu yếu phẩm ở trục Nguyễn Văn Cừ, Nam đảo.",
+        "source_id": "map_directory_phuquoc_20260921",
+        "source_type": "COMMUNITY",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "route": "utilities/"
+      },
+      {
+        "utility_id": "utility_minimart_cs68_sunset",
+        "place_id": "place_sunset_town",
+        "current_status": "UNKNOWN",
+        "opening_hours_note": "Chưa có giờ vận hành đủ rõ để công bố.",
+        "access_notes": "Danh bạ bản đồ hiện hành nhận diện cửa hàng tại Sunset Town.",
+        "source_id": "map_directory_phuquoc_20260921",
+        "source_type": "COMMUNITY",
+        "verified_at": "2026-09-21",
+        "confidence": "MEDIUM",
+        "proximity_mode": "AREA_ONLY_UNTIL_COORDINATES_VERIFIED",
+        "featured": true,
+        "route": "utilities/"
+      }
+    ],
+    "scope": "ALL_LOCATION_NEEDS",
+    "entity_sources": [
+      "utilities",
+      "places",
+      "hotels"
+    ],
+    "rule": "Near Me phục vụ tra địa chỉ/vị trí trên toàn đảo. Entity có tên hoặc địa chỉ được đưa vào tìm kiếm; tọa độ đã xác minh dùng pin Open Phu Quoc, còn entity chưa có tọa độ vẫn mở được đúng truy vấn Google Maps theo tên + địa chỉ."
+  },
+  "hot_now": {
+    "items": [
+      {
+        "event_id": "hot_awaken_sea_paused_20261001",
+        "title": "Awaken Sea tạm ngưng từ 01/10, chưa có ngày diễn lại",
+        "short_summary": "Sun World Hòn Thơm thông báo tạm ngưng Awaken Sea từ ngày 01/10/2026 cho đến khi có thông báo mới. Khách dự định xem show sau ngày này nên điều chỉnh lịch.",
+        "category": "SHOW / THAY ĐỔI LỊCH",
+        "affected_entity_id": "activity_awaken_sea",
+        "starts_at": "2026-10-01",
+        "source_type": "OFFICIAL_OPERATOR_NOTICE",
+        "source_text": "Sun World Hòn Thơm - thông báo Awaken Sea (ảnh thông báo được cung cấp ngày 27/09/2026)",
+        "published_at": "2026-09-27",
+        "verified_at": "2026-09-27",
+        "effective_until": "UNTIL_FURTHER_NOTICE",
+        "review_at": "2026-10-04",
+        "expires_at": "2026-12-31T23:59:59+07:00",
+        "expiry_reason": "EDITORIAL_VISIBILITY_REVIEW__NOT_A_REOPENING_DATE",
+        "confidence": "HIGH",
+        "route": "news/awaken-sea-20261001.html",
+        "source_id": "sunworld_awaken_sea_notice_20260927"
+      },
+      {
+        "event_id": "hot_honthom_midautumn_menu_2026",
+        "title": "Hòn Thơm có menu Trung thu đặc biệt dịp 25/09",
+        "short_summary": "Sun World Hòn Thơm giới thiệu menu ẩm thực mùa Trung thu chỉ xuất hiện theo dịp lễ. Trung thu năm nay rơi vào 25/09.",
+        "category": "ĂN UỐNG / THEO MÙA",
+        "affected_entity_id": "activity_hon_thom",
+        "starts_at": "2026-09-18",
+        "source_id": "sunworld_honthom_midautumn_20260918",
+        "source_type": "OPERATOR",
+        "published_at": "2026-09-18",
+        "verified_at": "2026-09-21",
+        "expires_at": "2026-09-26T23:59:59+07:00",
+        "expiry_reason": "SEASONAL_EVENT_END",
+        "confidence": "HIGH",
+        "route": "places/detail.html?id=hon-thom"
+      },
+      {
+        "event_id": "hot_symphony_season3_2026",
+        "title": "Symphony vẫn diễn 19:30; Sun World công bố bản mùa 3",
+        "short_summary": "Sun World vẫn công bố Symphony of the Sea lúc 19:30 hằng ngày. Bài ngày 12/09 giới thiệu bản mùa 3 được nâng cấp, không phải thông báo ngưng lịch diễn hiện tại.",
+        "category": "SHOW / CẬP NHẬT",
+        "affected_entity_id": "activity_symphony_of_the_sea",
+        "source_id": "sunworld_symphony_schedule_current_2026",
+        "source_type": "OPERATOR",
+        "published_at": "2026-09-12",
+        "verified_at": "2026-09-21",
+        "expires_at": "2026-10-12T23:59:59+07:00",
+        "expiry_reason": "EDITORIAL_NEWNESS_WINDOW",
+        "confidence": "HIGH",
+        "route": "places/detail.html?id=sunset-town",
+        "supporting_source_ids": [
+          "sunworld_symphony_season3_20260912"
+        ]
+      },
+      {
+        "event_id": "hot_aquatopia_wavy_whirl_2026",
+        "title": "Aquatopia có thêm Wavy Whirl - Lốc Xoáy Nhiệt Đới",
+        "short_summary": "Sun World Hòn Thơm giới thiệu làn trượt PowerRAPIDS mới tại Aquatopia từ mùa hè 2026.",
+        "category": "TRẢI NGHIỆM MỚI",
+        "affected_entity_id": "place_aquatopia",
+        "starts_at": "2026-06-24",
+        "source_id": "sunworld_wavy_whirl_20260624",
+        "source_type": "OPERATOR",
+        "verified_at": "2026-09-21",
+        "expires_at": "2026-10-15T23:59:59+07:00",
+        "expiry_reason": "EDITORIAL_NEWNESS_WINDOW",
+        "confidence": "HIGH",
+        "route": "places/detail.html?id=aquatopia"
+      }
+    ],
+    "empty_behavior": "SHOW_EMPTY_STATE",
+    "temporary_items_require_expiry": true,
+    "display_label": "TIN & CẬP NHẬT PHÚ QUỐC"
+  },
+  "curiosity": [
+    {
+      "prompt_id": "curiosity_dinh_cau_before_sea",
+      "question": "Vì sao ngư dân lại ghé Dinh Cậu trước chuyến biển?",
+      "place_id": "place_dinh_cau",
+      "short_teaser": "Lễ hội Dinh Cậu ghi nhận ngư dân trên đảo về dâng hương, cầu trời yên biển lặng và tôm cá đầy thuyền. Những giai thoại về nguồn gốc thờ tự vẫn cần kể như tín ngưỡng, không phải sử liệu tuyệt đối.",
+      "source_ids": [
+        "visitpq_dinh_cau_festival_current",
+        "visitpq_dinh_cau_2026"
+      ],
+      "verification_status": "PARTIAL_VERIFIED",
+      "story_type": "LOCAL_BELIEF",
+      "route": "stories/article.html?id=dinh-cau-loi-cau-an",
+      "image": "https://visitphuquoc.com.vn/google_docs_media/post/post-16361/53148/image-thumb__53148__720_jpg/AD_4nXf3lx--2x21dAEOpiKBZVu5ZOGKuBGr2yVA7u0Q5nUCbvkuMTnLB5dPpAgnzEab4pxinEQH4rtLRQDARWtTKgagR9OIIfmWZ8ntZR5zWTaLJfOQOE-KZ10igoopHdorbyZguAXhzTsXPXrVu9wGUMM1dHq2OAXOcXkZo2xuBhq5CZOuhMEV%3Ds2048.522f2550.jpg",
+      "image_alt": "Dinh Cậu nhìn từ bờ đá và bãi biển Dương Đông, Phú Quốc",
+      "image_scope": "exact_subject",
+      "image_source_label": "Visit Phu Quoc - Dinh Cậu Phú Quốc",
+      "image_source_url": "https://visitphuquoc.com.vn/vi/giai-dap-dinh-cau-phu-quoc-tho-ai-su-tich-linh-thieng-tram-nam-16361",
+      "story_id": "dinh-cau-loi-cau-an"
+    },
+    {
+      "prompt_id": "curiosity_dog_tree",
+      "question": "Chó Phú Quốc có thật sự biết leo cây?",
+      "topic_id": "topic_116_dog_climb_tree",
+      "short_teaser": "Tiêu chuẩn VKA 2023 ghi rõ chó Xoáy Phú Quốc không sợ độ cao, leo trèo và nhảy cao rất tốt. Điều đó xác nhận khả năng leo trèo của giống, nhưng không có nghĩa mọi cá thể đều biết “leo cây”.",
+      "source_ids": [
+        "vka_phuquoc_standard_2023"
+      ],
+      "verification_status": "VERIFIED",
+      "story_type": "ORAL_HISTORY",
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Phu%20Quoc%20Ridgeback.jpg?width=1200",
+      "image_alt": "Chó Xoáy Phú Quốc trên đảo Phú Quốc",
+      "image_scope": "exact_subject",
+      "image_source_label": "Wikimedia Commons - Fox Frank",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Phu_Quoc_Ridgeback.jpg",
+      "story_id": "cho-phu-quoc-xoay-lung",
+      "route": "stories/article.html?id=cho-phu-quoc-xoay-lung"
+    },
+    {
+      "prompt_id": "curiosity_gieng_tien",
+      "question": "Giếng Tiên là lịch sử hay truyền thuyết?",
+      "topic_id": "topic_107_gieng_tien",
+      "short_teaser": "Cổng du lịch Phú Quốc giới thiệu nơi này bằng chính cụm “sự tích Giếng Tiên”. Vì vậy câu chuyện nên được giữ ở lớp truyền thuyết, không nâng thành sự kiện lịch sử đã được chứng minh.",
+      "source_ids": [
+        "visitpq_gieng_tien_current"
+      ],
+      "verification_status": "NEEDS_VERIFICATION",
+      "story_type": "LEGEND",
+      "image": "https://static.vinwonders.com/2022/02/gieng-tien-phu-quoc-7.jpg",
+      "image_alt": "Giếng Tiên ở Mũi Ông Đội, Phú Quốc",
+      "image_scope": "exact_subject",
+      "image_source_label": "VinWonders - Giếng Tiên Phú Quốc",
+      "image_source_url": "https://vinwonders.com/vi/wonderpedia/news/kham-pha-dieu-ky-thu-cua-gieng-tien-phu-quoc-gieng-nuoc-ngot-giua-bien/",
+      "story_id": "gieng-tien-truyen-thuyet-hay-lich-su",
+      "route": "stories/article.html?id=gieng-tien-truyen-thuyet-hay-lich-su"
+    },
+    {
+      "prompt_id": "curiosity_fish_sauce_pdo",
+      "question": "Vì sao chữ “Phú Quốc” trên nước mắm lại được bảo hộ ở châu Âu?",
+      "story_id": "mot-nam-trong-nha-thung",
+      "short_teaser": "EU đã đưa “Phú Quốc” vào sổ đăng ký PDO theo Quy định 928/2012. Hội Nước mắm Phú Quốc cho biết đây là sản phẩm đầu tiên của Việt Nam được bảo hộ tại thị trường EU.",
+      "source_ids": [
+        "eurlex_phuquoc_pdo_2012",
+        "phuquoc_fishsauce_gi_association"
+      ],
+      "verification_status": "VERIFIED",
+      "story_type": "DOCUMENTED_HISTORY",
+      "route": "stories/article.html?id=mot-nam-trong-nha-thung"
+    },
+    {
+      "prompt_id": "curiosity_pepper_colors",
+      "question": "Tiêu đỏ, tiêu đen và tiêu sọ Phú Quốc khác nhau ở đâu?",
+      "story_id": "mui-cay-cua-dat-do",
+      "short_teaser": "Nguồn du lịch địa phương mô tả: hạt chín đỏ được phơi riêng thành tiêu đỏ; hạt còn xanh phơi khô thành tiêu đen; tiêu đen bỏ vỏ còn lõi gọi là tiêu sọ.",
+      "source_ids": [
+        "pq_tourism_pepper_basol_current"
+      ],
+      "verification_status": "VERIFIED",
+      "story_type": "LOCAL_CRAFT",
+      "route": "stories/article.html?id=mui-cay-cua-dat-do"
+    },
+    {
+      "prompt_id": "curiosity_star_ravem",
+      "question": "Sao biển Rạch Vẹm có phải ngày nào cũng thấy?",
+      "story_id": "sao-bien-rach-vem-ngam-trong-nuoc",
+      "short_teaser": "Số lượng nhìn thấy thay đổi theo thủy triều, thời tiết và từng đoạn bãi. Đừng nhấc chúng lên khỏi nước để chụp hình.",
+      "story_type": "NATURE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_starfish_season_2026"
+      ],
+      "route": "stories/article.html?id=sao-bien-rach-vem-ngam-trong-nuoc"
+    },
+    {
+      "prompt_id": "curiosity_hamninh_net",
+      "question": "Ở Hàm Ninh, người ta làm gì trên cầu tàu?",
+      "story_id": "ham-ninh-nhip-lang-bien",
+      "short_teaser": "Một phần nhịp làng biển là sửa lưới, chuẩn bị ghe và lo việc trước chuyến biển. Hãy quan sát gọn, đừng cản lối làm việc.",
+      "story_type": "LOCAL_CRAFT",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_ham_ninh_2026"
+      ],
+      "route": "stories/article.html?id=ham-ninh-nhip-lang-bien"
+    },
+    {
+      "prompt_id": "curiosity_market_price",
+      "question": "Đi chợ đêm nên hỏi gì trước khi gọi hải sản?",
+      "story_id": "cho-dem-duong-dong-hoi-gia-truoc-khi-goi",
+      "short_teaser": "Hỏi giá theo phần hay theo trọng lượng, khẩu phần gồm gì và phí chế biến nếu có. Rõ trước khi gọi thì bữa ăn vui hơn.",
+      "story_type": "FOOD_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_night_market_20260809"
+      ],
+      "route": "stories/article.html?id=cho-dem-duong-dong-hoi-gia-truoc-khi-goi"
+    },
+    {
+      "prompt_id": "curiosity_anthoi_port",
+      "question": "Cảng An Thới chỉ dành cho khách đi tour đảo?",
+      "story_id": "an-thoi-ben-ca-va-cua-ngo-dao",
+      "short_teaser": "Không. Bến cảng gắn cả hoạt động nghề biển và những chuyến đi ra đảo. Quan sát từ nơi an toàn và tránh lối bốc dỡ.",
+      "story_type": "PLACE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "pqgov_tourism_zone_2026"
+      ],
+      "route": "stories/article.html?id=an-thoi-ben-ca-va-cua-ngo-dao"
+    },
+    {
+      "prompt_id": "curiosity_bai_sao_weather",
+      "question": "Bãi Sao lúc nào cũng có nước êm như ảnh?",
+      "story_id": "bai-sao-thay-doi-theo-gio",
+      "short_teaser": "Không. Gió, sóng, rong và lượng khách làm bãi đổi theo ngày. Nhìn tình hình tại chỗ trước khi xuống tắm.",
+      "story_type": "NATURE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_bai_sao_2026"
+      ],
+      "route": "stories/article.html?id=bai-sao-thay-doi-theo-gio"
+    },
+    {
+      "prompt_id": "curiosity_suoi_tranh_season",
+      "question": "Suối Tranh có nhiều nước quanh năm không?",
+      "story_id": "suoi-tranh-dep-theo-mua-nuoc",
+      "short_teaser": "Lượng nước thay đổi theo mùa. Sau mưa, đá có thể trơn và dòng chảy mạnh hơn, nên chọn giày bám tốt và theo lối được phép.",
+      "story_type": "NATURE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "handbook_r3"
+      ],
+      "route": "stories/article.html?id=suoi-tranh-dep-theo-mua-nuoc"
+    },
+    {
+      "prompt_id": "curiosity_forest",
+      "question": "Có thể tự đi sâu vào rừng Phú Quốc không?",
+      "story_id": "vuon-quoc-gia-rung-va-nguon-nuoc",
+      "short_teaser": "Chỉ nên đi theo tuyến được phép. Một số khu vực có quy chế bảo vệ riêng; không hái cây, bắt động vật hay tự mở lối.",
+      "story_type": "NATURE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "nbca_phuquoc_national_park_2026"
+      ],
+      "route": "stories/article.html?id=vuon-quoc-gia-rung-va-nguon-nuoc"
+    },
+    {
+      "prompt_id": "curiosity_prison",
+      "question": "Vì sao nên dành thời gian ở Nhà tù Phú Quốc?",
+      "story_id": "nha-tu-phu-quoc-di-cham-de-hieu",
+      "short_teaser": "Đây là di tích lịch sử gắn với ký ức chiến tranh. Đọc tư liệu và nghe thuyết minh giúp chuyến thăm có chiều sâu hơn.",
+      "story_type": "HISTORY_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_prison_2026"
+      ],
+      "route": "stories/article.html?id=nha-tu-phu-quoc-di-cham-de-hieu"
+    },
+    {
+      "prompt_id": "curiosity_cable",
+      "question": "Cáp treo Hòn Thơm đi qua những đảo nào?",
+      "story_id": "cap-treo-hon-thom-vuot-bien",
+      "short_teaser": "Theo Sun World, hành trình từ An Thới đi qua khu vực Hòn Dừa và Hòn Rỏi trước khi tới Hòn Thơm. Lịch chạy nên kiểm tra trong ngày.",
+      "story_type": "PLACE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "sunworld_hon_thom_cable_2026"
+      ],
+      "route": "stories/article.html?id=cap-treo-hon-thom-vuot-bien"
+    },
+    {
+      "prompt_id": "curiosity_bunquay",
+      "question": "Vì sao bún quậy vui ở chén nước chấm?",
+      "story_id": "bun-quay-tu-pha-chen-cham",
+      "short_teaser": "Người ăn tự pha, nếm rồi chỉnh vị theo ý mình. Bún quậy cũng có thể gồm cá, tôm hoặc mực nên nhớ báo dị ứng trước khi gọi.",
+      "story_type": "FOOD_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "vietnam_travel_bun_quay_2026"
+      ],
+      "route": "stories/article.html?id=bun-quay-tu-pha-chen-cham"
+    },
+    {
+      "prompt_id": "curiosity_duongdong_river",
+      "question": "Cửa sông Dương Đông có gì đáng để ý?",
+      "story_id": "cua-song-duong-dong-ge-ra-bien",
+      "short_teaser": "Đó là ranh giới giữa thị trấn và vùng biển, nơi ghe thuyền và sinh kế ven bờ cùng hiện diện. Quan sát từ vị trí không cản hoạt động.",
+      "story_type": "PLACE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_cho_duong_dong_2026"
+      ],
+      "route": "stories/article.html?id=cua-song-duong-dong-ge-ra-bien"
+    },
+    {
+      "prompt_id": "curiosity_whale_worship",
+      "question": "Cá Ông có ý nghĩa gì với người đi biển?",
+      "story_id": "ca-ong-loi-tri-an-nguoi-di-bien",
+      "short_teaser": "Tín ngưỡng thờ Cá Ông gắn với lòng biết ơn và mong ước bình an khi ra khơi. Lễ Nghinh Ông là sinh hoạt cộng đồng, không phải màn trình diễn.",
+      "story_type": "CULTURAL_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_nghinh_ong_2026"
+      ],
+      "route": "stories/article.html?id=ca-ong-loi-tri-an-nguoi-di-bien"
+    },
+    {
+      "prompt_id": "curiosity_island_pearl",
+      "question": "Vì sao Phú Quốc được gọi là “đảo Ngọc”?",
+      "story_id": "vi-sao-goi-phu-quoc-la-dao-ngoc",
+      "short_teaser": "Tên gọi gợi vẻ đẹp tự nhiên của đảo. Muốn hiểu Phú Quốc đầy đủ hơn, hãy nhìn thêm rừng, làng biển và những nghề truyền thống.",
+      "story_type": "PLACE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_island_guide_2026"
+      ],
+      "route": "stories/article.html?id=vi-sao-goi-phu-quoc-la-dao-ngoc"
+    },
+    {
+      "prompt_id": "curiosity_duongdong_evening",
+      "question": "Dương Đông sau 5 giờ có gì hợp để làm?",
+      "story_id": "duong-dong-sau-5-gio",
+      "short_teaser": "Chợ, một món ăn, bờ biển và khu Dinh Cậu có thể ghép thành buổi tối thong thả. Giờ từng quầy thay đổi, nên xem thông tin mới trước khi đi.",
+      "story_type": "PLACE_NOTE",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "visitpq_night_market_20260809"
+      ],
+      "route": "stories/article.html?id=duong-dong-sau-5-gio"
+    },
+    {
+      "prompt_id": "curiosity_ghe_eyes",
+      "question": "Vì sao có ghe vẽ mắt ở mũi?",
+      "story_id": "nhung-doi-mat-tren-mui-ghe",
+      "short_teaser": "Mắt ghe là một chi tiết dễ nhận ra ở nhiều chiếc ghe miền biển. Bài viết kể cách nhìn chi tiết này cùng nhịp làm việc ở cảng, không biến bến cá thành phim trường.",
+      "story_type": "LOCAL_CRAFT",
+      "verification_status": "VERIFIED",
+      "source_ids": [
+        "handbook_r3"
+      ],
+      "route": "stories/article.html?id=nhung-doi-mat-tren-mui-ghe"
+    }
+  ],
+  "rules": {
+    "volatile_fields": [
+      "source",
+      "source_type",
+      "updated_at",
+      "verified_at",
+      "valid_until",
+      "expires_at",
+      "confidence"
+    ],
+    "public_state_codes": [
+      "OPEN",
+      "CLOSED",
+      "TEMPORARILY_CLOSED",
+      "UNKNOWN"
+    ],
+    "no_live_without_freshness": true,
+    "no_location_prompt_on_load": true,
+    "scheduled_hours_are_not_live_status": true
+  },
+  "curiosity_policy": {
+    "display_count": 3,
+    "rotation": "SESSION_RANDOM",
+    "stability": "SESSION",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "note": "20 câu chuyện; mỗi phiên mở trang chọn ngẫu nhiên 3 câu, giữ nguyên câu hỏi và lời giải trong phiên."
+  }
+}

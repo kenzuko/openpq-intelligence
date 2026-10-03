@@ -1,0 +1,27 @@
+{
+  "contract_version": "openpq-cano-offline-import-manifest-v1",
+  "fixture_only": true,
+  "target": {
+    "dataset_id": "cano.operation.an-thoi",
+    "scope": {
+      "category": "cano",
+      "service_area": "An Thới, Phú Quốc",
+      "operational_day": "2030-01-15",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "mapping_id": "manual-cano-an-thoi-v1"
+    }
+  },
+  "evaluation_time": "2030-01-15T12:00:00.000Z",
+  "records": [
+    {
+      "raw_file": "raw/base.raw.json",
+      "provenance": {
+        "repository": "kenzuko/Jotrip-Lab",
+        "commit_sha": "1111111111111111111111111111111111111111",
+        "path": "data/marine_ops/manual-confirmations/2030-01-15-cano-an-thoi.json",
+        "payload_sha256": "2e14a78dfcc48c7a1df1e3f3815c26e81648b516323025af04ea56eff2aa2313"
+      },
+      "supersedes": null
+    }
+  ]
+}

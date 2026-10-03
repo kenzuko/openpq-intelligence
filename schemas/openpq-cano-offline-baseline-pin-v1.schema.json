@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://openpq.local/schemas/openpq-cano-offline-baseline-pin-v1.schema.json",
+  "title":"OpenPQ Cano Offline Trusted Baseline Pin v1",
+  "type":"object","additionalProperties":false,
+  "required":["contract_version","baseline_source_sha256"],
+  "properties":{
+    "contract_version":{"const":"openpq-cano-offline-baseline-pin-v1"},
+    "baseline_source_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}

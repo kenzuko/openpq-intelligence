@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openpq.local/schemas/openpq-cano-offline-cli-error-v1.schema.json",
+  "title": "OpenPQ Cano Offline CLI Error v1 - FIXTURE ONLY",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "fixture_only", "mode", "status", "reason_codes", "action_eligible", "publication_admitted"],
+  "properties": {
+    "contract_version": {"const": "openpq-cano-offline-cli-error-v1"},
+    "fixture_only": {"const": true},
+    "mode": {"const": "FIXTURE_ONLY"},
+    "status": {"const": "INVALID"},
+    "reason_codes": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"type": "string"}},
+    "action_eligible": {"const": false},
+    "publication_admitted": {"const": false}
+  }
+}

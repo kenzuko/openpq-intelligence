@@ -1,0 +1,15 @@
+{
+  "fixture_only": false,
+  "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+  "purpose": "captured real source for local recorded-fact admission and negative regression; no production admission",
+  "record": {
+    "source_pointer": {
+      "repository": "kenzuko/Jotrip-Lab",
+      "commit_sha": "5c5e519a3048d99ec1b114ef0a8e55ad9252b3b8",
+      "path": "data/marine_ops/manual-confirmations/2026-10-03-cano-an-thoi.json"
+    },
+    "raw_file": "history/current/2026-10-03-cano-an-thoi.json",
+    "payload_sha256": "004cc31fbf63f19f1432437fc3c0807e3f67648c168518a05c8161f4153fd6fd",
+    "git_blob_sha": "cf2405d897b30e770ba0afbee33f9f82151d358c"
+  }
+}

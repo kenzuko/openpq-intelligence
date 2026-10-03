@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openpq:owned-domain-local:proof:v1",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "profile_hash",
+    "input_hash",
+    "preparation_hash",
+    "valid_until",
+    "operator_principal_id",
+    "source_author_assurance",
+    "source_policies_activated",
+    "producer_independence",
+    "action_allowed"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "openpq-owned-domain-bridge-local-v1"
+    },
+    "profile_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "preparation_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "valid_until": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "operator_principal_id": {
+      "type": "string"
+    },
+    "source_author_assurance": {
+      "const": "OWNED_OUTPUT_CAPTURE_ONLY"
+    },
+    "source_policies_activated": {
+      "const": false
+    },
+    "producer_independence": {
+      "const": false
+    },
+    "action_allowed": {
+      "const": false
+    }
+  },
+  "additionalProperties": false
+}
