@@ -37,6 +37,10 @@ jobs:
           python scripts/check-domain-bridge-schemas.py .domain-cloud-readback/SIGNED_SCHEMA_SAMPLES.json domain-continuous-isolated
       - name: Independently verify isolated Forecast patch signatures and preserved control
         run: node scripts/cloud/verify-forecast-patch-evidence.js
+      - name: Independently reopen actual recovered Runtime cloud responses without Core
+        run: |
+          python -c "import hashlib,json,pathlib,zipfile; r=pathlib.Path('evidence/core2-recovered-runtime-cloud-20261003'); m=json.loads((r/'ARTIFACTS.json').read_text()); assert all(hashlib.sha256((r/x['file']).read_bytes()).hexdigest()==x['sha256'] for x in m['files']); zipfile.ZipFile(r/'cloud-runtime.zip').extractall('.recovered-runtime-readback')"
+          node scripts/cloud/verify-recovered-runtime-proof.js .recovered-runtime-readback .domain-cloud-readback evidence/core2-recovered-runtime-cloud-20261003/PINS.json
       - name: Reverify committed domain archive bytes and independent trust
         run: |
           python -c "import hashlib,json,pathlib,subprocess; r=pathlib.Path('evidence/core2-domain-recovery-closure-20261003'); m=json.loads((r/'ARTIFACTS.json').read_text()); assert all(hashlib.sha256((r/x['file']).read_bytes()).hexdigest()==x['sha256'] for x in m['files']); [subprocess.run(['node','scripts/verify-domain-recovery-closure.js',str(p),str(p.parent/'TRUST.json'),'2026-10-04T01:12:00.000Z'],check=True) for p in sorted(r.glob('*/BUNDLE.json'))]"
@@ -70,4 +74,5 @@ jobs:
             .domain-recovery-closure/SUMMARY.json
             .recovered-domains/**/*.json
             .cloud-recovery/INDEPENDENT_READBACK.json
+            .recovered-runtime-readback/INDEPENDENT_READBACK.json
           retention-days: 14

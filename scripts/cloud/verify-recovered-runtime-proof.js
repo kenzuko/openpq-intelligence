@@ -1,4 +1,7 @@
 import {readFile} from 'node:fs/promises';
+import {writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {hash,stable,requireThat} from '../../src/platform/contracts.js';
 import {DOMAIN_DATASETS} from '../../src/ingress/domain-source-common.js';
 import {recoveredReferenceView} from '../../src/platform/recovered-reference.js';
@@ -19,9 +22,15 @@ export async function verifyRecoveredRuntimeProof(root,source,pins){
   const originalTrust=await read(source,domain+'/TARGET_TRUST'),snapshot=await read(source,domain+'/TARGET_SNAPSHOT'),bundle=await read(source,domain+'/BUNDLE'),plan=await read(source,domain+'/RECOVERY_PLAN'),response=await read(root,domain+'-RESPONSE'),row=proof.domains.find(x=>x.domain===domain);
   requireThat(stable(trust[dataset])===stable(originalTrust)&&stable(config[dataset].plan)===stable(plan)&&config[dataset].target_snapshot_key===`recovery/snapshots/runtime-${proof.run_id}-${domain}.json`,'RECOVERED_RUNTIME_PROOF_TRUST_SUBSTITUTED');
   const expected=await recoveredReferenceView(snapshot,bundle,config[dataset],originalTrust,response.body.serving.evaluated_at);
+  requireThat(Date.parse(response.body.serving.evaluated_at)<=Date.parse(proof.finished_at),'RECOVERED_RUNTIME_PROOF_TIME_INVALID');
   requireThat(response.status===200&&stable(response.body)===stable(expected)&&response.headers.cache_control==='no-store'&&response.headers.source_snapshot==='recovered-archive-only'&&response.headers.decision_eligibility==='ABSTAIN'&&row?.dataset_id===dataset&&row.status==='PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE'&&row.response_digest===await hash(expected)&&row.legacy_payload_digest===await hash(expected.source_payload)&&row.source_version_time===expected.serving.source_version_time&&row.display_lease_expired===expected.serving.display_lease_expired,'RECOVERED_RUNTIME_PROOF_RESPONSE_INVALID');
   requireThat(Number.isFinite(row.readback_ms)&&row.readback_ms>=0&&row.timing_scope==='THIS_ARCHIVE_READ_NOT_DOMAIN_RTO','RECOVERED_RUNTIME_PROOF_TIMING_INVALID');
   results.push({domain,dataset_id:dataset,legacy_payload_digest:row.legacy_payload_digest,display_lease_expired:row.display_lease_expired,status:'INDEPENDENT_SIGNED_RECOVERED_RUNTIME_ARCHIVE_PASS'});
  }
  return {status:'PASS_TEN_INDEPENDENT_RECOVERED_RUNTIME_ARCHIVES',results,production_enabled:false,live_serving_restored:false,writer_resumed:false,full_system_restore_proven:false};
+}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+ const [root,source,pinFile]=process.argv.slice(2);requireThat(root&&source&&pinFile,'RECOVERED_RUNTIME_VERIFIER_ARGS_REQUIRED');
+ const result=await verifyRecoveredRuntimeProof(root,source,JSON.parse(await readFile(pinFile,'utf8')));
+ await writeFile(root+'/INDEPENDENT_READBACK.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({status:result.status,datasets:result.results.length,production_enabled:false,live_serving_restored:false}));
 }

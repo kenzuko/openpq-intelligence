@@ -1,0 +1,27 @@
+{
+  "github_artifact_id": 11279755425,
+  "run_id": "37137903513",
+  "code_sha": "52e1949b8dd408c62a4b8af6b8bf7868bd40d32b",
+  "files": [
+    {
+      "file": "INDEPENDENT_READBACK.json",
+      "sha256": "2b7118380e623ac6b4879bfa0a644d307734cc1a01f85ef919032b2a808c4e85",
+      "bytes": 3210
+    },
+    {
+      "file": "PINS.json",
+      "sha256": "0ac17bc23855cc5ce19dc0b8e9aaf8a727a4ca17d47f84bd597f33527e023cc3",
+      "bytes": 88
+    },
+    {
+      "file": "PROOF.json",
+      "sha256": "6723aac08afbfb5dc459748b67afee897119d660901220898f421d6030b44d1a",
+      "bytes": 6362
+    },
+    {
+      "file": "cloud-runtime.zip",
+      "sha256": "63579fb0738f1ece00acec3027a646ce524754defbca4e33bf90583b28f87f46",
+      "bytes": 387085
+    }
+  ]
+}

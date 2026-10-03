@@ -1,0 +1,147 @@
+{
+  "status": "PASS_TEN_FROZEN_ARCHIVE_RUNTIME_READS_WITHOUT_CORE",
+  "run_id": "37137903513",
+  "code_sha": "52e1949b8dd408c62a4b8af6b8bf7868bd40d32b",
+  "domains": [
+    {
+      "domain": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "0cc79a6b61613e448515188f7bc69d53dcb7c825cf50439557514849cd9e804c",
+      "legacy_payload_digest": "00a98fb681d695d7669713fecdf81dfbbd097a3e7b794bc396f5ae4bd3c82857",
+      "source_version_time": "2026-10-03T15:41:27.122Z",
+      "display_lease_expired": true,
+      "readback_ms": 2759,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "weather_forecast",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "2ec5624a7d7e78e717f9637432c2fe2853d2863872e5f6dd6368ec44f9546c43",
+      "legacy_payload_digest": "48cb8a2189dc0a5ff78ded19b7951e0c49568f268cb51f9555a21f11bf61966b",
+      "source_version_time": "2026-10-03T15:34:30.074Z",
+      "display_lease_expired": true,
+      "readback_ms": 591,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "weather_marine",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "f2fcac0908794fa072309c23c07a052edd8b69b5ec0534a82593a258812cd689",
+      "legacy_payload_digest": "4f54f60291ff3e80d56dee502324cd471eecc2c523910fe3ac4292057b97ba55",
+      "source_version_time": "2026-10-03T15:15:42.010Z",
+      "display_lease_expired": true,
+      "readback_ms": 501,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "weather_cloud",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "94e122e65e2e7aeede74ee9bfc57bbc148a3f27892b99dacff2392b85bddbade",
+      "legacy_payload_digest": "d170edd15ac730ace0d69fe3fb667e93c88878888691cd084cfb4fcce616ba02",
+      "source_version_time": "2026-10-03T15:43:42.080Z",
+      "display_lease_expired": true,
+      "readback_ms": 949,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "weather_compact",
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "57776f88900c4c949f61619dbd04656601ec08f702c1ca2b249eeb180d52c604",
+      "legacy_payload_digest": "8d5a2fbdb9911b0c48ed631d154f56ee45beda6eb4f8bce308d6ee7d94dacd98",
+      "source_version_time": "2026-10-03T15:43:42.080Z",
+      "display_lease_expired": true,
+      "readback_ms": 497,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "weather_meta",
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "28d01be793ba67d4e61c49ee8fc7d943033b562b224101b7eb225b633b44bf5d",
+      "legacy_payload_digest": "b4d88a35f0d746d4a6204f615c8ea53bf6a5e96bb2a29afa00fd2335e8341f98",
+      "source_version_time": "2026-10-03T15:35:00.667Z",
+      "display_lease_expired": true,
+      "readback_ms": 554,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "weather_manifest",
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "b5c0e6128a2450180459e2c42ca5ffe014c7c62c5122fa614de1267c36c950b9",
+      "legacy_payload_digest": "4f4169170b065032fb13090b64ffbe7513ed31a838a15b66df61b8574738dd0b",
+      "source_version_time": "2026-10-03T15:51:40.504Z",
+      "display_lease_expired": true,
+      "readback_ms": 462,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "airport",
+      "dataset_id": "airport.bridge.pqc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "072b9187c1710610c0a6d6322cd15d9bfa3b610f1b564d970880087605039739",
+      "legacy_payload_digest": "c2cace2cec15cc81cf4552f7631ab5208c1648caf93f52af7d6f76062bcb07d1",
+      "source_version_time": "2026-10-03T15:54:18.000Z",
+      "display_lease_expired": true,
+      "readback_ms": 587,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "transit",
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "b6f48edc60cb92cd625facc3edfe899f372a8bc2181293effb1a2b5a35506e68",
+      "legacy_payload_digest": "db05859406047525c51cc844d69c4f6dfeefcebda5d19759e4a765d49345eedc",
+      "source_version_time": "2026-10-03T15:14:15.870Z",
+      "display_lease_expired": true,
+      "readback_ms": 528,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    },
+    {
+      "domain": "nearme",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": "PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE",
+      "response_digest": "004c9f5bf984f0f3be8126c788ab7d01abc1259d1fc82e775d193b865933b4fb",
+      "legacy_payload_digest": "a93a395393e4dc932dcba24e139c45ccb509cbb6b4c61f5b3a24c16f18ddfa1f",
+      "source_version_time": "2026-10-02T23:49:48.863Z",
+      "display_lease_expired": true,
+      "readback_ms": 775,
+      "timing_scope": "THIS_ARCHIVE_READ_NOT_DOMAIN_RTO"
+    }
+  ],
+  "cleanup": {
+    "status": "SUCCESS",
+    "temporary_worker_deleted": true
+  },
+  "production_enabled": false,
+  "public_cutover_executed": false,
+  "writer_resumed": false,
+  "live_serving_restored": false,
+  "full_system_restore_proven": false,
+  "direct_s3_writer_key_revocation_proven": false,
+  "source_cloud_run_id": "37134123700",
+  "source_cloud_code_sha": "02152368e011dd7aef67c840983040391fccec9f",
+  "no_core_binding": true,
+  "no_native_or_r2_write_binding": true,
+  "removed_upload_route_status": 405,
+  "ordinary_live_route_status": 503,
+  "read_key_denials": [
+    {
+      "method": "PUT",
+      "status": 403,
+      "key": "proof-deny/recovered-runtime-37137903513.json"
+    },
+    {
+      "method": "DELETE",
+      "status": 403,
+      "key": "proof-deny/recovered-runtime-37137903513.json"
+    }
+  ],
+  "read_key_denial_scope": "READ_KEY_CANNOT_WRITE_NOT_WRITER_KEY_REVOCATION",
+  "finished_at": "2026-10-03T16:45:37.946Z"
+}
