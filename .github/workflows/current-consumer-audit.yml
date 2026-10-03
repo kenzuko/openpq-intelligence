@@ -29,5 +29,6 @@ jobs:
         with:
           name: core2-current-consumer-audit
           path: .consumer-audit
+          include-hidden-files: true
           retention-days: 7
           if-no-files-found: error
