@@ -64,3 +64,11 @@ test('commit during snapshot compression leaves a coherent captured watermark an
   const checked=await verifyAuthoritySnapshot(raw,s.trust);assert.ok([1,2].includes(checked.manifest.watermark.revision));assert.equal(checked.tables.outbox.length,checked.manifest.watermark.revision);assert.equal((await s.call('read',undefined,'test-only-read')).body.state.revision,2);
  }finally{await s.mf.dispose();}
 });
+
+test('a signed snapshot cannot omit older publication history below its captured watermark',async()=>{
+ const s=await setup();try{
+  await enable(s);await publish(s,0,'first');await publish(s,1,'second');
+  const checked=await verifyAuthoritySnapshot(await snapshot(s),s.trust),tables=structuredClone(checked.tables);tables.outbox.shift();
+  await assert.rejects(sealAuthoritySnapshot({authority:s.trust,control:checked.manifest.control,tables,captured_at:checked.manifest.captured_at},{key_id:'local-key',private_jwk:s.privateKey}),/PUBLICATION_HISTORY_INCOMPLETE/);
+ }finally{await s.mf.dispose();}
+});

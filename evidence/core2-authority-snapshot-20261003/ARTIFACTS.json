@@ -4,9 +4,9 @@
   "full_system_restore_proven": false,
   "resume_writer": false,
   "files": {
-    "SNAPSHOT.json": "d09747151adc0f96fc480a87b8ff87c3f696d913624a4eb01e30d91a89e3fb19",
-    "TRUST.json": "82099466073705ac311ef606fc3412b51cbf25844dfca6718395887a95c20b65",
+    "SNAPSHOT.json": "ba55bb4ea645c9adca3f6a755ea0ab2ba036e77fcda815e0bf27e9d5296779e2",
+    "TRUST.json": "e6277b36f9fce6f8b5d5dd42956e4909ba86af13f63b636b98f2ef58980e413f",
     "VERIFICATION.json": "66aa51f98826a71ed76d2bd5c00bdaec3e2b9bc25e75351e5ed44ed62a4ea4f9",
-    "native-tests.txt": "d3ec52e7634f75b2cfdee948fd6f8db44aba6e9015e5d15ecb13c2a4dcf25527"
+    "native-tests.txt": "1023e8bf94e804d777973828cc0bda0650901d45531b35fefdb3424ad1f6446f"
   }
 }

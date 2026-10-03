@@ -32,6 +32,7 @@ function validateRows(state,tables,trust){
   }
  }
  requireThat(total<=SNAPSHOT_MAX_ROWS,'SNAPSHOT_TOO_LARGE',413);
+ requireThat(tables.outbox.length===state.revision&&tables.outbox.every((row,i)=>row.revision===i+1),'SNAPSHOT_PUBLICATION_HISTORY_INCOMPLETE');
  requireThat((state.revision===0&&state.active===null)||(state.active&&state.active.revision===state.revision&&sameLocator(state.active,trust)&&ids.has(state.active.digest)&&revisions.has(state.revision)),'SNAPSHOT_ACTIVE_RECORDS_MISSING');
  noSecrets(state);
 }
@@ -73,6 +74,9 @@ export async function verifyAuthoritySnapshot(snapshot,trustedAuthority){
  requireThat(stable(manifest.watermark)===stable({revision:manifest.control.revision,control_revision:manifest.control.control_revision,epoch:manifest.control.epoch}),'SNAPSHOT_WATERMARK_INVALID');
  for(const row of tables.prepared){const p=JSON.parse(row.body),{key,digest,prepared_until,...generation}=p;requireThat(await hash(generation)===digest&&key===`generations/${trustedAuthority.authority_instance_id}/${trustedAuthority.recovery_generation}/${digest}.json`,'SNAPSHOT_GENERATION_HASH_INVALID');}
  const audit=tables.audit.map(x=>JSON.parse(x.body));
+ const controlAudit=audit.filter(x=>x.state);
+ requireThat(controlAudit.length===manifest.control.control_revision&&controlAudit.every((x,i)=>x.state.control_revision===i+1),'SNAPSHOT_CONTROL_HISTORY_INCOMPLETE');
+ for(const entry of controlAudit)requireThat(tables.commands.some(row=>{const result=JSON.parse(row.result);return result.state&&stable(result.state)===stable(entry.state); }),'SNAPSHOT_CONTROL_COMMAND_MISSING');
  for(const row of tables.outbox){const receipt=JSON.parse(row.body),prepared=tables.prepared.find(x=>x.id===receipt.digest),command=tables.commands.find(x=>x.id===receipt.command_id);requireThat(prepared&&JSON.parse(prepared.body).key===receipt.key,'SNAPSHOT_OUTBOX_GENERATION_MISSING');requireThat(command?.digest===receipt.digest&&stable(JSON.parse(command.result))===stable(receipt),'SNAPSHOT_COMMIT_COMMAND_MISSING');requireThat(audit.some(x=>x.action==='COMMIT'&&stable(x.receipt)===stable(receipt)),'SNAPSHOT_COMMIT_AUDIT_MISSING');}
  if(manifest.control.control_revision>0){const latest=audit.find(x=>x.state?.control_revision===manifest.control.control_revision),keys=['owner','epoch','control_revision','frozen','next_transition_at','artifacts'];requireThat(latest&&keys.every(k=>stable(latest.state[k])===stable(manifest.control[k])),'SNAPSHOT_CONTROL_AUDIT_MISMATCH');}
  if(manifest.control.active){const receipt=tables.outbox.find(x=>x.revision===manifest.control.revision);requireThat(stable(JSON.parse(receipt.body))===stable(manifest.control.active),'SNAPSHOT_ACTIVE_RECEIPT_MISMATCH');}
