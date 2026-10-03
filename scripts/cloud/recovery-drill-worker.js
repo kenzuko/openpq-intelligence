@@ -17,7 +17,7 @@ export default {async fetch(request,env){
   const dataset=env.RECOVERY_DRILL_DATASET||'fixture.recovery.'+run;
   if(env.RECOVERY_DRILL_DATASET&&!Object.values(DOMAIN_DATASETS).includes(dataset))return new Response(null,{status:403});
   const object_name=env.RECOVERY_DRILL_DATASET?`isolated-test/${dataset}/${run}/${env.RECOVERY_DRILL_ROLE}`:`isolated-test/${dataset}/${env.RECOVERY_DRILL_ROLE}`;
-  return Response.json({dataset_id:dataset,object_name,native_id:env.DATASETS.idFromName(object_name).toString()});
+  return Response.json({dataset_id:dataset,object_name,native_id:env.DATASETS.idFromName(object_name).toString(),canonical_bound:Boolean(env.CANONICAL),storage_gateway_configured:Boolean(env.STORAGE_WRITER_TOKEN),storage_gateway_credential_fingerprint:await hash(env.STORAGE_WRITER_TOKEN||'')});
  }
  if(path==='/storage-write'||path==='/snapshot-archive'||path==='/domain-archive'){
   if(!env.STORAGE_WRITER_TOKEN||request.headers.get('authorization')!=='Bearer '+env.STORAGE_WRITER_TOKEN)return new Response(null,{status:401});
