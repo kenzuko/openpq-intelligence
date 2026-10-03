@@ -1,0 +1,40 @@
+{
+  "scope": "isolated cloud source admission only",
+  "attempts": [
+    {
+      "run": 37099891906,
+      "status": "FAILED",
+      "code_sha": "508e4052e9553a5149ad431e09f260fa41d5df55",
+      "failed_phase": "commit runner used a dotted dataset in a command ID; fixed to allowed character set; initial error response not captured"
+    },
+    {
+      "run": 37100124696,
+      "status": "FAILED",
+      "code_sha": "34c395988903d143dc8b84603967bccd616f5e35",
+      "source_admission_count": 11,
+      "failed_phase": "immediate fallback predicate; previous runner did not record Runtime response; cause not asserted"
+    },
+    {
+      "run": 37100439667,
+      "status": "FAILED",
+      "code_sha": "1f821f0bc1b4845f7dea57d3b9a226fdd28c162b",
+      "failed_phase": "Runtime observed DISPLAY_EXPIRED after new Core commit; added exact new digest readiness gate"
+    },
+    {
+      "run": 37100694054,
+      "status": "FAILED",
+      "code_sha": "dfb6cf88ab8f5de743bd970ea974c169db466964",
+      "failed_phase": "DOMAIN_TEST_LEASE_INVALID at identity; two clock reads could produce duration greater than 300000ms; fixed one captured clock"
+    },
+    {
+      "run": 37100842699,
+      "status": "FAILED",
+      "code_sha": "a0e3a2af4793656fce10391635b9bfbce7905456",
+      "source_admission_count": 11,
+      "fallback_observed_count": 11,
+      "failed_phase": "Airport isolated Runtime retained signed fallback during read restore; exact current digest was retained, recovery not declared; refresh Runtime service binding and record safe internal Core error/status"
+    }
+  ],
+  "no_failed_run_promoted_to_pass": true,
+  "production_enabled": false
+}

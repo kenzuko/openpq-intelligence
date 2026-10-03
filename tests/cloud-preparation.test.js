@@ -13,6 +13,7 @@ test('cloud fixture authority binds actual IDs and publishes only public receipt
   const without={...a.trust};delete without.locator_artifact_hash;assert.equal(await hash(without),a.trust.locator_artifact_hash);
   const principals=JSON.parse(a.coreSecrets.PRINCIPALS_JSON);assert.deepEqual(principals.find(p=>p.id==='proof-read').permissions,['read']);assert.ok(!JSON.stringify(a.trust).includes(config.secret));
   const runtime=JSON.parse(a.runtimeSecrets.S3_READONLY_CONFIG);assert.deepEqual(runtime,config);assert.equal(a.runtimeSecrets.CONTROL_READ_TOKEN,a.tokens.read);
+  assert.equal(a.runtimeSecrets.CONTROL_READ_TOKENS_JSON,'');assert.equal(a.coreSecrets.SEMANTIC_REGISTRY_9,'');assert.equal(a.coreSecrets.SEMANTIC_PROFILE_3,'');assert.equal(a.coreSecrets.TRUST_JSON_6,'');assert.equal(a.runtimeSecrets.TRUST_JSON_6,'');
   await assert.rejects(makeAuthority(plan,'invalid',native,config));
 });
 test('write-denial probe is restricted to isolated bucket, scope and disposable proof key',async()=>{

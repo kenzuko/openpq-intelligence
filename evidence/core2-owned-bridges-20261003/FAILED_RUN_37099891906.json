@@ -1,0 +1,27 @@
+{
+  "status": "REAL_CLOUD_BRIDGE_BLOCKED_OR_FAILED",
+  "cases": [
+    {
+      "name": "final Core has no temporary native probe",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "FAIL",
+      "error": "DOMAIN_COMMIT_FAILED"
+    },
+    {
+      "name": "temporary source admission capabilities closed with positive Runtime witness",
+      "status": "FAIL",
+      "error": "DOMAIN_CLEANUP_RUNTIME_WITNESS_FAILED"
+    }
+  ],
+  "datasets": [],
+  "source_capture": "PINNED_PREVIOUS_CAPTURE_NOT_CURRENT_SOURCE_HEALTH",
+  "production_enabled": false,
+  "operational_action_allowed": false,
+  "full_system_restore_proven": false,
+  "code_sha": "508e4052e9553a5149ad431e09f260fa41d5df55",
+  "run_id": "37099891906",
+  "error": "DOMAIN_CLEANUP_RUNTIME_WITNESS_FAILED"
+}

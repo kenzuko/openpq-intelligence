@@ -1,0 +1,84 @@
+{
+  "verified_count": 11,
+  "result": [
+    {
+      "domain": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "67dc41dfe6a7e02557a2db3fdbf3cb61efe89191544b8ac3ab47f5aa3457315a",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "weather_forecast",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "de57ce9ab422c17678be19ef8c7668ff2c9898e0293c124aeaeefc9852b1d885",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "weather_marine",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "66d996abaaa22a4b5fc74b88329067fdf0e58218e1b48cf03cc3286103bcb329",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "weather_cloud",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "d405e4fa8bc5e66d84fcdfcf9ab1cd71c3f8d1be62240fbe9693490fd9922dae",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "weather_compact",
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "48bf191a48e7f0a005b5352d931b1988ce3b271ab83fc0e0eafe18d0bae4309c",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "weather_meta",
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "5c889c1e8873ae0366bb02ffcc3ca9fa15bd6bfdbfe235b74629db92eec3daa7",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "weather_manifest",
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "a958f0ee8747a39c87e18019dd8c792f1341ced1abc5999a5958ee900a2eba62",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "airport",
+      "dataset_id": "airport.bridge.pqc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "f793d59e07a1112cd3cf1c4d6f8882094a115eca3f3b8a3736a4b8ad5a37658c",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "transit",
+      "dataset_id": "transit.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "eb997a6acf21d3ddb09546c25af1da853bf7c1c750dbb1d51ae0e918f80ba27a",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "nearme",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "a1b06474bb909691958b68b6825acab53f4cf992744f5a7684f249ca32bbb0a5",
+      "source_exact_parity": true
+    },
+    {
+      "domain": "cano",
+      "dataset_id": "cano.operation.an-thoi",
+      "status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "receipt_digest": "a2f192472273e28174d95d9f2844acaacc3691262379ff213e91f25e6847f38c",
+      "source_exact_parity": true
+    }
+  ],
+  "production_enabled": false,
+  "full_system_restore_proven": false
+}

@@ -1,0 +1,36 @@
+{
+  "status": "PASS_CAPTURED_SOURCE_ISOLATED_CLOUD_SUBSET",
+  "production_ready": false,
+  "current_source_health_verified": false,
+  "continuous_ingestion_enabled": false,
+  "consumer_cutover_executed": false,
+  "source_policies_activated": false,
+  "cloud_run_id": 37101416540,
+  "deployed_code_sha": "b245ac102df3d97c257fab03cd8153ac0d08e341",
+  "native_ci_tests": {
+    "total": 264,
+    "passed": 264,
+    "failed": 0,
+    "skipped": 0
+  },
+  "actual_cloud_cases": {
+    "total": 15,
+    "passed": 15
+  },
+  "source_dataset_count": 11,
+  "portable_downloaded_backups_verified": 11,
+  "cloud_schema": {
+    "schemas": 5,
+    "positive": 50,
+    "negative": 150
+  },
+  "artifact_sha256": "9467f3f779f8659bab91685ead4b39c7117aa6d9e63fa1cf2e8877bdf9248ded",
+  "temporary_source_admission_capabilities": "CLOSED_ACTUAL_DENIAL_OBSERVED",
+  "remaining": [
+    "Release owner existing-system read boundary",
+    "Review live producer and consumer contracts before continuous ingestion",
+    "Near Me support/venue companion authority coverage",
+    "Complete production G1 restore/retention/cost/unattended gates",
+    "Prepare staged consumer migration with rollback"
+  ]
+}

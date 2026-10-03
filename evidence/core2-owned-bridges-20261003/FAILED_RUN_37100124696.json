@@ -1,0 +1,949 @@
+{
+  "status": "REAL_CLOUD_BRIDGE_BLOCKED_OR_FAILED",
+  "cases": [
+    {
+      "name": "final Core has no temporary native probe",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.forecast.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.marine.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.cloud.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.compact.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.meta.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.manifest.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "airport.bridge.pqc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "transit.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "directory.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "cano.operation.an-thoi authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "PASS"
+    },
+    {
+      "name": "all eleven sources coexist after admission",
+      "status": "PASS"
+    },
+    {
+      "name": "read authority outage serves signed references with no operational action",
+      "status": "FAIL",
+      "error": "DOMAIN_FALLBACK_INVALID"
+    },
+    {
+      "name": "temporary source admission capabilities closed with positive Runtime witness",
+      "status": "PASS"
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "domain": "weather",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/current.json",
+          "repository": "kenzuko/Jotrip-Weather"
+        },
+        "payload_sha256": "c31c09373d29d89f9e5b3afd7b533c2ebe1dff8831d104cabe10d45d8e092816",
+        "git_blob_sha": "6c50a19601d9a20e4bdebeddd49327317a1b6078"
+      },
+      "profile_hash": "1323e5da159bb508bb02f3ed9c896c4999163a66d495f93f1b9edb9ccd82876a",
+      "receipt_digest": "d1b8e23669db4ab96db99e0c46e7c86c7df9b57f450ac9411ef72ba5d3af78d7",
+      "revision": 1,
+      "record_count": 206,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T00:41:23.890Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "domain": "weather_forecast",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/forecast.json"
+        },
+        "payload_sha256": "490f416c7e3c291824c7915841c5fba079ee03cc41a8d656e6b725d9eca96d1f",
+        "git_blob_sha": "ed692ecb69c8813c84bbdad10240dac1f0577010"
+      },
+      "profile_hash": "fd66f641ec150c3481aca7d5f54b6929889a731ffe75f495596aa7b6b4cdcb3c",
+      "receipt_digest": "b284625ea8ee1233151c7145f1c90ec61c153209078b221627ca08ac845aa3ed",
+      "revision": 1,
+      "record_count": 26,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-02T22:21:42.313Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "domain": "weather_marine",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/marine.json"
+        },
+        "payload_sha256": "e4ed10ae6c9b4a13319360634b7a9ae13a74df61f94857eb821ad63dd1d8bbb6",
+        "git_blob_sha": "33c4371d960bc3a2dc283e436030354e4d19f850"
+      },
+      "profile_hash": "d2634b4b25036159df3813fdecaf1057b505aaec0b63388c1121c9fc295b162a",
+      "receipt_digest": "f2e92e6eaded45fb7f6d1d1fd3d47eb8d0aebf012dd476a8da0adf616297e5ff",
+      "revision": 1,
+      "record_count": 2,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-02T22:06:21.168Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "domain": "weather_cloud",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/cloud.json"
+        },
+        "payload_sha256": "07d4623174ae2166652bd51750099ea2b560fc8ae60e2d7dd224c2c213004a61",
+        "git_blob_sha": "f803583fe824cbc3dca3a97eaedd040f46d48a82"
+      },
+      "profile_hash": "1825006c4a17f1259cda8ebf7fe7b85d19edfc312db036b285707dfaee3259a3",
+      "receipt_digest": "7ab12ea8a01104f9192d02cb4e039b12b77cf3928db66aea8af3f3851fd677d1",
+      "revision": 1,
+      "record_count": 6,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T00:42:48.305Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "domain": "weather_compact",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/compact.json"
+        },
+        "payload_sha256": "ec578eb6727cd00b8d4c343c814c57709a0caac1ce2fda264a8def2a95e51199",
+        "git_blob_sha": "f4460de272e14cae45be4928dd541368d2c993fc"
+      },
+      "profile_hash": "8ff77e4f56cf22566fda2e95222bab7929022a911cdf86c666c00aaf6cf927e9",
+      "receipt_digest": "52fdd9ade99027ab0496a810e768a68d5e76e645a39d2e219dac489e0396d9e0",
+      "revision": 1,
+      "record_count": 1,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T00:42:48.305Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "domain": "weather_meta",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/meta.json"
+        },
+        "payload_sha256": "03d88b72471d7abf8839c74cd043f3cc52597f6b065118a9d7d8a08bc5455b7c",
+        "git_blob_sha": "28130c572c00b6601ba68fcb3d1d8b1393bc3f17"
+      },
+      "profile_hash": "77f4b48d1e6ad01747f2e6bd02b9260241efe90b7ad78e80ba2bf1db21774b91",
+      "receipt_digest": "0cdb03324c10d6d46d2b0c2965d45c997d8ab4c9786088cd0fe061d5d724b63c",
+      "revision": 1,
+      "record_count": 1,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-02T22:22:12.047Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "domain": "weather_manifest",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Weather",
+          "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+          "path": "data/weather-runtime/manifest.json"
+        },
+        "payload_sha256": "fe40aacbcacebff6e27c491103ba62005a3c4d8c97657039a53b9b6547f3faf9",
+        "git_blob_sha": "bba298b5f2820aed17ad9c74feb3f8a144779927"
+      },
+      "profile_hash": "a650785e86a3e026913e370afef53740ec32c303c4ae1c21cb0d563595c63d2f",
+      "receipt_digest": "f1f3b79a16dacda7199c0556e1f6469f5d5c38122f3efa2dfe70b00ec5778642",
+      "revision": 1,
+      "record_count": 1,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T00:51:04.295Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "domain": "airport",
+      "source_pin": {
+        "source_kind": "OWNER_PUBLIC_RUNTIME",
+        "source_pointer": {
+          "url": "https://jotrip-airport-live.kenzuko.workers.dev"
+        },
+        "payload_sha256": "6ce1c0d38bac2f3d2a414ca643e7d534cd979d4b2782a3cd057cb97546192d86",
+        "git_blob_sha": null
+      },
+      "profile_hash": "f470eec79f6358e6b6b0ffa91b8cdb1ecd9b7d33f9abc58af73b5e3b350349c6",
+      "receipt_digest": "8d4d733ab6aead77c603363b74a7e2ce4b24e959b8ce6560cc9f435d91221efe",
+      "revision": 1,
+      "record_count": 127,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T01:11:08.000Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "domain": "transit",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "commit_sha": "07b47173870fc7629c872739bf08f0b6d329d7f9",
+          "path": "data/network.json",
+          "repository": "kenzuko/transit-jotrip"
+        },
+        "payload_sha256": "d4f00073c67e049d7baf5da8fa5c5a7115376021efe972f39a080fc9e15b62ea",
+        "git_blob_sha": "12e5c7679d5399e77831c418ef3e26dbdb087407"
+      },
+      "profile_hash": "3dc5a681c303adbd136a75641202412401e074e44857c797680d2287390f64e5",
+      "receipt_digest": "efb2cc7cdf027b20fb05adf75263934d2dab698ae4d3c92c4f8de96834dbd36a",
+      "revision": 1,
+      "record_count": 44,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-03T00:26:29.324Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "domain": "nearme",
+      "source_pin": {
+        "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+        "source_pointer": {
+          "commit_sha": "9c4267c8a10d8b06578eb63f4244a17bda1dcaff",
+          "path": "data/views/location-index.json",
+          "repository": "kenzuko/jotrip-home"
+        },
+        "payload_sha256": "9a1618f1a1561a02481f0f8f9f9cc462a2d39d79f5ecf2ec00232659425552c0",
+        "git_blob_sha": "7a2d6dfc074514f8754d0bcbf6f90d0fcb331b4f"
+      },
+      "profile_hash": "5433510273581baafb73a2d5946f09672cf4cded2ea50286dece87c1ce783e7b",
+      "receipt_digest": "51d7866d06caca7136181de8eaa9372948bfcebb3979feb50891432e078f71a8",
+      "revision": 1,
+      "record_count": 348,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-01T13:30:00.000Z",
+      "display_expires_at": "2026-10-03T05:38:02.659Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "domain": "cano",
+      "source_pin": {
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Lab",
+          "commit_sha": "5c5e519a3048d99ec1b114ef0a8e55ad9252b3b8",
+          "path": "data/marine_ops/manual-confirmations/2026-10-03-cano-an-thoi.json"
+        },
+        "payload_sha256": "004cc31fbf63f19f1432437fc3c0807e3f67648c168518a05c8161f4153fd6fd",
+        "git_blob_sha": "cf2405d897b30e770ba0afbee33f9f82151d358c"
+      },
+      "profile_hash": "457caf83839b416a69a87bdc212dd5deecda9b6d97fae17f9dea974102c05997",
+      "receipt_digest": "a97f29a77351fcea490676d36ddc90bc00e6359d9f17aee084c3d3bb5942e931",
+      "revision": 1,
+      "record_count": 1,
+      "decision_eligibility": "ABSTAIN",
+      "source_time": "2026-10-02T23:06:00.000Z",
+      "display_expires_at": "2026-10-03T17:00:00.000Z",
+      "backup_status": "LOCAL_BACKUP_PUBLICATION_SIGNATURES_PASS",
+      "fixture_only": false,
+      "production_enabled": false
+    }
+  ],
+  "source_capture": "PINNED_PREVIOUS_CAPTURE_NOT_CURRENT_SOURCE_HEALTH",
+  "production_enabled": false,
+  "operational_action_allowed": false,
+  "full_system_restore_proven": false,
+  "code_sha": "34c395988903d143dc8b84603967bccd616f5e35",
+  "run_id": "37100124696",
+  "core_observations": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "airport.bridge.pqc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "transit.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "directory.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "prepare",
+      "status": 409,
+      "error": "REAL_CANO_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "cano.operation.an-thoi",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 401,
+      "error": "AUTH_DENIED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 401,
+      "error": "AUTH_DENIED"
+    }
+  ],
+  "error": "DOMAIN_FALLBACK_INVALID",
+  "cleanup_witness": {
+    "kind": "RUNTIME_PUBLICATION_READ",
+    "status": 200
+  },
+  "cleanup": "SUCCESS"
+}

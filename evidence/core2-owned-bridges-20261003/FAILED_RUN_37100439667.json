@@ -1,0 +1,104 @@
+{
+  "status": "REAL_CLOUD_BRIDGE_BLOCKED_OR_FAILED",
+  "cases": [
+    {
+      "name": "final Core has no temporary native probe",
+      "status": "PASS"
+    },
+    {
+      "name": "weather.bridge.phu-quoc authenticated native admission, exact legacy parity and portable signed backup",
+      "status": "FAIL",
+      "error": "DOMAIN_RUNTIME_NOT_VERIFIED"
+    },
+    {
+      "name": "temporary source admission capabilities closed with positive Runtime witness",
+      "status": "PASS"
+    }
+  ],
+  "datasets": [],
+  "source_capture": "PINNED_PREVIOUS_CAPTURE_NOT_CURRENT_SOURCE_HEALTH",
+  "production_enabled": false,
+  "operational_action_allowed": false,
+  "full_system_restore_proven": false,
+  "code_sha": "1f821f0bc1b4845f7dea57d3b9a226fdd28c162b",
+  "run_id": "37100439667",
+  "core_observations": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "bootstrap",
+      "status": 409,
+      "error": "ALREADY_BOOTSTRAPPED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 409,
+      "error": "DOMAIN_ACTION_FORBIDDEN"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 403,
+      "error": "CAPABILITY_SCOPE_DENIED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 401,
+      "error": "AUTH_DENIED"
+    },
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "path": "read",
+      "status": 200,
+      "error": null
+    }
+  ],
+  "runtime_observations": [
+    {
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": 503,
+      "elapsed_ms": 834,
+      "authority": null,
+      "fallback": null,
+      "eligibility": null,
+      "error": "DISPLAY_EXPIRED"
+    }
+  ],
+  "error": "DOMAIN_RUNTIME_NOT_VERIFIED",
+  "cleanup_witness": {
+    "kind": "CORE_READ_UNPUBLISHED_LOCATOR",
+    "status": 200
+  },
+  "cleanup": "SUCCESS"
+}

@@ -1,0 +1,134 @@
+{
+  "contract": "openpq-core2-consumer-review-v1",
+  "execution_allowed": false,
+  "reason": "Existing-system read/change boundary has not been released",
+  "sources": [
+    {
+      "domain": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "profile_hash": "f37c1163697546773db33acd4d9ee7931c0a5defe344c9b5ed8fa486e15b6dae",
+      "source_time": "2026-10-03T00:41:23.890Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/weather.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_forecast",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "profile_hash": "fc29572dd932122a8e738807f9893a5bd5728b471742d44aa1f648fa7fda84e7",
+      "source_time": "2026-10-02T22:21:42.313Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/weather.forecast.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_marine",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "profile_hash": "a2757192ba1a73cec5df7d49d3a48c82d8848dc91aca3ac4aabe2b4f39459640",
+      "source_time": "2026-10-02T22:06:21.168Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/weather.marine.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_cloud",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "profile_hash": "66e2df4f9c37a45249c86a09c183b703044a37aa2b94bb4836959347cc4471f1",
+      "source_time": "2026-10-03T00:42:48.305Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/weather.cloud.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_compact",
+      "dataset_id": "weather.compact.bridge.phu-quoc",
+      "profile_hash": "77f47efeb31f02f2a8062456f1540e339377c21011f6028f89d13c32c6fe6fff",
+      "source_time": "2026-10-03T00:42:48.305Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/weather.compact.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_meta",
+      "dataset_id": "weather.meta.bridge.phu-quoc",
+      "profile_hash": "794ffdeb8c11cb28b4979894f3e281ed2703b71ff2a9fc799b9516d214f67dd3",
+      "source_time": "2026-10-02T22:22:12.047Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/weather.meta.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "weather_manifest",
+      "dataset_id": "weather.manifest.bridge.phu-quoc",
+      "profile_hash": "39800ead6546c3e0116d00c38a81ce1d271b71b7c85507e447513caea3fec885",
+      "source_time": "2026-10-03T00:51:04.295Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/weather.manifest.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "airport",
+      "dataset_id": "airport.bridge.pqc",
+      "profile_hash": "2d8c7686415d437dc2725a10ac6dccc611c95e223bd8b2bc4147ac8538255c9f",
+      "source_time": "2026-10-03T01:11:08.000Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/airport.bridge.pqc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "transit",
+      "dataset_id": "transit.bridge.phu-quoc",
+      "profile_hash": "db8ebf463e08921e52c51445c3739a055ce7f0075711eca1715a11c27fb33a13",
+      "source_time": "2026-10-03T00:26:29.324Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/transit.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "nearme",
+      "dataset_id": "directory.bridge.phu-quoc",
+      "profile_hash": "b376fc3f6143b045797f23a477273fd1b28f35b51f69c72fd5f89db75dccbe65",
+      "source_time": "2026-10-01T13:30:00.000Z",
+      "display_expires_at": "2026-10-03T06:02:00.988Z",
+      "legacy_reference_route": "/datasets/directory.bridge.phu-quoc/legacy-reference",
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    },
+    {
+      "domain": "cano",
+      "dataset_id": "cano.operation.an-thoi",
+      "profile_hash": "457caf83839b416a69a87bdc212dd5deecda9b6d97fae17f9dea974102c05997",
+      "source_time": "2026-10-02T23:06:00.000Z",
+      "display_expires_at": "2026-10-03T17:00:00.000Z",
+      "legacy_reference_route": null,
+      "consumer_switch_executed": false,
+      "source_policies_activated": false
+    }
+  ],
+  "required_review": [
+    "current producer output path and freshness",
+    "existing consumer path and exact payload shape",
+    "consumer interpretation of ABSTAIN/stale/fallback",
+    "rollback to current working source engine",
+    "continuous ingestion profile activation rather than short captured lease"
+  ],
+  "production_enabled": false,
+  "continuous_ingestion_constraint": {
+    "current_contract": "EXACT_CAPTURE_PIN_AND_BOUNDED_REFERENCE_LEASE",
+    "profile_rotation": "Requires explicit authority/profile activation; normal binding replacement is denied",
+    "evidence": "tests/semantic-admission.test.js profile change gate plus isolated profile pin tests",
+    "next_implementation": "Review current producer contracts first; preserve source engines; define immutable producer/profile identity and explicit per-input provenance before enabling continuous ingestion",
+    "owner_input_required": "Release the original existing-system read boundary for producer outputs and consumer configuration"
+  },
+  "additional_nearme_gate": "Support and venue companion pins have existing parity coverage but are not separate cloud authority datasets; review their current consumer dependency before full Near Me readiness.",
+  "current_cloud_profile": "Captured reference test only; expires after five minutes. It is not a continuously refreshing production feed."
+}

@@ -1,0 +1,425 @@
+{
+  "weather.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.bridge.phu-quoc",
+    "domain": "weather",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/current.json",
+        "repository": "kenzuko/Jotrip-Weather"
+      },
+      "payload_sha256": "c31c09373d29d89f9e5b3afd7b533c2ebe1dff8831d104cabe10d45d8e092816",
+      "git_blob_sha": "6c50a19601d9a20e4bdebeddd49327317a1b6078"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "9621551b9cbf9f985be26d527c8d8f01c014e5c98e19dd1aaac8b29165b904a3"
+      },
+      "config": {
+        "hash": "b45bab0f7645b783c70540fbf1189d5f2a18d6d4432ead2a32794bd4effa083c"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "weather.forecast.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.forecast.bridge.phu-quoc",
+    "domain": "weather_forecast",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/forecast.json"
+      },
+      "payload_sha256": "490f416c7e3c291824c7915841c5fba079ee03cc41a8d656e6b725d9eca96d1f",
+      "git_blob_sha": "ed692ecb69c8813c84bbdad10240dac1f0577010"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_forecast"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "7659968131e316654d6128a7200266c9348559588c9ce20cd73697960136e333"
+      },
+      "config": {
+        "hash": "50ac210b740f021d4c849bfc7751e54b455859886fc16e125c86849f655cccd1"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "weather.marine.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.marine.bridge.phu-quoc",
+    "domain": "weather_marine",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/marine.json"
+      },
+      "payload_sha256": "e4ed10ae6c9b4a13319360634b7a9ae13a74df61f94857eb821ad63dd1d8bbb6",
+      "git_blob_sha": "33c4371d960bc3a2dc283e436030354e4d19f850"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_marine"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "b4990ac7e4be226bffa5594e155e1acbd0e65e1c3494aa0f4987011ae2b4a64f"
+      },
+      "config": {
+        "hash": "d0cd1a6b00b514a12da638c88be73ba1ddc63a0be594a8a1a07ea5504e19368c"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "weather.cloud.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.cloud.bridge.phu-quoc",
+    "domain": "weather_cloud",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/cloud.json"
+      },
+      "payload_sha256": "07d4623174ae2166652bd51750099ea2b560fc8ae60e2d7dd224c2c213004a61",
+      "git_blob_sha": "f803583fe824cbc3dca3a97eaedd040f46d48a82"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_cloud"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "e0fb3778cf6ee0e848316b05a3f3a3d7b47eedc99c142681a50c49e5b1cf29a3"
+      },
+      "config": {
+        "hash": "401bc845fd569782898a114980df1be1fa398daa49dbb08c17c8b981bf530e24"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "weather.compact.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.compact.bridge.phu-quoc",
+    "domain": "weather_compact",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/compact.json"
+      },
+      "payload_sha256": "ec578eb6727cd00b8d4c343c814c57709a0caac1ce2fda264a8def2a95e51199",
+      "git_blob_sha": "f4460de272e14cae45be4928dd541368d2c993fc"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_compact"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "93a58602807f34c189963cdf1e5123ab76ad9d635bca4b2a554e59c7c6e232ee"
+      },
+      "config": {
+        "hash": "6ccc495699ac91070e5cbe18ee36fab542afb746197cacff6bcdaacf273422c4"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "weather.meta.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.meta.bridge.phu-quoc",
+    "domain": "weather_meta",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/meta.json"
+      },
+      "payload_sha256": "03d88b72471d7abf8839c74cd043f3cc52597f6b065118a9d7d8a08bc5455b7c",
+      "git_blob_sha": "28130c572c00b6601ba68fcb3d1d8b1393bc3f17"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_meta"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "1f7cc6e1bf26a348fb08459b626e3d523bcdb0a52bbf3aefa7a629c3c99abe8c"
+      },
+      "config": {
+        "hash": "b8c0fd8d12a780c9f16a51469403aaac7c8ef264f1f79ada609c3840cee9ea36"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "weather.manifest.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "weather.manifest.bridge.phu-quoc",
+    "domain": "weather_manifest",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "repository": "kenzuko/Jotrip-Weather",
+        "commit_sha": "fa351b2fbf4ef2319221bb90e3ea958a1a1b7a8e",
+        "path": "data/weather-runtime/manifest.json"
+      },
+      "payload_sha256": "fe40aacbcacebff6e27c491103ba62005a3c4d8c97657039a53b9b6547f3faf9",
+      "git_blob_sha": "bba298b5f2820aed17ad9c74feb3f8a144779927"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-weather_manifest"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "7f27518772119cf4e0692c6dcd8fe5c4b99390fb05edaabf065486ed8f39ffee"
+      },
+      "config": {
+        "hash": "dcfdf0ff056ec348e4f5bee1f59ac693f091343e83eb16f5f8e882c8ee3b9c6f"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "airport.bridge.pqc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "airport.bridge.pqc",
+    "domain": "airport",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_PUBLIC_RUNTIME",
+      "source_pointer": {
+        "url": "https://jotrip-airport-live.kenzuko.workers.dev"
+      },
+      "payload_sha256": "6ce1c0d38bac2f3d2a414ca643e7d534cd979d4b2782a3cd057cb97546192d86",
+      "git_blob_sha": null
+    },
+    "operator_principal_ids": [
+      "bridge-operator-airport"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "f422317d7b890933f503c2c3100537cda33712527f7e01600f0b47db4f1ffa87"
+      },
+      "config": {
+        "hash": "feecf27e6ee45b9119cc75d392875ec651cae6528ef199c05c2a6aa530d4fda8"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "transit.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "transit.bridge.phu-quoc",
+    "domain": "transit",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "commit_sha": "07b47173870fc7629c872739bf08f0b6d329d7f9",
+        "path": "data/network.json",
+        "repository": "kenzuko/transit-jotrip"
+      },
+      "payload_sha256": "d4f00073c67e049d7baf5da8fa5c5a7115376021efe972f39a080fc9e15b62ea",
+      "git_blob_sha": "12e5c7679d5399e77831c418ef3e26dbdb087407"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-transit"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "b77ce20db9df09ead13e74dcc5d4b297a9537685c40c037a0608d21e206e762c"
+      },
+      "config": {
+        "hash": "ad1c58bfd52d227d0b610fec1e18eee503ec11bc889c6a577e09a161a35697c3"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "directory.bridge.phu-quoc": {
+    "contract_version": "openpq-owned-domain-bridge-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "directory.bridge.phu-quoc",
+    "domain": "nearme",
+    "fixture_only": false,
+    "source_pin": {
+      "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+      "source_pointer": {
+        "commit_sha": "9c4267c8a10d8b06578eb63f4244a17bda1dcaff",
+        "path": "data/views/location-index.json",
+        "repository": "kenzuko/jotrip-home"
+      },
+      "payload_sha256": "9a1618f1a1561a02481f0f8f9f9cc462a2d39d79f5ecf2ec00232659425552c0",
+      "git_blob_sha": "7a2d6dfc074514f8754d0bcbf6f90d0fcb331b4f"
+    },
+    "operator_principal_ids": [
+      "bridge-operator-nearme"
+    ],
+    "test_window": {
+      "valid_from": "2026-10-03T05:57:00.988Z",
+      "valid_to": "2026-10-03T06:02:00.988Z",
+      "basis": "ISOLATED_CAPTURE_REFERENCE_ONLY"
+    },
+    "artifact_refs": {
+      "rule": {
+        "hash": "757f3f1ad362599e7d85984c993ff85a1382e1e20bcd60d24f651706f2686471"
+      },
+      "config": {
+        "hash": "8019cb2fe81440213dbe28b8d043c3403029f2452ebcb5d6ffe3402346037bfc"
+      },
+      "policy": {
+        "hash": "a25f1e76658b0375465a3d44bfd89a7e07876eafe085d7b2da3927705c1529e7"
+      },
+      "schema": {
+        "hash": "026ef9968e8fe4d1d64c1654823f6c60a2fc6be48cf714723f1417dfcd7e5efa"
+      }
+    }
+  },
+  "cano.operation.an-thoi": {
+    "contract_version": "openpq-real-cano-admission-isolated-v1",
+    "environment_id": "isolated-test",
+    "dataset_id": "cano.operation.an-thoi",
+    "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+    "fixture_only": false,
+    "source_records": [
+      {
+        "source_pointer": {
+          "repository": "kenzuko/Jotrip-Lab",
+          "commit_sha": "5c5e519a3048d99ec1b114ef0a8e55ad9252b3b8",
+          "path": "data/marine_ops/manual-confirmations/2026-10-03-cano-an-thoi.json"
+        },
+        "payload_sha256": "004cc31fbf63f19f1432437fc3c0807e3f67648c168518a05c8161f4153fd6fd",
+        "git_blob_sha": "cf2405d897b30e770ba0afbee33f9f82151d358c"
+      }
+    ],
+    "operator_principal_ids": [
+      "bridge-operator-cano"
+    ],
+    "artifact_refs": {
+      "rule": {
+        "hash": "2f13393c6881839a5aa5719cc3ca0d150058f657e2e45c773fa347c245ee788b"
+      },
+      "config": {
+        "hash": "479a0c9dd9eccab5109c4288c533780c586d75201bb3c735167bd2508db36974"
+      },
+      "policy": {
+        "hash": "94172ce2e50559cad50e314598bbea5bad467cad0fa09973c82b0f58bcb85358"
+      },
+      "schema": {
+        "hash": "6da6de45af547d1f2048e8d2d54f9cb77545896597034c106ac7d19224c241c5"
+      }
+    }
+  }
+}
