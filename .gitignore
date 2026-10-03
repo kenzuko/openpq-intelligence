@@ -1,4 +1,5 @@
 node_modules/
+.transit-transfer/
 .wrangler/
 .dev.vars*
 .env*

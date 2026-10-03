@@ -1,0 +1,10 @@
+{
+  "source_kind": "OWNER_REPOSITORY_SNAPSHOT",
+  "source_pointer": {
+    "repository": "kenzuko/transit-jotrip",
+    "commit_sha": "26f8927968e48f60b8151d93407f32ab9cf710dc",
+    "path": "data/network.json"
+  },
+  "payload_sha256": "a9f6dd1fef60cdffd127c4cac8ae493d780d133166c1c0b4acc5ee5590507a8a",
+  "git_blob_sha": "1f9491473a5834aa5cb54386170b8783f1bef608"
+}

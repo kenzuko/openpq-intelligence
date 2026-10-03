@@ -1,5 +1,6 @@
 import {trustMap} from '../platform/trusted-config.js';
-import {CONTINUOUS_PROFILE_VERSION} from '../platform/domain-continuous-contract.js';
+import {continuousContract} from '../platform/domain-continuous-contract.js';
+import {executionEnvironment,executionDataset} from '../platform/transit-execution-scope.js';
 import { DurableObject } from 'cloudflare:workers';
 import { ContractError, candidate, hash, instant, locator, requireThat, revision, sameLocator, stable } from '../platform/contracts.js';
 import { authorize, principal } from '../platform/auth.js';
@@ -25,11 +26,12 @@ export class DatasetCoordinator extends DurableObject {
     return JSON.parse(text);
   }
   trust() {
-    requireThat(['local-test','isolated-test'].includes(this.env.ENVIRONMENT_ID),'PRODUCTION_GATE_CLOSED',503);
+    executionEnvironment(this.env);
     const map=trustMap(this.env);
     const entries=Object.values(map).filter(e=>e.native_id===this.ctx.id.toString());
     requireThat(entries.length===1,'AUTHORITY_INSTANCE_UNREGISTERED',409);
     const e=locator(entries[0]);
+    executionDataset(this.env,e);
     requireThat(e.environment_id===this.env.ENVIRONMENT_ID,'ENVIRONMENT_MISMATCH',409);
     const s=this.state();
     if (s) {requireThat(sameLocator(s,e),'CONTROL_LOCATOR_MISMATCH',409);requireThat((s.semantic_profile_hash||null)===(e.semantic_profile_hash||null),'CONTROL_SEMANTIC_PROFILE_MISMATCH',409);}
@@ -151,9 +153,9 @@ export class DatasetCoordinator extends DurableObject {
           requireThat(!s.frozen || p.operation==='RETRACTION','PUBLICATION_FROZEN',409);
           requireThat(Object.keys(s.artifacts).every(k=>p.artifacts[k]===s.artifacts[k]),'ACTIVATION_MISMATCH',409);
           requireThat(p.operation!=='NORMAL'||!s.active||p.logical_slot>=s.active.logical_slot,'OBSOLETE_SLOT',409);
-          if(p.semantic_admission?.contract_version===CONTINUOUS_PROFILE_VERSION&&s.active){
+          if(continuousContract(p.semantic_admission?.contract_version)&&s.active){
             const prior=s.active.semantic_admission,current=p.semantic_admission;
-            requireThat(prior?.contract_version===CONTINUOUS_PROFILE_VERSION,'CONTINUOUS_PREVIOUS_PROFILE_DENIED',409);
+            requireThat(prior?.contract_version===current.contract_version,'CONTINUOUS_PREVIOUS_PROFILE_DENIED',409);
             const before=instant(prior.source_version_time,'CONTINUOUS_PREVIOUS_VERSION'),after=instant(current.source_version_time,'CONTINUOUS_VERSION');
             requireThat(after>=before&&(after!==before||current.input_hash===prior.input_hash||retiredForecastDigest===s.active.digest),'CONTINUOUS_SOURCE_REGRESSION',409);
           }

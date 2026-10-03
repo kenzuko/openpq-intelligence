@@ -1,0 +1,204 @@
+{
+  "contract": "openpq-normal-transfer-capability-inventory-v1",
+  "read_only": true,
+  "account_id": "1a64a0a081ea758f72be8254030bdf11",
+  "handoff_account_id": "1a64a0a081ea758f72be8254030bdf11",
+  "handoff_account_matches": true,
+  "code_sha": "d50114385ef55db3bad0112a1923ed94e679fe20",
+  "started_at": "2026-10-03T21:58:18.911Z",
+  "public_cutover_executed": false,
+  "credentials_created": false,
+  "permissions_broadened": false,
+  "reads": [
+    {
+      "path": "/workers/scripts",
+      "method": "GET",
+      "status": "READ_ALLOWED",
+      "http_status": 200
+    },
+    {
+      "path": "/r2/buckets",
+      "method": "GET",
+      "status": "READ_DENIED_OR_FAILED",
+      "http_status": 403
+    },
+    {
+      "path": "/workers/durable_objects/namespaces",
+      "method": "GET",
+      "status": "READ_ALLOWED",
+      "http_status": 200
+    },
+    {
+      "path": "/workers/scripts/openphuquoc-v3/settings",
+      "method": "GET",
+      "status": "READ_ALLOWED",
+      "http_status": 200
+    },
+    {
+      "path": "/workers/scripts/openphuquoc-v3/deployments",
+      "method": "GET",
+      "status": "READ_ALLOWED",
+      "http_status": 200
+    }
+  ],
+  "workers": [
+    {
+      "id": "jotrip-airport-live"
+    },
+    {
+      "id": "jotrip-dmc"
+    },
+    {
+      "id": "jotrip-dmc-preview"
+    },
+    {
+      "id": "jotrip-lab"
+    },
+    {
+      "id": "jotrip-ops"
+    },
+    {
+      "id": "jotrip-quote-preview"
+    },
+    {
+      "id": "jotrip-trip"
+    },
+    {
+      "id": "jotrip-weather-fresh"
+    },
+    {
+      "id": "jotrip-weather-live"
+    },
+    {
+      "id": "openphuquoc-v3"
+    },
+    {
+      "id": "phuquoc-careers-api"
+    },
+    {
+      "id": "phuquoc-careers-visual-preview"
+    },
+    {
+      "id": "phuquocfishingtours-desk"
+    },
+    {
+      "id": "phuquocfishingtours-fishing-ops"
+    },
+    {
+      "id": "phuquoclux-app"
+    }
+  ],
+  "worker_inventory_complete": true,
+  "buckets": null,
+  "bucket_inventory_complete": false,
+  "namespaces": [],
+  "namespace_inventory_complete": true,
+  "public_worker_bindings": [
+    {
+      "name": "ASSETS",
+      "type": "assets"
+    },
+    {
+      "name": "CMS_DB",
+      "type": "d1"
+    },
+    {
+      "name": "OPS_ANALYTICS_BRIDGE_SECRET",
+      "type": "secret_text"
+    }
+  ],
+  "public_worker_deployments": [
+    {
+      "id": "f2964721-1510-4a00-9c27-87dbef82e49b",
+      "versions": [
+        {
+          "version_id": "25aff0f1-bcbb-46ab-af3e-f90d2081d363",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "ac71e207-aaed-4285-8b6c-ef1f67a0f1cc",
+      "versions": [
+        {
+          "version_id": "195bd35f-2ff4-4d9b-8e2c-81fc5dd7bd69",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "86c1802e-f4db-4fd4-b777-6332ab9c9db5",
+      "versions": [
+        {
+          "version_id": "a7462996-d3c5-44ae-aa2c-69fe0064fce0",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "75bd1bec-a849-410e-bfef-cd7531e90b40",
+      "versions": [
+        {
+          "version_id": "ca48c7b9-403e-4b5a-8774-1279b26108a9",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "1a6619b3-bb3e-4f9f-8e3a-06d9015b8fcd",
+      "versions": [
+        {
+          "version_id": "edca7d37-cd48-4a4a-9960-bc5f2ed8c571",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "86bd3d26-7565-4baa-aaa2-f348db0cb48b",
+      "versions": [
+        {
+          "version_id": "0a5b46bf-9121-4589-bd13-378d051726b6",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "988e50b9-5f0b-4be5-9325-df3160367cb5",
+      "versions": [
+        {
+          "version_id": "85ff0304-9d87-47c9-acb4-c60bc4502060",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "53341d46-de31-4cc5-9ad2-8e0b3d5e87e8",
+      "versions": [
+        {
+          "version_id": "b7d4d9ec-4d6c-490f-a6fc-47ba17eecd9b",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "7e50c323-8d96-4bac-836a-0aa3d43873e2",
+      "versions": [
+        {
+          "version_id": "076cf34d-cf23-44a0-9eab-c537e07abb54",
+          "percentage": 100
+        }
+      ]
+    },
+    {
+      "id": "0d3bd61a-780d-4871-9868-df271261365e",
+      "versions": [
+        {
+          "version_id": "e4ed247e-d12b-4dbf-b725-c535639b7da6",
+          "percentage": 100
+        }
+      ]
+    }
+  ],
+  "finished_at": "2026-10-03T21:58:19.313Z",
+  "status": "READ_ONLY_INVENTORY_PARTIAL"
+}
