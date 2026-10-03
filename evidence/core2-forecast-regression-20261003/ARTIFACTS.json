@@ -1,0 +1,44 @@
+{
+  "source_run_id": "37132560370",
+  "source_code_sha": "9f4bfddb36a0d7041e1155ab4deea018b6cf9b8b",
+  "github_artifact_id": 11277402414,
+  "downloaded_zip_sha256": "6e7bd63cab0b800e9cb5940e1e5e5817a97544082a8586f4f32bc140d626553b",
+  "remote_writes": 0,
+  "files": [
+    {
+      "file": "COMPARISON.json",
+      "sha256": "ba552845b5318e2cb6807c55ea1df27e0bf10f88f3155dbf14df57327bb5e1be",
+      "bytes": 878
+    },
+    {
+      "file": "CURRENT_CANDIDATE.json",
+      "sha256": "0d1713da9626120eac896579069b997dcff3f976f1a0c03a8da175b9fc7635ee",
+      "bytes": 49299
+    },
+    {
+      "file": "CURRENT_SOURCE.json",
+      "sha256": "6848f8272c118beb7fdd7e1072f14dfad63c16e2db25076f8f07a4796260915e",
+      "bytes": 278032
+    },
+    {
+      "file": "PREVIOUS_GENERATION.json",
+      "sha256": "eb732bab398888cb4c1dfb25c06d18dffbb7a80b64cb92f7ae8f3f94116d5c60",
+      "bytes": 48437
+    },
+    {
+      "file": "PROFILE.json",
+      "sha256": "c0f54bace0b4afd8c717e0d8c72b19a09401ebd24e63402c563a425c94ee665f",
+      "bytes": 998
+    },
+    {
+      "file": "SIGNED_CHECKPOINT.json",
+      "sha256": "1dcfb11cfc587f1b7b8d0a3a918ff5ba7944e45eaef32e9138f62917d2322141",
+      "bytes": 2852
+    },
+    {
+      "file": "TRUST.json",
+      "sha256": "5c96e0774ca732e50308ae6145cea83f03f67baa889fdd8bf6fb10241b70fe63",
+      "bytes": 1378
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "run_id": "37130620962",
+  "code_sha": "6371ee546141a1ecd1f6a4041b130c598ae40022",
+  "github_artifact_id": 11277110490,
+  "zip_sha256": "bb1a82077c784ec7627c8531788f48095d505dac85ab446b2e19c8da96784bc5",
+  "actual_error": "DOMAIN_RECOVERY_PROPAGATION_TIMEOUT_HTTP_200_NO_PROTOCOL_ERROR",
+  "cleanup": "SUCCESS",
+  "status": "ACTUAL_COUNTEREXAMPLE_NOT_ACCEPTANCE"
+}

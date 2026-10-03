@@ -1,0 +1,103 @@
+{
+  "status": "PREFLIGHT_PASS",
+  "cloud_gate": "NOT_PASSED",
+  "recorded_at_utc": "2026-10-03T14:47:53.626Z",
+  "account_id": "c61a28455fe22f30619b35dd80c2d495",
+  "production_account_ids": [
+    "1a64a0a081ea758f72be8254030bdf11"
+  ],
+  "active_ingestion": true,
+  "bucket": "openpq-intelligence-canonical-isolated-test",
+  "workers": [
+    {
+      "id": "openpq-intelligence-core-isolated-test"
+    },
+    {
+      "id": "openpq-intelligence-ingestion-isolated-test"
+    },
+    {
+      "id": "openpq-intelligence-operator-isolated-test"
+    },
+    {
+      "id": "openpq-intelligence-progress-isolated-test"
+    },
+    {
+      "id": "openpq-intelligence-runtime-isolated-test"
+    },
+    {
+      "id": "openpq-intelligence-staging-isolated-test"
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "97783b80477f4613a445b4e219b8158c",
+      "script": "openpq-intelligence-core-isolated-test",
+      "class": "DatasetCoordinator"
+    },
+    {
+      "id": "4d010c36ea364ea89d4d758ad10382df",
+      "script": "openpq-intelligence-progress-isolated-test",
+      "class": "ProgressScheduler"
+    },
+    {
+      "id": "9663fb0773f149cab4d65e1a6d5eba85",
+      "script": "openpq-intelligence-ingestion-isolated-test",
+      "class": "DatasetSourcePump"
+    }
+  ],
+  "deploy_token_id": "77f74c21b45d1c6263e735674c5934ae",
+  "deploy_policies": [
+    {
+      "effect": "allow",
+      "resources": {
+        "com.cloudflare.api.account.c61a28455fe22f30619b35dd80c2d495": "*"
+      },
+      "permissions": [
+        {
+          "id": "eb56a6953c034b9d97dd838155666f06",
+          "name": "Account API Tokens Read"
+        },
+        {
+          "id": "b4992e1108244f5d8bfbd5744320c2e1",
+          "name": "Workers R2 Storage Read"
+        },
+        {
+          "id": "e086da7e2179491d91ee5f35b3ca210a",
+          "name": "Workers Scripts Write"
+        },
+        {
+          "id": "1a71c399035b4950a1bd1466bbe4f420",
+          "name": "Workers Scripts Read"
+        },
+        {
+          "id": "c1fde68c7bcc44588cbb6ddbc16d6480",
+          "name": "Account Settings Read"
+        }
+      ]
+    }
+  ],
+  "read_token_id": "7ac7555cd28b5e64fecfdf826f356cb0",
+  "read_policies": [
+    {
+      "effect": "allow",
+      "resources": {
+        "com.cloudflare.edge.r2.bucket.c61a28455fe22f30619b35dd80c2d495_default_openpq-intelligence-canonical-isolated-test": "*"
+      },
+      "permissions": [
+        {
+          "id": "6a018a9f2fc74eb6b293b0c548f38b39",
+          "name": "Workers R2 Storage Bucket Item Read"
+        }
+      ]
+    }
+  ],
+  "api_reads": [
+    "/accounts/c61a28455fe22f30619b35dd80c2d495/tokens/verify",
+    "/accounts/c61a28455fe22f30619b35dd80c2d495/tokens/77f74c21b45d1c6263e735674c5934ae",
+    "/accounts/c61a28455fe22f30619b35dd80c2d495/tokens/7ac7555cd28b5e64fecfdf826f356cb0",
+    "/accounts/c61a28455fe22f30619b35dd80c2d495/workers/scripts",
+    "/accounts/c61a28455fe22f30619b35dd80c2d495/workers/scripts/openpq-intelligence-ingestion-isolated-test/schedules",
+    "/accounts/c61a28455fe22f30619b35dd80c2d495/r2/buckets",
+    "/accounts/c61a28455fe22f30619b35dd80c2d495/workers/durable_objects/namespaces"
+  ]
+}

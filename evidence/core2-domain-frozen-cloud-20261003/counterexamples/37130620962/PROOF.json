@@ -1,0 +1,71 @@
+{
+  "status": "BLOCKED_OR_FAILED",
+  "code_sha": "6371ee546141a1ecd1f6a4041b130c598ae40022",
+  "run_id": "37130620962",
+  "started_at": "2026-10-03T14:44:39.074Z",
+  "domains": [
+    {
+      "domain": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": "PASS_FROZEN_CLOUD_DOMAIN_ARCHIVE_RESTORE",
+      "started_at": "2026-10-03T14:44:40.700Z",
+      "phase": "VERIFY_RESTART_PERSISTENCE",
+      "fencing": {
+        "revoked_at": "2026-10-03T14:45:30.127Z",
+        "observed_at": "2026-10-03T14:45:40.643Z",
+        "command_http_status": 401,
+        "storage_gateway_http_status": 401,
+        "read_witness_status": 200,
+        "write_witness_status": 200,
+        "old_r2_binding_removed": true,
+        "scope": "APPLICATION_STORAGE_GATEWAY_AND_BINDING_NOT_S3_ACCESS_KEY",
+        "command_fingerprint": "92e3cb45953f4d10f294cbbb3ecac4cdba14004466acf76f39bb0d99ea164dcf",
+        "storage_fingerprint": "314d59d2fc9b222c1beca61591977767dad6f147669f8a42b138e76fc2b399c2"
+      },
+      "finished_at": "2026-10-03T14:46:00.561Z",
+      "legacy_payload_digest": "f49cb6aa8f6b6fc222cf1020dd3a4bce87f1e161e658df18742b84024fb46ac8",
+      "source_digest": "9a6e00dc7432deb1c605215c4d2a0411bb2c44653dd6055d55959526d9a6f2d3",
+      "source_version_time": "2026-10-03T14:41:27.758Z",
+      "captured_watermark": {
+        "revision": 1,
+        "control_revision": 0,
+        "epoch": 1
+      },
+      "restart_changed_incarnation": true,
+      "timing": {
+        "restore_and_restart_readback_ms": 10455,
+        "capture_export_lag_ms": 1695,
+        "lost_committed_revisions_in_this_drill": 0,
+        "scope": "THIS_FRESH_REFERENCE_DRILL_NOT_DOMAIN_SLA"
+      }
+    },
+    {
+      "domain": "weather_forecast",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": "RUNNING",
+      "started_at": "2026-10-03T14:46:00.561Z",
+      "phase": "REVOKE_SOURCE_COMMAND_AND_STORAGE"
+    }
+  ],
+  "cleanup": {
+    "status": "SUCCESS",
+    "workers": [
+      {
+        "name": "openpq-intelligence-recovery-target-test",
+        "deleted": true
+      },
+      {
+        "name": "openpq-intelligence-recovery-source-test",
+        "deleted": true
+      }
+    ]
+  },
+  "production_enabled": false,
+  "writer_resumed": false,
+  "live_serving_restored": false,
+  "full_system_restore_proven": false,
+  "direct_s3_write_key_revocation_proven": false,
+  "offsite_restore_proven": false,
+  "error": "DOMAIN_RECOVERY_PROPAGATION_TIMEOUT_HTTP_200_NO_PROTOCOL_ERROR",
+  "finished_at": "2026-10-03T14:47:53.634Z"
+}

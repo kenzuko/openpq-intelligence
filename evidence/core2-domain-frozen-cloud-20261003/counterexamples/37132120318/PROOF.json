@@ -1,0 +1,1173 @@
+{
+  "status": "BLOCKED_OR_FAILED",
+  "code_sha": "e609e14ec48a67cd79280b9a9460e2b4fe08dab9",
+  "run_id": "37132120318",
+  "started_at": "2026-10-03T15:08:33.440Z",
+  "domains": [
+    {
+      "domain": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": "PASS_FROZEN_CLOUD_DOMAIN_ARCHIVE_RESTORE",
+      "started_at": "2026-10-03T15:08:35.186Z",
+      "phase": "VERIFY_RESTART_PERSISTENCE",
+      "expected_storage_gateway_fingerprints": {
+        "source": "c17f1b0c9e25f3651a379cc78ed76e407436e3aef8751e3f28ac2411cc3dc6d6",
+        "target": "4d8538fb1b835e8f0bb2614b17bb91c417e5f3d5284a942953d018b06cd9f225"
+      },
+      "fencing": {
+        "revoked_at": "2026-10-03T15:09:06.243Z",
+        "observed_at": "2026-10-03T15:09:16.861Z",
+        "command_http_status": 401,
+        "storage_gateway_http_status": 401,
+        "read_witness_status": 200,
+        "write_witness_status": 200,
+        "old_r2_binding_removed": true,
+        "source_incarnation_changed_with_identical_control": true,
+        "secrets_and_class_revision_deployed_atomically": true,
+        "scope": "APPLICATION_STORAGE_GATEWAY_AND_BINDING_NOT_S3_ACCESS_KEY",
+        "command_fingerprint": "eaa97cd99bcb69ec25220e6b67bfd9ed568f6788c709daa8365397796d47b768",
+        "storage_fingerprint": "c17f1b0c9e25f3651a379cc78ed76e407436e3aef8751e3f28ac2411cc3dc6d6"
+      },
+      "finished_at": "2026-10-03T15:09:29.343Z",
+      "legacy_payload_digest": "f49cb6aa8f6b6fc222cf1020dd3a4bce87f1e161e658df18742b84024fb46ac8",
+      "source_digest": "9a6e00dc7432deb1c605215c4d2a0411bb2c44653dd6055d55959526d9a6f2d3",
+      "source_version_time": "2026-10-03T14:41:27.758Z",
+      "captured_watermark": {
+        "revision": 1,
+        "control_revision": 0,
+        "epoch": 1
+      },
+      "restart_changed_incarnation": true,
+      "timing": {
+        "restore_and_restart_readback_ms": 9125,
+        "capture_export_lag_ms": 1553,
+        "lost_committed_revisions_in_this_drill": 0,
+        "scope": "THIS_FRESH_REFERENCE_DRILL_NOT_DOMAIN_SLA"
+      }
+    },
+    {
+      "domain": "weather_forecast",
+      "dataset_id": "weather.forecast.bridge.phu-quoc",
+      "status": "PASS_FROZEN_CLOUD_DOMAIN_ARCHIVE_RESTORE",
+      "started_at": "2026-10-03T15:09:29.343Z",
+      "phase": "VERIFY_RESTART_PERSISTENCE",
+      "expected_storage_gateway_fingerprints": {
+        "source": "6437f81b7333a29ce2f481a08f30e6a60b6b3a778cd0bed05e3884a76e472f1c",
+        "target": "ff84e6daf8019e94afc8e00df00b02b69c96852b14df2cede1fd3b08ef8de94c"
+      },
+      "fencing": {
+        "revoked_at": "2026-10-03T15:10:35.311Z",
+        "observed_at": "2026-10-03T15:10:40.244Z",
+        "command_http_status": 401,
+        "storage_gateway_http_status": 401,
+        "read_witness_status": 200,
+        "write_witness_status": 200,
+        "old_r2_binding_removed": true,
+        "source_incarnation_changed_with_identical_control": true,
+        "secrets_and_class_revision_deployed_atomically": true,
+        "scope": "APPLICATION_STORAGE_GATEWAY_AND_BINDING_NOT_S3_ACCESS_KEY",
+        "command_fingerprint": "f0b58816c975244447f20ec5e26ae99b9c06675d50aa8b0d44603ecb42e6b774",
+        "storage_fingerprint": "6437f81b7333a29ce2f481a08f30e6a60b6b3a778cd0bed05e3884a76e472f1c"
+      },
+      "finished_at": "2026-10-03T15:10:49.415Z",
+      "legacy_payload_digest": "3724006487857121be5f9075d8271ab3e2b534f15e3c44af9db7859f40829fb0",
+      "source_digest": "128797e81433144f94a5d646682e3297892fd428b02da7ccd6d957d1964c2c71",
+      "source_version_time": "2026-10-03T12:06:41.914Z",
+      "captured_watermark": {
+        "revision": 1,
+        "control_revision": 0,
+        "epoch": 1
+      },
+      "restart_changed_incarnation": true,
+      "timing": {
+        "restore_and_restart_readback_ms": 5521,
+        "capture_export_lag_ms": 1670,
+        "lost_committed_revisions_in_this_drill": 0,
+        "scope": "THIS_FRESH_REFERENCE_DRILL_NOT_DOMAIN_SLA"
+      }
+    },
+    {
+      "domain": "weather_marine",
+      "dataset_id": "weather.marine.bridge.phu-quoc",
+      "status": "PASS_FROZEN_CLOUD_DOMAIN_ARCHIVE_RESTORE",
+      "started_at": "2026-10-03T15:10:49.415Z",
+      "phase": "VERIFY_RESTART_PERSISTENCE",
+      "expected_storage_gateway_fingerprints": {
+        "source": "2e10860d41f128d063a321b216b08815583c977278e6e33664b16c6e44e91765",
+        "target": "1bad78b63f31d783d8cbd2aeaaa6f58ebe6025b47cf5819a9e1c8ffefc0487df"
+      },
+      "fencing": {
+        "revoked_at": "2026-10-03T15:11:19.126Z",
+        "observed_at": "2026-10-03T15:11:27.184Z",
+        "command_http_status": 401,
+        "storage_gateway_http_status": 401,
+        "read_witness_status": 200,
+        "write_witness_status": 200,
+        "old_r2_binding_removed": true,
+        "source_incarnation_changed_with_identical_control": true,
+        "secrets_and_class_revision_deployed_atomically": true,
+        "scope": "APPLICATION_STORAGE_GATEWAY_AND_BINDING_NOT_S3_ACCESS_KEY",
+        "command_fingerprint": "e8d5bacb201c0091968482c7ff126cb1406cbc44bb55e0c0a475f8f8475865ea",
+        "storage_fingerprint": "2e10860d41f128d063a321b216b08815583c977278e6e33664b16c6e44e91765"
+      },
+      "finished_at": "2026-10-03T15:11:35.571Z",
+      "legacy_payload_digest": "749c709116c720dfbc1449ea65c508b2f81a27c05e7650e2d29472de23b6b4c7",
+      "source_digest": "38036e5610f7a5a6cba0da76b29a7bec0ddbb643730d98726fe952ec14cc6716",
+      "source_version_time": "2026-10-03T11:49:55.837Z",
+      "captured_watermark": {
+        "revision": 1,
+        "control_revision": 0,
+        "epoch": 1
+      },
+      "restart_changed_incarnation": true,
+      "timing": {
+        "restore_and_restart_readback_ms": 4944,
+        "capture_export_lag_ms": 1565,
+        "lost_committed_revisions_in_this_drill": 0,
+        "scope": "THIS_FRESH_REFERENCE_DRILL_NOT_DOMAIN_SLA"
+      }
+    },
+    {
+      "domain": "weather_cloud",
+      "dataset_id": "weather.cloud.bridge.phu-quoc",
+      "status": "RUNNING",
+      "started_at": "2026-10-03T15:11:35.572Z",
+      "phase": "CAPTURE_AND_PUBLISH_CURRENT_SOURCE",
+      "expected_storage_gateway_fingerprints": {
+        "source": "a53006846ff0d1abc80f5e628a8d8d94fc958e9e3e1149e76a7cf3df3d80e86e",
+        "target": "a44dc1a37e253912a49bbe1536335851b864133cf6b69dc30c73f89b16db340d"
+      }
+    }
+  ],
+  "cleanup": {
+    "status": "SUCCESS",
+    "workers": [
+      {
+        "name": "openpq-intelligence-recovery-target-test",
+        "deleted": true
+      },
+      {
+        "name": "openpq-intelligence-recovery-source-test",
+        "deleted": true
+      }
+    ]
+  },
+  "production_enabled": false,
+  "writer_resumed": false,
+  "live_serving_restored": false,
+  "full_system_restore_proven": false,
+  "direct_s3_write_key_revocation_proven": false,
+  "offsite_restore_proven": false,
+  "http_observations": [
+    {
+      "at": "2026-10-03T15:08:42.440Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 404,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:08:44.451Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 404,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:08:46.476Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.bridge.phu-quoc/37132120318/source",
+        "native_id": "c4c26848cb1fea1b914772a5008d4297875389aacb06411be4dc5a5b5dd58a67",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:08:46.535Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.bridge.phu-quoc/37132120318/target",
+        "native_id": "c7cb00c2cc907ba5afa52b74249f309176d8d43436fa0cd12c0abc078f8617b8",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:08:53.945Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.bridge.phu-quoc/37132120318/source",
+        "native_id": "c4c26848cb1fea1b914772a5008d4297875389aacb06411be4dc5a5b5dd58a67",
+        "canonical_bound": true,
+        "storage_gateway_configured": true,
+        "storage_gateway_credential_fingerprint": "c17f1b0c9e25f3651a379cc78ed76e407436e3aef8751e3f28ac2411cc3dc6d6"
+      }
+    },
+    {
+      "at": "2026-10-03T15:08:53.988Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.bridge.phu-quoc/37132120318/target",
+        "native_id": "c7cb00c2cc907ba5afa52b74249f309176d8d43436fa0cd12c0abc078f8617b8",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:08:55.999Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.bridge.phu-quoc/37132120318/target",
+        "native_id": "c7cb00c2cc907ba5afa52b74249f309176d8d43436fa0cd12c0abc078f8617b8",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:08:58.022Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.bridge.phu-quoc/37132120318/target",
+        "native_id": "c7cb00c2cc907ba5afa52b74249f309176d8d43436fa0cd12c0abc078f8617b8",
+        "canonical_bound": true,
+        "storage_gateway_configured": true,
+        "storage_gateway_credential_fingerprint": "4d8538fb1b835e8f0bb2614b17bb91c417e5f3d5284a942953d018b06cd9f225"
+      }
+    },
+    {
+      "at": "2026-10-03T15:08:58.312Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:08:58.346Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:08:59.835Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:08:59.921Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:01.382Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:01.421Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/recovery-export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:03.454Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/snapshot-archive",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:04.769Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/domain-archive",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:06.219Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:06.242Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:09.137Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:11.188Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/commit",
+      "status": 401,
+      "error": "AUTH_DENIED"
+    },
+    {
+      "at": "2026-10-03T15:09:13.462Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:15.487Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:15.507Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:16.704Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:20.456Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/recovery-bootstrap",
+      "status": 503,
+      "error": "RECOVERY_PLAN_REQUIRED"
+    },
+    {
+      "at": "2026-10-03T15:09:22.483Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/recovery-bootstrap",
+      "status": 503,
+      "error": "RECOVERY_PLAN_REQUIRED"
+    },
+    {
+      "at": "2026-10-03T15:09:25.095Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/recovery-bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:25.388Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/recovery-read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:25.417Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/recovery-read",
+      "status": 403,
+      "error": "CAPABILITY_DENIED"
+    },
+    {
+      "at": "2026-10-03T15:09:25.433Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:28.957Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:29.287Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/recovery-read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:29.316Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/control",
+      "status": 409,
+      "error": "RECOVERY_RESUME_GATE_CLOSED"
+    },
+    {
+      "at": "2026-10-03T15:09:29.340Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.bridge.phu-quoc/recovery-export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:36.816Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:38.828Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:40.837Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:42.846Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:44.854Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:46.863Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:48.875Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:50.912Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:52.921Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:54.932Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:09:56.958Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.forecast.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.forecast.bridge.phu-quoc/37132120318/source",
+        "native_id": "dd8caf605efba1a8a678d62a52d8dc4330e643eea2828fc982d31153e44655bf",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:09:57.049Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.forecast.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.forecast.bridge.phu-quoc/37132120318/target",
+        "native_id": "8cbd63cb3e11c12a4129c61e3da839cb8342a5b5df4db32d3bfbd5208937768a",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:10:10.494Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.forecast.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.forecast.bridge.phu-quoc/37132120318/source",
+        "native_id": "dd8caf605efba1a8a678d62a52d8dc4330e643eea2828fc982d31153e44655bf",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:10:12.524Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.forecast.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.forecast.bridge.phu-quoc/37132120318/source",
+        "native_id": "dd8caf605efba1a8a678d62a52d8dc4330e643eea2828fc982d31153e44655bf",
+        "canonical_bound": true,
+        "storage_gateway_configured": true,
+        "storage_gateway_credential_fingerprint": "6437f81b7333a29ce2f481a08f30e6a60b6b3a778cd0bed05e3884a76e472f1c"
+      }
+    },
+    {
+      "at": "2026-10-03T15:10:12.565Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.forecast.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.forecast.bridge.phu-quoc/37132120318/target",
+        "native_id": "8cbd63cb3e11c12a4129c61e3da839cb8342a5b5df4db32d3bfbd5208937768a",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:10:14.573Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.forecast.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.forecast.bridge.phu-quoc/37132120318/target",
+        "native_id": "8cbd63cb3e11c12a4129c61e3da839cb8342a5b5df4db32d3bfbd5208937768a",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:10:16.598Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.forecast.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.forecast.bridge.phu-quoc/37132120318/target",
+        "native_id": "8cbd63cb3e11c12a4129c61e3da839cb8342a5b5df4db32d3bfbd5208937768a",
+        "canonical_bound": true,
+        "storage_gateway_configured": true,
+        "storage_gateway_credential_fingerprint": "ff84e6daf8019e94afc8e00df00b02b69c96852b14df2cede1fd3b08ef8de94c"
+      }
+    },
+    {
+      "at": "2026-10-03T15:10:16.629Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 422,
+      "error": "LOCATOR_OBJECT_REQUIRED"
+    },
+    {
+      "at": "2026-10-03T15:10:18.638Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 422,
+      "error": "LOCATOR_OBJECT_REQUIRED"
+    },
+    {
+      "at": "2026-10-03T15:10:20.646Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 422,
+      "error": "LOCATOR_OBJECT_REQUIRED"
+    },
+    {
+      "at": "2026-10-03T15:10:22.654Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 422,
+      "error": "LOCATOR_OBJECT_REQUIRED"
+    },
+    {
+      "at": "2026-10-03T15:10:24.662Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 422,
+      "error": "LOCATOR_OBJECT_REQUIRED"
+    },
+    {
+      "at": "2026-10-03T15:10:26.840Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:26.882Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:28.380Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:28.472Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:30.045Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:30.079Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/recovery-export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:32.217Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/snapshot-archive",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:33.977Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/domain-archive",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:35.288Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:35.310Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:38.843Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/commit",
+      "status": 401,
+      "error": "AUTH_DENIED"
+    },
+    {
+      "at": "2026-10-03T15:10:38.850Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:38.869Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:40.058Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:44.517Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/recovery-bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:44.845Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/recovery-read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:44.881Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/recovery-read",
+      "status": 403,
+      "error": "CAPABILITY_DENIED"
+    },
+    {
+      "at": "2026-10-03T15:10:44.912Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:49.005Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:49.337Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/recovery-read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:49.385Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/control",
+      "status": 409,
+      "error": "RECOVERY_RESUME_GATE_CLOSED"
+    },
+    {
+      "at": "2026-10-03T15:10:49.412Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.forecast.bridge.phu-quoc/recovery-export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:57.264Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:10:59.273Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:01.282Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:03.306Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.marine.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.marine.bridge.phu-quoc/37132120318/source",
+        "native_id": "1505343169710ab0c26d36afa2e9b4baf07ea6c08e7172c21939e24eedfae0fc",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:11:03.341Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.marine.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.marine.bridge.phu-quoc/37132120318/target",
+        "native_id": "75c41d63b9905ca29b14f98e7236fd618c478bf00985eddb4a54ab49d18fdbcb",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:11:10.437Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.marine.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.marine.bridge.phu-quoc/37132120318/source",
+        "native_id": "1505343169710ab0c26d36afa2e9b4baf07ea6c08e7172c21939e24eedfae0fc",
+        "canonical_bound": true,
+        "storage_gateway_configured": true,
+        "storage_gateway_credential_fingerprint": "2e10860d41f128d063a321b216b08815583c977278e6e33664b16c6e44e91765"
+      }
+    },
+    {
+      "at": "2026-10-03T15:11:10.466Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.marine.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.marine.bridge.phu-quoc/37132120318/target",
+        "native_id": "75c41d63b9905ca29b14f98e7236fd618c478bf00985eddb4a54ab49d18fdbcb",
+        "canonical_bound": true,
+        "storage_gateway_configured": true,
+        "storage_gateway_credential_fingerprint": "1bad78b63f31d783d8cbd2aeaaa6f58ebe6025b47cf5819a9e1c8ffefc0487df"
+      }
+    },
+    {
+      "at": "2026-10-03T15:11:10.658Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:10.690Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:12.125Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:12.173Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:13.690Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:13.718Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/recovery-export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:15.567Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/snapshot-archive",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:17.069Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/domain-archive",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:19.103Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:19.125Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:22.559Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:24.619Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/commit",
+      "status": 401,
+      "error": "AUTH_DENIED"
+    },
+    {
+      "at": "2026-10-03T15:11:24.631Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 401,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:24.654Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:27.031Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/storage-write",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:31.307Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/recovery-bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:31.671Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/recovery-read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:31.696Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/recovery-read",
+      "status": 403,
+      "error": "CAPABILITY_DENIED"
+    },
+    {
+      "at": "2026-10-03T15:11:31.716Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:35.219Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:35.518Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/recovery-read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:35.544Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/control",
+      "status": 409,
+      "error": "RECOVERY_RESUME_GATE_CLOSED"
+    },
+    {
+      "at": "2026-10-03T15:11:35.569Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.marine.bridge.phu-quoc/recovery-export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:42.676Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.cloud.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.cloud.bridge.phu-quoc/37132120318/source",
+        "native_id": "3691d97fef4349a66e3b6d291240d555de8bfbc1a60fa511a2c8614373b07d7b",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:11:42.726Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.cloud.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.cloud.bridge.phu-quoc/37132120318/target",
+        "native_id": "97e39a4f83fd45d92d5452812a7f7a73f4df1ad92855b12073a9c5a30e1a7ceb",
+        "canonical_bound": true,
+        "storage_gateway_configured": false,
+        "storage_gateway_credential_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "at": "2026-10-03T15:11:49.892Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.cloud.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.cloud.bridge.phu-quoc/37132120318/source",
+        "native_id": "3691d97fef4349a66e3b6d291240d555de8bfbc1a60fa511a2c8614373b07d7b",
+        "canonical_bound": true,
+        "storage_gateway_configured": true,
+        "storage_gateway_credential_fingerprint": "a53006846ff0d1abc80f5e628a8d8d94fc958e9e3e1149e76a7cf3df3d80e86e"
+      }
+    },
+    {
+      "at": "2026-10-03T15:11:49.926Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/probe",
+      "status": 200,
+      "error": null,
+      "probe": {
+        "dataset_id": "weather.cloud.bridge.phu-quoc",
+        "object_name": "isolated-test/weather.cloud.bridge.phu-quoc/37132120318/target",
+        "native_id": "97e39a4f83fd45d92d5452812a7f7a73f4df1ad92855b12073a9c5a30e1a7ceb",
+        "canonical_bound": true,
+        "storage_gateway_configured": true,
+        "storage_gateway_credential_fingerprint": "a44dc1a37e253912a49bbe1536335851b864133cf6b69dc30c73f89b16db340d"
+      }
+    },
+    {
+      "at": "2026-10-03T15:11:50.104Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.cloud.bridge.phu-quoc/read",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:50.144Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.cloud.bridge.phu-quoc/bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:52.205Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.cloud.bridge.phu-quoc/prepare",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:52.461Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.cloud.bridge.phu-quoc/commit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:54.094Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.cloud.bridge.phu-quoc/export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:54.149Z",
+      "origin": "openpq-intelligence-recovery-source-test.openpq-intelligence.workers.dev",
+      "path": "/datasets/weather.cloud.bridge.phu-quoc/recovery-export",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:56.870Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/snapshot-archive",
+      "status": 200,
+      "error": null
+    },
+    {
+      "at": "2026-10-03T15:11:58.305Z",
+      "origin": "openpq-intelligence-recovery-target-test.openpq-intelligence.workers.dev",
+      "path": "/domain-archive",
+      "status": 200,
+      "error": null
+    }
+  ],
+  "error": "CANONICAL_TOO_LARGE",
+  "finished_at": "2026-10-03T15:12:00.353Z"
+}

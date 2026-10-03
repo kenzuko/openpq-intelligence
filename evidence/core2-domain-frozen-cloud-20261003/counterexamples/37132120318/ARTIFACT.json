@@ -1,0 +1,9 @@
+{
+  "run_id": "37132120318",
+  "code_sha": "e609e14ec48a67cd79280b9a9460e2b4fe08dab9",
+  "github_artifact_id": 11277512003,
+  "zip_sha256": "838867c44b2ff08306f3f01139f663733167b0cc0adf6f120a7cccd40d12cb37",
+  "actual_error": "CANONICAL_TOO_LARGE",
+  "cleanup": "SUCCESS",
+  "status": "ACTUAL_COUNTEREXAMPLE_NOT_ACCEPTANCE"
+}

@@ -1,0 +1,9 @@
+{
+  "run_id": "37131534530",
+  "code_sha": "08f4f33c6b48508f513652421d747cce138982eb",
+  "github_artifact_id": 11277430999,
+  "zip_sha256": "71308a9cd3aa12b26878a5afcf0c7858ff1e154e232ebb77f305800fed0e6ce3",
+  "actual_error": "DOMAIN_RECOVERY_STORAGE_BASELINE_FAILED",
+  "cleanup": "SUCCESS",
+  "status": "ACTUAL_COUNTEREXAMPLE_NOT_ACCEPTANCE"
+}

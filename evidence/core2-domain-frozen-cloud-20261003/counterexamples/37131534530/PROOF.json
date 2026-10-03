@@ -1,0 +1,36 @@
+{
+  "status": "BLOCKED_OR_FAILED",
+  "code_sha": "08f4f33c6b48508f513652421d747cce138982eb",
+  "run_id": "37131534530",
+  "started_at": "2026-10-03T14:59:23.417Z",
+  "domains": [
+    {
+      "domain": "weather",
+      "dataset_id": "weather.bridge.phu-quoc",
+      "status": "RUNNING",
+      "started_at": "2026-10-03T14:59:25.190Z",
+      "phase": "CAPTURE_AND_PUBLISH_CURRENT_SOURCE"
+    }
+  ],
+  "cleanup": {
+    "status": "SUCCESS",
+    "workers": [
+      {
+        "name": "openpq-intelligence-recovery-target-test",
+        "deleted": true
+      },
+      {
+        "name": "openpq-intelligence-recovery-source-test",
+        "deleted": true
+      }
+    ]
+  },
+  "production_enabled": false,
+  "writer_resumed": false,
+  "live_serving_restored": false,
+  "full_system_restore_proven": false,
+  "direct_s3_write_key_revocation_proven": false,
+  "offsite_restore_proven": false,
+  "error": "DOMAIN_RECOVERY_STORAGE_BASELINE_FAILED",
+  "finished_at": "2026-10-03T14:59:47.708Z"
+}
