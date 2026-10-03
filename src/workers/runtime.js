@@ -28,11 +28,15 @@ export default {
         return new S3ReadonlyReader(config).get(key);
       };
       let receipt=null, validation=null, fallback=false;
+      const controlObservation={read_status:null,read_error:null,validation_status:null};
       try {
         const r=await env.CORE_READ.fetch(`https://core/datasets/${trust.dataset_id}/read`,{headers:{authorization:'Bearer '+(env.CONTROL_READ_TOKENS_JSON?JSON.parse(env.CONTROL_READ_TOKENS_JSON)[trust.dataset_id]:env.CONTROL_READ_TOKEN)}});
+        controlObservation.read_status=r.status;
+        if(!r.ok){try{const failure=await r.json();if(typeof failure.error==='string'&&/^[A-Z0-9_]{1,100}$/.test(failure.error))controlObservation.read_error=failure.error;}catch{}}
         requireThat(r.ok,'CONTROL_READ_UNAVAILABLE',503);receipt=(await r.json()).state?.active;
         requireThat(receipt && sameLocator(receipt,trust),'RECEIPT_UNAVAILABLE',503);
         const v=await env.CORE_READ.fetch(`https://core/datasets/${trust.dataset_id}/validate`,{method:'POST',headers:{authorization:'Bearer '+(env.CONTROL_READ_TOKENS_JSON?JSON.parse(env.CONTROL_READ_TOKENS_JSON)[trust.dataset_id]:env.CONTROL_READ_TOKEN),'content-type':'application/json'},body:JSON.stringify({revision:receipt.revision,digest:receipt.digest})});
+        controlObservation.validation_status=v.status;
         if(v.ok)validation=(await v.json()).validation;
       } catch {fallback=true;}
       if(!receipt) {
@@ -54,7 +58,7 @@ export default {
         await domainLegacyView(generation,JSON.parse(signed),trust);
         return new Response(await unpackDomainText(generation.semantic_bundle.encoded_source),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-openpq-source-snapshot':'reference-only','x-openpq-decision-eligibility':'ABSTAIN','x-openpq-source-digest':generation.semantic_admission.input_hash,'x-openpq-receipt-digest':receipt.digest,'x-openpq-display-expires-at':generation.valid_to}});
       }
-      return Response.json({contract:'openpq-runtime-v1',receipt,data:domain?domain.projection:generation.payload,decision:generation.decision || null,serving:{...view,...(domain?{freshness:'SOURCE_SNAPSHOT_REFERENCE',domain_fields:domain.serving}:{}),fallback}},{headers:{'cache-control':'no-store'}});
+      return Response.json({contract:'openpq-runtime-v1',receipt,data:domain?domain.projection:generation.payload,decision:generation.decision || null,serving:{...view,...(domain?{freshness:'SOURCE_SNAPSHOT_REFERENCE',domain_fields:domain.serving}:{}),fallback,control_observation:controlObservation}},{headers:{'cache-control':'no-store'}});
     } catch(e) {return Response.json({error:e instanceof ContractError?e.code:'RUNTIME_UNAVAILABLE'},{status:e instanceof ContractError?e.status:503,headers:{'cache-control':'no-store'}});}
   }
 };
