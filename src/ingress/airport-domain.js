@@ -4,7 +4,9 @@ import {decodeOwnedSource,finishDomain,record,time,dateOnly,utcTime,list} from '
 
 export async function normalizeAirportDomain(input,evaluation_time){
  const source=await decodeOwnedSource('airport',input),envelope=source.data;
- const live=source.pin.source_kind==='OWNER_PUBLIC_RUNTIME',d=live?envelope.latest:envelope;
+ const http=source.pin.source_kind==='OWNER_PUBLIC_RUNTIME',d=http?envelope.latest:envelope;
+ const live=http&&envelope.health?.live_proxy===true&&envelope.health?.source_mode==='OFFICIAL_JSON_API_LIVE_PROXY';
+ if(http)requireThat(live||envelope.health?.live_proxy===false&&envelope.health?.source_mode==='GITHUB_SNAPSHOT_FALLBACK','AIRPORT_TRANSPORT_UNRESOLVED');
  requireThat(d&&d.schema_version===(live?'4.1-live':'3.0'),'AIRPORT_SOURCE_SCHEMA_DENIED');
  requireThat(dateOnly(d.source_date)&&utcTime(d.collected_at_vn),'AIRPORT_SOURCE_DATE_REQUIRED');requireThat(d.source?.api==='https://sunairport.com/phuquoc/cms/api/flights','AIRPORT_PROVIDER_DENIED');
  requireThat(d.report_state==='REPORT_READY'&&d.quality?.usable===true,'AIRPORT_BOARD_QA_NOT_READY');

@@ -26,6 +26,17 @@ test('Weather keeps ICAO/WMO identity, stale unchanged VRain, estimate, model an
  const rain=r.records.find(x=>x.id==='rain:an_thoi');assert.equal(rain.timestamps.source_freshness.state,'OUTSIDE_REPORTED_BUDGET');assert.notEqual(rain.timestamps.observed_at.utc,rain.timestamps.collected_at.utc);
  assert.equal(r.records.find(x=>x.id==='satellite:nowcast').data_class,'REMOTE_SENSING_PROXY');assert.equal(r.records.find(x=>x.id==='estimate:an_thoi').data_class,'ESTIMATED_NOW');assert.ok(r.records.filter(x=>x.data_class==='MODEL_FORECAST').every(x=>x.timestamps.model_run.utc===null));assert.ok(r.issues.some(x=>x.code==='WEATHER_MODEL_RUN_LINK_UNRESOLVED'));
 });
+test('Airport public HTTP fallback remains archive reference; ambiguous transport and schema relabelling are denied',async()=>{
+ const archive=JSON.parse((await fixture('airport_archive')).raw_utf8);
+ const envelope={latest:archive,health:{live_proxy:false,source_mode:'GITHUB_SNAPSHOT_FALLBACK'}};
+ const input=await fixture('airport');input.raw_utf8=JSON.stringify(envelope);input.pin.payload_sha256=await hash(input.raw_utf8);
+ const output=await normalizeAirportDomain(input,AT);assert.equal(output.metadata.transport,'ARCHIVE_FALLBACK_CAPTURE');assert.ok(output.issues.some(x=>x.code==='AIRPORT_ARCHIVE_FALLBACK_NOT_LIVE'));
+ const {legacy_payload,...compact}=output;
+ const g={payload:{domain_snapshot:{contract_version:'openpq-domain-snapshot-local-v1',encoded_projection:await packDomainJson(compact),projection_digest:compact.projection_digest}},semantic_admission:{preparation_hash:compact.projection_digest}};
+ const served=await domainSnapshotServing(g,Date.parse(AT));assert.ok(served.serving.fields.every(x=>x.freshness!=='WITHIN_USER_LAG_TARGET'));
+ envelope.health={live_proxy:true,source_mode:'OFFICIAL_JSON_API_LIVE_PROXY'};input.raw_utf8=JSON.stringify(envelope);input.pin.payload_sha256=await hash(input.raw_utf8);await assert.rejects(normalizeAirportDomain(input,AT),/SOURCE_SCHEMA_DENIED/);
+ envelope.health={live_proxy:false,source_mode:'UNKNOWN'};input.raw_utf8=JSON.stringify(envelope);input.pin.payload_sha256=await hash(input.raw_utf8);await assert.rejects(normalizeAirportDomain(input,AT),/TRANSPORT_UNRESOLVED/);
+});
 test('Weather does not let new generated_at reset observation age or turn model into actual',async()=>{
  const f=await mutated('weather',x=>x.generated_at='2026-10-03T01:12:00Z');const r=await normalizeWeatherDomain(f,AT);assert.equal(r.records.find(x=>x.id==='rain:an_thoi').timestamps.source_freshness.state,'OUTSIDE_REPORTED_BUDGET');
  await assert.rejects(normalizeWeatherDomain(await mutated('weather',x=>x.model_72h.points.an_thoi[0].data_class='ACTUAL'),AT),/MODEL_CLASS/);

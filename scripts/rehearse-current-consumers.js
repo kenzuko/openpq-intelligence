@@ -15,7 +15,7 @@ async function input(url){
 }
 const evidence={contract:'openpq-current-consumer-native-rehearsal-v1',cloud_authority_proof:false,production_ready:false,cases:[]};
 for(const [domain,url]of Object.entries(DOMAIN_RUNTIME_URLS)){
- const p={contract_version:CONTINUOUS_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:DOMAIN_DATASETS[domain],domain,fixture_only:false,producer:{source_kind:'OWNER_PUBLIC_RUNTIME',url},operator_principal_ids:['operator'],reference_policy:{lease_ms:240000,max_snapshot_age_ms:domain==='airport'?60000:domain==='nearme'?31*86400000:86400000,future_skew_ms:0},artifact_refs:{}};
+ const p={contract_version:CONTINUOUS_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:DOMAIN_DATASETS[domain],domain,fixture_only:false,producer:{source_kind:'OWNER_PUBLIC_RUNTIME',url},operator_principal_ids:['operator'],reference_policy:{lease_ms:240000,max_snapshot_age_ms:domain==='nearme'?31*86400000:86400000,future_skew_ms:0},artifact_refs:{}};
  // This is an explicit reference ceiling. It never activates observation/model/provider freshness policy.
  p.artifact_refs=await continuousArtifactRefs(p);
  const s=await setup({semanticProfile:p,dataset_id:p.dataset_id,environment_id:'isolated-test',account_id:ISOLATED_ACCOUNT_ID,domainOperator:true});
@@ -25,7 +25,7 @@ for(const [domain,url]of Object.entries(DOMAIN_RUNTIME_URLS)){
   assert.equal((await s.call('export',{},'test-only-operator')).status,200);
   const bucket=await s.mf.getR2Bucket('CANONICAL','core'),g=JSON.parse(await (await bucket.get(b.body.receipt.key)).text()),signed=JSON.parse(await (await bucket.get(`checkpoints/${s.trust.authority_instance_id}/${s.trust.recovery_generation}/latest.json`)).text());
   assert.deepEqual(await domainLegacyView(g,signed,s.trust),JSON.parse(value.raw_utf8));const view=await domainSnapshotServing(g,Date.now());
-  evidence.cases.push({domain,status:'PASS',records:view.projection.records.length,issues:view.projection.issues,input_sha256:value.pin.payload_sha256,profile_hash:s.trust.semantic_profile_hash,revision:b.body.receipt.revision,decision:'ABSTAIN',source_policies_activated:false});
+  evidence.cases.push({domain,status:'PASS',records:view.projection.records.length,issues:view.projection.issues,metadata:view.projection.metadata,input_sha256:value.pin.payload_sha256,profile_hash:s.trust.semantic_profile_hash,revision:b.body.receipt.revision,decision:'ABSTAIN',source_policies_activated:false});
  }finally{await s.mf.dispose();}
 }
 const near=await rehearseNearMeConsumer({index:await input(DOMAIN_RUNTIME_URLS.nearme),support:await input(NEARME_COMPANION_RUNTIME_URLS[0]),venues:await input(NEARME_COMPANION_RUNTIME_URLS[1])});
