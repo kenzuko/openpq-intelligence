@@ -15,6 +15,7 @@ jobs:
       R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
       CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
       WRANGLER_SEND_METRICS: 'false'
+      SOURCE_BASE_RELEASE_SHA: '39b19e1e6e735c346892ea5922bffa9f9c21da3b'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

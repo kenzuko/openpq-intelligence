@@ -31,7 +31,7 @@ export async function ingestDataset(entry,core,fetcher=fetch){
  // Finish any committed export even if the source fetch fails on this tick.
  if(state.revision>0)await call('export',{});
  const source=await ownedReference(profile.producer,fetcher),attempt=crypto.randomUUID();
- const c=await buildContinuousCandidate(profile,authority,{...source,operator_principal_id:actor_id,evaluation_time:new Date().toISOString(),candidate_id:'scheduled-'+attempt,expected_revision:state.revision,expected_control_revision:state.control_revision,logical_slot:state.revision+1});
+ const c=await buildContinuousCandidate(profile,authority,{...source,operator_principal_id:actor_id,evaluation_time:new Date().toISOString(),candidate_id:'scheduled-'+attempt,expected_revision:state.revision,expected_control_revision:state.control_revision,logical_slot:(state.active?.logical_slot??-1)+1});
  const prepared=await call('prepare',c);
  const command={...authority,command_id:'ingest-'+attempt,digest:prepared.digest,expires_at:new Date(Math.min(Date.now()+60000,Date.parse(c.valid_to))).toISOString()};
  let committed;

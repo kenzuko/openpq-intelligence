@@ -45,7 +45,7 @@ export default {
  async fetch(request,env){
   if(request.method==='GET'&&new URL(request.url).pathname==='/health'&&env.ENVIRONMENT_ID==='isolated-test'&&env.ACCOUNT_ID===ISOLATED_ACCOUNT_ID){
    const datasets=await Promise.all(Object.values(DOMAIN_DATASETS).map(async dataset_id=>{try{const id=env.SOURCE_PUMPS.idFromName('isolated-test/'+dataset_id),r=await env.SOURCE_PUMPS.get(id).fetch('https://pump/status');return {dataset_id,...await r.json()};}catch{return {dataset_id,error:'PUMP_STATUS_UNAVAILABLE'};}}));
-   return Response.json({service:'isolated-reference-ingestion',code_sha:env.SOURCE_CODE_SHA??null,production_enabled:false,datasets},{headers:{'cache-control':'no-store'}});
+   return Response.json({service:'isolated-reference-ingestion',code_sha:env.SOURCE_CODE_SHA??null,implementation_patch_sha:env.SOURCE_PATCH_SHA??null,production_enabled:false,datasets},{headers:{'cache-control':'no-store'}});
   }
   return new Response('Not found',{status:404,headers:{'cache-control':'no-store'}});
  },

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {setup} from './support.js';
 import {ingestDataset,ownedReference} from '../src/ingress/domain-feed.js';
-import {CONTINUOUS_PROFILE_VERSION,continuousArtifactRefs} from '../src/platform/domain-continuous-admission.js';
+import {CONTINUOUS_PROFILE_VERSION,continuousArtifactRefs,buildContinuousCandidate} from '../src/platform/domain-continuous-admission.js';
 import {ISOLATED_ACCOUNT_ID} from '../src/platform/domain-bridge-admission.js';
 import {DOMAIN_RUNTIME_URLS} from '../src/ingress/domain-source-common.js';
 const token='native-ingestion-only-token-'.padEnd(40,'x');
@@ -62,5 +62,15 @@ test('native non-authoritative pump dispatches only its configured dataset and e
   const wrong=ns.get(ns.idFromName('isolated-test/airport.bridge.pqc'));assert.equal((await wrong.fetch('https://pump/refresh',{method:'POST'})).status,503);
   assert.equal((await (await s.mf.getWorker('source-pump')).fetch('https://public/refresh',{method:'POST'})).status,404);
   assert.equal((await s.call('read',undefined,token)).body.state.revision,2);
+ }finally{await s.mf.dispose();}
+});
+
+test('resuming after high logical slots follows committed slot rather than publication revision',async()=>{
+ const {s,core,entry,fetcher}=await setupIngestion();
+ try{
+  const input=await ownedReference(entry.profile.producer,fetcher);const c=await buildContinuousCandidate(entry.profile,entry.authority,{...input,operator_principal_id:entry.actor_id,evaluation_time:new Date().toISOString(),candidate_id:'seed-high-slot',logical_slot:99});
+  const call=async(path,body)=>{const r=await core.fetch('https://core/datasets/'+entry.authority.dataset_id+'/'+path,{method:'POST',headers:{authorization:'Bearer '+token,'content-type':'application/json'},body:JSON.stringify(body)});assert.equal(r.status,200,await r.clone().text());return r.json();};
+  const prepared=await call('prepare',c);await call('commit',{...entry.authority,command_id:'high-slot-seed',digest:prepared.digest,expires_at:new Date(Date.now()+60000).toISOString()});
+  const resumed=await ingestDataset(entry,core,fetcher);assert.equal(resumed.revision,2);const state=(await s.call('read',undefined,token)).body.state;assert.equal(state.active.logical_slot,100);
  }finally{await s.mf.dispose();}
 });
