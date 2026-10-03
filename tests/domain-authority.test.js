@@ -17,19 +17,20 @@ async function fixture(domain,{domainOperator=true,editProfile=null}={}){
  if(editProfile)editProfile(profile);profile.artifact_refs=await domainBridgeArtifactRefs(profile);
  const s=await setup({semanticProfile:profile,dataset_id:profile.dataset_id,domainOperator,domainReplayClock:true});
  const c=await buildDomainBridgeCandidate(profile,s.trust,{raw_utf8,operator_principal_id:'operator',evaluation_time:AT,candidate_id:domain+'-source-bridge',logical_slot:10});
- return {s,c,profile,legacy:JSON.parse(raw_utf8)};
+ return {s,c,profile,raw_utf8,legacy:JSON.parse(raw_utf8)};
 }
 const commit=(s,p,id='bridge-commit',token=OP)=>s.call('commit',{...s.trust,command_id:id,digest:p.digest,expires_at:'2026-10-03T01:16:59.000Z'},token);
 async function empty(s){assert.equal((await s.call('read',undefined,'test-only-read')).body.state.revision,0);assert.equal((await (await s.mf.getR2Bucket('CANONICAL','core')).list({prefix:'generations/'})).objects.length,0);}
 
 for(const domain of ['weather','weather_forecast','weather_marine','weather_cloud','weather_compact','weather_meta','weather_manifest','airport','transit','nearme'])test(domain+' actual snapshot traverses native Core/SQLite/R2/receipt/Runtime and independently signed legacy readback',async()=>{
- const {s,c,legacy}=await fixture(domain);try{
+ const {s,c,legacy,raw_utf8}=await fixture(domain);try{
   assert.ok(new TextEncoder().encode(JSON.stringify(c)).length<=262144,'candidate fits actual request bound');
   const p=await s.call('prepare',c,OP);assert.equal(p.status,200,JSON.stringify(p));const result=await commit(s,p.body);assert.equal(result.status,200,JSON.stringify(result));assert.equal(result.body.receipt.semantic_admission.producer_independence,false);assert.equal(result.body.receipt.semantic_admission.source_policies_activated,false);
   const runtime=await s.mf.getWorker('runtime'),response=await runtime.fetch('https://runtime/datasets/'+s.trust.dataset_id);assert.equal(response.status,200,await response.clone().text());const served=await response.json();
   assert.equal(served.data.domain,domain);assert.equal(served.data.fixture_only,false);assert.equal(served.serving.authority,'VERIFIED');assert.equal(served.serving.freshness,'SOURCE_SNAPSHOT_REFERENCE');assert.equal(served.serving.decision_eligibility,'ABSTAIN');assert.equal(served.serving.domain_fields.operational_action_allowed,false);
   assert.equal((await s.call('export',{},OP)).status,200);const b=await s.mf.getR2Bucket('CANONICAL','core'),envelope=JSON.parse(await (await b.get(`checkpoints/${s.trust.authority_instance_id}/${s.trust.recovery_generation}/latest.json`)).text()),generation=JSON.parse(await (await b.get(result.body.receipt.key)).text());
   assert.deepEqual(await domainLegacyView(generation,envelope,s.trust),legacy);await assert.rejects(domainLegacyView(generation),/INDEPENDENT_RECEIPT_TRUST/);
+  const bridge=await (await s.mf.getWorker('runtime')).fetch('https://runtime/datasets/'+s.trust.dataset_id+'/legacy-reference');assert.equal(bridge.status,200);assert.equal(bridge.headers.get('x-openpq-source-snapshot'),'reference-only');assert.equal(bridge.headers.get('x-openpq-decision-eligibility'),'ABSTAIN');assert.equal(await bridge.clone().text(),raw_utf8);assert.equal(bridge.headers.get('x-openpq-source-digest'),await hash(raw_utf8));assert.deepEqual(await bridge.json(),legacy);
   const bad=copy(envelope);bad.receipt.revision++;await assert.rejects(domainLegacyView(generation,bad,s.trust),/SIGNATURE_INVALID/);
   await s.mf.unsafeEvictDurableObject('core','DatasetCoordinator',{id:s.trust.native_id});assert.deepEqual((await commit(s,p.body)).body.receipt,result.body.receipt);
  }finally{await s.mf.dispose();}
