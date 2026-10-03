@@ -45,6 +45,7 @@ test('recovered Runtime denies missing pins, source/target substitution, changed
   const r=rows[0],at=new Date().toISOString();
   await assert.rejects(recoveredReferenceView(r.snapshot,r.bundle,null,r.trust,at),/RECOVERED_REFERENCE_CONFIG_REQUIRED/);
   const bad=structuredClone(r.config);bad.target_snapshot_digest='0'.repeat(64);await assert.rejects(recoveredReferenceView(r.snapshot,r.bundle,bad,r.trust,at),/RECOVERED_REFERENCE_SNAPSHOT_PIN_INVALID/);
+  const changed=structuredClone(r.snapshot);changed.envelope.receipt.control.frozen=false;const repinned={...r.config,target_snapshot_digest:await hash(changed)};await assert.rejects(recoveredReferenceView(changed,r.bundle,repinned,r.trust,at),/CHECKPOINT_SIGNATURE_INVALID/);
   await assert.rejects(recoveredReferenceView(rows[1].snapshot,r.bundle,r.config,r.trust,at),/RECOVERED_REFERENCE_SNAPSHOT_PIN_INVALID/);
   const trust=structuredClone(r.trust);trust.approved_positive_decision_types=['unsafe'];await assert.rejects(recoveredReferenceView(r.snapshot,r.bundle,r.config,trust,at),/RECOVERED_REFERENCE_TARGET_TRUST_INVALID/);
   const bundle=structuredClone(r.bundle);bundle.artifact_documents.policy.source_policies_activated=true;await assert.rejects(recoveredReferenceView(r.snapshot,bundle,r.config,r.trust,at),/RECOVERY_ARCHIVE_ANCHOR_MISMATCH/);
