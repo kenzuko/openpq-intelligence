@@ -1,0 +1,49 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+import {randomBytes} from 'node:crypto';
+import {hash,stable,requireThat} from '../../src/platform/contracts.js';
+import {boundedText} from '../../src/platform/bounded-text.js';
+import {DOMAIN_DATASETS} from '../../src/ingress/domain-source-common.js';
+import {packConfig,TRUST_BINDINGS,RECOVERED_REFERENCE_BINDINGS} from '../../src/platform/trusted-config.js';
+import {S3ReadonlyReader} from '../../src/platform/s3-reader.js';
+import {recoveredReferenceView} from '../../src/platform/recovered-reference.js';
+import {verifyDomainRecoveryProof} from './verify-domain-recovery-proof.js';
+import {cloudPreflight,BUCKET} from './preflight.js';
+import {denyProbe} from './s3-deny-probe.js';
+const ACCOUNT='c61a28455fe22f30619b35dd80c2d495',NAME='openpq-intelligence-recovered-runtime-test',root='.recovered-runtime-cloud',archive='.recovered-runtime-source',run=process.env.GITHUB_RUN_ID;
+const proof={status:'RUNNING',run_id:run,code_sha:process.env.GITHUB_SHA,domains:[],cleanup:{status:'NOT_STARTED'},production_enabled:false,public_cutover_executed:false,writer_resumed:false,live_serving_restored:false,full_system_restore_proven:false,direct_s3_writer_key_revocation_proven:false};
+const save=()=>writeFile(root+'/PROOF.json',JSON.stringify(proof,null,2)+'\n'),file=(n,v)=>writeFile(root+'/'+n+'.json',JSON.stringify(v,null,2)+'\n');
+const api=async(suffix,method='GET')=>{const r=await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}`+suffix,{method,redirect:'error',signal:AbortSignal.timeout(15000),headers:{authorization:'Bearer '+process.env.CF_TEST_API_TOKEN}});if(method==='DELETE'&&r.status===404)return;requireThat(r.ok,'RECOVERED_RUNTIME_API_HTTP_'+r.status);const b=await r.json();requireThat(b.success,'RECOVERED_RUNTIME_API_FAILED');return b.result;};
+const deploy=async(config,secrets)=>{requireThat(config.name===NAME&&config.account_id===ACCOUNT&&config.routes.length===0,'RECOVERED_RUNTIME_DEPLOY_SCOPE_DENIED');await writeFile(root+'/worker.private.json',JSON.stringify(secrets),{mode:0o600});await writeFile(root+'/worker.json',JSON.stringify(config));const r=spawnSync('node_modules/.bin/wrangler',['deploy','--config',root+'/worker.json','--secrets-file',root+'/worker.private.json'],{encoding:'utf8',timeout:90000,env:{...process.env,CLOUDFLARE_ACCOUNT_ID:ACCOUNT,CLOUDFLARE_API_TOKEN:process.env.CF_TEST_API_TOKEN,WRANGLER_SEND_METRICS:'false'}});requireThat(r.status===0,'RECOVERED_RUNTIME_DEPLOY_FAILED');};
+const request=async(url,options={})=>{const r=await fetch(url,{...options,redirect:'error',signal:AbortSignal.timeout(25000)});const raw=await boundedText(r,4*1024*1024);let body;try{body=JSON.parse(raw);}catch{}return {status:r.status,body,headers:{cache_control:r.headers.get('cache-control'),source_snapshot:r.headers.get('x-openpq-source-snapshot'),decision_eligibility:r.headers.get('x-openpq-decision-eligibility')}};};
+const wait=async(fn,accept)=>{let r;for(let i=0;i<90;i++){r=await fn();if(accept(r))return r;await new Promise(resolve=>setTimeout(resolve,2000));}throw Error('RECOVERED_RUNTIME_PROPAGATION_TIMEOUT_HTTP_'+r?.status);};
+await mkdir(root,{recursive:true});let created=false,before;
+try{
+ requireThat(process.env.GITHUB_ACTIONS==='true'&&process.env.CF_TEST_ACCOUNT_ID===ACCOUNT&&/^\d+$/.test(run||''),'RECOVERED_RUNTIME_ISOLATED_CONTEXT_REQUIRED');
+ before=await cloudPreflight({accountId:ACCOUNT,productionAccountIds:JSON.parse(process.env.CF_PRODUCTION_ACCOUNT_IDS),apiToken:process.env.CF_TEST_API_TOKEN,readAccessKey:process.env.R2_TEST_READ_ACCESS_KEY_ID});await file('PREFLIGHT',before);
+ const pins=JSON.parse(await readFile('evidence/core2-domain-frozen-cloud-20261003/success-37134123700/TRUST_PINS.json','utf8'));await verifyDomainRecoveryProof(archive,pins);
+ const read=async p=>JSON.parse(await readFile(archive+'/'+p,'utf8')),trusts={},configs={},snapshots={},bundles={},uploads={};
+ for(const [domain,dataset] of Object.entries(DOMAIN_DATASETS)){const trust=await read(domain+'/TARGET_TRUST.json'),snapshot=await read(domain+'/TARGET_SNAPSHOT.json'),bundle=await read(domain+'/BUNDLE.json'),plan=await read(domain+'/RECOVERY_PLAN.json');trusts[dataset]=trust;snapshots[domain]=snapshot;bundles[domain]=bundle;configs[dataset]={plan,target_snapshot_key:`recovery/snapshots/runtime-${run}-${domain}.json`,target_snapshot_digest:await hash(snapshot)};uploads[configs[dataset].target_snapshot_key]=await hash(snapshot);}
+ await file('TRUST',trusts);await file('CONFIG',configs);proof.source_cloud_run_id=pins.run_id;proof.source_cloud_code_sha=pins.code_sha;await save();
+ const readConfig={endpoint:`https://${ACCOUNT}.r2.cloudflarestorage.com`,bucket:BUCKET,access_key:process.env.R2_TEST_READ_ACCESS_KEY_ID,secret:process.env.R2_TEST_READ_SECRET_ACCESS_KEY},reader=new S3ReadonlyReader(readConfig),subdomain=(await api('/workers/subdomain')).subdomain;
+ requireThat(/^[a-z0-9-]+$/.test(subdomain),'RECOVERED_RUNTIME_SUBDOMAIN_INVALID');const origin=`https://${NAME}.${subdomain}.workers.dev`,token=randomBytes(32).toString('hex');console.log('::add-mask::'+token);
+ const common={name:NAME,account_id:ACCOUNT,compatibility_date:'2026-07-30',workers_dev:true,routes:[],vars:{ENVIRONMENT_ID:'isolated-test'}};
+ created=true;await deploy({...common,main:'../scripts/cloud/recovered-snapshot-uploader.js',vars:{...common.vars,RECOVERED_RUNTIME_RUN_ID:run,RECOVERED_UPLOADS_JSON:JSON.stringify(uploads)},r2_buckets:[{binding:'CANONICAL',bucket_name:BUCKET}]},{PROVISIONING_TOKEN:token});
+ for(const [domain,dataset] of Object.entries(DOMAIN_DATASETS)){
+  const config=configs[dataset],upload=await wait(()=>request(origin+'/snapshot-archive',{method:'PUT',headers:{authorization:'Bearer '+token,'content-type':'application/json'},body:JSON.stringify({key:config.target_snapshot_key,snapshot:snapshots[domain]})}),r=>r.status===200);requireThat(upload.body.digest===config.target_snapshot_digest,'RECOVERED_RUNTIME_UPLOAD_DIGEST_INVALID');
+  requireThat(await hash(JSON.parse(await reader.get(config.target_snapshot_key,{max_bytes:8*1024*1024+262144})))===config.target_snapshot_digest&&await hash(JSON.parse(await reader.get(config.plan.domain_archive.key,{max_bytes:16*1024*1024})))===config.plan.domain_archive.digest,'RECOVERED_RUNTIME_S3_READBACK_INVALID');
+ }
+ await deploy({...common,main:'../src/workers/runtime.js'},{PROVISIONING_TOKEN:'',...packConfig(trusts,TRUST_BINDINGS),...packConfig(configs,RECOVERED_REFERENCE_BINDINGS),S3_READONLY_CONFIG:JSON.stringify(readConfig)});
+ const settings=await api('/workers/scripts/'+NAME+'/settings');requireThat(settings.bindings.every(x=>['secret_text','plain_text'].includes(x.type)),'RECOVERED_RUNTIME_WRITER_OR_CORE_BINDING_RETAINED');await file('RUNTIME_BINDINGS',settings.bindings);proof.no_core_binding=true;proof.no_native_or_r2_write_binding=true;
+ for(const [domain,dataset] of Object.entries(DOMAIN_DATASETS)){
+  const started=Date.now(),response=await wait(()=>request(origin+'/datasets/'+dataset+'/recovered-reference'),r=>r.status===200&&r.body?.serving?.authority==='VERIFIED_FROZEN_ARCHIVE'),expected=await recoveredReferenceView(snapshots[domain],bundles[domain],configs[dataset],trusts[dataset],response.body.serving.evaluated_at);
+  requireThat(stable(response.body)===stable(expected)&&response.headers.source_snapshot==='recovered-archive-only'&&response.headers.decision_eligibility==='ABSTAIN'&&response.headers.cache_control==='no-store','RECOVERED_RUNTIME_SERVING_PARITY_INVALID');await file(domain+'-RESPONSE',response);
+  proof.domains.push({domain,dataset_id:dataset,status:'PASS_FROZEN_ARCHIVE_RUNTIME_WITHOUT_CORE',response_digest:await hash(response.body),legacy_payload_digest:await hash(response.body.source_payload),source_version_time:response.body.serving.source_version_time,display_lease_expired:response.body.serving.display_lease_expired,readback_ms:Date.now()-started,timing_scope:'THIS_ARCHIVE_READ_NOT_DOMAIN_RTO'});await save();
+ }
+ const denied=await request(origin+'/snapshot-archive',{method:'PUT',headers:{authorization:'Bearer '+token,'content-type':'application/json'},body:'{}'}),live=await request(origin+'/datasets/'+Object.values(DOMAIN_DATASETS)[0]);requireThat(denied.status===405&&live.status===503&&live.body.error==='NO_TRUSTED_CHECKPOINT','RECOVERED_RUNTIME_OLD_UPLOAD_OR_LIVE_PATH_OPEN');proof.removed_upload_route_status=denied.status;proof.ordinary_live_route_status=live.status;
+ proof.read_key_denials=[await denyProbe(readConfig,ACCOUNT,'PUT',`proof-deny/recovered-runtime-${run}.json`),await denyProbe(readConfig,ACCOUNT,'DELETE',`proof-deny/recovered-runtime-${run}.json`)];proof.read_key_denial_scope='READ_KEY_CANNOT_WRITE_NOT_WRITER_KEY_REVOCATION';proof.status='PASS_TEN_FROZEN_ARCHIVE_RUNTIME_READS_WITHOUT_CORE';
+}catch(e){proof.status='FAILED_OR_BLOCKED';proof.error=e.code||e.message||'RECOVERED_RUNTIME_FAILED';process.exitCode=1;}
+finally{
+ try{if(created)await api('/workers/scripts/'+NAME+'?force=true','DELETE');if(before){const after=await cloudPreflight({accountId:ACCOUNT,productionAccountIds:JSON.parse(process.env.CF_PRODUCTION_ACCOUNT_IDS),apiToken:process.env.CF_TEST_API_TOKEN,readAccessKey:process.env.R2_TEST_READ_ACCESS_KEY_ID});await file('POSTFLIGHT',after);for(const k of ['workers','namespaces'])requireThat(stable([...before[k]].sort((a,b)=>stable(a).localeCompare(stable(b))))===stable([...after[k]].sort((a,b)=>stable(a).localeCompare(stable(b)))),'RECOVERED_RUNTIME_INVENTORY_CHANGED');}proof.cleanup={status:'SUCCESS',temporary_worker_deleted:created};}catch(e){proof.cleanup={status:'FAILED',error:e.code||'RECOVERED_RUNTIME_CLEANUP_FAILED'};process.exitCode=1;}
+ proof.finished_at=new Date().toISOString();await save();console.log(JSON.stringify({status:proof.status,error:proof.error,domains:proof.domains.length,cleanup:proof.cleanup,live_serving_restored:false}));
+}

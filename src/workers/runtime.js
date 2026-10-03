@@ -1,4 +1,6 @@
-import {trustMap} from '../platform/trusted-config.js';
+import {trustMap,readConfig,RECOVERED_REFERENCE_BINDINGS} from '../platform/trusted-config.js';
+import {recoveredReferenceConfig,recoveredReferenceView} from '../platform/recovered-reference.js';
+import {SNAPSHOT_MAX_BYTES} from '../platform/authority-snapshot.js';
 import {CONTINUOUS_PROFILE_VERSION} from '../platform/domain-continuous-contract.js';
 import {domainSnapshotServing,domainLegacyView} from '../platform/domain-serving.js';
 import {unpackDomainText} from '../platform/domain-codec.js';
@@ -16,18 +18,27 @@ export default {
       const u=new URL(request.url), parts=u.pathname.split('/').filter(Boolean);
       if(parts[0]==='health')return Response.json({service:'runtime',status:'UP',production_enabled:false},{headers:{'cache-control':'no-store'}});
       const legacyReference=parts.length===3&&parts[2]==='legacy-reference';
-      requireThat((parts.length===2||legacyReference) && parts[0]==='datasets','NOT_FOUND',404);
+      const recoveredReference=parts.length===3&&parts[2]==='recovered-reference';
+      requireThat((parts.length===2||legacyReference||recoveredReference) && parts[0]==='datasets','NOT_FOUND',404);
       const trust=locator(trustMap(env)[parts[1]]);
       requireThat(trust.environment_id===env.ENVIRONMENT_ID,'RUNTIME_ENVIRONMENT_MISMATCH',409);
-      const read=async key=>{
+      const read=async (key,max_bytes=262144)=>{
         if(env.ENVIRONMENT_ID==='local-test' && env.TEST_READER) {
           const r=await env.TEST_READER.fetch('https://reader/'+key,{headers:{authorization:'Bearer '+env.READER_TOKEN}});
-          if(r.status===404)return null;requireThat(r.ok,'BLOB_UNAVAILABLE',503);return boundedText(r);
+          if(r.status===404)return null;requireThat(r.ok,'BLOB_UNAVAILABLE',503);return boundedText(r,max_bytes);
         }
         const config=JSON.parse(env.S3_READONLY_CONFIG || '{}');
         requireThat(config.access_key && config.secret && config.bucket && config.endpoint,'READONLY_CREDENTIAL_REQUIRED',503);
-        return new S3ReadonlyReader(config).get(key);
+        return new S3ReadonlyReader(config).get(key,{max_bytes});
       };
+      if(recoveredReference){
+        const config=await recoveredReferenceConfig(readConfig(env,RECOVERED_REFERENCE_BINDINGS)[trust.dataset_id],trust);
+        const snapshot=await read(config.target_snapshot_key,SNAPSHOT_MAX_BYTES+262144);
+        requireThat(snapshot,'RECOVERED_REFERENCE_SNAPSHOT_UNAVAILABLE',503);
+        const bundle=await read(config.plan.domain_archive.key,2*SNAPSHOT_MAX_BYTES);
+        requireThat(bundle,'RECOVERED_REFERENCE_ARCHIVE_UNAVAILABLE',503);
+        return Response.json(await recoveredReferenceView(JSON.parse(snapshot),JSON.parse(bundle),config,trust,new Date().toISOString()),{headers:{'cache-control':'no-store','x-openpq-source-snapshot':'recovered-archive-only','x-openpq-decision-eligibility':'ABSTAIN'}});
+      }
       let receipt=null, validation=null, fallback=false;
       const controlObservation={read_status:null,read_error:null,validation_status:null};
       try {

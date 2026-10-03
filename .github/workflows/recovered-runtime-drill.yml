@@ -1,0 +1,48 @@
+name: Frozen archive Runtime without Core cloud proof
+on:
+  push:
+    branches: [cloud/core2-recovered-runtime-20261003]
+permissions:
+  contents: read
+concurrency:
+  group: intelligence-isolated-cloud-proof
+  cancel-in-progress: false
+jobs:
+  recovered-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: intelligence-test
+    env:
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      CF_TEST_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+      CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      R2_TEST_READ_SECRET_ACCESS_KEY: ${{ secrets.R2_TEST_READ_SECRET_ACCESS_KEY }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm test
+      - name: Verify archived source before cloud reads
+        run: |
+          python -c "import hashlib,json,pathlib,zipfile; r=pathlib.Path('evidence/core2-domain-frozen-cloud-20261003/success-37134123700'); m=json.loads((r/'ARTIFACTS.json').read_text()); p=r/'cloud-recovery.zip'; assert hashlib.sha256(p.read_bytes()).hexdigest()==next(x['sha256'] for x in m['files'] if x['file']=='cloud-recovery.zip'); zipfile.ZipFile(p).extractall('.recovered-runtime-source')"
+      - name: Serve ten signed frozen archives without Core or writer bindings
+        run: node scripts/cloud/recovered-runtime-drill.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recovered-archive-runtime-${{ github.run_id }}
+          path: |
+            .recovered-runtime-cloud/PROOF.json
+            .recovered-runtime-cloud/PREFLIGHT.json
+            .recovered-runtime-cloud/POSTFLIGHT.json
+            .recovered-runtime-cloud/TRUST.json
+            .recovered-runtime-cloud/CONFIG.json
+            .recovered-runtime-cloud/RUNTIME_BINDINGS.json
+            .recovered-runtime-cloud/*-RESPONSE.json
+          include-hidden-files: true
+          retention-days: 14

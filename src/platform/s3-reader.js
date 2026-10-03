@@ -20,7 +20,7 @@ export class S3ReadonlyReader {
     const canonical=`GET\n${path}\n\n${canonicalHeaders}\n${signed}\n${payload}`;
     const signing=await hmac(await hmac(await hmac(await hmac('AWS4'+c.secret,short),'auto'),'s3'),'aws4_request');
     const signature=hex(await hmac(signing,`AWS4-HMAC-SHA256\n${date}\n${scope}\n${await digest(canonical)}`));
-    const response=await this.fetcher(root.origin+path,{method:'GET',redirect:'manual',headers:{'x-amz-date':date,'x-amz-content-sha256':payload,authorization:`AWS4-HMAC-SHA256 Credential=${c.access_key}/${scope}, SignedHeaders=${signed}, Signature=${signature}`}});
+    const response=await this.fetcher(root.origin+path,{method:'GET',redirect:'manual',signal:AbortSignal.timeout(15000),headers:{'x-amz-date':date,'x-amz-content-sha256':payload,authorization:`AWS4-HMAC-SHA256 Credential=${c.access_key}/${scope}, SignedHeaders=${signed}, Signature=${signature}`}});
     if(response.status===404) return null;
     requireThat(response.ok,'S3_READ_UNAVAILABLE',503);
     return boundedText(response,max_bytes);
