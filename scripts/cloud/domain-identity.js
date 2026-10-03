@@ -7,6 +7,7 @@ import {DOMAIN_DATASETS} from '../../src/ingress/domain-source-common.js';
 import {ISOLATED_ACCOUNT_ID,ISOLATED_DOMAIN_PROFILE_VERSION,domainBridgeArtifactRefs,validateDomainBridgeProfile} from '../../src/platform/domain-bridge-admission.js';
 import {ISOLATED_REAL_PROFILE_VERSION,realCanoArtifactRefs,validateRealCanoProfile} from '../../src/platform/real-cano-admission.js';
 import {packConfig,TRUST_BINDINGS,PROFILE_REGISTRY_BINDINGS} from '../../src/platform/trusted-config.js';
+import {captureReferenceLease} from './domain-lease.js';
 const plan=JSON.parse(await readFile('.cloud-proof/plan.private.json','utf8'));
 requireThat(plan.account_id===ISOLATED_ACCOUNT_ID,'ISOLATED_ACCOUNT_PIN_REQUIRED');
 const api=async path=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+plan.account_id+path,{headers:{authorization:'Bearer '+process.env.CF_TEST_API_TOKEN},redirect:'error',signal:AbortSignal.timeout(15000)});requireThat(r.ok,'DOMAIN_IDENTITY_API_DENIED');const b=await r.json();requireThat(b.success,'DOMAIN_IDENTITY_API_FAILED');return b.result;};
@@ -27,11 +28,11 @@ const readConfig={endpoint:'https://'+plan.account_id+'.r2.cloudflarestorage.com
 requireThat(readConfig.access_key&&readConfig.secret,'R2_READ_CREDENTIAL_REQUIRED');
 const meta=JSON.parse(await readFile('tests/data/domains/SOURCE_PINS.json','utf8')),cano=JSON.parse(await readFile('tests/data/real-cano/SOURCE.json','utf8'));
 const authorities={},profiles={},tokens={},principals=[],reads={};let signer;
-const from=new Date(Date.now()-1000).toISOString(),to=new Date(Date.now()+299000).toISOString();
+const lease=captureReferenceLease(Date.now());
 for(const [domain,dataset] of [...Object.entries(DOMAIN_DATASETS),['cano','cano.operation.an-thoi']]){
  const identity=identities[dataset],a=await makeAuthority({...plan,dataset_id:dataset,object_name:identity.object_name},namespaces[0].id,identity.native_id,readConfig);
  signer??=JSON.parse(a.coreSecrets.RECEIPT_SIGNING_JSON);
- const profile=domain==='cano'?{contract_version:ISOLATED_REAL_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,source_kind:'OWNER_REPOSITORY_SNAPSHOT',fixture_only:false,source_records:[(({raw_file,...pin})=>pin)(cano.record)],operator_principal_ids:['bridge-operator-'+domain],artifact_refs:{}}:{contract_version:ISOLATED_DOMAIN_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,domain,fixture_only:false,source_pin:meta.pins[domain],operator_principal_ids:['bridge-operator-'+domain],test_window:{valid_from:from,valid_to:to,basis:'ISOLATED_CAPTURE_REFERENCE_ONLY'},artifact_refs:{}};
+ const profile=domain==='cano'?{contract_version:ISOLATED_REAL_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,source_kind:'OWNER_REPOSITORY_SNAPSHOT',fixture_only:false,source_records:[(({raw_file,...pin})=>pin)(cano.record)],operator_principal_ids:['bridge-operator-'+domain],artifact_refs:{}}:{contract_version:ISOLATED_DOMAIN_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,domain,fixture_only:false,source_pin:meta.pins[domain],operator_principal_ids:['bridge-operator-'+domain],test_window:lease,artifact_refs:{}};
  profile.artifact_refs=await (domain==='cano'?realCanoArtifactRefs(profile):domainBridgeArtifactRefs(profile));
  const trust={...a.trust,authority_instance_id:'bridge-'+process.env.GITHUB_RUN_ID+'-'+domain,recovery_generation:'bridge-generation-'+process.env.GITHUB_RUN_ID,receipt_keys:{[signer.key_id]:Object.values(authorities)[0]?.receipt_keys[signer.key_id]||a.trust.receipt_keys[signer.key_id]},approved_positive_decision_types:[],semantic_profile_hash:await hash(profile),artifacts:Object.fromEntries(Object.entries(profile.artifact_refs).map(([k,v])=>[k,v.hash]))};
  delete trust.locator_artifact_hash;trust.locator_artifact_hash=await hash(trust);
