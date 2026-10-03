@@ -3,7 +3,8 @@ import {randomBytes} from 'node:crypto';
 import {makeAuthority,principalSecrets} from './prepare.js';
 import {BUCKET,WORKERS} from './preflight.js';
 import {hash,requireThat} from '../../src/platform/contracts.js';
-import {DOMAIN_DATASETS} from '../../src/ingress/domain-source-common.js';
+import {DOMAIN_DATASETS,DOMAIN_RUNTIME_URLS} from '../../src/ingress/domain-source-common.js';
+import {CONTINUOUS_PROFILE_VERSION,continuousArtifactRefs,validateContinuousProfile} from '../../src/platform/domain-continuous-admission.js';
 import {ISOLATED_ACCOUNT_ID,ISOLATED_DOMAIN_PROFILE_VERSION,domainBridgeArtifactRefs,validateDomainBridgeProfile} from '../../src/platform/domain-bridge-admission.js';
 import {ISOLATED_REAL_PROFILE_VERSION,realCanoArtifactRefs,validateRealCanoProfile} from '../../src/platform/real-cano-admission.js';
 import {packConfig,TRUST_BINDINGS,PROFILE_REGISTRY_BINDINGS} from '../../src/platform/trusted-config.js';
@@ -29,14 +30,15 @@ requireThat(readConfig.access_key&&readConfig.secret,'R2_READ_CREDENTIAL_REQUIRE
 const meta=JSON.parse(await readFile('tests/data/domains/SOURCE_PINS.json','utf8')),cano=JSON.parse(await readFile('tests/data/real-cano/SOURCE.json','utf8'));
 const authorities={},profiles={},tokens={},principals=[],reads={};let signer;
 const lease=captureReferenceLease(Date.now());
+const continuous=process.env.CONTINUOUS_REFERENCE_PROOF==='1';
 for(const [domain,dataset] of [...Object.entries(DOMAIN_DATASETS),['cano','cano.operation.an-thoi']]){
  const identity=identities[dataset],a=await makeAuthority({...plan,dataset_id:dataset,object_name:identity.object_name},namespaces[0].id,identity.native_id,readConfig);
  signer??=JSON.parse(a.coreSecrets.RECEIPT_SIGNING_JSON);
- const profile=domain==='cano'?{contract_version:ISOLATED_REAL_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,source_kind:'OWNER_REPOSITORY_SNAPSHOT',fixture_only:false,source_records:[(({raw_file,...pin})=>pin)(cano.record)],operator_principal_ids:['bridge-operator-'+domain],artifact_refs:{}}:{contract_version:ISOLATED_DOMAIN_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,domain,fixture_only:false,source_pin:meta.pins[domain],operator_principal_ids:['bridge-operator-'+domain],test_window:lease,artifact_refs:{}};
- profile.artifact_refs=await (domain==='cano'?realCanoArtifactRefs(profile):domainBridgeArtifactRefs(profile));
+ const profile=domain==='cano'?{contract_version:ISOLATED_REAL_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,source_kind:'OWNER_REPOSITORY_SNAPSHOT',fixture_only:false,source_records:[(({raw_file,...pin})=>pin)(cano.record)],operator_principal_ids:['bridge-operator-'+domain],artifact_refs:{}}:continuous?{contract_version:CONTINUOUS_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,domain,fixture_only:false,producer:DOMAIN_RUNTIME_URLS[domain]?{source_kind:'OWNER_PUBLIC_RUNTIME',url:DOMAIN_RUNTIME_URLS[domain]}:{source_kind:'OWNER_REPOSITORY_SNAPSHOT',repository:meta.pins[domain].source_pointer.repository,path:meta.pins[domain].source_pointer.path},operator_principal_ids:['bridge-operator-'+domain],reference_policy:{lease_ms:300000,max_snapshot_age_ms:domain==='nearme'?31*86400000:86400000,future_skew_ms:0},artifact_refs:{}}:{contract_version:ISOLATED_DOMAIN_PROFILE_VERSION,environment_id:'isolated-test',dataset_id:dataset,domain,fixture_only:false,source_pin:meta.pins[domain],operator_principal_ids:['bridge-operator-'+domain],test_window:lease,artifact_refs:{}};
+ profile.artifact_refs=await (domain==='cano'?realCanoArtifactRefs(profile):continuous?continuousArtifactRefs(profile):domainBridgeArtifactRefs(profile));
  const trust={...a.trust,authority_instance_id:'bridge-'+process.env.GITHUB_RUN_ID+'-'+domain,recovery_generation:'bridge-generation-'+process.env.GITHUB_RUN_ID,receipt_keys:{[signer.key_id]:Object.values(authorities)[0]?.receipt_keys[signer.key_id]||a.trust.receipt_keys[signer.key_id]},approved_positive_decision_types:[],semantic_profile_hash:await hash(profile),artifacts:Object.fromEntries(Object.entries(profile.artifact_refs).map(([k,v])=>[k,v.hash]))};
  delete trust.locator_artifact_hash;trust.locator_artifact_hash=await hash(trust);
- await (domain==='cano'?validateRealCanoProfile(profile,trust):validateDomainBridgeProfile(profile,trust));
+ await (domain==='cano'?validateRealCanoProfile(profile,trust):continuous?validateContinuousProfile(profile,trust):validateDomainBridgeProfile(profile,trust));
  const actor=(id,token,permissions)=>({...trust,id,token,mode:'LIVE',owner:'bridge-owner',epoch:1,permissions});
  principals.push(actor('bridge-operator-'+domain,a.tokens.operator,['read','bootstrap','control','promote','export',domain==='cano'?'manual-source-admit':'domain-source-admit']),actor('bridge-read-'+domain,a.tokens.read,['read']));
  authorities[dataset]=trust;profiles[dataset]=profile;tokens[dataset]={operator:a.tokens.operator,read:a.tokens.read};reads[dataset]=a.tokens.read;

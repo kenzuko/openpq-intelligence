@@ -4,7 +4,7 @@ import copy,json,pathlib,sys
 from jsonschema import Draft202012Validator,FormatChecker
 root=pathlib.Path(__file__).resolve().parent.parent
 variant=sys.argv[2] if len(sys.argv)>2 else 'domain-bridge'
-assert variant in ('domain-bridge','domain-bridge-isolated')
+assert variant in ('domain-bridge','domain-bridge-isolated','domain-continuous-isolated')
 samples=json.loads(pathlib.Path(sys.argv[1]).read_text())
 validators={}
 for kind in ('profile','bundle','proof','projection','codec'):

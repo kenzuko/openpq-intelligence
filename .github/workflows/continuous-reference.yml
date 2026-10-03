@@ -1,0 +1,98 @@
+name: Core 2.0 stable continuous reference cloud proof
+on:
+  workflow_dispatch:
+  push:
+    branches: [cloud/core2-continuous-reference-20261003]
+permissions:
+  contents: read
+concurrency:
+  group: intelligence-isolated-cloud-proof
+  cancel-in-progress: false
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: intelligence-test
+    env:
+      CONTINUOUS_REFERENCE_PROOF: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+      CF_TEST_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+      CF_TEST_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+      R2_TEST_READ_ACCESS_KEY_ID: ${{ secrets.R2_TEST_READ_ACCESS_KEY_ID }}
+      R2_TEST_READ_SECRET_ACCESS_KEY: ${{ secrets.R2_TEST_READ_SECRET_ACCESS_KEY }}
+      CF_PRODUCTION_ACCOUNT_IDS: ${{ vars.CF_PRODUCTION_ACCOUNT_IDS }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check && npm run verify:handoff && npm test
+      - name: Validate all domain bridge schemas independently
+        run: |
+          python -m pip install jsonschema==4.25.1
+          node scripts/rehearse-domain-bridges-local.js .cloud-schema
+          python scripts/check-domain-bridge-schemas.py .cloud-schema/SCHEMA_SAMPLES.json
+      - name: Pin dedicated Cloudflare account
+        run: node -e "if(process.env.CF_TEST_ACCOUNT_ID !== 'c61a28455fe22f30619b35dd80c2d495') process.exit(1)"
+      - name: Read-only token/resource isolation preflight
+        run: node scripts/cloud/preflight.js
+      - name: Prepare unique fixture dataset and isolated configs
+        run: node scripts/cloud/domain-prepare.js
+      - name: Verify isolated binding config
+        run: node scripts/check-isolation.js .cloud-proof/core.json .cloud-proof/runtime.json .cloud-proof/operator.json
+      - name: Deploy temporary authenticated native-ID probe
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          npx --no-install wrangler deploy --config .cloud-proof/core.json
+          npx --no-install wrangler secret bulk .cloud-proof/provisioning-secrets.json --config .cloud-proof/core.json
+      - name: Resolve and pin actual namespace/native ID
+        run: node scripts/cloud/domain-identity.js
+      - name: Deploy final Core, Runtime and separate Console
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          npx --no-install wrangler secret bulk .cloud-proof/core-secrets.json --config .cloud-proof/core.json
+          npx --no-install wrangler deploy --config .cloud-proof/core.json
+          npx --no-install wrangler deploy --config .cloud-proof/runtime.json
+          npx --no-install wrangler secret bulk .cloud-proof/runtime-secrets.json --config .cloud-proof/runtime.json
+          npx --no-install wrangler deploy --config .cloud-proof/operator.json
+      - name: Actual cloud protocol and capability proof
+        run: node scripts/cloud/domain-proof.js prove
+      - name: Independently validate actual continuous cloud samples
+        run: python scripts/check-domain-bridge-schemas.py .cloud-proof/ISOLATED_SCHEMA_SAMPLES.json domain-continuous-isolated
+      - name: Close temporary source admission capabilities
+        if: always()
+        run: |
+          if [ -f .cloud-proof/domain-evidence.json ]; then
+            node scripts/cloud/domain-proof.js cleanup
+          fi
+      - name: Remove temporary provisioning capability
+        if: always()
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TEST_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_TEST_ACCOUNT_ID }}
+        run: |
+          if [ -f .cloud-proof/provisioning-secrets.json ]; then
+            npx --no-install wrangler secret delete PROVISIONING_TOKEN --config .cloud-proof/core.json
+          fi
+      - name: Upload only public/redacted evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: intelligence-isolated-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .cloud-proof/preflight.json
+            .cloud-proof/domain-locators.public.json
+            .cloud-proof/domain-profiles.public.json
+            .cloud-proof/identity-diagnostic.public.json
+            .cloud-proof/domain-evidence.json
+            .cloud-proof/ISOLATED_SCHEMA_SAMPLES.json
+            .cloud-proof/domain-backups
+          if-no-files-found: ignore
+          retention-days: 7

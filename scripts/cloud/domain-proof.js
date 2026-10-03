@@ -3,6 +3,8 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
 import {hash,requireThat,ContractError} from '../../src/platform/contracts.js';
 import {buildDomainBridgeCandidate} from '../../src/platform/domain-bridge-admission.js';
+import {buildContinuousCandidate,isContinuousProfile} from '../../src/platform/domain-continuous-admission.js';
+import {fetchOwnedReference} from './fetch-owned-reference.js';
 import {buildRealCanoCandidate} from '../../src/platform/real-cano-admission.js';
 import {domainLegacyView} from '../../src/platform/domain-serving.js';
 import {S3ReadonlyReader} from '../../src/platform/s3-reader.js';
@@ -33,9 +35,10 @@ try{
     const trust=authorities[dataset],profile=profiles[dataset],isCano=dataset==='cano.operation.an-thoi';
     const boot=await core(dataset,'bootstrap',{...trust,owner:'bridge-owner',epoch:1});requireThat(boot.status===200,'DOMAIN_BOOTSTRAP_FAILED');
     requireThat((await core(dataset,'bootstrap',{...trust,owner:'bridge-owner',epoch:1})).status===409,'DOMAIN_BOOTSTRAP_REPEATED');
-    const raw_utf8=await readFile(isCano?'tests/data/real-cano/2026-10-03-cano-an-thoi.json':'tests/data/domains/'+profile.domain+'.json','utf8');
+    const reference=isContinuousProfile(profile)?await fetchOwnedReference(profile.producer):null;
+    const raw_utf8=reference?.raw_utf8??await readFile(isCano?'tests/data/real-cano/2026-10-03-cano-an-thoi.json':'tests/data/domains/'+profile.domain+'.json','utf8');
     const evaluation_time=new Date().toISOString(),options={raw_utf8,operator_principal_id:'bridge-operator-'+(isCano?'cano':profile.domain),evaluation_time,candidate_id:'cloud-owned-'+(isCano?'cano':profile.domain),logical_slot:10};
-    const c=isCano?await buildRealCanoCandidate(profile,trust,{...options,bundle:{contract_version:'openpq-real-cano-bundle-isolated-v1',raw_utf8,...profile.source_records[0]}}):await buildDomainBridgeCandidate(profile,trust,options);
+    const c=isCano?await buildRealCanoCandidate(profile,trust,{...options,bundle:{contract_version:'openpq-real-cano-bundle-isolated-v1',raw_utf8,...profile.source_records[0]}}):reference?await buildContinuousCandidate(profile,trust,{...options,pin:reference.pin}):await buildDomainBridgeCandidate(profile,trust,options);
     const forged=structuredClone(c);forged.decision.effect='POSITIVE';requireThat((await core(dataset,'prepare',forged)).status!==200,'DOMAIN_POSITIVE_ACTION_ACCEPTED');
     const other=ids.find(x=>x!==dataset);requireThat((await core(dataset,'read',undefined,tokens[other].operator)).status===403,'DOMAIN_CROSS_DATASET_READ_ALLOWED');
     const p=await core(dataset,'prepare',c);requireThat(p.status===200,'DOMAIN_PREPARE_FAILED');
@@ -53,10 +56,22 @@ try{
     const state=(await core(dataset,'read')).body.state;
     const backup=await buildBackup({environment_id:'isolated-test',authority:trust,created_at:new Date().toISOString(),watermark:{revision:state.revision,control_revision:state.control_revision},required_keys:['control','receipt',receipt.key],records:[{key:'control',kind:'CONTROL',content:state},{key:'receipt',kind:'RECEIPT',content:envelope},{key:receipt.key,kind:'GENERATION',content:generation},...['AUDIT','REGISTRY','SCHEDULER','DEPLOY'].map(kind=>({key:kind.toLowerCase(),kind,content:{captured_source_reference:true,full_authoritative_export:false,code_sha:process.env.GITHUB_SHA}}))]});
     const destination=root+'domain-backups/'+(isCano?'cano':profile.domain);await savePortableBackup(backup,trust,destination);const verification=(await loadPortableBackup(destination,trust)).verification;requireThat(verification.publication_receipt_authenticity_verified,'DOMAIN_BACKUP_SIGNATURE_FAILED');
-    report.datasets.push({dataset_id:dataset,domain:isCano?'cano':profile.domain,source_pin:isCano?profile.source_records[0]:profile.source_pin,profile_hash:trust.semantic_profile_hash,receipt_digest:receipt.digest,revision:receipt.revision,record_count:isCano?1:served.body.data.records.length,decision_eligibility:served.body.serving.decision_eligibility,source_time:generation.inputs[0].source_time,display_expires_at:generation.valid_to,backup_status:verification.status,fixture_only:false,production_enabled:false});
+    report.datasets.push({dataset_id:dataset,domain:isCano?'cano':profile.domain,source_pin:isCano?profile.source_records[0]:reference?.pin??profile.source_pin,profile_hash:trust.semantic_profile_hash,receipt_digest:receipt.digest,revision:receipt.revision,record_count:isCano?1:served.body.data.records.length,decision_eligibility:served.body.serving.decision_eligibility,source_time:generation.inputs[0].source_time,display_expires_at:generation.valid_to,backup_status:verification.status,fixture_only:false,production_enabled:false});
    });
   }
   await writeFile(root+'ISOLATED_SCHEMA_SAMPLES.json',JSON.stringify(samples)+'\n');
+  for(const dataset of ids.filter(id=>isContinuousProfile(profiles[id])))await check(dataset+' refreshes under the same pinned authority and profile',async()=>{
+   const trust=authorities[dataset],profile=profiles[dataset],before=report.datasets.find(x=>x.dataset_id===dataset),value=await fetchOwnedReference(profile.producer),state=(await core(dataset,'read')).body.state;
+   const c=await buildContinuousCandidate(profile,trust,{...value,operator_principal_id:'bridge-operator-'+profile.domain,evaluation_time:new Date().toISOString(),candidate_id:'cloud-refresh-'+profile.domain,expected_revision:state.revision,expected_control_revision:state.control_revision,logical_slot:11});
+   const p=await core(dataset,'prepare',c);requireThat(p.status===200,'CONTINUOUS_REFRESH_PREPARE_FAILED');
+   const b=await core(dataset,'commit',{...trust,command_id:'refresh-'+profile.domain,digest:p.body.digest,expires_at:new Date(Date.now()+60000).toISOString()});requireThat(b.status===200&&b.body.receipt.revision===before.revision+1&&b.body.receipt.semantic_admission.profile_hash===before.profile_hash,'CONTINUOUS_REFRESH_COMMIT_FAILED');
+   const served=await waitForDomainRuntime(()=>runtime(dataset),{authority:'VERIFIED',fallback:false,receipt_digest:p.body.digest});requireThat((await core(dataset,'export',{})).status===200,'CONTINUOUS_REFRESH_EXPORT_FAILED');
+   const generation=JSON.parse(await reader.get(b.body.receipt.key)),envelope=JSON.parse(await reader.get(`checkpoints/${trust.authority_instance_id}/${trust.recovery_generation}/latest.json`));const receipt=await verifyAttestation(envelope,trust);requireThat(receipt.digest===p.body.digest,'CONTINUOUS_REFRESH_SIGNED_DIGEST_FAILED');
+   requireThat(await hash(await domainLegacyView(generation,envelope,trust))===await hash(JSON.parse(value.raw_utf8)),'CONTINUOUS_REFRESH_LEGACY_PARITY_FAILED');
+   const after=(await core(dataset,'read')).body.state,backup=await buildBackup({environment_id:'isolated-test',authority:trust,created_at:new Date().toISOString(),watermark:{revision:after.revision,control_revision:after.control_revision},required_keys:['control','receipt',receipt.key],records:[{key:'control',kind:'CONTROL',content:after},{key:'receipt',kind:'RECEIPT',content:envelope},{key:receipt.key,kind:'GENERATION',content:generation},...['AUDIT','REGISTRY','SCHEDULER','DEPLOY'].map(kind=>({key:kind.toLowerCase(),kind,content:{captured_source_reference:true,full_authoritative_export:false,code_sha:process.env.GITHUB_SHA}}))]});
+   const destination=root+'domain-backups/'+profile.domain+'-revision2';await savePortableBackup(backup,trust,destination);requireThat((await loadPortableBackup(destination,trust)).verification.publication_receipt_authenticity_verified,'CONTINUOUS_REFRESH_BACKUP_FAILED');
+   Object.assign(before,{first_source_pin:before.source_pin,first_receipt_digest:before.receipt_digest,source_pin:value.pin,receipt_digest:receipt.digest,revision:receipt.revision,source_time:generation.inputs[0].source_time,display_expires_at:generation.valid_to,record_count:served.body.data.records.length,continuous_profile_preserved:true,refresh_input_changed:value.pin.payload_sha256!==before.source_pin.payload_sha256});
+  });
   await check('all eleven sources coexist after admission',async()=>{for(const dataset of ids){const s=await runtime(dataset);requireThat(s.status===200&&s.body.receipt.digest===report.datasets.find(x=>x.dataset_id===dataset).receipt_digest&&s.body.serving.decision_eligibility==='ABSTAIN','DOMAIN_COEXISTENCE_FAILED');}});
   await check('read authority outage serves signed references with no operational action',async()=>{
    const secrets=JSON.parse(await readFile(root+'core-secrets.json','utf8')),entries=PRINCIPAL_SECRET_NAMES.flatMap(k=>JSON.parse(secrets[k]||'[]'));
@@ -68,7 +83,7 @@ try{
    await waitForCapabilityStatus(()=>core(ids[0],'read',undefined,tokens[ids[0]].read),200,{failureCode:'DOMAIN_READ_RESTORE_NOT_OBSERVED'});
    for(const dataset of ids){await waitForCapabilityStatus(()=>core(dataset,'read',undefined,tokens[dataset].read),200,{failureCode:'DOMAIN_DATASET_READ_RESTORE_NOT_OBSERVED'});await waitForDomainRuntime(()=>runtime(dataset),{authority:'VERIFIED',fallback:false,receipt_digest:report.datasets.find(x=>x.dataset_id===dataset).receipt_digest});}
   });
-  report.status='REAL_CLOUD_BRIDGE_SUBSET_PASS';await save();
+  report.status=ids.some(id=>isContinuousProfile(profiles[id]))?'REAL_CLOUD_CONTINUOUS_REFERENCE_SUBSET_PASS':'REAL_CLOUD_BRIDGE_SUBSET_PASS';if(report.status==='REAL_CLOUD_CONTINUOUS_REFERENCE_SUBSET_PASS')report.source_capture='CURRENT_OWNED_OUTPUTS_CAPTURED_TWICE_WITH_STABLE_PROFILE_NOT_UNATTENDED_FEED';await save();
  }else if(mode==='cleanup'){
   report=JSON.parse(await readFile(root+'domain-evidence.json','utf8'));
   await check('temporary source admission capabilities closed with positive Runtime witness',async()=>{
