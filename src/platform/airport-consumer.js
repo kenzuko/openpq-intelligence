@@ -5,7 +5,7 @@ import {AIRPORT_FACT_ENVIRONMENT,AIRPORT_FACT_ACCOUNT,AIRPORT_SOURCE_URL,AIRPORT
 const AIRPORT_SOURCE_URLS={airport:AIRPORT_SOURCE_URL},AIRPORT_DATASET_BY_DOMAIN={airport:AIRPORT_FACT_DATASET};
 export const AIRPORT_CANONICAL_ORIGIN='https://openpq-intelligence-airport-runtime.kenzuko.workers.dev';
 // Read admitted bytes only. No collector, field classification, decision or silent legacy fallback.
-export async function readAirportConsumer(config,{fetcher=(url,options)=>fetch(url,options),clock=()=>Date.now()}={}){
+async function readAirportConsumerOnce(config,{fetcher=(url,options)=>fetch(url,options),clock=()=>Date.now()}={}){
  requireThat(config&&['LEGACY','CANONICAL'].includes(config.mode)&&Object.hasOwn(AIRPORT_SOURCE_URLS,config.domain),'AIRPORT_READER_SCOPE_REQUIRED',503);
  const get=async url=>{const r=await fetcher(url,{method:'GET',redirect:'manual',signal:AbortSignal.timeout(12000),headers:{accept:'application/json'}});requireThat(r.ok,'AIRPORT_READER_HTTP_'+r.status,503);requireThat(r.headers.get('content-type')?.split(';')[0]==='application/json','AIRPORT_READER_CONTENT_TYPE_DENIED',503);return {response:r,raw:await boundedText(r,1500000)};};
  if(config.mode==='LEGACY'){const {raw}=await get(AIRPORT_SOURCE_URLS[config.domain]);const data=JSON.parse(raw);requireThat(data&&typeof data==='object'&&!Array.isArray(data),'AIRPORT_LEGACY_SHAPE_DENIED',503);return {raw,reader:'LEGACY',source_digest:await hash(raw),canonical_transfer_proven:false};}
@@ -22,4 +22,12 @@ export async function readAirportConsumer(config,{fetcher=(url,options)=>fetch(u
  requireThat(Number.isFinite(now)&&Number.isFinite(source)&&source<=now&&Number.isFinite(expiry)&&now<expiry&&response.headers.get('x-openpq-display-expires-at')===p.valid_until,'AIRPORT_CONSUMER_EXPIRED',503);
  requireThat(response.headers.get('x-openpq-decision-eligibility')==='ABSTAIN'&&response.headers.get('x-openpq-source-snapshot')==='reference-only'&&response.headers.get('cache-control')==='no-store','AIRPORT_CONSUMER_REFERENCE_CONTRACT_DENIED',503);
  return {raw,reader:'CANONICAL',source_digest:p.input_hash,receipt_digest:r.digest,revision:r.revision,source_version_time:p.source_version_time,display_expires_at:p.valid_until,canonical_transfer_proven:false};
+}
+
+// Each bounded retry rereads and revalidates everything; persistent denial stays closed.
+export async function readAirportConsumer(config,options={}){
+ for(let attempt=0;attempt<3;attempt++){
+  try{return await readAirportConsumerOnce(config,options);}
+  catch(e){if(!['AIRPORT_CONSUMER_SNAPSHOT_CHANGED_OR_TAMPERED','AIRPORT_CONSUMER_AUTHORITY_DENIED'].includes(e.code)||attempt===2)throw e;}
+ }
 }
