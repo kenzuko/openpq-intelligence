@@ -8,6 +8,7 @@ import {WEATHER_FACT_PROFILE_VERSION,continuousEnvironment} from '../src/platfor
 import {WEATHER_FACT_ENVIRONMENT,WEATHER_FACT_ACCOUNT,WEATHER_FACT_GATE,WEATHER_SOURCE_URLS} from '../src/platform/weather-execution-contract.js';
 import {executionEnvironment,executionDataset} from '../src/platform/transit-execution-scope.js';
 import {DOMAIN_DATASETS} from '../src/ingress/domain-source-common.js';
+import {readWeatherConsumer,WEATHER_CANONICAL_ORIGIN} from '../src/platform/weather-consumer.js';
 import {domainLegacyView} from '../src/platform/domain-serving.js';
 const AT='2026-10-03T01:12:00.000Z';
 const gate={ACCOUNT_ID:WEATHER_FACT_ACCOUNT,CANONICAL_WEATHER_GATE:WEATHER_FACT_GATE};
@@ -70,4 +71,21 @@ test('native Weather source pump keeps one authority, uses only the producer vie
   assert.equal((await s.call('bootstrap',s.trust,token)).status,403);assert.equal((await s.call('control',{freeze:true},token)).status,403);
   const state=(await s.call('read',undefined,'test-only-read')).body.state;assert.equal(state.revision,2);assert.equal(state.epoch,1);assert.equal(state.control_revision,0);
  }finally{await s.mf.dispose();}
+});
+
+test('Weather reader protocol preserves all six captured byte streams and denies expiry/mixed-receipt instead of silently falling back',async()=>{
+ for(const domain of Object.keys(WEATHER_SOURCE_URLS)){
+  const p=await profile(domain),t=await trust(p),raw=await readFile(new URL('./data/domains/'+domain+'.json',import.meta.url),'utf8'),source_digest=await hash(raw);
+  const pin={source_kind:'OWNER_PUBLIC_RUNTIME',source_pointer:{url:p.producer.url},payload_sha256:source_digest,git_blob_sha:null};
+  const c=await buildContinuousCandidate(p,t,{pin,raw_utf8:raw,operator_principal_id:'operator',evaluation_time:AT,candidate_id:'reader-protocol-'+domain}),digest=await hash(c);
+  const path=WEATHER_CANONICAL_ORIGIN+'/datasets/'+p.dataset_id;
+  const view={receipt:{...t,digest,revision:1,semantic_admission:c.semantic_admission},decision:c.decision,data:{domain,dataset_id:p.dataset_id,sources:[pin],legacy_payload_digest:await hash(JSON.parse(raw))},serving:{authority:'VERIFIED',fallback:false}};
+  let legacyCalls=0;
+  const fetcher=async url=>{if(url===p.producer.url){legacyCalls++;return Response.json(JSON.parse(raw));}if(url===path)return Response.json(view);assert.equal(url,path+'/legacy-reference');return new Response(raw,{headers:{'content-type':'application/json','cache-control':'no-store','x-openpq-receipt-digest':digest,'x-openpq-source-digest':source_digest,'x-openpq-display-expires-at':c.valid_to,'x-openpq-decision-eligibility':'ABSTAIN','x-openpq-source-snapshot':'reference-only'}});};
+  const config={mode:'CANONICAL',domain,origin:WEATHER_CANONICAL_ORIGIN,trust:t};
+  assert.equal((await readWeatherConsumer(config,{fetcher,clock:()=>Date.parse(AT)})).raw,raw);
+  await assert.rejects(readWeatherConsumer(config,{fetcher,clock:()=>Date.parse(c.valid_to)}),/WEATHER_CONSUMER_EXPIRED/);
+  await assert.rejects(readWeatherConsumer(config,{clock:()=>Date.parse(AT),fetcher:async url=>{const r=await fetcher(url);if(url.endsWith('/legacy-reference')){const headers=new Headers(r.headers);headers.set('x-openpq-receipt-digest','f'.repeat(64));return new Response(await r.text(),{headers});}return r;}}),/WEATHER_CONSUMER_SNAPSHOT_CHANGED_OR_TAMPERED/);
+  assert.equal(legacyCalls,0);await assert.rejects(readWeatherConsumer({...config,domain:'weather_manifest'},{fetcher}),/WEATHER_READER_SCOPE_REQUIRED/);
+ }
 });
