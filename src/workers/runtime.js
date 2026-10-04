@@ -1,5 +1,4 @@
 import {directoryLegacyReference,directoryPublicationReference} from '../platform/directory-serving.js';
-import {DIRECTORY_FACT_ENVIRONMENT} from '../platform/directory-execution-contract.js';
 import {trustMap,readConfig,RECOVERED_REFERENCE_BINDINGS} from '../platform/trusted-config.js';
 import {recoveredReferenceConfig,recoveredReferenceView} from '../platform/recovered-reference.js';
 import {SNAPSHOT_MAX_BYTES} from '../platform/authority-snapshot.js';
@@ -61,7 +60,7 @@ export default {
         requireThat(checkpoint,'NO_TRUSTED_CHECKPOINT',503);receipt=await verifyAttestation(JSON.parse(checkpoint),trust);
       }
       requireThat(sameLocator(receipt,trust),'RECEIPT_LOCATOR_DENIED',409);
-      const raw=await read(receipt.key,trust.environment_id===DIRECTORY_FACT_ENVIRONMENT?1500000:262144);requireThat(raw,'GENERATION_UNAVAILABLE',503);
+      const raw=await read(receipt.key);requireThat(raw,'GENERATION_UNAVAILABLE',503);
       requireThat(await hash(raw)===receipt.digest,'GENERATION_HASH_INVALID',503);
       const generation=JSON.parse(raw), now=Date.now();
       const view=servingView(generation,receipt,trust,validation,now);
