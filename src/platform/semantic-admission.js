@@ -1,4 +1,6 @@
 import {readConfig,PROFILE_REGISTRY_BINDINGS} from './trusted-config.js';
+import {executionEnvironment,executionDataset,TRANSIT_FACT_ENVIRONMENT} from './transit-execution-scope.js';
+import {TRANSIT_FACT_PROFILE_VERSION} from './domain-continuous-contract.js';
 import {isContinuousProfile,validateContinuousProfile,validateContinuousAdmission} from './domain-continuous-admission.js';
 import {DOMAIN_PROFILE_VERSION,isDomainProfile,validateDomainBridgeProfile,validateDomainBridgeAdmission,validateDomainBridgeActor} from './domain-bridge-admission.js';
 import {REAL_PROFILE_VERSION,isRealProfile,validateRealCanoProfile,validateRealCanoAdmission,validateRealCanoActor} from './real-cano-admission.js';
@@ -15,7 +17,7 @@ export async function packAdmissionProfile(profile){
  return Object.fromEntries(ADMISSION_BINDINGS.map((key,i)=>[key,chunks[i].join('')]));
 }
 async function configured(env,trust,evaluation_time){
- requireThat(['local-test','isolated-test'].includes(env.ENVIRONMENT_ID),'SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
+ executionEnvironment(env);executionDataset(env,trust);
  requireThat(trust.environment_id===env.ENVIRONMENT_ID,'SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
  digest(trust.semantic_profile_hash,'SEMANTIC_PROFILE_HASH');
  const parts=ADMISSION_BINDINGS.map(key=>env[key]||'');requireThat(parts.every(p=>typeof p==='string'&&new TextEncoder().encode(p).length<=5000),'SEMANTIC_PROFILE_BINDING_OVERSIZE');
@@ -23,6 +25,7 @@ async function configured(env,trust,evaluation_time){
  requireThat(!hasRegistry||parts.every(p=>!p),'SEMANTIC_CONFIG_AMBIGUOUS',503);
  const profile=hasRegistry?readConfig(env,PROFILE_REGISTRY_BINDINGS)[trust.dataset_id]:JSON.parse(parts.join(''));
  requireThat(profile&&profile.environment_id===env.ENVIRONMENT_ID,'SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
+ if(env.ENVIRONMENT_ID===TRANSIT_FACT_ENVIRONMENT)requireThat(profile.contract_version===TRANSIT_FACT_PROFILE_VERSION,'TRANSIT_FACT_PROFILE_SCOPE_DENIED');
  if(isDomainProfile(profile)){await validateDomainBridgeProfile(profile,trust);return {profile};}
  if(isContinuousProfile(profile)){await validateContinuousProfile(profile,trust);return {profile};}
  if(isRealProfile(profile)){await validateRealCanoProfile(profile,trust);return {profile};}

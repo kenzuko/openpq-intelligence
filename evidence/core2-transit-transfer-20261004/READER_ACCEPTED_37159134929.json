@@ -1,0 +1,123 @@
+{
+  "status": "LEGACY_READER_BOUNDARY_DEPLOYED_EXACT_SOURCE_PARITY",
+  "code_sha": "7af398a88d0875d4be79a802923fa2229f7ff81b",
+  "release_sha": "9ee0ad2bb3dbf02f0c97eeb7faaa9677f0f9ffcb",
+  "account_id": "1a64a0a081ea758f72be8254030bdf11",
+  "target": "openpq-intelligence-transit-reader",
+  "mode": "LEGACY",
+  "canonical_transferred": false,
+  "public_app_switched": false,
+  "producer_independent": false,
+  "started_at": "2026-10-03T22:41:03.513Z",
+  "code_ci_runs": [
+    {
+      "id": 37159101507,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 37159099843,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "protected_before": {
+    "openphuquoc-v3": [
+      {
+        "version_id": "25aff0f1-bcbb-46ab-af3e-f90d2081d363",
+        "percentage": 100
+      }
+    ],
+    "jotrip-airport-live": [
+      {
+        "version_id": "40a09090-664d-4f38-935e-fc9f49e9d05f",
+        "percentage": 100
+      }
+    ]
+  },
+  "probes": [
+    {
+      "attempt": 0,
+      "http_status": 404,
+      "content_type": "text/html; charset=UTF-8",
+      "reader": null,
+      "body_digest": "2000e6b28a1517ba1268e1649cd3163326ef839492edfdba31e8959830580976",
+      "source_digest": null,
+      "error": null
+    },
+    {
+      "attempt": 1,
+      "http_status": 404,
+      "content_type": "text/html; charset=UTF-8",
+      "reader": null,
+      "body_digest": "2000e6b28a1517ba1268e1649cd3163326ef839492edfdba31e8959830580976",
+      "source_digest": null,
+      "error": null
+    },
+    {
+      "attempt": 2,
+      "http_status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "reader": "LEGACY",
+      "body_digest": "0a0f6258969a9d563e6c20a9ba76e215a0e544fd687b7127ee88f94fa32aba6f",
+      "source_digest": "0a0f6258969a9d563e6c20a9ba76e215a0e544fd687b7127ee88f94fa32aba6f",
+      "error": null
+    }
+  ],
+  "gateway_witness": {
+    "checked_at": "2026-10-03T22:41:11.840Z",
+    "status": 200,
+    "source_digest": "0a0f6258969a9d563e6c20a9ba76e215a0e544fd687b7127ee88f94fa32aba6f",
+    "generated_at": "2026-10-04T05:06:34.735667+07:00",
+    "departures": 46,
+    "services": 3
+  },
+  "direct_source_digest": "0a0f6258969a9d563e6c20a9ba76e215a0e544fd687b7127ee88f94fa32aba6f",
+  "denied_methods": [
+    {
+      "method": "POST",
+      "status": 405
+    },
+    {
+      "method": "PUT",
+      "status": 405
+    },
+    {
+      "method": "DELETE",
+      "status": 405
+    }
+  ],
+  "head_status": 200,
+  "protected_after": {
+    "openphuquoc-v3": [
+      {
+        "version_id": "25aff0f1-bcbb-46ab-af3e-f90d2081d363",
+        "percentage": 100
+      }
+    ],
+    "jotrip-airport-live": [
+      {
+        "version_id": "40a09090-664d-4f38-935e-fc9f49e9d05f",
+        "percentage": 100
+      }
+    ]
+  },
+  "current_deployment": {
+    "id": "f35d17cd-ffb0-474a-9dc3-bc808542f5ca",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "kenzuko@gmail.com",
+    "annotations": {
+      "workers/message": "Automatic deployment on upload.",
+      "workers/triggered_by": "upload"
+    },
+    "versions": [
+      {
+        "version_id": "7a20ab7f-d5de-4384-9e38-8509df0466b5",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-03T22:41:06.601844Z"
+  },
+  "finished_at": "2026-10-03T22:41:12.395Z"
+}

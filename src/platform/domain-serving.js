@@ -1,12 +1,12 @@
 import {hash,requireThat,sameLocator} from './contracts.js';
 import {verifyAttestation} from './receipts.js';
 import {unpackDomainJson,unpackDomainText} from './domain-codec.js';
-import {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION} from './domain-continuous-contract.js';
+import {continuousContract,continuousBundleVersion,continuousSnapshotVersion,continuousEnvironment} from './domain-continuous-contract.js';
 
 // Read-only serving checks. No source collection, normalization, classification kernel or source credential.
 export async function domainSnapshotServing(generation,now){
- const continuous=generation.semantic_admission?.contract_version===CONTINUOUS_PROFILE_VERSION;
- const snapshot=generation.payload?.domain_snapshot;requireThat((!continuous||generation.environment_id==='isolated-test')&&snapshot?.contract_version===(continuous?CONTINUOUS_SNAPSHOT_VERSION:generation.environment_id==='isolated-test'?'openpq-domain-snapshot-isolated-v1':'openpq-domain-snapshot-local-v1'),'DOMAIN_SERVING_CONTRACT_DENIED');
+ const version=generation.semantic_admission?.contract_version,continuous=continuousContract(version);
+ const snapshot=generation.payload?.domain_snapshot;requireThat((!continuous||generation.environment_id===continuousEnvironment(version))&&snapshot?.contract_version===(continuous?continuousSnapshotVersion(version):generation.environment_id==='isolated-test'?'openpq-domain-snapshot-isolated-v1':'openpq-domain-snapshot-local-v1'),'DOMAIN_SERVING_CONTRACT_DENIED');
  const projection=await unpackDomainJson(snapshot.encoded_projection),{projection_digest,...body}=projection;
  requireThat(await hash(body)===projection_digest&&projection_digest===snapshot.projection_digest&&generation.semantic_admission?.preparation_hash===projection_digest,'DOMAIN_SERVING_DIGEST_DENIED');
  const fields=projection.records.map(r=>{
@@ -31,8 +31,8 @@ export async function domainLegacyView(generation,envelope,trust){
  requireThat(trust&&envelope,'DOMAIN_INDEPENDENT_RECEIPT_TRUST_REQUIRED');
  const receipt=await verifyAttestation(envelope,trust);
  requireThat(sameLocator(generation,trust)&&await hash(generation)===receipt.digest&&generation.semantic_profile_hash===trust.semantic_profile_hash&&receipt.semantic_admission?.profile_hash===trust.semantic_profile_hash,'DOMAIN_LEGACY_AUTHORITY_DENIED');
- const continuous=generation.semantic_admission?.contract_version===CONTINUOUS_PROFILE_VERSION;
- requireThat((!continuous||trust.environment_id==='isolated-test')&&generation.semantic_bundle?.contract_version===(continuous?CONTINUOUS_BUNDLE_VERSION:trust.environment_id==='isolated-test'?'openpq-owned-domain-bundle-isolated-v1':'openpq-owned-domain-bundle-local-v1'),'DOMAIN_LEGACY_BUNDLE_DENIED');
+ const version=generation.semantic_admission?.contract_version,continuous=continuousContract(version);
+ requireThat((!continuous||trust.environment_id===continuousEnvironment(version))&&generation.semantic_bundle?.contract_version===(continuous?continuousBundleVersion(version):trust.environment_id==='isolated-test'?'openpq-owned-domain-bundle-isolated-v1':'openpq-owned-domain-bundle-local-v1'),'DOMAIN_LEGACY_BUNDLE_DENIED');
  const raw=await unpackDomainText(generation.semantic_bundle.encoded_source);requireThat(await hash(raw)===generation.semantic_bundle.pin.payload_sha256&&await hash(raw)===generation.semantic_admission?.input_hash,'DOMAIN_LEGACY_SOURCE_DIGEST_DENIED');
  const legacy=JSON.parse(raw);const projection=await unpackDomainJson(generation.payload.domain_snapshot.encoded_projection);requireThat(await hash(legacy)===projection.legacy_payload_digest,'DOMAIN_LEGACY_VIEW_MISMATCH');return legacy;
 }

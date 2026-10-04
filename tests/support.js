@@ -5,7 +5,7 @@ import { hash } from '../src/platform/contracts.js';
 const root=fileURLToPath(new URL('../',import.meta.url));
 export const iso=ms=>new Date(ms).toISOString();
 export const H='a'.repeat(64);
-export async function setup({faults=false,semanticProfile=null,progressConfig=null,dataset_id='cano.operation',environment_id='local-test',account_id='synthetic-local-account',manualOperator=false,realSourceReplayClock=false,domainOperator=false,domainReplayClock=false}={}) {
+export async function setup({faults=false,semanticProfile=null,progressConfig=null,dataset_id='cano.operation',environment_id='local-test',account_id='synthetic-local-account',manualOperator=false,realSourceReplayClock=false,domainOperator=false,domainReplayClock=false,coreScript=null,executionBindings={}}={}) {
   let armed=null,entered=null,release=null;
   const gateHost=async request=>{
     const path=new URL(request.url).pathname;
@@ -26,13 +26,13 @@ export async function setup({faults=false,semanticProfile=null,progressConfig=nu
   const trust={environment_id,dataset_id,authority_instance_id:'local-cano-authority',authority_locator_version:'1',locator_artifact_hash:H,namespace_id:'local-sqlite-namespace',object_name:'local-test/'+dataset_id,native_id:'0'.repeat(64),recovery_generation:'local-generation-1',artifacts:{rule:H,config:H,policy:H,schema:H},receipt_keys:{'local-key':publicKey}};
   trust.account_id=account_id;
   let semanticBindings={},progressBindings={};if(progressConfig){progressBindings={ENVIRONMENT_ID:'local-test',PROGRESS_CONFIG_JSON:JSON.stringify(progressConfig),PROGRESS_CONFIG_HASH:await hash(progressConfig),SCHEDULER_TOKEN_HASH:await hash('test-only-scheduler'),EXPORT_ONLY_TOKEN:'test-only-export'};}if(semanticProfile){const {packAdmissionProfile}=await import('../src/platform/semantic-admission.js');semanticBindings=await packAdmissionProfile(semanticProfile);trust.semantic_profile_hash=await hash(semanticProfile);trust.artifacts=Object.fromEntries(['rule','config','policy','schema'].map(k=>[k,semanticProfile.artifact_refs[k].hash]));}
-  trust.approved_positive_decision_types=['cano.operation.fixture'];
+  trust.approved_positive_decision_types=environment_id==='canonical-transit-fact'?[]:['cano.operation.fixture'];
   const actor=(id,token,permissions,extra={})=>({...trust,id,token,permissions,mode:'LIVE',owner:'pilot',epoch:1,...extra});
   let principals;
   const options=()=>({cf:false,host:'127.0.0.1',workers:[
-    {name:'core',modules:true,scriptPath:root+(domainReplayClock?'tests/domain-clock-core.js':realSourceReplayClock?'tests/real-cano-clock-core.js':'src/workers/core.js'),modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',durableObjects:{DATASETS:{className:'DatasetCoordinator',useSQLite:true}},r2Buckets:{CANONICAL:'isolated-canonical'},bindings:{...semanticBindings,ENVIRONMENT_ID:environment_id,TRUST_JSON:JSON.stringify({[dataset_id]:trust}),PRINCIPALS_JSON:JSON.stringify(principals || []),RECEIPT_SIGNING_JSON:JSON.stringify({key_id:'local-key',private_jwk:privateKey})}},
+    {name:'core',modules:true,scriptPath:root+(coreScript??(domainReplayClock?'tests/domain-clock-core.js':realSourceReplayClock?'tests/real-cano-clock-core.js':'src/workers/core.js')),modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',durableObjects:{DATASETS:{className:'DatasetCoordinator',useSQLite:true}},r2Buckets:{CANONICAL:'isolated-canonical'},bindings:{...semanticBindings,...executionBindings,ENVIRONMENT_ID:environment_id,TRUST_JSON:JSON.stringify({[dataset_id]:trust}),PRINCIPALS_JSON:JSON.stringify(principals || []),RECEIPT_SIGNING_JSON:JSON.stringify({key_id:'local-key',private_jwk:privateKey})}},
     {name:'reader',modules:true,scriptPath:root+'tests/reader-worker.js',compatibilityDate:'2026-07-30',r2Buckets:{CANONICAL:'isolated-canonical'}},
-    {name:'runtime',modules:true,scriptPath:root+(domainReplayClock?'tests/domain-clock-runtime.js':'src/workers/runtime.js'),modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',serviceBindings:{CORE_READ:'core',TEST_READER:'reader'},bindings:{...semanticBindings,ENVIRONMENT_ID:environment_id,TRUST_JSON:JSON.stringify({[dataset_id]:trust}),CONTROL_READ_TOKEN:'test-only-read',READER_TOKEN:'test-only-reader'}}
+    {name:'runtime',modules:true,scriptPath:root+(domainReplayClock?'tests/domain-clock-runtime.js':'src/workers/runtime.js'),modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',serviceBindings:{CORE_READ:'core',TEST_READER:'reader'},bindings:{...semanticBindings,...executionBindings,ENVIRONMENT_ID:environment_id,TRUST_JSON:JSON.stringify({[dataset_id]:trust}),CONTROL_READ_TOKEN:'test-only-read',READER_TOKEN:'test-only-reader'}}
   ]});
   const baseOptions=options;
   const effectiveOptions=()=>{
