@@ -37,6 +37,19 @@ test('captured live Airport bytes pass one native authority and S3 Runtime witho
   try{
    const config={mode:'CANONICAL',domain:'airport',origin:AIRPORT_CANONICAL_ORIGIN,trust:s.trust},fetcher=(url,o)=>runtime.dispatchFetch(url,o);
    const read=await readAirportConsumer(config,{fetcher,clock:()=>Date.parse(AT)});assert.equal(read.raw,source.raw_utf8);assert.equal(read.source_digest,source.pin.payload_sha256);assert.equal(read.revision,1);
+   for(const race of ['authority','snapshot']){
+    let calls=0;
+    const racing=async(url,o)=>{calls++;const response=await fetcher(url,o);
+     if(race==='authority'&&calls===1){const body=await response.json();body.serving.authority='UNVERIFIED';return Response.json(body);}
+     if(race==='snapshot'&&calls===2){const headers=new Headers(response.headers);headers.set('x-openpq-receipt-digest','0'.repeat(64));return new Response(await response.text(),{headers});}
+     return response;
+    };
+    const recovered=await readAirportConsumer(config,{fetcher:racing,clock:()=>Date.parse(AT)});assert.equal(recovered.raw,source.raw_utf8);assert.equal(calls,race==='authority'?3:4);
+   }
+   let deniedCalls=0;const denied=async(url,o)=>{deniedCalls++;const response=await fetcher(url,o),body=await response.json();body.serving.authority='UNVERIFIED';return Response.json(body);};
+   await assert.rejects(readAirportConsumer(config,{fetcher:denied,clock:()=>Date.parse(AT)}),/AIRPORT_CONSUMER_AUTHORITY_DENIED/);assert.equal(deniedCalls,3);
+   let staleCalls=0;const stale=async(url,o)=>{staleCalls++;return fetcher(url,o);};
+   await assert.rejects(readAirportConsumer(config,{fetcher:stale,clock:()=>Date.parse(board.latest.collected_at_vn)+60000}),/AIRPORT_LIVE_FRESHNESS_DENIED|AIRPORT_CONSUMER_EXPIRED/);assert.equal(staleCalls,2);
    await assert.rejects(readAirportConsumer(config,{fetcher,clock:()=>Date.parse(board.latest.collected_at_vn)+60000}),/AIRPORT_LIVE_FRESHNESS_DENIED|AIRPORT_CONSUMER_EXPIRED/);
   }finally{await runtime.dispose();await mock.close();}
  }finally{await s.mf.dispose();}
