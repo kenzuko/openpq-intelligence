@@ -8,6 +8,7 @@ import {DIRECTORY_FACT_PROFILE_VERSION} from '../src/platform/domain-continuous-
 import {DIRECTORY_FACT_ENVIRONMENT,DIRECTORY_FACT_ACCOUNT,DIRECTORY_FACT_GATE,DIRECTORY_FACT_DATASET,DIRECTORY_SOURCE_URLS} from '../src/platform/directory-execution-contract.js';
 import {executionEnvironment,executionDataset} from '../src/platform/transit-execution-scope.js';
 import {ownedDirectoryPublication} from '../src/ingress/directory-feed.js';
+import {readDirectoryConsumer,DIRECTORY_CANONICAL_ORIGIN} from '../src/platform/directory-consumer.js';
 import {directoryLegacyReference} from '../src/platform/directory-serving.js';
 const AT='2026-10-03T01:12:00.000Z',PUBLICATION='a'.repeat(40),gate={ACCOUNT_ID:DIRECTORY_FACT_ACCOUNT,CANONICAL_DIRECTORY_GATE:DIRECTORY_FACT_GATE};
 async function profile(){const p={contract_version:DIRECTORY_FACT_PROFILE_VERSION,environment_id:DIRECTORY_FACT_ENVIRONMENT,dataset_id:DIRECTORY_FACT_DATASET,domain:'nearme',fixture_only:false,producer:{source_kind:'OWNER_PUBLIC_RUNTIME',url:DIRECTORY_SOURCE_URLS.index},operator_principal_ids:['operator'],reference_policy:{lease_ms:300000,max_snapshot_age_ms:31*86400000,future_skew_ms:0},artifact_refs:{}};p.artifact_refs=await continuousArtifactRefs(p);return p;}
@@ -35,6 +36,12 @@ test('native captured Directory publication is one authority with signed three-f
   const commit=await s.call('commit',{...s.trust,command_id:'directory-captured-commit',digest:prepared.body.digest,expires_at:c.valid_to},'test-only-operator');assert.equal(commit.status,200,JSON.stringify(commit));assert.equal((await s.call('export',{},'test-only-operator')).status,200);
   const bucket=await s.mf.getR2Bucket('CANONICAL','core'),receipt=commit.body.receipt,generation=JSON.parse(await (await bucket.get(receipt.key)).text()),envelope=JSON.parse(await (await bucket.get('checkpoints/'+s.trust.authority_instance_id+'/'+s.trust.recovery_generation+'/receipts/1.json')).text());
   for(const [name,item] of Object.entries({index:input,support:input.companions.support,venues:input.companions.venues})){const view=await directoryLegacyReference(generation,envelope,s.trust,name);assert.equal(view.raw,item.raw_utf8);assert.equal(view.source_digest,item.pin.payload_sha256);assert.equal(view.publication_id,PUBLICATION);assert.equal(view.source_set_hash,c.semantic_admission.source_set_hash);}
+  const response=()=>Response.json({contract:'openpq-directory-signed-publication-v1',generation,envelope,serving:{authority:'VERIFIED',fallback:false}},{headers:{'cache-control':'no-store','x-openpq-receipt-digest':receipt.digest,'x-openpq-source-set-hash':c.semantic_admission.source_set_hash,'x-openpq-publication-id':PUBLICATION,'x-openpq-display-expires-at':c.valid_to}});
+  let calls=0;const config={mode:'CANONICAL',origin:DIRECTORY_CANONICAL_ORIGIN,trust:s.trust};
+  const fetcher=async url=>{calls++;assert.equal(url,DIRECTORY_CANONICAL_ORIGIN+'/datasets/'+p.dataset_id+'/signed-publication');return response();};
+  const publication=await readDirectoryConsumer(config,{fetcher,clock:()=>Date.parse(AT)});assert.equal(publication.raws.index,input.raw_utf8);assert.equal(publication.raws.support,input.companions.support.raw_utf8);assert.equal(publication.raws.venues,input.companions.venues.raw_utf8);assert.equal(calls,1);
+  await assert.rejects(readDirectoryConsumer(config,{fetcher,clock:()=>Date.parse(c.valid_to)}),/DIRECTORY_CONSUMER_EXPIRED/);
+  await assert.rejects(readDirectoryConsumer(config,{clock:()=>Date.parse(AT),fetcher:async()=>{const r=response(),headers=new Headers(r.headers);headers.set('x-openpq-source-set-hash','f'.repeat(64));return new Response(await r.text(),{headers});}}),/DIRECTORY_CONSUMER_PUBLICATION_CHANGED_OR_TAMPERED/);
   assert.equal(receipt.epoch,1);assert.equal((await s.call('read',undefined,'test-only-read')).body.state.control_revision,0);
  }finally{await s.mf.dispose();}
 });

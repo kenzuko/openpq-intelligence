@@ -1,4 +1,4 @@
-import {directoryLegacyReference} from '../platform/directory-serving.js';
+import {directoryLegacyReference,directoryPublicationReference} from '../platform/directory-serving.js';
 import {DIRECTORY_FACT_ENVIRONMENT} from '../platform/directory-execution-contract.js';
 import {trustMap,readConfig,RECOVERED_REFERENCE_BINDINGS} from '../platform/trusted-config.js';
 import {recoveredReferenceConfig,recoveredReferenceView} from '../platform/recovered-reference.js';
@@ -21,8 +21,9 @@ export default {
       const u=new URL(request.url), parts=u.pathname.split('/').filter(Boolean);
       if(parts[0]==='health')return Response.json({service:'runtime',status:'UP',production_enabled:false},{headers:{'cache-control':'no-store'}});
       const legacyReference=(parts.length===3||parts.length===4&&['support','venues'].includes(parts[3]))&&parts[2]==='legacy-reference';
+      const signedPublication=parts.length===3&&parts[2]==='signed-publication';
       const recoveredReference=parts.length===3&&parts[2]==='recovered-reference';
-      requireThat((parts.length===2||legacyReference||recoveredReference) && parts[0]==='datasets','NOT_FOUND',404);
+      requireThat((parts.length===2||legacyReference||recoveredReference||signedPublication) && parts[0]==='datasets','NOT_FOUND',404);
       const trust=locator(trustMap(env)[parts[1]]);
       executionDataset(env,trust);
       requireThat(trust.environment_id===env.ENVIRONMENT_ID,'RUNTIME_ENVIRONMENT_MISMATCH',409);
@@ -67,6 +68,12 @@ export default {
       // The display interval is bounded by the activated generation, even during outage.
       requireThat(now<Date.parse(generation.valid_to),'DISPLAY_EXPIRED',503);
       const domain=['openpq-owned-domain-bridge-local-v1','openpq-owned-domain-bridge-isolated-v1',CONTINUOUS_PROFILE_VERSION,TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION,DIRECTORY_FACT_PROFILE_VERSION].includes(generation.semantic_admission?.contract_version)?await domainSnapshotServing(generation,now):null;
+      if(signedPublication){
+        requireThat(generation.semantic_admission?.contract_version===DIRECTORY_FACT_PROFILE_VERSION&&view.authority==='VERIFIED'&&!fallback,'DIRECTORY_SIGNED_PUBLICATION_SCOPE_DENIED',409);
+        const signed=await read('checkpoints/'+trust.authority_instance_id+'/'+trust.recovery_generation+'/receipts/'+receipt.revision+'.json');requireThat(signed,'DIRECTORY_SIGNED_RECEIPT_REQUIRED',503);
+        const envelope=JSON.parse(signed),publication=await directoryPublicationReference(generation,envelope,trust);
+        return Response.json({contract:'openpq-directory-signed-publication-v1',generation,envelope,serving:{...view,fallback}},{headers:{'cache-control':'no-store','x-openpq-receipt-digest':receipt.digest,'x-openpq-source-set-hash':publication.source_set_hash,'x-openpq-publication-id':publication.publication_id,'x-openpq-display-expires-at':generation.valid_to}});
+      }
       if(legacyReference){
         requireThat(domain&&generation.decision?.effect==='ABSTAIN','LEGACY_REFERENCE_SCOPE_DENIED',409);
         const signed=await read(`checkpoints/${trust.authority_instance_id}/${trust.recovery_generation}/receipts/${receipt.revision}.json`);

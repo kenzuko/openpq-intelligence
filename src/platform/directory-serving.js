@@ -12,3 +12,13 @@ export async function directoryLegacyReference(generation,envelope,trust,name='i
  const raw=await unpackDomainText(source.encoded_source);requireThat(await hash(raw)===source.pin.payload_sha256&&projection.sources[['index','support','venues'].indexOf(name)].payload_sha256===source.pin.payload_sha256,'DIRECTORY_REFERENCE_DIGEST_DENIED',503);
  return {raw,source_digest:source.pin.payload_sha256,publication_id:proof.publication_id,source_set_hash:proof.source_set_hash};
 }
+
+export async function directoryPublicationReference(generation,envelope,trust){
+ const index=await directoryLegacyReference(generation,envelope,trust,'index');
+ const projection=await unpackDomainJson(generation.payload.domain_snapshot.encoded_projection),raws={index:index.raw};
+ for(const [name,offset] of [['support',1],['venues',2]]){
+  const source=generation.semantic_bundle.companions?.[name];requireThat(source?.pin?.source_pointer?.url===DIRECTORY_SOURCE_URLS[name],'DIRECTORY_REFERENCE_SOURCE_DENIED',503);
+  raws[name]=await unpackDomainText(source.encoded_source);requireThat(await hash(raws[name])===source.pin.payload_sha256&&projection.sources[offset].payload_sha256===source.pin.payload_sha256,'DIRECTORY_REFERENCE_DIGEST_DENIED',503);
+ }
+ return {...index,raws};
+}
