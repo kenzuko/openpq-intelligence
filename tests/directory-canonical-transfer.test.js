@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {Miniflare,createFetchMock} from 'miniflare';
+import {fileURLToPath} from 'node:url';
 import {setup} from './support.js';
 import {hash} from '../src/platform/contracts.js';
 import {continuousArtifactRefs,validateContinuousProfile,buildContinuousCandidate} from '../src/platform/domain-continuous-admission.js';
@@ -36,6 +38,13 @@ test('native captured Directory publication is one authority with signed three-f
   const commit=await s.call('commit',{...s.trust,command_id:'directory-captured-commit',digest:prepared.body.digest,expires_at:c.valid_to},'test-only-operator');assert.equal(commit.status,200,JSON.stringify(commit));assert.equal((await s.call('export',{},'test-only-operator')).status,200);
   const bucket=await s.mf.getR2Bucket('CANONICAL','core'),receipt=commit.body.receipt,generation=JSON.parse(await (await bucket.get(receipt.key)).text()),envelope=JSON.parse(await (await bucket.get('checkpoints/'+s.trust.authority_instance_id+'/'+s.trust.recovery_generation+'/receipts/1.json')).text());
   for(const [name,item] of Object.entries({index:input,support:input.companions.support,venues:input.companions.venues})){const view=await directoryLegacyReference(generation,envelope,s.trust,name);assert.equal(view.raw,item.raw_utf8);assert.equal(view.source_digest,item.pin.payload_sha256);assert.equal(view.publication_id,PUBLICATION);assert.equal(view.source_set_hash,c.semantic_admission.source_set_hash);}
+  const mock=createFetchMock();mock.disableNetConnect();const host=mock.get('https://'+DIRECTORY_FACT_ACCOUNT+'.r2.cloudflarestorage.com');
+  for(const key of [receipt.key,'checkpoints/'+s.trust.authority_instance_id+'/'+s.trust.recovery_generation+'/receipts/1.json'])host.intercept({path:'/fixture-directory-facts/'+key,method:'GET'}).reply(200,await (await bucket.get(key)).text()).persist();
+  const runtime=new Miniflare({cf:false,modules:true,scriptPath:fileURLToPath(new URL('./domain-clock-runtime.js',import.meta.url)),modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',fetchMock:mock,bindings:{ENVIRONMENT_ID:p.environment_id,...gate,TRUST_JSON:JSON.stringify({[p.dataset_id]:s.trust}),CONTROL_READ_TOKEN:'test-only-read',S3_READONLY_CONFIG:JSON.stringify({endpoint:'https://'+DIRECTORY_FACT_ACCOUNT+'.r2.cloudflarestorage.com',bucket:'fixture-directory-facts',access_key:'fixture-read-only',secret:'fixture-read-only'})},serviceBindings:{CORE_READ:request=>s.core.fetch(request)}});
+  try{
+   const native=await readDirectoryConsumer({mode:'CANONICAL',origin:DIRECTORY_CANONICAL_ORIGIN,trust:s.trust},{fetcher:(url,o)=>runtime.dispatchFetch(url,o),clock:()=>Date.parse(AT)});
+   assert.equal(native.raws.index,input.raw_utf8);assert.equal(native.raws.support,input.companions.support.raw_utf8);assert.equal(native.raws.venues,input.companions.venues.raw_utf8);
+  }finally{await runtime.dispose();await mock.close();}
   const response=()=>Response.json({contract:'openpq-directory-signed-publication-v1',generation,envelope,serving:{authority:'VERIFIED',fallback:false}},{headers:{'cache-control':'no-store','x-openpq-receipt-digest':receipt.digest,'x-openpq-source-set-hash':c.semantic_admission.source_set_hash,'x-openpq-publication-id':PUBLICATION,'x-openpq-display-expires-at':c.valid_to}});
   let calls=0;const config={mode:'CANONICAL',origin:DIRECTORY_CANONICAL_ORIGIN,trust:s.trust};
   const fetcher=async url=>{calls++;assert.equal(url,DIRECTORY_CANONICAL_ORIGIN+'/datasets/'+p.dataset_id+'/signed-publication');return response();};
