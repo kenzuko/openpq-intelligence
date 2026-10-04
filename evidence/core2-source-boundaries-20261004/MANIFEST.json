@@ -1,0 +1,55 @@
+{
+  "origin_runs": [
+    37170563449,
+    37172401058
+  ],
+  "files": [
+    {
+      "file": "nearme/.core2-nearme-source-manifest.json",
+      "sha256": "1776a412429cdb8ab4d9bdad8d8f34a3f2d565f6a02acd565e6a74c722a70d34",
+      "bytes": 744
+    },
+    {
+      "file": "nearme/nearme-source-proof/PROOF.json",
+      "sha256": "b0c49ff9ad422ac9b6733b4ffaa17336746f90ba56e5ded57664ae44dc1445db",
+      "bytes": 932
+    },
+    {
+      "file": "weather/PROOF.json",
+      "sha256": "f82babf7844bd9894636d04b5bcc64c7ad67466cbd458e56f2cc513666a19c01",
+      "bytes": 7679
+    },
+    {
+      "file": "weather/SOURCE_cloud.json",
+      "sha256": "639776c0ba44402a6f06ccd175e46f968b5e9b193bbec5b4563560dc1a8722dd",
+      "bytes": 1340620
+    },
+    {
+      "file": "weather/SOURCE_compact.json",
+      "sha256": "64f9756f77b6dda81a198de8beb3c6cf95882aeda7a762160d30b93ab67edf81",
+      "bytes": 11779
+    },
+    {
+      "file": "weather/SOURCE_current.json",
+      "sha256": "0a86ca70e4e90ba4da42626cb47a9ca3f7a6e05b98a6a14eef5bdbc19b175bb9",
+      "bytes": 169437
+    },
+    {
+      "file": "weather/SOURCE_forecast.json",
+      "sha256": "81134a23bea2135dad5519245f636c2d214a150ce9e470e036ff09113ac4b1c0",
+      "bytes": 245916
+    },
+    {
+      "file": "weather/SOURCE_marine.json",
+      "sha256": "9b11a75bd9a2414c3c733ac7f5d01fadb4997c872c7df79792cbdd0d8181d62e",
+      "bytes": 123734
+    },
+    {
+      "file": "weather/SOURCE_meta.json",
+      "sha256": "8798dc3858619fac4067f51fdade408f36b77d2ac0b7ec1d7f420071f5177b39",
+      "bytes": 1358
+    }
+  ],
+  "canonical_consumers_switched": false,
+  "archive_sha256": "04eced5dfa7f7ed125d5a566a14d08757e698c5a32e1b671f864206ff009fe8b"
+}
