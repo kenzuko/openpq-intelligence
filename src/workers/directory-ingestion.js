@@ -9,16 +9,22 @@ import {ContractError,requireThat} from '../platform/contracts.js';
 
 export class DirectorySourcePump extends DurableObject {
  constructor(ctx,env){super(ctx,env);this.ctx=ctx;this.env=env;this.pending=false;}
+ async alarm(){
+  try{await this.fetch(new Request('https://pump/refresh',{method:'POST'}));}
+  finally{await this.ctx.storage.setAlarm(Date.now()+120000);}
+ }
  async fetch(request){
   let dataset_id;
   try{
    executionEnvironment(this.env);requireThat(this.env.ENVIRONMENT_ID===DIRECTORY_FACT_ENVIRONMENT,'DIRECTORY_SOURCE_ENVIRONMENT_DENIED',403);
-   if(request.method==='GET'&&new URL(request.url).pathname==='/status')return Response.json({observation:await this.ctx.storage.get('last_observation')??null});
-   requireThat(request.method==='POST'&&new URL(request.url).pathname==='/refresh','INGEST_METHOD_DENIED',405);
+   if(request.method==='GET'&&new URL(request.url).pathname==='/status')return Response.json({observation:await this.ctx.storage.get('last_observation')??null,next_alarm:await this.ctx.storage.getAlarm()});
+   const path=new URL(request.url).pathname;
+   requireThat(request.method==='POST'&&['/refresh','/start'].includes(path),'INGEST_METHOD_DENIED',405);
    // The namespace is owned exclusively by the source Worker. Select the
    // actor by this object's native identity, never caller supplied profile/URL.
    const names=DIRECTORY_FACT_DATASETS;const index=names.findIndex(id=>this.env.SOURCE_PUMPS.idFromName(DIRECTORY_FACT_ENVIRONMENT+'/'+id).toString()===this.ctx.id.toString());
    requireThat(index>=0,'INGEST_OBJECT_DENIED',403);dataset_id=names[index];
+   if(path==='/start'){const existing=await this.ctx.storage.getAlarm();if(existing===null)await this.ctx.storage.setAlarm(Date.now()+1000);return Response.json({dataset_id,alarm_started:true,next_alarm:await this.ctx.storage.getAlarm()});}
    const entry=JSON.parse(this.env['INGEST_DATASET_'+(index+1)]||'null');requireThat(entry?.authority?.dataset_id===dataset_id&&entry.profile?.contract_version===DIRECTORY_FACT_PROFILE_VERSION,'INGEST_DATASET_CONFIG_DENIED',503);executionDataset(this.env,entry.authority);
    requireThat(!this.pending,'INGEST_ALREADY_RUNNING',409);this.pending=true;
    try{
@@ -50,6 +56,10 @@ export default {
   if(request.method==='GET'&&new URL(request.url).pathname==='/health'&&env.ENVIRONMENT_ID===DIRECTORY_FACT_ENVIRONMENT){
    const datasets=await Promise.all(DIRECTORY_FACT_DATASETS.map(async dataset_id=>{try{const id=env.SOURCE_PUMPS.idFromName(DIRECTORY_FACT_ENVIRONMENT+'/'+dataset_id),r=await env.SOURCE_PUMPS.get(id).fetch('https://pump/status');return {dataset_id,...await r.json()};}catch{return {dataset_id,error:'PUMP_STATUS_UNAVAILABLE'};}}));
    return Response.json({service:'canonical-directory-fact-ingestion',code_sha:env.SOURCE_CODE_SHA??null,implementation_patch_sha:env.SOURCE_PATCH_SHA??null,production_enabled:false,datasets},{headers:{'cache-control':'no-store'}});
+  }
+  if(request.method==='POST'&&new URL(request.url).pathname==='/start'&&env.ENVIRONMENT_ID===DIRECTORY_FACT_ENVIRONMENT){
+   if(!env.SOURCE_START_TOKEN||request.headers.get('authorization')!=='Bearer '+env.SOURCE_START_TOKEN)return Response.json({error:'SOURCE_START_DENIED'},{status:401});
+   const id=env.SOURCE_PUMPS.idFromName(DIRECTORY_FACT_ENVIRONMENT+'/'+DIRECTORY_FACT_DATASET);return env.SOURCE_PUMPS.get(id).fetch('https://pump/start',{method:'POST'});
   }
   return new Response('Not found',{status:404,headers:{'cache-control':'no-store'}});
  },
