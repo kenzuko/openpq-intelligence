@@ -4,8 +4,9 @@ import {DOMAIN_DATASETS,DOMAIN_ORIGINS,DOMAIN_RUNTIME_URLS,exact,utcTime} from '
 import {projectOwnedDomain,ISOLATED_ACCOUNT_ID,validateDomainBridgeActor} from './domain-bridge-admission.js';
 import {packDomainText,packDomainJson,unpackDomainText,unpackDomainJson} from './domain-codec.js';
 
-import {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION,TRANSIT_FACT_PROFILE_VERSION,continuousContract,continuousBundleVersion,continuousSnapshotVersion,continuousEnvironment} from './domain-continuous-contract.js';
+import {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION,TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION,canonicalFactContract,continuousContract,continuousBundleVersion,continuousSnapshotVersion,continuousEnvironment} from './domain-continuous-contract.js';
 import {TRANSIT_FACT_ACCOUNT} from './transit-execution-scope.js';
+import {WEATHER_SOURCE_URLS} from './weather-execution-contract.js';
 export {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION};
 export const isContinuousProfile=p=>continuousContract(p?.contract_version);
 export function continuousArtifactDocuments(p){
@@ -16,15 +17,16 @@ export async function continuousArtifactRefs(p){
 }
 export async function validateContinuousProfile(p,trust){
  exact(p,['contract_version','environment_id','dataset_id','domain','fixture_only','producer','operator_principal_ids','reference_policy','artifact_refs'],'CONTINUOUS_PROFILE');
- const canonical=p.contract_version===TRANSIT_FACT_PROFILE_VERSION;
+ const canonical=canonicalFactContract(p.contract_version);
  requireThat(isContinuousProfile(p)&&p.environment_id===continuousEnvironment(p.contract_version)&&trust.environment_id===p.environment_id&&trust.account_id===(canonical?TRANSIT_FACT_ACCOUNT:ISOLATED_ACCOUNT_ID)&&p.fixture_only===false&&p.dataset_id===DOMAIN_DATASETS[p.domain]&&trust.dataset_id===p.dataset_id,'CONTINUOUS_SCOPE_DENIED');
- if(canonical)requireThat(p.domain==='transit'&&p.dataset_id==='transit.bridge.phu-quoc'&&p.producer.source_kind==='OWNER_REPOSITORY_SNAPSHOT'&&p.producer.repository==='kenzuko/transit-jotrip'&&p.producer.path==='data/network.json'&&Array.isArray(trust.approved_positive_decision_types)&&trust.approved_positive_decision_types.length===0,'TRANSIT_FACT_PROFILE_SCOPE_DENIED');
+ if(p.contract_version===TRANSIT_FACT_PROFILE_VERSION)requireThat(p.domain==='transit'&&p.dataset_id==='transit.bridge.phu-quoc'&&p.producer.source_kind==='OWNER_REPOSITORY_SNAPSHOT'&&p.producer.repository==='kenzuko/transit-jotrip'&&p.producer.path==='data/network.json'&&Array.isArray(trust.approved_positive_decision_types)&&trust.approved_positive_decision_types.length===0,'TRANSIT_FACT_PROFILE_SCOPE_DENIED');
+ if(p.contract_version===WEATHER_FACT_PROFILE_VERSION)requireThat(Object.hasOwn(WEATHER_SOURCE_URLS,p.domain)&&p.producer.source_kind==='OWNER_PUBLIC_RUNTIME'&&p.producer.url===WEATHER_SOURCE_URLS[p.domain]&&Array.isArray(trust.approved_positive_decision_types)&&trust.approved_positive_decision_types.length===0,'WEATHER_FACT_PROFILE_SCOPE_DENIED');
  const origin=DOMAIN_ORIGINS[p.domain];requireThat(origin,'CONTINUOUS_DOMAIN_DENIED');
  if(p.producer.source_kind==='OWNER_REPOSITORY_SNAPSHOT'){
   exact(p.producer,['source_kind','repository','path'],'CONTINUOUS_PRODUCER');
   requireThat(p.producer.repository===origin[0]&&p.producer.path.startsWith(origin[1])&&p.producer.path.split('/').every(x=>x&&x!=='.'&&x!=='..')&&!/[\\\0]/.test(p.producer.path),'CONTINUOUS_PRODUCER_DENIED');
  }else{
-  exact(p.producer,['source_kind','url'],'CONTINUOUS_PRODUCER');requireThat(p.producer.source_kind==='OWNER_PUBLIC_RUNTIME'&&Object.hasOwn(DOMAIN_RUNTIME_URLS,p.domain)&&p.producer.url===DOMAIN_RUNTIME_URLS[p.domain],'CONTINUOUS_PRODUCER_DENIED');
+  exact(p.producer,['source_kind','url'],'CONTINUOUS_PRODUCER');requireThat(p.producer.source_kind==='OWNER_PUBLIC_RUNTIME'&&Object.hasOwn(DOMAIN_RUNTIME_URLS,p.domain)&&p.producer.url===(p.contract_version===WEATHER_FACT_PROFILE_VERSION?WEATHER_SOURCE_URLS[p.domain]:DOMAIN_RUNTIME_URLS[p.domain]),'CONTINUOUS_PRODUCER_DENIED');
  }
  exact(p.reference_policy,['lease_ms','max_snapshot_age_ms','future_skew_ms'],'CONTINUOUS_REFERENCE_POLICY');
  const q=p.reference_policy;requireThat(Number.isSafeInteger(q.lease_ms)&&q.lease_ms>0&&q.lease_ms<=300000&&Number.isSafeInteger(q.max_snapshot_age_ms)&&q.max_snapshot_age_ms>0&&q.max_snapshot_age_ms<=31*86400000&&Number.isSafeInteger(q.future_skew_ms)&&q.future_skew_ms>=0&&q.future_skew_ms<=5000,'CONTINUOUS_REFERENCE_POLICY_DENIED');
@@ -50,7 +52,7 @@ function derived(p,trust,compact,at,operator){
  const input=compact.sources[0];const proof={contract_version:p.contract_version,profile_hash:trust.semantic_profile_hash,input_hash:input.payload_sha256,preparation_hash:compact.projection_digest,source_version_time:source,valid_until:to,operator_principal_id:operator,source_author_assurance:'OWNED_OUTPUT_CAPTURE_ONLY',source_policies_activated:false,producer_independence:false,action_allowed:false};
  return {valid_from:at,valid_to:to,proof,inputs:[{source_id:'OWNED_OUTPUT_SNAPSHOT:'+p.domain,source_type:'OFFICIAL_REPORT',source_time:source,valid_to:to,max_age_ms:p.reference_policy.max_snapshot_age_ms}],quality:{completeness:compact.issues.length?'PARTIAL':'COMPLETE',resolution:compact.issues.length?'UNCERTAIN':'RESOLVED'},decision:{type:p.domain+'.owned.snapshot.fact',kind:'FACT',effect:'ABSTAIN',action_until:to,minimum_evidence_met:false,reason_codes:['CONTINUOUS_REFERENCE_NO_OPERATIONAL_ACTION']}};
 }
-function payload(p,compact,encoded_projection){return {domain_snapshot:{contract_version:continuousSnapshotVersion(p.contract_version),domain:p.domain,dataset_id:p.dataset_id,mode:p.contract_version===TRANSIT_FACT_PROFILE_VERSION?'CANONICAL_BRIDGE_FACT':'BRIDGE_DEPENDENT_SHADOW',fixture_only:false,encoded_projection,projection_digest:compact.projection_digest,legacy_payload_digest:compact.legacy_payload_digest,source_freshness:'PER_FIELD_REQUIRED_NOT_GENERATION_LEASE',operational_action_allowed:false,production_enabled:p.contract_version===TRANSIT_FACT_PROFILE_VERSION}};}
+function payload(p,compact,encoded_projection){return {domain_snapshot:{contract_version:continuousSnapshotVersion(p.contract_version),domain:p.domain,dataset_id:p.dataset_id,mode:canonicalFactContract(p.contract_version)?'CANONICAL_BRIDGE_FACT':'BRIDGE_DEPENDENT_SHADOW',fixture_only:false,encoded_projection,projection_digest:compact.projection_digest,legacy_payload_digest:compact.legacy_payload_digest,source_freshness:'PER_FIELD_REQUIRED_NOT_GENERATION_LEASE',operational_action_allowed:false,production_enabled:canonicalFactContract(p.contract_version)}};}
 export async function validateContinuousAdmission(p,trust,c,at,actor){
  await validateContinuousProfile(p,trust);validateDomainBridgeActor(p,actor,c.semantic_admission?.operator_principal_id);noSecrets(c);
  requireThat(c.semantic_profile_hash===trust.semantic_profile_hash&&c.operation==='NORMAL'&&c.dataset_id===p.dataset_id&&stable(c.artifacts)===stable(trust.artifacts),'CONTINUOUS_CANDIDATE_SCOPE_DENIED',409);
