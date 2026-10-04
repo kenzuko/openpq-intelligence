@@ -15,12 +15,14 @@ export class S3ReadonlyReader {
     requireThat(/^[a-z0-9.-]+$/.test(c.bucket),'S3_BUCKET_INVALID');
     const path='/'+[c.bucket,...key.split('/')].map(s=>encodeURIComponent(s).replace(/[!'()*]/g,v=>'%'+v.charCodeAt(0).toString(16).toUpperCase())).join('/');
     const date=new Date(this.clock()).toISOString().replace(/[-:]|\.\d{3}/g,''), short=date.slice(0,8), payload=await digest('');
-    const canonicalHeaders=`host:${root.host}\nx-amz-content-sha256:${payload}\nx-amz-date:${date}\n`;
-    const signed='host;x-amz-content-sha256;x-amz-date', scope=`${short}/auto/s3/aws4_request`;
+    if(c.session_token!==undefined)requireThat(typeof c.session_token==='string'&&c.session_token.length>0&&c.session_token.length<=4000&&!/[\r\n]/.test(c.session_token)&&Number.isFinite(Date.parse(c.expires_at))&&this.clock()<Date.parse(c.expires_at),'S3_SESSION_EXPIRED_OR_INVALID',503);
+    const session=c.session_token?{'x-amz-security-token':c.session_token}:{};
+    const canonicalHeaders=`host:${root.host}\nx-amz-content-sha256:${payload}\nx-amz-date:${date}\n`+(c.session_token?`x-amz-security-token:${c.session_token}\n`:'');
+    const signed='host;x-amz-content-sha256;x-amz-date'+(c.session_token?';x-amz-security-token':''), scope=`${short}/auto/s3/aws4_request`;
     const canonical=`GET\n${path}\n\n${canonicalHeaders}\n${signed}\n${payload}`;
     const signing=await hmac(await hmac(await hmac(await hmac('AWS4'+c.secret,short),'auto'),'s3'),'aws4_request');
     const signature=hex(await hmac(signing,`AWS4-HMAC-SHA256\n${date}\n${scope}\n${await digest(canonical)}`));
-    const response=await this.fetcher(root.origin+path,{method:'GET',redirect:'manual',signal:AbortSignal.timeout(15000),headers:{'x-amz-date':date,'x-amz-content-sha256':payload,authorization:`AWS4-HMAC-SHA256 Credential=${c.access_key}/${scope}, SignedHeaders=${signed}, Signature=${signature}`}});
+    const response=await this.fetcher(root.origin+path,{method:'GET',redirect:'manual',signal:AbortSignal.timeout(15000),headers:{'x-amz-date':date,'x-amz-content-sha256':payload,...session,authorization:`AWS4-HMAC-SHA256 Credential=${c.access_key}/${scope}, SignedHeaders=${signed}, Signature=${signature}`}});
     if(response.status===404) return null;
     requireThat(response.ok,'S3_READ_UNAVAILABLE',503);
     return boundedText(response,max_bytes);
