@@ -1,6 +1,7 @@
 import {hash,requireThat,stable} from '../platform/contracts.js';
 import {clone,noSecrets} from '../preparation/common.js';
 import {gitBlobSha} from './cano-real-shadow.js';
+import {WEATHER_SOURCE_URLS} from '../platform/weather-execution-contract.js';
 
 export const DOMAIN_SHADOW_VERSION='openpq-owned-domain-shadow-v1';
 export const DOMAIN_DATASETS=Object.freeze({weather:'weather.bridge.phu-quoc',weather_forecast:'weather.forecast.bridge.phu-quoc',weather_marine:'weather.marine.bridge.phu-quoc',weather_cloud:'weather.cloud.bridge.phu-quoc',weather_compact:'weather.compact.bridge.phu-quoc',weather_meta:'weather.meta.bridge.phu-quoc',weather_manifest:'weather.manifest.bridge.phu-quoc',airport:'airport.bridge.pqc',transit:'transit.bridge.phu-quoc',nearme:'directory.bridge.phu-quoc'});
@@ -43,7 +44,7 @@ export async function decodeOwnedSource(domain,input){
   requireThat(p.repository===origin[0]&&typeof p.commit_sha==='string'&&/^[a-f0-9]{40}$/.test(p.commit_sha)&&typeof p.path==='string'&&p.path.startsWith(origin[1])&&p.path.split('/').every(x=>x&&x!=='.'&&x!=='..')&&!p.path.includes('\\')&&!p.path.includes('\0'),'DOMAIN_ORIGIN_DENIED');
   requireThat(typeof pin.git_blob_sha==='string'&&/^[a-f0-9]{40}$/.test(pin.git_blob_sha)&&await gitBlobSha(new TextEncoder().encode(raw_utf8))===pin.git_blob_sha,'DOMAIN_GIT_BLOB_MISMATCH');
  }else{
-  exact(pin.source_pointer,['url'],'DOMAIN_HTTP_POINTER');requireThat(pin.source_kind==='OWNER_PUBLIC_RUNTIME'&&(Object.hasOwn(DOMAIN_RUNTIME_URLS,domain)&&pin.source_pointer.url===DOMAIN_RUNTIME_URLS[domain]||domain==='nearme'&&NEARME_COMPANION_RUNTIME_URLS.includes(pin.source_pointer.url))&&pin.git_blob_sha===null,'DOMAIN_ORIGIN_DENIED');
+  exact(pin.source_pointer,['url'],'DOMAIN_HTTP_POINTER');requireThat(pin.source_kind==='OWNER_PUBLIC_RUNTIME'&&(Object.hasOwn(DOMAIN_RUNTIME_URLS,domain)&&pin.source_pointer.url===DOMAIN_RUNTIME_URLS[domain]||Object.hasOwn(WEATHER_SOURCE_URLS,domain)&&pin.source_pointer.url===WEATHER_SOURCE_URLS[domain]||domain==='nearme'&&NEARME_COMPANION_RUNTIME_URLS.includes(pin.source_pointer.url))&&pin.git_blob_sha===null,'DOMAIN_ORIGIN_DENIED');
  }
  requireThat(await hash(raw_utf8)===pin.payload_sha256,'DOMAIN_PAYLOAD_HASH_MISMATCH');
  const data=JSON.parse(raw_utf8);requireThat(data&&typeof data==='object'&&!Array.isArray(data),'DOMAIN_SOURCE_OBJECT_REQUIRED');noSecrets(data);
