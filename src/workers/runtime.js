@@ -1,7 +1,9 @@
+import {directoryLegacyReference} from '../platform/directory-serving.js';
+import {DIRECTORY_FACT_ENVIRONMENT} from '../platform/directory-execution-contract.js';
 import {trustMap,readConfig,RECOVERED_REFERENCE_BINDINGS} from '../platform/trusted-config.js';
 import {recoveredReferenceConfig,recoveredReferenceView} from '../platform/recovered-reference.js';
 import {SNAPSHOT_MAX_BYTES} from '../platform/authority-snapshot.js';
-import {CONTINUOUS_PROFILE_VERSION,TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION} from '../platform/domain-continuous-contract.js';
+import {CONTINUOUS_PROFILE_VERSION,TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION,DIRECTORY_FACT_PROFILE_VERSION} from '../platform/domain-continuous-contract.js';
 import {executionEnvironment,executionDataset} from '../platform/transit-execution-scope.js';
 import {domainSnapshotServing,domainLegacyView} from '../platform/domain-serving.js';
 import {unpackDomainText} from '../platform/domain-codec.js';
@@ -18,7 +20,7 @@ export default {
       requireThat(request.method==='GET','READ_ONLY',405);
       const u=new URL(request.url), parts=u.pathname.split('/').filter(Boolean);
       if(parts[0]==='health')return Response.json({service:'runtime',status:'UP',production_enabled:false},{headers:{'cache-control':'no-store'}});
-      const legacyReference=parts.length===3&&parts[2]==='legacy-reference';
+      const legacyReference=(parts.length===3||parts.length===4&&['support','venues'].includes(parts[3]))&&parts[2]==='legacy-reference';
       const recoveredReference=parts.length===3&&parts[2]==='recovered-reference';
       requireThat((parts.length===2||legacyReference||recoveredReference) && parts[0]==='datasets','NOT_FOUND',404);
       const trust=locator(trustMap(env)[parts[1]]);
@@ -58,17 +60,22 @@ export default {
         requireThat(checkpoint,'NO_TRUSTED_CHECKPOINT',503);receipt=await verifyAttestation(JSON.parse(checkpoint),trust);
       }
       requireThat(sameLocator(receipt,trust),'RECEIPT_LOCATOR_DENIED',409);
-      const raw=await read(receipt.key);requireThat(raw,'GENERATION_UNAVAILABLE',503);
+      const raw=await read(receipt.key,trust.environment_id===DIRECTORY_FACT_ENVIRONMENT?1500000:262144);requireThat(raw,'GENERATION_UNAVAILABLE',503);
       requireThat(await hash(raw)===receipt.digest,'GENERATION_HASH_INVALID',503);
       const generation=JSON.parse(raw), now=Date.now();
       const view=servingView(generation,receipt,trust,validation,now);
       // The display interval is bounded by the activated generation, even during outage.
       requireThat(now<Date.parse(generation.valid_to),'DISPLAY_EXPIRED',503);
-      const domain=['openpq-owned-domain-bridge-local-v1','openpq-owned-domain-bridge-isolated-v1',CONTINUOUS_PROFILE_VERSION,TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION].includes(generation.semantic_admission?.contract_version)?await domainSnapshotServing(generation,now):null;
+      const domain=['openpq-owned-domain-bridge-local-v1','openpq-owned-domain-bridge-isolated-v1',CONTINUOUS_PROFILE_VERSION,TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION,DIRECTORY_FACT_PROFILE_VERSION].includes(generation.semantic_admission?.contract_version)?await domainSnapshotServing(generation,now):null;
       if(legacyReference){
         requireThat(domain&&generation.decision?.effect==='ABSTAIN','LEGACY_REFERENCE_SCOPE_DENIED',409);
         const signed=await read(`checkpoints/${trust.authority_instance_id}/${trust.recovery_generation}/receipts/${receipt.revision}.json`);
         requireThat(signed,'LEGACY_REFERENCE_SIGNED_RECEIPT_REQUIRED',503);
+        if(generation.semantic_admission?.contract_version===DIRECTORY_FACT_PROFILE_VERSION){
+          const result=await directoryLegacyReference(generation,JSON.parse(signed),trust,parts[3]||'index');
+          return new Response(result.raw,{headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-openpq-source-snapshot':'reference-only','x-openpq-decision-eligibility':'ABSTAIN','x-openpq-source-digest':result.source_digest,'x-openpq-source-set-hash':result.source_set_hash,'x-openpq-publication-id':result.publication_id,'x-openpq-receipt-digest':receipt.digest,'x-openpq-display-expires-at':generation.valid_to}});
+        }
+        requireThat(parts.length===3,'LEGACY_REFERENCE_SCOPE_DENIED',409);
         await domainLegacyView(generation,JSON.parse(signed),trust);
         return new Response(await unpackDomainText(generation.semantic_bundle.encoded_source),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-openpq-source-snapshot':'reference-only','x-openpq-decision-eligibility':'ABSTAIN','x-openpq-source-digest':generation.semantic_admission.input_hash,'x-openpq-receipt-digest':receipt.digest,'x-openpq-display-expires-at':generation.valid_to}});
       }
