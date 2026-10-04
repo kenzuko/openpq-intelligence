@@ -10,7 +10,7 @@ import {TRANSIT_FACT_PROFILE_VERSION} from '../../src/platform/domain-continuous
 import {TRANSIT_FACT_ENVIRONMENT,TRANSIT_FACT_GATE} from '../../src/platform/transit-execution-scope.js';
 import {ingestDataset} from '../../src/ingress/domain-feed.js';
 import {readTransitConsumer,TRANSIT_CANONICAL_ORIGIN} from '../../src/platform/transit-consumer.js';
-const ROOT='.transit-transfer',EVIDENCE='.transit-live-proof',DATASET='transit.bridge.phu-quoc';
+const ROOT='.transit-transfer',EVIDENCE='transit-live-proof',DATASET='transit.bridge.phu-quoc';
 const names={core:'openpq-intelligence-transit-core',runtime:'openpq-intelligence-transit-runtime',source:'openpq-intelligence-transit-source',consumer:'openpq-intelligence-transit-reader'};
 const origin=n=>'https://'+names[n]+'.kenzuko.workers.dev',proof={status:'RUNNING',account_id:ACCOUNT,dataset_id:DATASET,code_sha:process.env.CORE_CODE_SHA,release_sha:process.env.GITHUB_SHA,started_at:new Date().toISOString(),public_app_switched:false,whole_core_production_ready:false,producer_independent:false};
 await mkdir(EVIDENCE,{recursive:true});const save=()=>writeFile(EVIDENCE+'/PROOF.json',JSON.stringify(proof,null,2)+'\n');
