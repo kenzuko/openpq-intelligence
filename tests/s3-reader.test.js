@@ -2,6 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {S3ReadonlyReader} from '../src/platform/s3-reader.js';
 const config={endpoint:'https://test-account.r2.cloudflarestorage.com',bucket:'isolated-test',access_key:'fixture',secret:'synthetic-fixture-secret'};
+test('temporary reader signs session scope and refuses expired sessions before network access',async()=>{
+ const now=Date.parse('2026-10-01T00:00:00Z'),c={...config,session_token:'synthetic-read-session',expires_at:'2026-10-01T00:15:00Z'};let calls=0;
+ const get=async(url,o)=>{calls++;assert.equal(o.method,'GET');assert.equal(o.headers['x-amz-security-token'],c.session_token);assert.match(o.headers.authorization,/SignedHeaders=host;x-amz-content-sha256;x-amz-date;x-amz-security-token/);return new Response('signed temporary read');};
+ assert.equal(await new S3ReadonlyReader(c,get,()=>now).get('a.json'),'signed temporary read');
+ for(const change of [{expires_at:'2026-10-01T00:00:00Z'},{expires_at:'invalid'},{session_token:'bad\nheader'},{session_token:''}])await assert.rejects(new S3ReadonlyReader({...c,...change},get,()=>now).get('a.json'),/S3_SESSION_EXPIRED_OR_INVALID/);
+ assert.equal(calls,1);
+});
 test('S3 adapter only signs GET, preserves key separators and rejects redirects/path traversal',async()=>{
   let seen;const reader=new S3ReadonlyReader(config,async(url,options)=>{seen={url,options};return new Response('fixture');},()=>Date.parse('2026-10-01T00:00:00Z'));
   assert.equal(await reader.get('a//b +.json'),'fixture');assert.equal(seen.url,'https://test-account.r2.cloudflarestorage.com/isolated-test/a//b%20%2B.json');assert.equal(seen.options.method,'GET');assert.equal(seen.options.redirect,'manual');assert.match(seen.options.headers.authorization,/20261001\/auto\/s3\/aws4_request/);assert.equal(seen.options.headers['x-amz-date'],'20261001T000000Z');
