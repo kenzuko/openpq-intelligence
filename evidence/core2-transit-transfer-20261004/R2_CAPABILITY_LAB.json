@@ -1,0 +1,33 @@
+{
+  "read_only": true,
+  "repository": "kenzuko/Jotrip-Lab",
+  "code_sha": "00ccd1ffcab6ca91900186c576d8869865b9779f",
+  "at": "2026-10-04T00:23:08.361Z",
+  "credential_present": true,
+  "account_id": "1a64a0a081ea758f72be8254030bdf11",
+  "permissions_changed": false,
+  "reads": [
+    {
+      "path": "/workers/scripts",
+      "http_status": 200,
+      "success": true,
+      "error_codes": []
+    },
+    {
+      "path": "/r2/buckets",
+      "http_status": 403,
+      "success": false,
+      "error_codes": [
+        10042
+      ]
+    },
+    {
+      "path": "/r2/buckets/openpq-intelligence-canonical",
+      "http_status": 403,
+      "success": false,
+      "error_codes": [
+        10042
+      ]
+    }
+  ]
+}

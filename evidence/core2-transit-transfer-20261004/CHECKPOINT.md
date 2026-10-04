@@ -42,3 +42,14 @@ Latest main recheck: Core remains `5c752383fa16c2988f6ff1e840ae4512a26a73f2`; si
 4. Monitoring and cycle coverage continue alongside eligible scoped activation. Never turn an isolated reference profile into production data by relabeling it.
 
 Weather and Near Me currently ingest through their public consumer URLs, so switching those URLs to Core would create a source loop. They require a source path separation before cutover; neither that separation nor the transient Cloud-source 503 blocks building the independent Transit path.
+
+## Follow-up root cause - 04/10/2026 07:23 Vietnam time
+
+Two bounded alternate checks use existing deploy credentials without changing permissions or deploying specialist engines:
+
+- Jotrip-Lab run37164776842, code00ccd1ffcab6ca91900186c576d8869865b9779f, artifact11289490992, zip SHA256762ca39b1aa0079d5aa0433dc909f808ba8ce13683bcbc8df66f322597fe6842.
+- Jotrip-Weather run37164777563, code566909d9d0d651b237efc9027ff6677eefebb90b, artifact11289535752, zip SHA256f138f5660d59155c09f9229ae667a2b448a8b3af3f9dd3607d6560586216e7ab.
+
+Both Workers GET200, R2 listing and exact planned bucket GET403/error10042. Official Cloudflare documentation maps10042 to NotEntitled and requires R2 subscription; this is more specific than the original unclassified403, not proof that broader token permission alone fixes access. Subscription entitlement is the first concrete owner account step. R2 access/credential probes must then be repeated before canonical deployment. No billing or permission changes made. Dashboard in this browser has no login session and a persistent verification error after one allowed reload; no authentication values requested or exposed.
+
+Core PR21 is merged at main `da05af5954c77a06490e1be970fcc39d762024ce`, after successful feature CI37159395055 and37159397801. Merge only triggers verification on the affected paths, no cloud deployment workflow. The deployed reader remains code7af398a88d0875d4be79a802923fa2229f7ff81b in LEGACY, public consumer/canonical authority still pending. Refer to NEXT_EXECUTION.md for the concrete continuation. No seven-day blanket activation delay is introduced.

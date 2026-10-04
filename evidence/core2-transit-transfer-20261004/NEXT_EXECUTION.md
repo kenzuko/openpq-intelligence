@@ -1,16 +1,18 @@
 # Transit transfer continuation
 
-Read CHECKPOINT.md first. Feature PR: https://github.com/kenzuko/openpq-intelligence/pull/21 . Code pin for corrected native reader: `7af398a88d0875d4be79a802923fa2229f7ff81b`.
+Read CHECKPOINT.md first. Implemented code is merged to main at `da05af5954c77a06490e1be970fcc39d762024ce`. Implementation PR: https://github.com/kenzuko/openpq-intelligence/pull/21 . Code pin for corrected native reader: `7af398a88d0875d4be79a802923fa2229f7ff81b`.
 
 Accepted live gateway: `https://openpq-intelligence-transit-reader.kenzuko.workers.dev/network.json`, LEGACY mode, version `7a20ab7f-d5de-4384-9e38-8509df0466b5`. Cloud acceptance run `37159134929` attempt 2 passed. Release PR https://github.com/kenzuko/jotrip-home/pull/346 . Do not rerun create-only release against this existing target. Public app remains on its original source URL.
 
 ## Actual production access blocker
 
-The existing site deployment credential can inventory/deploy Workers. It receives HTTP 403 on production R2 inventory. No verified production Runtime Object Read credential is available in the handoff or current release. Do not infer bucket absence from HTTP 403 and do not copy isolated-test credentials into production.
+The existing site deployment credential can inventory/deploy Workers. Initial site inventory only recorded R2 HTTP403. Follow-up GET-only production diagnostics in Jotrip-Lab (run37164776842) and Jotrip-Weather (run37164777563) independently return HTTP403 with error10042 NotEntitled for both bucket listing and exact planned bucket metadata. Cloudflare official error documentation identifies10042 as account feature entitlement/subscription, distinct from permission error10003. First establish production R2 subscription entitlement; do not try broader deployment permissions as the first fix. No verified production Runtime Object Read credential is available in the handoff or current release. Do not infer bucket absence from HTTP 403 and do not copy isolated-test credentials into production.
 
 Account: `1a64a0a081ea758f72be8254030bdf11`. Offline planned bucket: `openpq-intelligence-canonical`; existence and intended reuse remain unverified. Establish the actual exact bucket before deployment and amend the offline configuration if the intended existing bucket differs. No billing or account-admin scope is needed.
 
-Only these capabilities are missing for the next cloud step:
+The first owner action is to enable R2 in the production account Dashboard, including any required account/payment confirmation personally. Do not change the isolated test account. Browser here has no signed-in session and its verification form remains failed after one reload; automated UI cannot complete that account step. The official R2 error reference is https://developers.cloudflare.com/r2/api/error-codes/ .
+
+After account entitlement is established, verify these capabilities for the next cloud step:
 
 1. Account-scoped R2 bucket discovery/provisioning and the specific bucket binding for the new Transit Core writer, using an authorized deployment credential.
 2. S3 Object Read only credential restricted to that exact production bucket. Store endpoint, bucket, access key and secret as protected `S3_READONLY_CONFIG` for the new Transit Runtime. Never commit their values or place them in the reader Worker.
