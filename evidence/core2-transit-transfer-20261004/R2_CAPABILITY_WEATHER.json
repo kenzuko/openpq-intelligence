@@ -1,0 +1,33 @@
+{
+  "read_only": true,
+  "repository": "kenzuko/Jotrip-Weather",
+  "code_sha": "566909d9d0d651b237efc9027ff6677eefebb90b",
+  "at": "2026-10-04T00:23:07.932Z",
+  "credential_present": true,
+  "account_id": "1a64a0a081ea758f72be8254030bdf11",
+  "permissions_changed": false,
+  "reads": [
+    {
+      "path": "/workers/scripts",
+      "http_status": 200,
+      "success": true,
+      "error_codes": []
+    },
+    {
+      "path": "/r2/buckets",
+      "http_status": 403,
+      "success": false,
+      "error_codes": [
+        10042
+      ]
+    },
+    {
+      "path": "/r2/buckets/openpq-intelligence-canonical",
+      "http_status": 403,
+      "success": false,
+      "error_codes": [
+        10042
+      ]
+    }
+  ]
+}
