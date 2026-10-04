@@ -53,3 +53,21 @@ test('native Weather replay authority admits a scoped fact and exports independe
   assert.equal(receipt.epoch,1);assert.equal((await s.call('read',undefined,'test-only-read')).body.state.control_revision,0);
  }finally{await s.mf.dispose();}
 });
+
+test('native Weather source pump keeps one authority, uses only the producer view and exposes no public refresh/control capability',async()=>{
+ const p=await profile('weather'),s=await setup({semanticProfile:p,dataset_id:p.dataset_id,environment_id:p.environment_id,account_id:WEATHER_FACT_ACCOUNT,domainOperator:true,domainReplayClock:true,executionBindings:gate});
+ const token='weather-source-fixture-token-only-'.padEnd(40,'x');
+ Object.assign(s.principals.find(x=>x.id==='operator'),{token,permissions:['read','promote','export','domain-source-admit']});
+ const raw=await readFile(new URL('./data/domains/weather.json',import.meta.url),'utf8');
+ const entry={authority:s.trust,profile:p,actor_id:'operator',token};
+ try{
+  const options=s.options();options.workers.push({name:'weather-pump',modules:true,scriptPath:new URL('./weather-clock-ingestion.js',import.meta.url).pathname,modulesRules:[{type:'ESModule',include:['**/*.js']}],compatibilityDate:'2026-07-30',durableObjects:{SOURCE_PUMPS:{className:'WeatherSourcePump',useSQLite:true}},bindings:{ENVIRONMENT_ID:WEATHER_FACT_ENVIRONMENT,...gate,INGEST_DATASET_1:JSON.stringify(entry)},serviceBindings:{CORE_COMMAND:'core'},outboundService:async request=>{assert.equal(request.url,p.producer.url);return new Response(raw);}});
+  await s.mf.setOptions(options);const ns=await s.mf.getDurableObjectNamespace('SOURCE_PUMPS','weather-pump'),pump=ns.get(ns.idFromName(WEATHER_FACT_ENVIRONMENT+'/'+p.dataset_id));
+  for(const revision of [1,2]){const r=await pump.fetch('https://pump/refresh',{method:'POST'});assert.equal(r.status,200,await r.clone().text());assert.equal((await r.json()).revision,revision);}
+  assert.equal((await pump.fetch('https://pump/refresh')).status,405);
+  const foreign=ns.get(ns.idFromName(WEATHER_FACT_ENVIRONMENT+'/airport.bridge.pqc'));assert.equal((await foreign.fetch('https://pump/refresh',{method:'POST'})).status,403);
+  assert.equal((await (await s.mf.getWorker('weather-pump')).fetch('https://public/refresh',{method:'POST'})).status,404);
+  assert.equal((await s.call('bootstrap',s.trust,token)).status,403);assert.equal((await s.call('control',{freeze:true},token)).status,403);
+  const state=(await s.call('read',undefined,'test-only-read')).body.state;assert.equal(state.revision,2);assert.equal(state.epoch,1);assert.equal(state.control_revision,0);
+ }finally{await s.mf.dispose();}
+});
