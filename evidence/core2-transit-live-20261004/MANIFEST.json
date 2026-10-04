@@ -1,0 +1,95 @@
+{
+  "origin_runs": [
+    37169567161,
+    37168316257,
+    37168514923,
+    37166775160,
+    37166946200
+  ],
+  "files": [
+    {
+      "file": "gateway/CANONICAL_SOURCE.json",
+      "sha256": "7a5b25c146750e68b8315e969f32b99d37bba13454bbb715bf139d07975fcaa6",
+      "bytes": 46254
+    },
+    {
+      "file": "gateway/PROFILE_PUBLIC.json",
+      "sha256": "a54eb4b6853be58fd3a0184222662df052440f86bfefad5581e44ca5d0b20487",
+      "bytes": 952
+    },
+    {
+      "file": "gateway/PROOF.json",
+      "sha256": "d4f7fbb82753dd8b6b3637a152039c113f9ea9a2f7d5361e4b80eacca57ff7b9",
+      "bytes": 4693
+    },
+    {
+      "file": "gateway/TRUST_PUBLIC.json",
+      "sha256": "c25444234cf0bb7f79d9e42068932a76508602bbfb909b8df594cfef3f784040",
+      "bytes": 1366
+    },
+    {
+      "file": "initial-read-probe/PROOF.json",
+      "sha256": "822b71dedee66c82b3d351fa5028e0da4d96049f30375d2a6086eb90264e0464",
+      "bytes": 2054
+    },
+    {
+      "file": "renewal/.transit-observation/PROOF.json",
+      "sha256": "96ae8889b946e504d1e7c6ba634dbf9705808ab61d1ea9beea28877dcbf368c1",
+      "bytes": 871
+    },
+    {
+      "file": "renewal/.transit-renew-proof/PROOF.json",
+      "sha256": "c311ced7c1e3658772675afe00a2e8278fcb3fedcc2579b9e0b64546f77e6635",
+      "bytes": 772
+    },
+    {
+      "file": "signed-update/GENERATION_1.json",
+      "sha256": "14cddf5aa7069320aeeed7868c07dc6099c4e580d3c5abbc7a6c4292f52e2486",
+      "bytes": 14370
+    },
+    {
+      "file": "signed-update/GENERATION_2.json",
+      "sha256": "eed40bee43b69aec8af23b80380f12440f7230b0763334ca5f00da29d5d50146",
+      "bytes": 14250
+    },
+    {
+      "file": "signed-update/PROOF.json",
+      "sha256": "f0f6d45154dd4f84985ced4c60da1d65376133c6274618ca34a74e35da57817a",
+      "bytes": 1878
+    },
+    {
+      "file": "signed-update/RECEIPT_1.json",
+      "sha256": "a63cff4fbde12ef6dfcc700a7c6ef7696b3f0e4560092c2c20ee581b65a87771",
+      "bytes": 2391
+    },
+    {
+      "file": "signed-update/RECEIPT_2.json",
+      "sha256": "596c59cf46a6e792cc8a70ee8ee5ed3d4e152d51e86d5e7ce7fbc45216577027",
+      "bytes": 2391
+    },
+    {
+      "file": "signed-update/SOURCE_1.json",
+      "sha256": "ac61a22868fec04810dd5d013a06930aa96a58606cd8ab885378c1902f587e96",
+      "bytes": 47469
+    },
+    {
+      "file": "signed-update/SOURCE_2.json",
+      "sha256": "7a5b25c146750e68b8315e969f32b99d37bba13454bbb715bf139d07975fcaa6",
+      "bytes": 46254
+    },
+    {
+      "file": "signed-update/TRUST_PUBLIC.json",
+      "sha256": "c25444234cf0bb7f79d9e42068932a76508602bbfb909b8df594cfef3f784040",
+      "bytes": 1366
+    },
+    {
+      "file": "storage/PROOF.json",
+      "sha256": "ee419a0b6ea233ac4704514a2025dfe5d3c125c9c0c003b20bd70b4125eaab9f",
+      "bytes": 2867
+    }
+  ],
+  "archive": {
+    "file": "PUBLIC_EVIDENCE.zip",
+    "sha256": "d080a0d46a3e33fe51d7cba6a5abd9364fc91cdc13c96386f6895172d89e48d7"
+  }
+}
