@@ -1,6 +1,7 @@
+import {DIRECTORY_FACT_ENVIRONMENT} from './directory-execution-contract.js';
 import {readConfig,PROFILE_REGISTRY_BINDINGS} from './trusted-config.js';
 import {executionEnvironment,executionDataset,TRANSIT_FACT_ENVIRONMENT} from './transit-execution-scope.js';
-import {TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION} from './domain-continuous-contract.js';
+import {TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION,DIRECTORY_FACT_PROFILE_VERSION} from './domain-continuous-contract.js';
 import {WEATHER_FACT_ENVIRONMENT} from './weather-execution-contract.js';
 import {isContinuousProfile,validateContinuousProfile,validateContinuousAdmission} from './domain-continuous-admission.js';
 import {DOMAIN_PROFILE_VERSION,isDomainProfile,validateDomainBridgeProfile,validateDomainBridgeAdmission,validateDomainBridgeActor} from './domain-bridge-admission.js';
@@ -27,6 +28,7 @@ async function configured(env,trust,evaluation_time){
  const profile=hasRegistry?readConfig(env,PROFILE_REGISTRY_BINDINGS)[trust.dataset_id]:JSON.parse(parts.join(''));
  requireThat(profile&&profile.environment_id===env.ENVIRONMENT_ID,'SEMANTIC_CLOUD_ADMISSION_CLOSED',503);
  if(env.ENVIRONMENT_ID===TRANSIT_FACT_ENVIRONMENT)requireThat(profile.contract_version===TRANSIT_FACT_PROFILE_VERSION,'TRANSIT_FACT_PROFILE_SCOPE_DENIED');
+ if(env.ENVIRONMENT_ID===DIRECTORY_FACT_ENVIRONMENT)requireThat(profile.contract_version===DIRECTORY_FACT_PROFILE_VERSION,'DIRECTORY_FACT_PROFILE_SCOPE_DENIED');
  if(env.ENVIRONMENT_ID===WEATHER_FACT_ENVIRONMENT)requireThat(profile.contract_version===WEATHER_FACT_PROFILE_VERSION,'WEATHER_FACT_PROFILE_SCOPE_DENIED');
  if(isDomainProfile(profile)){await validateDomainBridgeProfile(profile,trust);return {profile};}
  if(isContinuousProfile(profile)){await validateContinuousProfile(profile,trust);return {profile};}

@@ -26,7 +26,7 @@ export async function setup({faults=false,semanticProfile=null,progressConfig=nu
   const trust={environment_id,dataset_id,authority_instance_id:'local-cano-authority',authority_locator_version:'1',locator_artifact_hash:H,namespace_id:'local-sqlite-namespace',object_name:'local-test/'+dataset_id,native_id:'0'.repeat(64),recovery_generation:'local-generation-1',artifacts:{rule:H,config:H,policy:H,schema:H},receipt_keys:{'local-key':publicKey}};
   trust.account_id=account_id;
   let semanticBindings={},progressBindings={};if(progressConfig){progressBindings={ENVIRONMENT_ID:'local-test',PROGRESS_CONFIG_JSON:JSON.stringify(progressConfig),PROGRESS_CONFIG_HASH:await hash(progressConfig),SCHEDULER_TOKEN_HASH:await hash('test-only-scheduler'),EXPORT_ONLY_TOKEN:'test-only-export'};}if(semanticProfile){const {packAdmissionProfile}=await import('../src/platform/semantic-admission.js');semanticBindings=await packAdmissionProfile(semanticProfile);trust.semantic_profile_hash=await hash(semanticProfile);trust.artifacts=Object.fromEntries(['rule','config','policy','schema'].map(k=>[k,semanticProfile.artifact_refs[k].hash]));}
-  trust.approved_positive_decision_types=['canonical-transit-fact','canonical-weather-fact'].includes(environment_id)?[]:['cano.operation.fixture'];
+  trust.approved_positive_decision_types=['canonical-transit-fact','canonical-weather-fact','canonical-directory-fact'].includes(environment_id)?[]:['cano.operation.fixture'];
   const actor=(id,token,permissions,extra={})=>({...trust,id,token,permissions,mode:'LIVE',owner:'pilot',epoch:1,...extra});
   let principals;
   const options=()=>({cf:false,host:'127.0.0.1',workers:[
