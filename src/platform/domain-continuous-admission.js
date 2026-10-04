@@ -1,3 +1,4 @@
+import {AIRPORT_SOURCE_URL} from './airport-execution-contract.js';
 import {DIRECTORY_SOURCE_URLS} from './directory-execution-contract.js';
 import {projectDirectoryPublication} from '../ingress/directory-publication.js';
 import {candidate,hash,instant,requireThat,stable} from './contracts.js';
@@ -6,7 +7,7 @@ import {DOMAIN_DATASETS,DOMAIN_ORIGINS,DOMAIN_RUNTIME_URLS,exact,utcTime} from '
 import {projectOwnedDomain,ISOLATED_ACCOUNT_ID,validateDomainBridgeActor} from './domain-bridge-admission.js';
 import {packDomainText,packDomainJson,unpackDomainText,unpackDomainJson} from './domain-codec.js';
 
-import {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION,TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION,DIRECTORY_FACT_PROFILE_VERSION,canonicalFactContract,continuousContract,continuousBundleVersion,continuousSnapshotVersion,continuousEnvironment} from './domain-continuous-contract.js';
+import {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION,TRANSIT_FACT_PROFILE_VERSION,WEATHER_FACT_PROFILE_VERSION,DIRECTORY_FACT_PROFILE_VERSION,AIRPORT_FACT_PROFILE_VERSION,canonicalFactContract,continuousContract,continuousBundleVersion,continuousSnapshotVersion,continuousEnvironment} from './domain-continuous-contract.js';
 import {TRANSIT_FACT_ACCOUNT} from './transit-execution-scope.js';
 import {WEATHER_SOURCE_URLS} from './weather-execution-contract.js';
 export {CONTINUOUS_PROFILE_VERSION,CONTINUOUS_BUNDLE_VERSION,CONTINUOUS_SNAPSHOT_VERSION};
@@ -23,6 +24,7 @@ export async function validateContinuousProfile(p,trust){
  requireThat(isContinuousProfile(p)&&p.environment_id===continuousEnvironment(p.contract_version)&&trust.environment_id===p.environment_id&&trust.account_id===(canonical?TRANSIT_FACT_ACCOUNT:ISOLATED_ACCOUNT_ID)&&p.fixture_only===false&&p.dataset_id===DOMAIN_DATASETS[p.domain]&&trust.dataset_id===p.dataset_id,'CONTINUOUS_SCOPE_DENIED');
  if(p.contract_version===TRANSIT_FACT_PROFILE_VERSION)requireThat(p.domain==='transit'&&p.dataset_id==='transit.bridge.phu-quoc'&&p.producer.source_kind==='OWNER_REPOSITORY_SNAPSHOT'&&p.producer.repository==='kenzuko/transit-jotrip'&&p.producer.path==='data/network.json'&&Array.isArray(trust.approved_positive_decision_types)&&trust.approved_positive_decision_types.length===0,'TRANSIT_FACT_PROFILE_SCOPE_DENIED');
  if(p.contract_version===WEATHER_FACT_PROFILE_VERSION)requireThat(Object.hasOwn(WEATHER_SOURCE_URLS,p.domain)&&p.producer.source_kind==='OWNER_PUBLIC_RUNTIME'&&p.producer.url===WEATHER_SOURCE_URLS[p.domain]&&Array.isArray(trust.approved_positive_decision_types)&&trust.approved_positive_decision_types.length===0,'WEATHER_FACT_PROFILE_SCOPE_DENIED');
+ if(p.contract_version===AIRPORT_FACT_PROFILE_VERSION)requireThat(p.domain==='airport'&&p.dataset_id==='airport.bridge.pqc'&&p.producer.source_kind==='OWNER_PUBLIC_RUNTIME'&&p.producer.url===AIRPORT_SOURCE_URL&&p.reference_policy.lease_ms===45000&&p.reference_policy.max_snapshot_age_ms===60000&&p.reference_policy.future_skew_ms===0&&Array.isArray(trust.approved_positive_decision_types)&&trust.approved_positive_decision_types.length===0,'AIRPORT_FACT_PROFILE_SCOPE_DENIED');
  if(p.contract_version===DIRECTORY_FACT_PROFILE_VERSION)requireThat(p.domain==='nearme'&&p.dataset_id==='directory.bridge.phu-quoc'&&p.producer.source_kind==='OWNER_PUBLIC_RUNTIME'&&p.producer.url===DIRECTORY_SOURCE_URLS.index&&Array.isArray(trust.approved_positive_decision_types)&&trust.approved_positive_decision_types.length===0,'DIRECTORY_FACT_PROFILE_SCOPE_DENIED');
  const origin=DOMAIN_ORIGINS[p.domain];requireThat(origin,'CONTINUOUS_DOMAIN_DENIED');
  if(p.producer.source_kind==='OWNER_REPOSITORY_SNAPSHOT'){
@@ -46,7 +48,12 @@ async function project(p,bundle,at){
  if(p.producer.source_kind==='OWNER_REPOSITORY_SNAPSHOT')requireThat(pointer?.repository===p.producer.repository&&pointer?.path===p.producer.path,'CONTINUOUS_SOURCE_DENIED');
  else requireThat(pointer?.url===p.producer.url,'CONTINUOUS_SOURCE_DENIED');
  const raw=await unpackDomainText(bundle.encoded_source);requireThat(bundle.encoded_source.sha256===pin.payload_sha256,'CONTINUOUS_RAW_DIGEST_DENIED');
- const {legacy_payload,...compact}=await projectOwnedDomain(p.domain,{pin,raw_utf8:raw},at);return compact;
+ const {legacy_payload,...compact}=await projectOwnedDomain(p.domain,{pin,raw_utf8:raw},at);
+ if(p.contract_version===AIRPORT_FACT_PROFILE_VERSION){
+  const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Ho_Chi_Minh',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(at)).map(x=>[x.type,x.value]));
+  requireThat(compact.metadata.transport==='LIVE_PROXY_CAPTURE'&&compact.metadata.source_date===parts.year+'-'+parts.month+'-'+parts.day,'AIRPORT_LIVE_TODAY_REQUIRED',409);
+ }
+ return compact;
 }
 function derived(p,trust,compact,at,operator){
  const now=instant(at,'CONTINUOUS_EVALUATION'),source=compact.metadata.generated_at?.utc||compact.metadata.board_checked_at?.utc;
